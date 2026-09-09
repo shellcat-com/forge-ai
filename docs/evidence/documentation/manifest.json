@@ -1,0 +1,91 @@
+{
+  "sourceRevision": "941c97bdc92486e223ff8cc945351b98735eac85",
+  "route": "http://127.0.0.1:3002/docs",
+  "screenshots": 13,
+  "captureType": "Actual production screenshots; no video recording",
+  "verification": {
+    "node": "24.20.0",
+    "unitTests": 92,
+    "browserChecks": 10,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "widths": [
+      390,
+      768,
+      1440
+    ],
+    "additionalChecks": [
+      "CSS zoom at 200%",
+      "reduced motion",
+      "keyboard anchors and disclosure",
+      "clipboard success and denied fallback",
+      "no generation submissions",
+      "existing composer preserved",
+      "legacy route compatibility"
+    ]
+  },
+  "files": [
+    {
+      "path": "browser-checks.txt",
+      "sha256": "119ad7ce30db98e9ecbfadf626b5a90b12236de4e461215ef879505e39edb1e2"
+    },
+    {
+      "path": "overview-dark-1440.png",
+      "sha256": "fb2fc1994054e95a21aaaea8f5ae0ff2bfaa7f1023b2fe046a2eb6de1d2940ef"
+    },
+    {
+      "path": "overview-dark-390.png",
+      "sha256": "bf6743046c6b47a850ec59bfd55286070d2ede95bbd64cf540385a3915972df5"
+    },
+    {
+      "path": "overview-dark-768.png",
+      "sha256": "f328f90f93f3c3803d5d023a7f15ff10e4817592e66f2251aff3c60747241211"
+    },
+    {
+      "path": "overview-light-1440.png",
+      "sha256": "256b57cb8dff94af3e08bff9259b65167b1a2421ef0842693f9a2383a991b1c4"
+    },
+    {
+      "path": "overview-light-390.png",
+      "sha256": "97b329eac82ff121853a14771b609a21e6d9b975e0b6d48f85f882937bc55751"
+    },
+    {
+      "path": "overview-light-768.png",
+      "sha256": "eca940a28f9e78dd7f90370d045591211e61bf612112c5d0edd8acce319a2cae"
+    },
+    {
+      "path": "prompt-dark-1440.png",
+      "sha256": "c215daef2a1b1ae39c6d451c488186bee3cf2f05057b150a82b237993dbeeba4"
+    },
+    {
+      "path": "prompt-dark-390.png",
+      "sha256": "0a61e614127d64221060788514fec9921cd884c624b1dee70920212cbc5dca87"
+    },
+    {
+      "path": "prompt-dark-768.png",
+      "sha256": "cf27d40f02d567928318c5f0adbd182be790a3ef9708926b009d03d7f2d3ebde"
+    },
+    {
+      "path": "prompt-light-1440.png",
+      "sha256": "1931eebda5cd5bdb7d005b85ef12a83b314a5bd19a32c73eae12894bc4040152"
+    },
+    {
+      "path": "prompt-light-390.png",
+      "sha256": "39beca0774ab75f80926d07681279827a86aacfeccd9ef87ca55b1db403b1d98"
+    },
+    {
+      "path": "prompt-light-768.png",
+      "sha256": "f4c1dda1cbc0b6b16a6760911e28fc0117fb273c7aa15eb2ac7caf8ae6d1d8b7"
+    },
+    {
+      "path": "verification.txt",
+      "sha256": "c67b21d64fa1d2f02d61d8c8b9bd2b5ac3fabfa3d79e766b3ddffd8ccd21871f"
+    },
+    {
+      "path": "zoom-200.png",
+      "sha256": "d434141a73413c0fbd61b1f442b9dd7596761916e22f9b85797e7db31395f1c9"
+    }
+  ]
+}
