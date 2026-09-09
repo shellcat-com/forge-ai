@@ -210,7 +210,12 @@ describe("provider contracts", () => {
     const fetch = vi.fn().mockResolvedValue(
       Response.json({
         data: [
-          { id: "other/model", name: "Other" },
+          {
+            id: "other/model",
+            name: "Other",
+            top_provider: { max_completion_tokens: null },
+          },
+          { id: null, name: null },
           {
             id: "openai/gpt-4o",
             name: "GPT-4o",

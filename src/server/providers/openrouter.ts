@@ -9,18 +9,16 @@ import { ProviderError } from "./errors";
 import { boundedRequest, jsonFrames, request } from "./transport";
 
 const catalog = z.object({
-  data: z
-    .array(
-      z.object({
-        id: z.string().max(200),
-        name: z.string().max(300),
-        supported_parameters: z.array(z.string()).optional(),
-        top_provider: z
-          .object({ max_completion_tokens: z.number().positive().optional() })
-          .optional(),
-      }),
-    )
-    .max(2000),
+  data: z.array(z.unknown()).max(2000),
+});
+
+const catalogModel = z.object({
+  id: z.string().max(200),
+  name: z.string().max(300),
+  supported_parameters: z.array(z.string()).nullish(),
+  top_provider: z
+    .object({ max_completion_tokens: z.number().positive().nullish() })
+    .nullish(),
 });
 
 const chunk = z.object({
@@ -64,18 +62,26 @@ export class OpenRouterAdapter implements ProviderAdapter {
       { headers: this.headers() },
       AbortSignal.any([signal, AbortSignal.timeout(10_000)]),
     );
-    const parsed = catalog.safeParse(await response.json());
-    if (!parsed.success) throw new ProviderError("malformed");
-    return parsed.data.data
-      .filter((model) => model.id === this.allowedModel)
-      .map((model) => ({
-        id: model.id,
-        name: model.name,
-        outputTokenLimit: model.top_provider?.max_completion_tokens,
-        supportsStructuredOutputs:
-          model.supported_parameters?.includes("structured_outputs") ||
-          model.supported_parameters?.includes("response_format"),
-      }));
+    const parsedCatalog = catalog.safeParse(await response.json());
+    if (!parsedCatalog.success) throw new ProviderError("malformed");
+    const rawModel = parsedCatalog.data.data.find(
+      (model) =>
+        typeof model === "object" &&
+        model !== null &&
+        "id" in model &&
+        model.id === this.allowedModel,
+    );
+    if (!rawModel) return [];
+    const parsedModel = catalogModel.safeParse(rawModel);
+    if (!parsedModel.success) throw new ProviderError("malformed");
+    return [parsedModel.data].map((model) => ({
+      id: model.id,
+      name: model.name,
+      outputTokenLimit: model.top_provider?.max_completion_tokens ?? undefined,
+      supportsStructuredOutputs:
+        model.supported_parameters?.includes("structured_outputs") ||
+        model.supported_parameters?.includes("response_format"),
+    }));
   }
 
   async *generate(
