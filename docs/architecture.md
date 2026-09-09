@@ -1,6 +1,6 @@
 # Architecture
 
-Forge AI currently implements a static project-brief workspace. This page separates the checked-in system from the intended generation system so diagrams do not imply unavailable behavior.
+Forge AI currently implements a Next.js project-brief workspace. This page separates the checked-in system from the intended generation system so diagrams do not imply unavailable behavior.
 
 ## Current system
 
@@ -15,7 +15,7 @@ flowchart LR
   class B,UI,D,R,X live
 ```
 
-The Vite development server serves source modules during development. A production build emits static assets in `dist/`; Nginx serves those assets in the supplied container. There is no server API, database, provider connection, background worker, or command execution path.
+Next.js serves the React application during development and production. A production build emits a standalone Node server and locally bundled fonts. The supplied Dockerfile packages that server, but container startup is not yet validated. There is no server API, database, provider connection, background worker, or command execution path.
 
 ## Intended system
 
@@ -70,7 +70,7 @@ sequenceDiagram
 
 ## Decision record
 
-- **Static shell first:** makes status, identity, and contribution workflow reviewable without pretending a generator exists.
+- **Interactive foundation first:** makes status, identity, and contribution workflow reviewable without pretending a generator exists.
 - **Adapters behind a contract:** avoids spreading provider payload shapes and retry semantics throughout orchestration.
 - **Control plane separate from execution:** reduces the blast radius of generated code.
 - **Evidence as output:** generation is incomplete until the resulting diff and relevant checks are visible.
