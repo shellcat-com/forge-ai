@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 480" role="img" aria-labelledby="title desc">
+  <title id="title">Forge AI</title><desc id="desc">Shape the idea. Forge the system.</desc>
+  <defs><radialGradient id="g" cx="72%" cy="-10%" r="90%"><stop stop-color="#30352b"/><stop offset=".55" stop-color="#111412"/><stop offset="1" stop-color="#090b0a"/></radialGradient><pattern id="p" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0v32" fill="none" stroke="#383d39" stroke-width="1" opacity=".35"/></pattern></defs>
+  <rect width="1280" height="480" rx="24" fill="url(#g)"/><rect width="1280" height="480" rx="24" fill="url(#p)"/>
+  <g transform="translate(104 99)"><rect width="72" height="72" rx="17" fill="#d7ff46"/><path d="M19 18h34v10H30v8h18v10H30v8H19V18Z" fill="#10130d"/><path d="m44 45 9-9v18h-9v-9Z" fill="#10130d"/></g>
+  <text x="104" y="240" fill="#f2f0e8" font-family="Arial, sans-serif" font-size="88" font-weight="600" letter-spacing="-5">Forge <tspan fill="#d7ff46">AI</tspan></text>
+  <text x="108" y="302" fill="#8a918b" font-family="monospace" font-size="22" letter-spacing="1.5">SHAPE THE IDEA. FORGE THE SYSTEM.</text>
+  <g transform="translate(894 82)" fill="none" stroke="#d7ff46"><path d="M70 0v70H0M142 0v142H0M214 0v214H0M286 0v286H0" opacity=".18"/><circle cx="70" cy="70" r="8" fill="#d7ff46"/><circle cx="142" cy="142" r="8" fill="#d7ff46" opacity=".75"/><circle cx="214" cy="214" r="8" fill="#d7ff46" opacity=".5"/><path d="m70 70 72 72 72 72" stroke-width="2"/></g>
+</svg>
