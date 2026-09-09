@@ -6,6 +6,7 @@ import { designs, components } from '../public-renderers/designs'
 import { applyTheme, readTheme, validTheme } from '../theme'
 import { exportPreset } from '../export'
 import { topbar, footer } from './ui'
+import { documentation, demoPrompt } from '../public-renderers/documentation'
 export function legacyRoute(hash: string): string | undefined {
   const path = hash.replace(/^#/, '')
   const match = path.match(/^\/project\/([a-f0-9-]{36})$/)
@@ -27,7 +28,7 @@ export function legacyRoute(hash: string): string | undefined {
   )[path]
 }
 function links(html: string) {
-  return html.replace(/href="(#[^"]*)"/g, (_, hash) => `href="${legacyRoute(hash) ?? '/app'}"`)
+  return html.replace(/href="(#\/[^"]*)"/g, (_, hash) => `href="${legacyRoute(hash) ?? '/app'}"`)
 }
 export function PublicPage({ kind = 'landing', id }: { kind?: string; id?: string }) {
   const router = useRouter()
@@ -57,12 +58,12 @@ export function PublicPage({ kind = 'landing', id }: { kind?: string; id?: strin
         : kind === 'sample'
           ? `<div class="marketing">${topbar()}<main class="docs-page"><p class="eyebrow">ILLUSTRATIVE WALKTHROUGH</p><h1>A little room for possibility.</h1><p>This fixed example introduces the workbench. It is not a provider result.</p>${miniBuilder()}<a class="button primary" href="/app">Create your own project →</a></main>${footer()}</div>`
           : kind === 'docs'
-            ? `<div class="marketing">${topbar()}<main class="docs-page"><p class="eyebrow">FORGE / FIELD GUIDE</p><h1>From an idea to an application.</h1><section><h2>Start with your words</h2><p>Describe your product. Build creates an application; Idea, Brainstorm, and Plan help develop the brief. Your project retains its conversation.</p></section><section><h2>Your own visual direction</h2><p>Describe a style or use an optional example. The five examples never limit the kind of product you can create.</p></section><section><h2>A working local engine</h2><p>Configured models generate files. A separate worker builds them inside a restricted Docker environment. Preview, code, and history show the results. Availability is reported in Connections.</p></section><section><h2>Existing browser briefs</h2><p>Export your briefs from the original browser workspace, then import the JSON in Settings. Keep your original backup until import succeeds.</p></section><section><h2>Hosted beta</h2><p>Hosted accounts, shared previews and publishing depend on configured services and release verification. Unavailable capabilities remain labeled.</p></section><a class="button primary" href="/app">Open workspace →</a></main>${footer()}</div>`
+            ? documentation()
             : landing()
   html = links(html)
   return (
     <div
-      className="public-site"
+      className={`public-site${kind === 'docs' ? ' guide-site' : ''}`}
       onClick={(e) => {
         const target = (e.target as HTMLElement).closest<HTMLElement>('button')
         if (!target) return
@@ -87,6 +88,32 @@ export function PublicPage({ kind = 'landing', id }: { kind?: string; id?: strin
             setNotice('The download failed. Please retry.')
           )
         if (target.dataset.action === 'specimen-feedback') setNotice('Action received.')
+        if (target.dataset.action === 'copy-guide-prompt') {
+          const status = document.getElementById('guide-copy-status')
+          void navigator.clipboard
+            ?.writeText(demoPrompt)
+            .then(() => {
+              if (status)
+                status.textContent =
+                  'Demo prompt copied. Paste it into Home and review it before submitting.'
+            })
+            .catch(() => {
+              const text = document.getElementById('guide-demo-text') as HTMLTextAreaElement | null
+              text?.focus()
+              text?.select()
+              if (status)
+                status.textContent =
+                  'Copy is unavailable in this browser. The prompt is selected; use your keyboard or browser menu to copy it.'
+            })
+          if (!navigator.clipboard) {
+            const text = document.getElementById('guide-demo-text') as HTMLTextAreaElement | null
+            text?.focus()
+            text?.select()
+            if (status)
+              status.textContent =
+                'The prompt is selected. Use your keyboard or browser menu to copy it.'
+          }
+        }
       }}
     >
       <div dangerouslySetInnerHTML={{ __html: html }} />

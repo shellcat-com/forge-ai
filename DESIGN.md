@@ -39,3 +39,6 @@ Preset schema includes ID/version, paired tokens, fonts, recipes, artwork and gu
 
 ## Optional examples
 The five packages are inspiration, never a mandatory product constraint. Automatic and written custom design directions work without an example. Unknown examples do not select Technical Mono. Explicit user direction takes precedence. Forge chrome retains these tokens while generated applications own their appearance.
+
+## Product documentation
+The Documentation route uses the same public navigation, neutral tokens and type family. Give long-form guidance a bounded reading column, a sticky chapter index on wide screens and a collapsible index on narrow screens. Chapter anchors must remain on the guide route. Use numbered workflows, semantic tables, disclosure controls for troubleshooting, and contextual notes for product limits. A copyable example prompt must preserve the user's existing composer and must not submit a request. Keep capability descriptions tied to implemented behavior; distinguish source, preview, application data and public deployment. Documentation wording is calm, specific and action-oriented.
