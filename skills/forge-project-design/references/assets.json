@@ -1,0 +1,67 @@
+[
+  {
+    "index": 0,
+    "job_id": "0320c24f-5916-40f9-8627-0baf9893a0bf",
+    "name": "login",
+    "prompt": "Pale atmospheric landscape for a premium software login panel, delicate painterly blue sky fading into hazy ivory horizon, soft meadow silhouettes and pale gold light, subtly textured fine art, quiet airy spacious composition, no text no UI no logos, original editorial artwork.",
+    "model": "gpt_image_2_5",
+    "variant": "flare",
+    "quality": "high",
+    "resolution": "2k",
+    "aspectRatio": "16:9",
+    "source": "https://d8j0ntlcm91z4.cloudfront.net/user_3G2sst1cKecOnqM92d9elzvc6Ih/hf_20260909_190025_0320c24f-5916-40f9-8627-0baf9893a0bf.png",
+    "crop": "center; object-fit: cover; UI text is separate HTML"
+  },
+  {
+    "index": 1,
+    "job_id": "b6d08767-dc77-4e22-93f3-3a1febbd0b45",
+    "name": "landscape",
+    "prompt": "Muted panoramic mountain lake landscape, warm stone cliffs and misty water, soft dawn in pale silver lavender and parchment beige, refined painterly texture, calm wide composition for framing a dark software demonstration, no text no UI no logos, original fine art.",
+    "model": "gpt_image_2_5",
+    "variant": "flare",
+    "quality": "high",
+    "resolution": "2k",
+    "aspectRatio": "16:9",
+    "source": "https://d8j0ntlcm91z4.cloudfront.net/user_3G2sst1cKecOnqM92d9elzvc6Ih/hf_20260909_190025_b6d08767-dc77-4e22-93f3-3a1febbd0b45.png",
+    "crop": "center; object-fit: cover; UI text is separate HTML"
+  },
+  {
+    "index": 2,
+    "job_id": "00f6409e-5a5b-4770-9cab-7c20cc33b353",
+    "name": "particles",
+    "prompt": "Monochrome abstract wave made of thousands of fine silver particles on nearly black background, sculptural ribbon crossing space, quiet precise cinematic lighting, premium restrained composition, subtle grain, no text no UI no logos.",
+    "model": "gpt_image_2_5",
+    "variant": "flare",
+    "quality": "high",
+    "resolution": "2k",
+    "aspectRatio": "16:9",
+    "source": "https://d8j0ntlcm91z4.cloudfront.net/user_3G2sst1cKecOnqM92d9elzvc6Ih/hf_20260909_190025_00f6409e-5a5b-4770-9cab-7c20cc33b353.png",
+    "crop": "center; object-fit: cover; UI text is separate HTML"
+  },
+  {
+    "index": 3,
+    "job_id": "accdfefb-6575-423d-94ff-2f0fd1bcf415",
+    "name": "atmosphere",
+    "prompt": "Atmospheric abstract rolling dunes in muted mauve rose lavender and blue, soft glowing horizon, fine film grain, ethereal sculptural landscape, rich shadows with luminous soft edges, premium digital art, no text no UI no logos.",
+    "model": "gpt_image_2_5",
+    "variant": "flare",
+    "quality": "high",
+    "resolution": "2k",
+    "aspectRatio": "16:9",
+    "source": "https://d8j0ntlcm91z4.cloudfront.net/user_3G2sst1cKecOnqM92d9elzvc6Ih/hf_20260909_190025_accdfefb-6575-423d-94ff-2f0fd1bcf415.png",
+    "crop": "center; object-fit: cover; UI text is separate HTML"
+  },
+  {
+    "index": 4,
+    "job_id": "34f5aa85-368b-415a-b0b7-0972664b0fcc",
+    "name": "illustration",
+    "prompt": "Hand-painted illustrated panoramic landscape of distant blue mountains, a winding river and tiny hillside town, sunlit clouds and leafy tree framing upper right, simple wooden desk with closed notebook in foreground, evocative peaceful creative workspace, refined animated-film background painting, no text no UI no logos.",
+    "model": "gpt_image_2_5",
+    "variant": "flare",
+    "quality": "high",
+    "resolution": "2k",
+    "aspectRatio": "16:9",
+    "source": "https://d8j0ntlcm91z4.cloudfront.net/user_3G2sst1cKecOnqM92d9elzvc6Ih/hf_20260909_190025_34f5aa85-368b-415a-b0b7-0972664b0fcc.png",
+    "crop": "center; object-fit: cover; UI text is separate HTML"
+  }
+]

@@ -1,6 +1,6 @@
 # Provider integration
 
-No provider adapter is implemented. This document defines the proposed contract and the evidence required before a provider may be advertised as supported.
+A local NVIDIA plan-generation adapter is implemented in `server/provider.mjs`. A private development key is configured and all three enabled models have returned real plans through the local API. This verifies the prototype request path; the broader streaming adapter acceptance checklist below remains future work. See [NVIDIA setup and limitations](nvidia-provider.md). This document defines the longer-term contract and evidence required before a provider may be advertised as supported.
 
 ## Proposed contract
 

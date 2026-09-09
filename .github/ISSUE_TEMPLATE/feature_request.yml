@@ -1,0 +1,46 @@
+name: Feature request
+description: Propose a focused Forge AI improvement.
+title: "feat: "
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What user need or project gap does this address?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: Describe the smallest useful version.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Frontend workspace
+        - Design presets
+        - Provider integration
+        - Security or sandboxing
+        - Documentation
+        - Tooling or CI
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and constraints
+      description: Link to designs, docs, tests, or prior discussion. Avoid claims not supported by code.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: This request does not imply unsupported generation, authentication, or deployment behavior.
+          required: true
+        - label: I am willing to help validate the change.
+          required: false

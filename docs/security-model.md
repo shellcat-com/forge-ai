@@ -2,7 +2,7 @@
 
 ## Current model
 
-The checked-in app is static. It accepts a project name, prompt, and stack choice in browser memory and does not transmit or persist them. The generate action is disabled. There is no provider secret, backend, upload path, repository access, shell, generated-code runner, or sandbox.
+The frontend persists validated project briefs in browser local storage. No authentication or server project store exists. The optional loopback NVIDIA API keeps its credential on the server and sends a brief to the selected model only after an explicit Generate plan action. Responses are rendered as escaped text. There is no repository writer, shell, generated-code runner, deployment path or execution sandbox. See [NVIDIA setup](nvidia-provider.md) for the API's local-development boundary. Browser backups may contain private brief text and should be handled accordingly.
 
 The supplied container narrows the static Nginx process with an unprivileged user, dropped capabilities, no-new-privileges, a read-only root filesystem, and controlled temporary mounts. This is deployment hardening, not workload isolation.
 
@@ -25,7 +25,7 @@ flowchart LR
   S --> O[Reviewed artifacts]
   S -. denied by default .-> N[Network / host]
 
-  classDef trusted fill:#20251a,color:#e9e7e0,stroke:#d7ff46
+  classDef trusted fill:#252020,color:#e9e7e0,stroke:#f1eeee
   classDef untrusted fill:#2a1f19,color:#f1d1b6,stroke:#d08c55,stroke-dasharray:5 5
   class C,Q,O trusted
   class U,P,S,N untrusted

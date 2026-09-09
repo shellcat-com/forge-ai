@@ -1,0 +1,61 @@
+name: Bug report
+description: Report a reproducible Forge AI defect.
+title: "fix: "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this. Please avoid sharing secrets, private briefs, or unreleased customer data.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What went wrong?
+      placeholder: "The workspace loses the selected preset after..."
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Include a minimal path through the app.
+      placeholder: |
+        1. Run `npm run dev`
+        2. Open `#/workspace`
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: "macOS 15, Node 22, Chrome 126"
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Add logs, screenshots, or failing test output when useful.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I did not include secrets, API keys, or private project data.
+          required: true
+        - label: I searched existing issues first.
+          required: true

@@ -2,7 +2,7 @@
 
 ## Scope
 
-The current Forge deployment is a static pre-alpha UI. It has no accounts, persistence, model access, or generation runtime. Self-hosting it lets contributors inspect the interface; it does not create a usable AI app generator.
+The current Forge deployment is a static pre-alpha UI. It supports browser-local project persistence and has no accounts or application generation runtime. The optional loopback text-planning API is a separate local-development process and is not included in the static container. Self-hosting it lets contributors inspect the interface; it does not create a usable AI app generator.
 
 ## Local development
 
@@ -15,7 +15,7 @@ npm run verify
 npm run dev
 ```
 
-Vite listens on all interfaces for development because the npm script passes `--host 0.0.0.0`. Do not expose the development server to an untrusted network.
+Vite listens on loopback at `127.0.0.1:5173` with a strict port. Do not expose the development server to an untrusted network.
 
 ## Container deployment
 
