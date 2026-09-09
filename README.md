@@ -18,9 +18,9 @@ It is intentionally narrow today: a polished Vite + strict TypeScript frontend, 
 
 | Landing | Workspace | Design Presets |
 | --- | --- | --- |
-| ![Forge landing page in light mode](docs/design/screenshots/landing-1440-light.jpg) | ![Forge workspace in light mode](docs/design/screenshots/login-1440-light.jpg) | ![Forge preset gallery](docs/design/screenshots/presets-1440.jpg) |
+| ![Forge landing page in dark mode](docs/design/screenshots/landing-1440-dark.jpg) | ![Forge workspace in dark mode](docs/design/screenshots/login-1440-dark.jpg) | ![Forge preset gallery](docs/design/screenshots/presets-1440.jpg) |
 
-More captured evidence lives in [docs/design/screenshots](docs/design/screenshots) and [docs/design/verification.md](docs/design/verification.md).
+The repository keeps both light and dark captures in [docs/design/screenshots](docs/design/screenshots), with the dark captures featured here to match Forge's primary presentation. Verification notes live in [docs/design/verification.md](docs/design/verification.md).
 
 ## Features
 

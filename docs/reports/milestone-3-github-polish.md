@@ -5,6 +5,7 @@ Date: 2026-09-09
 ## Implemented
 
 - Reworked `README.md` into a public project front door with Forge branding, real screenshots, a concise product explanation, feature list, architecture diagram, provider status, local and Docker setup, environment variables, quick start, self-hosting, security model, limitations, roadmap, testing, contribution, license, and acknowledgements.
+- Featured the dark-mode product screenshots in the README while preserving the full light/dark evidence set in `docs/design/screenshots/`.
 - Added GitHub issue templates for bug reports and feature requests.
 - Added a pull-request template that asks contributors to record validation, security impact, and visual evidence.
 - Added Dependabot configuration for npm packages and GitHub Actions.
@@ -28,8 +29,8 @@ Date: 2026-09-09
 ## Screenshots captured
 
 - Reused checked-in captures from `docs/design/screenshots/`:
-  - `landing-1440-light.jpg`
-  - `login-1440-light.jpg`
+  - `landing-1440-dark.jpg`
+  - `login-1440-dark.jpg`
   - `presets-1440.jpg`
 
 ## Known limitations
