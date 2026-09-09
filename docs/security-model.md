@@ -2,9 +2,9 @@
 
 ## Current model
 
-The frontend persists validated project briefs in browser local storage. No authentication or server project store exists. The optional loopback NVIDIA API keeps its credential on the server and sends a brief to the selected model only after an explicit Generate plan action. Responses are rendered as escaped text. There is no repository writer, shell, generated-code runner, deployment path or execution sandbox. See [NVIDIA setup](nvidia-provider.md) for the API's local-development boundary. Browser backups may contain private brief text and should be handled accordingly.
+The checked-in app is a Next.js server with a client-side workspace. It accepts a prompt and editable starter ideas in browser memory and does not transmit or persist them. The generate action is disabled. Server-only provider adapters can read Gemini credentials and send bounded requests. Local APIs enforce Host and Origin checks. There is no generation backend, upload path, repository access, generated-code runner, or sandbox.
 
-The supplied container narrows the static Nginx process with an unprivileged user, dropped capabilities, no-new-privileges, a read-only root filesystem, and controlled temporary mounts. This is deployment hardening, not workload isolation.
+The supplied, not yet container-tested Docker configuration narrows the Next.js server process with an unprivileged user, dropped capabilities, no-new-privileges, a read-only root filesystem, and controlled temporary mounts. This is deployment hardening, not workload isolation.
 
 ## Assets
 
@@ -25,7 +25,7 @@ flowchart LR
   S --> O[Reviewed artifacts]
   S -. denied by default .-> N[Network / host]
 
-  classDef trusted fill:#252020,color:#e9e7e0,stroke:#f1eeee
+  classDef trusted fill:#20251a,color:#e9e7e0,stroke:#d7ff46
   classDef untrusted fill:#2a1f19,color:#f1d1b6,stroke:#d08c55,stroke-dasharray:5 5
   class C,Q,O trusted
   class U,P,S,N untrusted
@@ -53,3 +53,7 @@ The first sandbox will not guarantee containment against kernel or container-run
 ## Security release gate
 
 Before enabling generation, the project needs abuse-case tests for path traversal, symlink escapes, archive bombs, command injection, prompt injection, SSRF, credential exfiltration, resource exhaustion, cross-project access, malicious dependencies, and log leakage. The threat model and deployment guide must be updated with measured controls and residual risks.
+
+
+## Unified application integration
+The approved neutral interface in DESIGN.md is authoritative. Five design examples are optional. Hosted authentication, cloud execution, and publishing must be verified before being described as available. See docs/implementation-status.md.

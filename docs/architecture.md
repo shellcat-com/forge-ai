@@ -1,32 +1,43 @@
 # Architecture
 
-Forge keeps the Vite + strict TypeScript stack. Hash routing allows the complete UI to run on static hosting without server route rewrites.
+The integration combines the approved Forge interface with the existing Next.js engine. Next.js App Router is the sole web runtime. The original Vite rendering helpers are preserved as escaped public markup under `src/public-renderers`; they are not a second router.
 
-## Implemented modules
+```mermaid
+flowchart LR
+ Browser --> Next[Next.js interface and API]
+ Next --> Auth[Better Auth and server authorization]
+ Auth --> PG[(Forge PostgreSQL)]
+ Next --> PG
+ PG --> Worker[Local worker]
+ Worker --> Providers[Configured model adapters]
+ Worker --> Docker[Isolated Docker candidate]
+ Docker --> Preview[Separate loopback preview origin]
+ Worker --> Revisions[Saved source, runtime version and development snapshot]
+ Revisions --> PG
+```
 
-| Module | Responsibility |
-| --- | --- |
-| src/main.ts | Route and event coordination, dialogs, project mutations, optional planning requests |
-| src/pages/ | Public, workspace and design-system screens |
-| src/components/ui.ts | Escaped markup, shared navigation, buttons, artwork, previews and recovery |
-| src/design/ | Semantic Forge tokens and five versioned preset definitions |
-| src/theme.ts + public/theme-init.js | Validated system/light/dark preference; prepaint theme application |
-| src/storage.ts | Versioned local persistence, record validation, recoverable read/write failures |
-| src/project.ts | Original draft normalization and canGenerate readiness contract |
-| src/demo.ts | Deterministic sample sequence and illustrative file fixtures |
-| src/export.ts | Reusable preset ZIP packages |
-| server/ | Optional loopback NVIDIA text-planning API; server-side credentials |
+## Implemented boundaries
 
-Projects contain an ID, normalized draft, preset ID/version and timestamps. A corrupt or unsupported storage payload is not silently overwritten. Write failure leaves in-memory work accessible with recovery feedback. Backup is available from Settings. Browser storage is not authentication and cannot provide cross-device persistence.
+- `src/components/workspace.tsx`: prompt-first Home, project library, connections and settings.
+- `src/components/project-workspace.tsx`: persistent conversation, progress, preview, Monaco, history and review controls.
+- `src/app/api`: authenticated project/job/event/file-export/sharing/comment interfaces. Local mode has a configured owner and loopback request checks; hosted mode uses Better Auth sessions and server permissions.
+- `src/server/auth`: Better Auth/Drizzle configuration, conditional OAuth/email/dashboard integrations, invitation gate and project access checks.
+- `src/server/projects/service.ts`: additive persistence, owner-level submission locks, explicit base revisions, idempotency, project/request caps.
+- `worker/index.ts`: durable queue consumption, cancellation, model generation, up to two targeted build repairs, saved revisions and recovery. Idea/Brainstorm/Plan use no build sandbox.
+- `src/server/generation`: bounded file batches, protected path validation and relevant source selection. Nested pages, reusable components and server routes are supported. Locked dependencies and trusted runtime configuration remain controlled by Forge.
+- `src/server/workspaces`: restricted local Docker execution and preview relay. Generated code does not execute in the Forge web/worker process or receive Forge credentials.
+- `server/`: retained separate loopback NVIDIA text-planning service. It is not yet a verified code-generation adapter.
 
-Preset styles use --p-* tokens scoped beneath their preview root. Forge uses its own theme tokens. The preset gallery, live brief preview, builder preview and export all use the same data. Fonts are bundled through Fontsource; responsive original artwork is served from public/art.
+## Current limitations
 
-## Capability boundaries
+The worker still uses a global process lock and one active local preview. It pauses that preview during rebuilding and recovers the last working revision after failure. Hosted per-project leases, fencing, independent candidates, E2B execution, R2 artifacts, monetary reservations and deployment adapters remain unimplemented. Hosted generation is gated accordingly.
 
-Static deployment supports the complete local frontend. When the separate NVIDIA API is configured, an explicit Generate plan action sends a brief to the selected provider and returns escaped text. This is not file generation or execution. The deterministic sample remains separate from actual project/provider data.
+Legacy SQLite applications and their data snapshots remain local. The starter still includes the historical generic items helper; general application-specific server data modules need further implementation. A successful build and HTTP response are not a complete functional or security verification of generated software.
 
-Authentication, durable server projects, streaming orchestration, generated file writes, isolated preview environments and deployment are future work. A future runner must be disposable, resource limited and separate from the control API, with scoped mounts, explicit network policy and reviewable diffs. Static Nginx serving is not such a runner.
+Source restoration creates a revision and preserves current development data by default. Explicit development-data recovery is separate. Production rollback is not implemented and must never be inferred from source restoration.
 
-## Maintenance
+## Migration
 
-DESIGN.md and repository skills are maintained sources. Run npm run skills:sync after updates. Run npm run verify and review affected routes in both themes and responsive widths; see docs/design/verification.md. No user text should enter raw HTML, and provider credentials must never enter client code or exports.
+Migrations 0001–0003 are additive. `scripts/import-engine.mjs` copies explicitly selected local engine projects with an explicit owner, verifies source contents and creates an ignored private recovery file. It preserves project, job and revision IDs; event cursors are destination-local. It does not copy runtime handles or modify the source database. Browser JSON import retains original files and creates archived drafts without generating source.
+
+See [implementation status](implementation-status.md), [cloud status](cloud-setup-status.md), and the [approved plan](implementation-plan.md). Earlier numbered milestone reports describe the original engine at their capture time, not this integration's release status.

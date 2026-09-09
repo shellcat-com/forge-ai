@@ -14,17 +14,18 @@ Thanks for helping shape Forge. The project is pre-alpha, so small, evidence-bac
 ```bash
 git clone <your-fork-url> forge-ai
 cd forge-ai
-cp .env.example .env
+nvm use
+cp .env.example .env.local
 npm ci
 npm run verify
 npm run dev
 ```
 
-Use Node.js 20.19 or newer. Never commit `.env`, API keys, generated credentials, or personal data.
+Use Node.js 24.21.0 LTS. Never commit `.env`, API keys, generated credentials, or personal data.
 
 ## Workflow
 
-1. Create a focused branch such as `feat/provider-contract` or `fix/draft-validation`.
+1. Create a focused branch such as `codex/provider-contract` or `codex/draft-validation`.
 2. Add or update tests with the implementation.
 3. Update documentation, screenshots, and `CHANGELOG.md` when behavior changes.
 4. Run `npm run verify` and `npm audit --audit-level=moderate`.

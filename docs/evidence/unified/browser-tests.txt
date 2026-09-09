@@ -1,0 +1,32 @@
+
+Running 24 tests using 1 worker
+
+(node:92892) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/browser/foundation.spec.ts:2:1 › prompt, mode and custom direction survive navigation and reload without generation (1.5s)
+  ✓   2 tests/browser/foundation.spec.ts:19:2 › light workspace fits 375px (472ms)
+  ✓   3 tests/browser/foundation.spec.ts:19:2 › light workspace fits 390px (491ms)
+  ✓   4 tests/browser/foundation.spec.ts:19:2 › light workspace fits 768px (921ms)
+  ✓   5 tests/browser/foundation.spec.ts:19:2 › light workspace fits 1440px (773ms)
+  ✓   6 tests/browser/foundation.spec.ts:19:2 › dark workspace fits 375px (708ms)
+  ✓   7 tests/browser/foundation.spec.ts:19:2 › dark workspace fits 390px (566ms)
+  ✓   8 tests/browser/foundation.spec.ts:19:2 › dark workspace fits 768px (545ms)
+  ✓   9 tests/browser/foundation.spec.ts:19:2 › dark workspace fits 1440px (492ms)
+  ✓  10 tests/browser/foundation.spec.ts:32:1 › keyboard skip link reaches workspace (255ms)
+  ✓  11 tests/browser/foundation.spec.ts:35:1 › legacy links lead to canonical routes (382ms)
+  ✓  12 tests/browser/providers.spec.ts:3:3 › provider panel reports cloud and local adapters and fits 375px (485ms)
+  ✓  13 tests/browser/providers.spec.ts:3:3 › provider panel reports cloud and local adapters and fits 768px (447ms)
+  ✓  14 tests/browser/providers.spec.ts:3:3 › provider panel reports cloud and local adapters and fits 1440px (1.1s)
+  ✓  15 tests/browser/providers.spec.ts:28:1 › provider API blocks foreign origins (30ms)
+  -  16 tests/browser/providers.spec.ts:35:1 › live Ollama streaming through the UI
+  ✓  17 tests/browser/unified-workbench.spec.ts:4:71 › workbench light at 390px (444ms)
+  ✓  18 tests/browser/unified-workbench.spec.ts:4:71 › workbench dark at 390px (446ms)
+  ✓  19 tests/browser/unified-workbench.spec.ts:4:71 › workbench light at 768px (516ms)
+  ✓  20 tests/browser/unified-workbench.spec.ts:4:71 › workbench dark at 768px (520ms)
+  ✓  21 tests/browser/unified-workbench.spec.ts:4:71 › workbench light at 1440px (472ms)
+  ✓  22 tests/browser/unified-workbench.spec.ts:4:71 › workbench dark at 1440px (383ms)
+  ✓  23 tests/browser/unified-workbench.spec.ts:14:1 › imported engine projects retain their IDs and full revision history (33ms)
+  ✓  24 tests/browser/unified-workbench.spec.ts:17:1 › private code buffers survive refresh without overwriting server source (376ms)
+
+  1 skipped
+  23 passed (13.7s)

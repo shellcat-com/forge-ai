@@ -1,0 +1,65 @@
+
+Running 3 tests using 1 worker
+
+(node:91859) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/browser/pomodoro.acceptance.spec.ts:5:1 › Start, Pause, Resume and Reset behave under a controlled clock (583ms)
+  ✘  2 tests/browser/pomodoro.acceptance.spec.ts:12:1 › custom durations persist through reload (5.4s)
+(node:91900) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 tests/browser/pomodoro.acceptance.spec.ts:16:1 › focus completion counts a session and starts the break automatically (5.8s)
+
+
+  1) tests/browser/pomodoro.acceptance.spec.ts:12:1 › custom durations persist through reload ──────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('01:00', { exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('01:00', { exact: true }) with timeout 5000ms
+      - waiting for getByText('01:00', { exact: true })
+
+
+      12 | test('custom durations persist through reload',async({page})=>{
+      13 |  await page.getByRole('button',{name:'Settings',exact:true}).click();await page.getByLabel('Focus (minutes):').fill('1');await page.getByRole('button',{name:'Save',exact:true}).click();await expect(page.getByText('01:00',{exact:true})).toBeVisible();await page.reload();
+    > 14 |  await expect(page.getByText('01:00',{exact:true})).toBeVisible();
+         |                                                     ^
+      15 | });
+      16 | test('focus completion counts a session and starts the break automatically',async({page})=>{
+      17 |  await page.getByRole('button',{name:'Settings',exact:true}).click();await page.getByLabel('Focus (minutes):').fill('1');await page.getByRole('button',{name:'Save',exact:true}).click();
+        at /Users/biswaskhatiwada/.codex/worktrees/forge-unified/tests/browser/pomodoro.acceptance.spec.ts:14:53
+
+    Error Context: test-results/pomodoro.acceptance-custom-durations-persist-through-reload/error-context.md
+
+  2) tests/browser/pomodoro.acceptance.spec.ts:16:1 › focus completion counts a session and starts the break automatically 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('button', { name: 'Pause', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('button', { name: 'Pause', exact: true }) with timeout 5000ms
+      - waiting for getByRole('button', { name: 'Pause', exact: true })
+
+
+      18 |  await page.getByRole('button',{name:'Start',exact:true}).click();await page.clock.runFor(60000);await expect(page.getByRole('heading',{name:'Break',exact:true})).toBeVisible();await expect(page.getByText('Sessions completed: 1')).toBeVisible();
+      19 |  await page.screenshot({path:'docs/evidence/unified/pomodoro-break-state.png',fullPage:true});
+    > 20 |  await expect(page.getByRole('button',{name:'Pause',exact:true})).toBeVisible();
+         |                                                                   ^
+      21 | });
+      22 |
+        at /Users/biswaskhatiwada/.codex/worktrees/forge-unified/tests/browser/pomodoro.acceptance.spec.ts:20:67
+
+    Error Context: test-results/pomodoro.acceptance-focus--f5043-rts-the-break-automatically/error-context.md
+
+  2 failed
+    tests/browser/pomodoro.acceptance.spec.ts:12:1 › custom durations persist through reload ───────
+    tests/browser/pomodoro.acceptance.spec.ts:16:1 › focus completion counts a session and starts the break automatically 
+  1 passed (13.3s)
