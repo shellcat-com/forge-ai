@@ -4,6 +4,7 @@ export default tseslint.config(
   {
     ignores: [
       ".next/**",
+      "templates/**",
       "node_modules/**",
       "coverage/**",
       "test-results/**",
@@ -14,8 +15,16 @@ export default tseslint.config(
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
-    files: ["scripts/**/*.mjs"],
-    languageOptions: { globals: { process: "readonly" } },
+    files: ["scripts/**/*.mjs", "runtime/**/*.mjs"],
+    languageOptions: {
+      globals: {
+        process: "readonly",
+        console: "readonly",
+        Buffer: "readonly",
+        setTimeout: "readonly",
+        clearTimeout: "readonly",
+      },
+    },
   },
   {
     files: ["**/*.ts", "**/*.tsx"],

@@ -15,7 +15,7 @@ flowchart LR
   class B,UI,D,R,X live
 ```
 
-Next.js serves the React application during development and production. A production build emits a standalone Node server and locally bundled fonts. The supplied Dockerfile packages that server, but container startup is not yet validated. Local-only API routes expose provider discovery and streaming tests. There is no project database, background worker, or generated-code execution path yet.
+Next.js serves the React application during development and production. A production build emits a standalone Node server and locally bundled fonts. The supplied Dockerfile packages that server, but container startup is not yet validated. Local-only API routes expose provider discovery and streaming tests. A PostgreSQL schema and isolated Docker adapter now exist; the runtime integration test proves the fixed template can install offline, build, serve, and restore SQLite data. The job worker and generator UI are not connected yet.
 
 ## Intended system
 

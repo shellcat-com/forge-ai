@@ -28,7 +28,7 @@ Browser tests use installed Google Chrome by default. Override `PLAYWRIGHT_CHANN
 
 ## Implementation boundaries
 
-Next.js, React, TypeScript, Tailwind. Planned execution uses a separate worker, PostgreSQL/Drizzle jobs, Docker workspaces, a Next.js generated template, and workspace-local SQLite. Gemini is the required cloud provider; existing Ollama is the offline fallback. Groq and OpenRouter setup does not block the first complete workflow. Hosted Neon and Better Auth follow local validation. No AWS or Supabase.
+Next.js, React, TypeScript, Tailwind. Dedicated PostgreSQL/Drizzle schema, isolated Docker workspaces, a trusted Next.js template, and SQLite snapshot/restore are implemented and integration-tested. The durable worker and generator UI are next. Gemini is the required cloud provider; existing Ollama is the offline fallback. Groq and OpenRouter setup does not block the first complete workflow. Hosted Neon and Better Auth follow local validation. No AWS or Supabase.
 
 Provider secrets belong only in ignored `.env.local`, never `NEXT_PUBLIC_*`, the browser, generated applications, logs, or screenshots. See [AGENTS.md](AGENTS.md), [design system](docs/design-system.md), and milestone reports for development rules and measured evidence.
 

@@ -9,7 +9,7 @@ coverage/
 .next/
 .env.*
 !.env.example
-workspaces/
-data/
+/workspaces/
+/data/
 test-results/
 playwright-report/

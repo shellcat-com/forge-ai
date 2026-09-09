@@ -5,3 +5,6 @@ Use Node 24.21.0 LTS and npm. Run `npm ci`, `npm run verify`, then `npm start`. 
 `docker compose up --build` is the intended standalone Next.js packaging path, published only to loopback. It has not yet been container-tested. The local engine recovered after a Docker Desktop restart. This is not a generated-application sandbox.
 
 PostgreSQL, worker execution, and sandbox network controls are subsequent milestones. Do not expose this single-user development server publicly. No hosted account provisioning, cloud services, AWS, or Supabase are required.
+
+## Execution prerequisites
+Run `npm run setup:local`, `npm run db:migrate`, and `npm run runtime:build`. The setup script waits for PostgreSQL readiness and preserves existing local credentials. `npm run test:runtime` performs real offline builds and snapshot restoration; it creates and removes only its own disposable test containers and internal networks. See runtime.md for budgets and boundaries.
