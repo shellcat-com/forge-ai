@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 const config: NextConfig = {
   output: "standalone",
+  outputFileTracingIncludes: { "/*": ["./templates/next-app/**/*"] },
   poweredByHeader: false,
   experimental: { cpus: 2 },
   async headers() {
@@ -13,7 +14,8 @@ const config: NextConfig = {
           { key: "X-Frame-Options", value: "DENY" },
           {
             key: "Content-Security-Policy",
-            value: "frame-ancestors 'none'; object-src 'none'; base-uri 'self'",
+            value:
+              "frame-ancestors 'none'; frame-src http://127.0.0.1:3101; object-src 'none'; base-uri 'self'",
           },
         ],
       },

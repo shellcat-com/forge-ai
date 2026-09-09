@@ -8,10 +8,7 @@ test("prompt starters and provider navigation work", async ({ page }) => {
   await expect(page.getByLabel("Describe your application")).toHaveValue(
     /customer support inbox/,
   );
-  await expect(
-    page.getByRole("button", { name: /Build project/ }),
-  ).toBeDisabled();
-  await page.getByRole("button", { name: /Configure a provider/ }).click();
+  await page.getByRole("button", { name: /Providers/ }).click();
   await expect(
     page.getByRole("heading", { name: "Google Gemini" }),
   ).toBeVisible();
@@ -31,7 +28,7 @@ for (const width of [375, 768, 1440]) {
       await page.evaluate(() => document.documentElement.scrollWidth),
     ).toBeLessThanOrEqual(width);
     await page.screenshot({
-      path: `docs/evidence/foundation-${width}.png`,
+      path: `test-results/foundation-${width}.png`,
       fullPage: true,
     });
   });

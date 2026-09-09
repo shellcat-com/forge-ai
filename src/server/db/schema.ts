@@ -7,7 +7,7 @@ import {
   serial,
 } from "drizzle-orm/pg-core";
 import type { FileMap } from "../generation/files";
-import type { WorkspaceHandle } from "../workspaces/docker";
+import type { WorkspaceHandle, RuntimeVersion } from "../workspaces/docker";
 export const projects = pgTable("forge_projects", {
   id: text("id").primaryKey(),
   name: text("name").notNull(),
@@ -23,6 +23,7 @@ export const revisions = pgTable("forge_revisions", {
     .references(() => projects.id),
   files: jsonb("files").$type<FileMap>().notNull(),
   database: text("database_snapshot"),
+  runtimeVersion: jsonb("runtime_version").$type<RuntimeVersion>(),
   summary: text("summary").notNull(),
   createdAt: timestamp("created_at", { withTimezone: true })
     .defaultNow()

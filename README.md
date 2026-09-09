@@ -1,37 +1,56 @@
 # Forge AI
 
-A local-first workspace for turning ideas into editable full-stack applications.
+A local, single-user workspace for turning prompts into editable full-stack applications. Next.js, React, TypeScript, Tailwind, PostgreSQL and Drizzle power Forge; a separate Node worker builds generated Next.js applications in isolated Docker containers with SQLite storage.
 
-## Current status
+## Working locally
 
-The Next.js foundation is implemented: responsive prompt composer, editable starter prompts, provider navigation, local fonts, keyboard focus, and local production builds. Gemini and Ollama adapters, model discovery, and streaming checks are implemented. Ollama streaming is verified locally; Gemini requires private credentials and remains unverified. Application generation stays disabled until isolated execution is implemented. No feature is represented by a simulated successful build.
-
-## Development
-
-Use Node **24.21.0 LTS**, recorded in `.nvmrc` and `.node-version`.
+Use Node **24.21.0 LTS**, pinned in `.nvmrc` and `.node-version`. Docker must be running. Existing Ollama models are discovered automatically; Forge never installs or downloads a model.
 
 ```sh
 nvm install
 nvm use
 npm ci
-npm run dev
+npm run setup:local
+npm run db:migrate
+npm run runtime:build
+npm run build
+npm start
 ```
 
-Open http://127.0.0.1:3000. The development and production commands bind to loopback. `npm run build` creates the production application; `npm start` serves it.
+In another terminal, run `npm run worker`. Open [Forge](http://127.0.0.1:3000). For development, use `npm run dev` instead of building and starting the production server. All listeners bind to loopback.
+
+`setup:local` creates a dedicated local PostgreSQL container, volume and private database credential in ignored `.env.local`. It preserves existing environment settings. The initial runtime image build downloads the trusted, locked dependencies; subsequent generated builds install from that image's offline cache. The Docker image uses Node 24.20.0 from its pinned official digest; host tools use 24.21.0. No remote infrastructure is created.
+
+## Workflow
+
+Choose an installed Ollama model or a configured Gemini model, describe the app, and build. Forge stores the job and streamed timeline in PostgreSQL, validates the complete file batch, builds a candidate container and promotes it only after it serves a successful response. The interface includes a file explorer, locally served Monaco editor, responsive preview, build logs, follow-up prompts and revision history.
+
+The worker runs one build and one live preview at a time. It checkpoints the current SQLite database before a change, pauses the preview to free memory, and rebuilds the previous working version if a candidate fails. Restore keeps source, the runtime image/lockfile and a consistent database snapshot together. Worker restarts mark interrupted jobs failed and resume the last retained revision; reconnecting browser streams replay saved events.
+
+The first generated stack is deliberately constrained: a trusted Next.js shell, React/CSS, server routes and an existing SQLite collection API. The model currently generates page and stylesheet changes. The editor also supports allowed component and server-route files. Package/configuration changes and arbitrary commands are rejected. Small local models can miss design requirements or return invalid code; a passing build does not guarantee that every requested product behavior was implemented.
+
+## Providers and privacy
+
+Gemini is the only required cloud adapter. Configure its key privately in ignored `.env.local` using the placeholder names in `.env.example`, then restart the web server and worker. Confirm your selected model's free-tier eligibility before setting `GEMINI_FREE_TIER_CONFIRMED=true`; Forge does not activate billing. **Gemini has fixture coverage but has not been verified against a live account in this workspace.** The end-to-end local workflow has been tested with installed Ollama `llama3.2:latest`.
+
+Model discovery, streaming, cancellation in the provider check, bounded retries, timeouts and output limits are implemented. Gemini quota/unavailability/timeout failures explicitly switch to an available local Ollama model and discard partial output. Groq and OpenRouter have neutral contracts and unavailable states; no accounts are required.
+
+Secrets stay in the control processes. Generated containers receive no provider keys, host mounts, Docker socket or Forge database connection. They use non-root execution, resource limits, read-only roots and an internal network. A trusted relay and loopback preview proxy expose the application on a separate origin with restrictive browser policy. This is a local developer tool, not a hosted multi-user sandbox.
+
+SQLite checkpoints run every ten seconds and before controlled transitions. An abrupt host/worker crash can lose writes since the last successful checkpoint. Keep saved runtime images available for restoration; deleting Docker images or the PostgreSQL volume can make recovery impossible. This project does not perform those deletions automatically.
+
+## Verification
 
 ```sh
 npm run verify
 npm run test:e2e
+npm run test:runtime
 ```
 
-Browser tests use installed Google Chrome by default. Override `PLAYWRIGHT_CHANNEL` for another installed supported browser. Tests start a production server on port 3100 and capture actual screenshots under `docs/evidence`.
+The runtime integration test builds disposable containers and verifies SQLite restore and network isolation. Browser tests use installed Google Chrome; `PLAYWRIGHT_CHANNEL` can select another installed supported browser. To include real-project UI checks, set `FORGE_WORKFLOW_PROJECT` to an existing generated Field Notes project. `FORGE_TEST_URL` targets an already-running web server; otherwise tests launch production on port 3100.
 
-## Implementation boundaries
+`scripts/test-generation.ts` and `scripts/test-revisions.ts` exercise real local inference, durable jobs, replay, follow-up, source/data restoration and failed-build recovery. They require the running worker, Docker, PostgreSQL and installed Ollama; they create local test revisions. See [milestone reports](docs/reports), [design system](docs/design-system.md) and [working agreement](AGENTS.md) for evidence and boundaries.
 
-Next.js, React, TypeScript, Tailwind. Dedicated PostgreSQL/Drizzle schema, isolated Docker workspaces, a trusted Next.js template, and SQLite snapshot/restore are implemented and integration-tested. The durable worker and generator UI are next. Gemini is the required cloud provider; existing Ollama is the offline fallback. Groq and OpenRouter setup does not block the first complete workflow. Hosted Neon and Better Auth follow local validation. No AWS or Supabase.
-
-Provider secrets belong only in ignored `.env.local`, never `NEXT_PUBLIC_*`, the browser, generated applications, logs, or screenshots. See [AGENTS.md](AGENTS.md), [design system](docs/design-system.md), and milestone reports for development rules and measured evidence.
-
-The Dockerfile now builds a standalone Next.js server. Container execution requires a healthy Docker engine and must be verified before being described as working. No deployment or remote resources are created by setup.
+Hosted authentication, other generated stacks and hosted deployment are deferred. No AWS, Supabase, paid fallback, pushing, publishing or automatic evidence uploads.
 
 MIT licensed. See LICENSE.

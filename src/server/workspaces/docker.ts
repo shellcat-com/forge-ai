@@ -1,8 +1,16 @@
 import { spawn } from "node:child_process";
-import { randomUUID } from "node:crypto";
+import { randomUUID, createHash } from "node:crypto";
 import { setTimeout as delay } from "node:timers/promises";
 import type { FileMap } from "../generation/files";
 import { validateFiles } from "../generation/files";
+export const runtimeInstance = createHash("sha256")
+  .update(process.env.DATABASE_URL || "forge-runtime-test")
+  .digest("hex")
+  .slice(0, 16);
+export interface RuntimeVersion {
+  image: string;
+  lockfile: string;
+}
 export interface WorkspaceHandle {
   name: string;
   network: string;
@@ -13,6 +21,7 @@ export interface WorkspaceAdapter {
     files: FileMap,
     database: string | null,
     log: (text: string) => void,
+    version?: RuntimeVersion | null,
   ): Promise<WorkspaceHandle>;
   snapshot(handle: WorkspaceHandle): Promise<string | null>;
   destroy(handle: WorkspaceHandle): Promise<void>;
@@ -75,8 +84,11 @@ export class DockerWorkspace implements WorkspaceAdapter {
     files: FileMap,
     database: string | null,
     log: (text: string) => void,
+    version?: RuntimeVersion | null,
   ): Promise<WorkspaceHandle> {
     validateFiles(files);
+    if (version && !/^sha256:[a-f0-9]{64}$/.test(version.image))
+      throw new Error("Invalid runtime image version");
     if (database && database.length > 11000000)
       throw new Error("Snapshot exceeds limit");
     const name = `forge-run-${randomUUID()}`;
@@ -89,6 +101,8 @@ export class DockerWorkspace implements WorkspaceAdapter {
         "--internal",
         "--label",
         "forge.managed=true",
+        "--label",
+        `forge.instance=${runtimeInstance}`,
         handle.network,
       ]);
       await docker([
@@ -97,6 +111,8 @@ export class DockerWorkspace implements WorkspaceAdapter {
         name,
         "--label",
         "forge.managed=true",
+        "--label",
+        `forge.instance=${runtimeInstance}`,
         "--network",
         handle.network,
         "--publish",
@@ -117,9 +133,13 @@ export class DockerWorkspace implements WorkspaceAdapter {
         "/workspace:rw,exec,size=805306368,mode=1777",
         "--tmpfs",
         "/tmp:rw,size=67108864,mode=1777",
-        "forge-workspace:local",
+        version?.image ?? "forge-workspace:local",
       ]);
       await docker(["start", name]);
+      if (version && (await this.version(handle)).lockfile !== version.lockfile)
+        throw new Error(
+          "Saved dependency lockfile does not match the runtime image.",
+        );
       await docker(
         ["exec", "-i", name, "node", "/opt/forge/write.mjs"],
         JSON.stringify({ files, database }),
@@ -132,6 +152,8 @@ export class DockerWorkspace implements WorkspaceAdapter {
         relay,
         "--label",
         "forge.managed=true",
+        "--label",
+        `forge.instance=${runtimeInstance}`,
         "--network",
         "bridge",
         "--publish",
@@ -145,7 +167,7 @@ export class DockerWorkspace implements WorkspaceAdapter {
         "--memory=64m",
         "--cpus=0.25",
         "--pids-limit=32",
-        "forge-workspace:local",
+        version?.image ?? "forge-workspace:local",
         "node",
         "/opt/forge/relay.mjs",
         name,
@@ -186,6 +208,19 @@ export class DockerWorkspace implements WorkspaceAdapter {
       await this.destroy(handle);
       throw error;
     }
+  }
+  async version(handle: WorkspaceHandle): Promise<RuntimeVersion> {
+    owned(handle);
+    const image = (
+      await docker(["inspect", "--format", "{{.Image}}", handle.name])
+    ).trim();
+    const lockfile = await docker([
+      "exec",
+      handle.name,
+      "cat",
+      "/opt/template/package-lock.json",
+    ]);
+    return { image, lockfile };
   }
   async snapshot(handle: WorkspaceHandle): Promise<string | null> {
     owned(handle);

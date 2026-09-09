@@ -13,3 +13,5 @@ coverage/
 /data/
 test-results/
 playwright-report/
+
+/public/monaco/

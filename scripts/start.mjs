@@ -1,4 +1,4 @@
-import { cpSync } from "node:fs";
+import { cpSync, rmSync } from "node:fs";
 import { spawn } from "node:child_process";
 const args = process.argv.slice(2);
 if (
@@ -10,6 +10,7 @@ if (
 const port = Number(args[1] || process.env.PORT || 3000);
 if (!Number.isInteger(port) || port < 1024 || port > 65535)
   throw new Error("Port must be between 1024 and 65535.");
+rmSync(".next/standalone/public", { recursive: true, force: true });
 cpSync("public", ".next/standalone/public", { recursive: true });
 cpSync(".next/static", ".next/standalone/.next/static", { recursive: true });
 const child = spawn(process.execPath, [".next/standalone/server.js"], {

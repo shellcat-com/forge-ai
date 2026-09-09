@@ -4,6 +4,7 @@ export default tseslint.config(
   {
     ignores: [
       ".next/**",
+      "public/monaco/**",
       "templates/**",
       "node_modules/**",
       "coverage/**",

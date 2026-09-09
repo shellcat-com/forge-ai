@@ -1,8 +1,7 @@
-import { readFile } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { pool } from "../src/server/db";
-const sql = await readFile("drizzle/0001_initial.sql", "utf8");
-const hash = createHash("sha256").update(sql).digest("hex");
+
 const client = await pool()
   .connect()
   .catch(() => {
@@ -17,20 +16,27 @@ try {
   await client.query(
     "CREATE TABLE IF NOT EXISTS forge_migrations (id text PRIMARY KEY, hash text NOT NULL)",
   );
-  const existing = await client.query(
-    "SELECT hash FROM forge_migrations WHERE id=$1",
-    ["0001"],
-  );
-  if (existing.rowCount && existing.rows[0].hash !== hash)
-    throw new Error(
-      "Applied migration was changed. Add a new migration instead.",
+  for (const name of (await readdir("drizzle"))
+    .filter((n) => /^\d+_.*\.sql$/.test(n))
+    .sort()) {
+    const id = name.split("_")[0];
+    const sql = await readFile(`drizzle/${name}`, "utf8");
+    const hash = createHash("sha256").update(sql).digest("hex");
+    const existing = await client.query(
+      "SELECT hash FROM forge_migrations WHERE id=$1",
+      [id],
     );
-  if (!existing.rowCount) {
-    await client.query(sql);
-    await client.query("INSERT INTO forge_migrations VALUES ($1,$2)", [
-      "0001",
-      hash,
-    ]);
+    if (existing.rowCount && existing.rows[0].hash !== hash)
+      throw new Error(
+        "Applied migration was changed. Add a new migration instead.",
+      );
+    if (!existing.rowCount) {
+      await client.query(sql);
+      await client.query("INSERT INTO forge_migrations VALUES ($1,$2)", [
+        id,
+        hash,
+      ]);
+    }
   }
   await client.query("COMMIT");
   console.log("Database migration verified.");
