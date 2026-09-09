@@ -1,0 +1,3 @@
+Executed September 9, 2026 using Node 24.20.0 against isolated local PostgreSQL.
+PASS: real Better Auth invite gate, registration, verification, sign-in, persisted session and sign-out. Email delivery was intercepted by a local test stub; no external message sent.
+PASS: real PostgreSQL idempotency, owner isolation, active-job limit, stale revisions, review permissions and revocation.
