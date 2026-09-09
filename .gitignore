@@ -6,3 +6,13 @@ coverage/
 .env.local
 *.log
 *.tsbuildinfo
+.next/
+.env.*
+!.env.example
+/workspaces/
+/data/
+test-results/
+playwright-report/
+.private/
+
+/public/monaco/
