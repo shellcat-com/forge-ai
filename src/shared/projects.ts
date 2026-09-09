@@ -26,6 +26,6 @@ export interface TimelineEvent {
   message: string;
 }
 export interface ModelChoice {
-  provider: "gemini" | "ollama" | "openrouter";
+  provider: "gemini" | "groq" | "ollama" | "openrouter";
   model: string;
 }

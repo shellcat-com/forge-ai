@@ -32,6 +32,4 @@ export interface ProviderAdapter {
     signal: AbortSignal,
   ): AsyncIterable<ProviderEvent>;
 }
-export const deferredProviders = [
-  { id: "groq", name: "Groq", implemented: false },
-] as const;
+export const deferredProviders = [] as const;

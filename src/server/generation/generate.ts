@@ -103,7 +103,7 @@ export async function generateFiles(
     return await attempt(input.provider, input.model);
   } catch (error) {
     if (
-      input.provider === "gemini" &&
+      ["gemini", "groq"].includes(input.provider) &&
       error instanceof ProviderError &&
       ["quota", "unavailable", "timeout"].includes(error.code)
     ) {
@@ -113,7 +113,7 @@ export async function generateFiles(
       if (local?.selectedModel) {
         await event(
           "fallback",
-          `Gemini unavailable. Discarding partial output and switching to local Ollama / ${local.selectedModel}.`,
+          `${input.provider === "gemini" ? "Gemini" : "Groq"} unavailable. Discarding partial output and switching to local Ollama / ${local.selectedModel}.`,
         );
         return attempt("ollama", local.selectedModel);
       }

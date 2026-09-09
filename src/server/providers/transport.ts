@@ -105,6 +105,36 @@ export async function* jsonFrames(
     if (text !== "[DONE]") yield parse(text);
   }
 }
+export async function boundedJson(
+  response: Response,
+  maxBytes = 2_000_000,
+): Promise<unknown> {
+  if (!response.body) throw new ProviderError("malformed");
+  const reader = response.body.getReader();
+  const decoder = new TextDecoder();
+  let text = "";
+  let bytes = 0;
+  try {
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) {
+        text += decoder.decode();
+        break;
+      }
+      bytes += value.byteLength;
+      if (bytes > maxBytes) throw new ProviderError("limit");
+      text += decoder.decode(value, { stream: true });
+    }
+  } finally {
+    await reader.cancel().catch(() => {});
+    reader.releaseLock();
+  }
+  try {
+    return JSON.parse(text);
+  } catch {
+    throw new ProviderError("malformed");
+  }
+}
 export function boundedRequest(maxTokens: number, prompt: string): void {
   if (
     !Number.isInteger(maxTokens) ||

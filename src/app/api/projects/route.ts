@@ -8,7 +8,7 @@ import { createProject, readiness } from "../../../server/projects/service";
 const input = z
   .object({
     prompt: z.string().trim().min(20).max(12000),
-    provider: z.enum(["gemini", "ollama", "openrouter"]),
+    provider: z.enum(["gemini", "groq", "ollama", "openrouter"]),
     model: z.string().min(1).max(200),
   })
   .strict();

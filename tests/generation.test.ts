@@ -26,33 +26,35 @@ beforeEach(() => {
     { id: "ollama", available: true, selectedModel: "local" },
   ]);
 });
-for (const failure of [
-  new ProviderError("quota"),
-  new DOMException("timeout", "TimeoutError"),
-]) {
-  it(`discards partial cloud output and explicitly falls back on ${failure.name}/${failure.message}`, async () => {
-    registry.provider.mockImplementation((id: string) => ({
-      async *generate() {
-        if (id === "gemini") {
-          yield { type: "delta", text: "discard this incomplete JSON" };
-          throw failure;
-        }
-        yield { type: "delta", text: output };
-        yield { type: "done" };
-      },
-    }));
-    const events: string[] = [];
-    const result = await generateFiles(
-      { provider: "gemini", model: "cloud", prompt: "Change heading" },
-      files,
-      async (type) => {
-        events.push(type);
-      },
-    );
-    expect(result.files["app/page.tsx"]).toContain("After");
-    expect(events).toContain("fallback");
-    expect(registry.provider).toHaveBeenCalledWith("ollama");
-  });
+for (const cloudProvider of ["gemini", "groq"]) {
+  for (const failure of [
+    new ProviderError("quota"),
+    new DOMException("timeout", "TimeoutError"),
+  ]) {
+    it(`discards partial ${cloudProvider} output and explicitly falls back on ${failure.name}/${failure.message}`, async () => {
+      registry.provider.mockImplementation((id: string) => ({
+        async *generate() {
+          if (id === cloudProvider) {
+            yield { type: "delta", text: "discard this incomplete JSON" };
+            throw failure;
+          }
+          yield { type: "delta", text: output };
+          yield { type: "done" };
+        },
+      }));
+      const events: string[] = [];
+      const result = await generateFiles(
+        { provider: cloudProvider, model: "cloud", prompt: "Change heading" },
+        files,
+        async (type) => {
+          events.push(type);
+        },
+      );
+      expect(result.files["app/page.tsx"]).toContain("After");
+      expect(events).toContain("fallback");
+      expect(registry.provider).toHaveBeenCalledWith("ollama");
+    });
+  }
 }
 it("does not silently fall back for authentication errors", async () => {
   registry.provider.mockReturnValue({

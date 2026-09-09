@@ -5,7 +5,7 @@ import { safeProviderError } from "../../../../server/providers/errors";
 import { assertLocalRequest, smallJson } from "../../../../server/http/local";
 const input = z
   .object({
-    provider: z.enum(["gemini", "ollama", "openrouter"]),
+    provider: z.enum(["gemini", "groq", "ollama", "openrouter"]),
     model: z.string().min(1).max(200),
   })
   .strict();
@@ -45,7 +45,7 @@ export async function POST(request: Request) {
           {
             model: parsed.model,
             prompt: "Reply with exactly: Forge is ready.",
-            maxTokens: 32,
+            maxTokens: parsed.provider === "groq" ? 256 : 32,
           },
           signal,
         ))

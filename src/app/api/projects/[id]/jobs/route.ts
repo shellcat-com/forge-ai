@@ -10,7 +10,7 @@ const input = z.discriminatedUnion("kind", [
     .object({
       kind: z.literal("generate"),
       prompt: z.string().trim().min(5).max(12000),
-      provider: z.enum(["gemini", "ollama", "openrouter"]),
+      provider: z.enum(["gemini", "groq", "ollama", "openrouter"]),
       model: z.string().min(1).max(200),
     })
     .strict(),

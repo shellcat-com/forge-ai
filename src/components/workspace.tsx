@@ -52,11 +52,13 @@ export function Workspace() {
         setProviders(data);
         const selected =
           data.find((p) => p.id === "gemini" && p.available) ??
+          data.find((p) => p.id === "groq" && p.available) ??
           data.find((p) => p.id === "openrouter" && p.available) ??
           data.find((p) => p.id === "ollama" && p.available);
         if (selected?.selectedModel)
           setChoice({
-            provider: selected.id as "gemini" | "ollama" | "openrouter",
+            provider: selected.id as
+              "gemini" | "groq" | "ollama" | "openrouter",
             model: selected.selectedModel,
           });
       })

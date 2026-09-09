@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 for (const width of [375, 768, 1440]) {
-  test(`provider panel reports OpenRouter and fits ${width}px`, async ({
+  test(`provider panel reports cloud and local adapters and fits ${width}px`, async ({
     page,
   }) => {
     await page.setViewportSize({ width, height: 1000 });
@@ -15,11 +15,12 @@ for (const width of [375, 768, 1440]) {
     await expect(
       page.getByRole("heading", { name: "OpenRouter" }),
     ).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Groq" })).toBeVisible();
     expect(
       await page.evaluate(() => document.documentElement.scrollWidth),
     ).toBeLessThanOrEqual(width);
     await page.screenshot({
-      path: `docs/evidence/openrouter-${width}.png`,
+      path: `docs/evidence/providers-${width}.png`,
       fullPage: true,
     });
   });

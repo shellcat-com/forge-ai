@@ -104,6 +104,17 @@ export function ProjectWorkspace({
   const activeProvider = events
     .filter((e) => e.type === "provider")
     .at(-1)?.message;
+  const latestGeneration = detail.jobs.find((job) => job.kind === "generate");
+  const nextChoice =
+    latestGeneration &&
+    ["gemini", "groq", "ollama", "openrouter"].includes(
+      latestGeneration.provider,
+    )
+      ? {
+          provider: latestGeneration.provider as ModelChoice["provider"],
+          model: latestGeneration.model,
+        }
+      : choice;
   return (
     <div className="workbench">
       <div className="workbench-heading">
@@ -173,14 +184,18 @@ export function ProjectWorkspace({
             className="follow-up"
             onSubmit={(e) => {
               e.preventDefault();
-              if (choice)
-                void queue({ kind: "generate", prompt: followUp, ...choice });
+              if (nextChoice)
+                void queue({
+                  kind: "generate",
+                  prompt: followUp,
+                  ...nextChoice,
+                });
             }}
           >
             <label htmlFor="follow-up">Refine your app</label>
-            {choice && (
+            {nextChoice && (
               <p className="active-model">
-                Next change: {choice.provider} / {choice.model}
+                Next change: {nextChoice.provider} / {nextChoice.model}
               </p>
             )}
             <textarea
@@ -193,7 +208,7 @@ export function ProjectWorkspace({
             />
             <button
               className="build-button"
-              disabled={busy || !choice || followUp.trim().length < 5}
+              disabled={busy || !nextChoice || followUp.trim().length < 5}
             >
               Apply change ↗
             </button>

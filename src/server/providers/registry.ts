@@ -1,5 +1,6 @@
 import type { ProviderAdapter, ProviderStatus } from "../../shared/providers";
 import { GeminiAdapter } from "./gemini";
+import { GroqAdapter } from "./groq";
 import { OllamaAdapter } from "./ollama";
 import { OpenRouterAdapter } from "./openrouter";
 import { ProviderError, safeProviderError } from "./errors";
@@ -10,6 +11,11 @@ export function provider(id: string): ProviderAdapter {
       process.env.GEMINI_API_KEY ?? "",
       process.env.GEMINI_MODEL ?? "",
       process.env.GEMINI_FREE_TIER_CONFIRMED === "true",
+    );
+  if (id === "groq")
+    return new GroqAdapter(
+      process.env.GROQ_API_KEY ?? "",
+      process.env.GROQ_MODEL ?? "",
     );
   if (id === "openrouter")
     return new OpenRouterAdapter(
@@ -23,15 +29,17 @@ export async function providerStatuses(
   signal: AbortSignal,
 ): Promise<ProviderStatus[]> {
   return Promise.all(
-    (["gemini", "openrouter", "ollama"] as const).map(async (id) => {
+    (["gemini", "groq", "openrouter", "ollama"] as const).map(async (id) => {
       const base = {
         id,
         name:
           id === "gemini"
             ? "Google Gemini"
-            : id === "openrouter"
-              ? "OpenRouter"
-              : "Local Ollama",
+            : id === "groq"
+              ? "Groq"
+              : id === "openrouter"
+                ? "OpenRouter"
+                : "Local Ollama",
       };
       if (id === "gemini" && !process.env.GEMINI_API_KEY)
         return {
@@ -40,6 +48,14 @@ export async function providerStatuses(
           models: [],
           message:
             "Enter GEMINI_API_KEY privately in .env.local, then restart Forge.",
+        };
+      if (id === "groq" && !process.env.GROQ_API_KEY)
+        return {
+          ...base,
+          available: false,
+          models: [],
+          message:
+            "Enter GROQ_API_KEY privately in .env.local, then restart Forge.",
         };
       if (id === "openrouter" && !process.env.OPENROUTER_API_KEY)
         return {
@@ -65,9 +81,11 @@ export async function providerStatuses(
         const selectedModel =
           id === "gemini"
             ? process.env.GEMINI_MODEL
-            : id === "openrouter"
-              ? process.env.OPENROUTER_MODEL
-              : models[0]?.id;
+            : id === "groq"
+              ? process.env.GROQ_MODEL
+              : id === "openrouter"
+                ? process.env.OPENROUTER_MODEL
+                : models[0]?.id;
         const available =
           models.some((m) => m.id === selectedModel) &&
           (id !== "gemini" ||
@@ -81,9 +99,11 @@ export async function providerStatuses(
             ? "Model discovery succeeded. Test streaming to verify generation."
             : id === "gemini"
               ? "Select GEMINI_MODEL and confirm its free-tier eligibility in server configuration."
-              : id === "openrouter"
-                ? "OPENROUTER_MODEL was not found in the current model catalog."
-                : "No installed models found. Forge will not download one automatically.",
+              : id === "groq"
+                ? "GROQ_MODEL was not found in the current model catalog."
+                : id === "openrouter"
+                  ? "OPENROUTER_MODEL was not found in the current model catalog."
+                  : "No installed models found. Forge will not download one automatically.",
         };
       } catch (e) {
         return {

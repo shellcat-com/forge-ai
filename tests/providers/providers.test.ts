@@ -5,6 +5,7 @@ import {
   OllamaAdapter,
 } from "../../src/server/providers/ollama";
 import { GeminiAdapter } from "../../src/server/providers/gemini";
+import { GroqAdapter } from "../../src/server/providers/groq";
 import { OpenRouterAdapter } from "../../src/server/providers/openrouter";
 import { safeProviderError } from "../../src/server/providers/errors";
 import { assertLocalRequest, smallJson } from "../../src/server/http/local";
@@ -205,6 +206,177 @@ describe("provider contracts", () => {
     expect(fetch.mock.calls.every((c) => !c[0].includes("SENTINEL"))).toBe(
       true,
     );
+  });
+  it("discovers only the configured active Groq model", async () => {
+    const fetch = vi.fn().mockResolvedValue(
+      Response.json({
+        data: [
+          { id: null },
+          { id: "other/model", active: true },
+          {
+            id: "openai/gpt-oss-20b",
+            active: true,
+            max_completion_tokens: 65536,
+          },
+        ],
+      }),
+    );
+    vi.stubGlobal("fetch", fetch);
+    await expect(
+      new GroqAdapter("SENTINEL", "openai/gpt-oss-20b").listModels(signal()),
+    ).resolves.toEqual([
+      {
+        id: "openai/gpt-oss-20b",
+        name: "openai/gpt-oss-20b",
+        outputTokenLimit: 65536,
+        supportsStructuredOutputs: true,
+      },
+    ]);
+    expect(fetch.mock.calls[0][0]).not.toContain("SENTINEL");
+    expect(fetch.mock.calls[0][1].headers.Authorization).toBe(
+      "Bearer SENTINEL",
+    );
+  });
+  it("streams a plain Groq completion", async () => {
+    const fetch = vi
+      .fn()
+      .mockResolvedValueOnce(
+        Response.json({
+          data: [{ id: "openai/gpt-oss-20b", active: true }],
+        }),
+      )
+      .mockResolvedValueOnce(
+        response([
+          'data: {"choices":[{"delta":{"content":"Forge"}}]}\n\n',
+          'data: {"choices":[{"delta":{"content":" ready"},"finish_reason":"stop"}]}\n\n',
+          'data: {"choices":[],"usage":{"completion_tokens":2}}\n\ndata: [DONE]\n\n',
+        ]),
+      );
+    vi.stubGlobal("fetch", fetch);
+    await expect(
+      collect(
+        new GroqAdapter("SENTINEL", "openai/gpt-oss-20b").generate(
+          {
+            model: "openai/gpt-oss-20b",
+            prompt: "x",
+            maxTokens: 8,
+          },
+          signal(),
+        ),
+      ),
+    ).resolves.toEqual([
+      { type: "delta", text: "Forge" },
+      { type: "delta", text: " ready" },
+      { type: "done", outputTokens: 2 },
+    ]);
+  });
+  it("uses non-streaming strict output for Groq file operations", async () => {
+    const fetch = vi
+      .fn()
+      .mockResolvedValueOnce(
+        Response.json({
+          data: [
+            {
+              id: "openai/gpt-oss-20b",
+              active: true,
+              max_completion_tokens: 65536,
+            },
+          ],
+        }),
+      )
+      .mockResolvedValueOnce(
+        Response.json({
+          choices: [
+            {
+              message: { content: '{"ok":true}' },
+              finish_reason: "stop",
+            },
+          ],
+          usage: { completion_tokens: 4 },
+        }),
+      );
+    vi.stubGlobal("fetch", fetch);
+    const schema = {
+      type: "object",
+      properties: { ok: { type: "boolean" } },
+      required: ["ok"],
+      additionalProperties: false,
+    };
+    await expect(
+      collect(
+        new GroqAdapter("SENTINEL", "openai/gpt-oss-20b").generate(
+          {
+            model: "openai/gpt-oss-20b",
+            prompt: "x",
+            maxTokens: 8,
+            json: true,
+            schema,
+          },
+          signal(),
+        ),
+      ),
+    ).resolves.toEqual([
+      { type: "delta", text: '{"ok":true}' },
+      { type: "done", outputTokens: 4 },
+    ]);
+    const body = JSON.parse(fetch.mock.calls[1][1].body);
+    expect(body.stream).toBe(false);
+    expect(body.max_completion_tokens).toBe(8);
+    expect(body.reasoning_effort).toBe("low");
+    expect(body.include_reasoning).toBe(false);
+    expect(body.response_format.json_schema).toEqual({
+      name: "forge_file_operations",
+      strict: true,
+      schema,
+    });
+  });
+  it("rejects an excessive non-streaming Groq response", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi
+        .fn()
+        .mockResolvedValueOnce(
+          Response.json({
+            data: [{ id: "openai/gpt-oss-20b", active: true }],
+          }),
+        )
+        .mockResolvedValueOnce(
+          Response.json({
+            choices: [
+              {
+                message: { content: "x".repeat(300_000) },
+                finish_reason: "stop",
+              },
+            ],
+          }),
+        ),
+    );
+    await expect(
+      collect(
+        new GroqAdapter("SENTINEL", "openai/gpt-oss-20b").generate(
+          {
+            model: "openai/gpt-oss-20b",
+            prompt: "x",
+            maxTokens: 8,
+            schema: { type: "object" },
+          },
+          signal(),
+        ),
+      ),
+    ).rejects.toMatchObject({ code: "limit" });
+  });
+  it("rejects unconfigured Groq model IDs without a request", async () => {
+    const fetch = vi.fn();
+    vi.stubGlobal("fetch", fetch);
+    await expect(
+      collect(
+        new GroqAdapter("SENTINEL", "openai/gpt-oss-20b").generate(
+          { model: "other/model", prompt: "x", maxTokens: 8 },
+          signal(),
+        ),
+      ),
+    ).rejects.toMatchObject({ code: "configuration" });
+    expect(fetch).not.toHaveBeenCalled();
   });
   it("discovers only the configured OpenRouter model", async () => {
     const fetch = vi.fn().mockResolvedValue(
