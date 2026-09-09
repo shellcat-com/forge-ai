@@ -4,6 +4,7 @@ export interface ModelDescriptor {
   name: string;
   sizeBytes?: number;
   outputTokenLimit?: number;
+  supportsStructuredOutputs?: boolean;
 }
 export interface ProviderStatus {
   id: ProviderId;
@@ -33,5 +34,4 @@ export interface ProviderAdapter {
 }
 export const deferredProviders = [
   { id: "groq", name: "Groq", implemented: false },
-  { id: "openrouter", name: "OpenRouter", implemented: false },
 ] as const;

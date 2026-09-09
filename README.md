@@ -23,7 +23,7 @@ In another terminal, run `npm run worker`. Open [Forge](http://127.0.0.1:3000). 
 
 ## Workflow
 
-Choose an installed Ollama model or a configured Gemini model, describe the app, and build. Forge stores the job and streamed timeline in PostgreSQL, validates the complete file batch, builds a candidate container and promotes it only after it serves a successful response. The interface includes a file explorer, locally served Monaco editor, responsive preview, build logs, follow-up prompts and revision history.
+Choose an installed Ollama model, configured Gemini model, or configured OpenRouter model, describe the app, and build. Forge stores the job and streamed timeline in PostgreSQL, validates the complete file batch, builds a candidate container and promotes it only after it serves a successful response. The interface includes a file explorer, locally served Monaco editor, responsive preview, build logs, follow-up prompts and revision history.
 
 The worker runs one build and one live preview at a time. It checkpoints the current SQLite database before a change, pauses the preview to free memory, and rebuilds the previous working version if a candidate fails. Restore keeps source, the runtime image/lockfile and a consistent database snapshot together. Worker restarts mark interrupted jobs failed and resume the last retained revision; reconnecting browser streams replay saved events.
 
@@ -33,7 +33,9 @@ The first generated stack is deliberately constrained: a trusted Next.js shell, 
 
 Gemini is the only required cloud adapter. Configure its key privately in ignored `.env.local` using the placeholder names in `.env.example`, then restart the web server and worker. Confirm your selected model's free-tier eligibility before setting `GEMINI_FREE_TIER_CONFIRMED=true`; Forge does not activate billing. **Gemini has fixture coverage but has not been verified against a live account in this workspace.** The end-to-end local workflow has been tested with installed Ollama `llama3.2:latest`.
 
-Model discovery, streaming, cancellation in the provider check, bounded retries, timeouts and output limits are implemented. Gemini quota/unavailability/timeout failures explicitly switch to an available local Ollama model and discard partial output. Groq and OpenRouter have neutral contracts and unavailable states; no accounts are required.
+Model discovery, streaming, cancellation in the provider check, bounded retries, timeouts and output limits are implemented. Gemini quota/unavailability/timeout failures explicitly switch to an available local Ollama model and discard partial output. Groq retains a neutral deferred contract and does not require an account.
+
+OpenRouter is an optional implemented provider. Rotate any key shared through chat, then place the replacement only in ignored `.env.local`. Set one exact `OPENROUTER_MODEL`; Forge rejects other model IDs. Because OpenRouter models may consume credits, review the current catalog pricing and set `OPENROUTER_PAID_MODEL_CONFIRMED=true` only after accepting that cost. The configured default in `.env.example` is `openai/gpt-4o`, which was present in the catalog and advertised structured output when this integration was verified. Forge uses strict JSON Schema output, requires a route supporting that parameter, and reports authentication, credit/quota, timeout, malformed-stream and output-limit failures without exposing the provider response body. OpenRouter is fixture-tested and catalog-verified; no paid completion was sent during implementation.
 
 Secrets stay in the control processes. Generated containers receive no provider keys, host mounts, Docker socket or Forge database connection. They use non-root execution, resource limits, read-only roots and an internal network. A trusted relay and loopback preview proxy expose the application on a separate origin with restrictive browser policy. This is a local developer tool, not a hosted multi-user sandbox.
 

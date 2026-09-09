@@ -5,6 +5,7 @@ import {
   OllamaAdapter,
 } from "../../src/server/providers/ollama";
 import { GeminiAdapter } from "../../src/server/providers/gemini";
+import { OpenRouterAdapter } from "../../src/server/providers/openrouter";
 import { safeProviderError } from "../../src/server/providers/errors";
 import { assertLocalRequest, smallJson } from "../../src/server/http/local";
 const signal = () => new AbortController().signal;
@@ -205,10 +206,151 @@ describe("provider contracts", () => {
       true,
     );
   });
+  it("discovers only the configured OpenRouter model", async () => {
+    const fetch = vi.fn().mockResolvedValue(
+      Response.json({
+        data: [
+          { id: "other/model", name: "Other" },
+          {
+            id: "openai/gpt-4o",
+            name: "GPT-4o",
+            supported_parameters: ["structured_outputs"],
+            top_provider: { max_completion_tokens: 4096 },
+          },
+        ],
+      }),
+    );
+    vi.stubGlobal("fetch", fetch);
+    await expect(
+      new OpenRouterAdapter("SENTINEL", "openai/gpt-4o", true).listModels(
+        signal(),
+      ),
+    ).resolves.toEqual([
+      {
+        id: "openai/gpt-4o",
+        name: "GPT-4o",
+        outputTokenLimit: 4096,
+        supportsStructuredOutputs: true,
+      },
+    ]);
+    expect(fetch.mock.calls[0][0]).not.toContain("SENTINEL");
+    expect(fetch.mock.calls[0][1].headers.Authorization).toBe(
+      "Bearer SENTINEL",
+    );
+  });
+  it("streams structured OpenRouter output with bounded paid model selection", async () => {
+    const fetch = vi
+      .fn()
+      .mockResolvedValueOnce(
+        Response.json({
+          data: [
+            {
+              id: "openai/gpt-4o",
+              name: "GPT-4o",
+              supported_parameters: ["response_format"],
+            },
+          ],
+        }),
+      )
+      .mockResolvedValueOnce(
+        response([
+          ': OPENROUTER PROCESSING\n\ndata: {"choices":[{"delta":{"content":"{\\"ok\\":"}}]}\n\n',
+          'data: {"choices":[{"delta":{"content":"true}"},"finish_reason":"stop"}],"usage":{"completion_tokens":3}}\n\ndata: [DONE]\n\n',
+        ]),
+      );
+    vi.stubGlobal("fetch", fetch);
+    const events = await collect(
+      new OpenRouterAdapter("SENTINEL", "openai/gpt-4o", true).generate(
+        {
+          model: "openai/gpt-4o",
+          prompt: "x",
+          maxTokens: 8,
+          json: true,
+          schema: {
+            type: "object",
+            properties: { ok: { type: "boolean" } },
+            required: ["ok"],
+            additionalProperties: false,
+          },
+        },
+        signal(),
+      ),
+    );
+    expect(events).toEqual([
+      { type: "delta", text: '{"ok":' },
+      { type: "delta", text: "true}" },
+      { type: "done", outputTokens: 3 },
+    ]);
+    const body = JSON.parse(fetch.mock.calls[1][1].body);
+    expect(body.model).toBe("openai/gpt-4o");
+    expect(body.max_tokens).toBe(8);
+    expect(body.provider).toEqual({ require_parameters: true });
+    expect(body.response_format.json_schema.strict).toBe(true);
+  });
+  it("rejects unconfigured OpenRouter model IDs without a request", async () => {
+    const fetch = vi.fn();
+    vi.stubGlobal("fetch", fetch);
+    await expect(
+      collect(
+        new OpenRouterAdapter("SENTINEL", "openai/gpt-4o", true).generate(
+          { model: "other/paid-model", prompt: "x", maxTokens: 8 },
+          signal(),
+        ),
+      ),
+    ).rejects.toMatchObject({ code: "configuration" });
+    expect(fetch).not.toHaveBeenCalled();
+  });
+  it("requires explicit paid-model confirmation before OpenRouter requests", async () => {
+    const fetch = vi.fn();
+    vi.stubGlobal("fetch", fetch);
+    await expect(
+      collect(
+        new OpenRouterAdapter("SENTINEL", "openai/gpt-4o", false).generate(
+          { model: "openai/gpt-4o", prompt: "x", maxTokens: 8 },
+          signal(),
+        ),
+      ),
+    ).rejects.toMatchObject({ code: "configuration" });
+    expect(fetch).not.toHaveBeenCalled();
+  });
+  it("turns streamed OpenRouter credit errors into quota errors", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi
+        .fn()
+        .mockResolvedValueOnce(
+          Response.json({
+            data: [
+              {
+                id: "openai/gpt-4o",
+                name: "GPT-4o",
+                supported_parameters: ["response_format"],
+              },
+            ],
+          }),
+        )
+        .mockResolvedValueOnce(response(['data: {"error":{"code":402}}\n\n'])),
+    );
+    await expect(
+      collect(
+        new OpenRouterAdapter("SENTINEL", "openai/gpt-4o", true).generate(
+          { model: "openai/gpt-4o", prompt: "x", maxTokens: 8 },
+          signal(),
+        ),
+      ),
+    ).rejects.toMatchObject({ code: "quota" });
+  });
 });
 describe("local control API", () => {
-  it('accepts a legitimate Host when Next normalizes the request URL', () => {
-    expect(() => assertLocalRequest(new Request('http://localhost:3000/api', { headers: { host: '127.0.0.1:3000', origin: 'http://127.0.0.1:3000' } }), true)).not.toThrow();
+  it("accepts a legitimate Host when Next normalizes the request URL", () => {
+    expect(() =>
+      assertLocalRequest(
+        new Request("http://localhost:3000/api", {
+          headers: { host: "127.0.0.1:3000", origin: "http://127.0.0.1:3000" },
+        }),
+        true,
+      ),
+    ).not.toThrow();
   });
   it("rejects foreign origin and DNS rebinding", () => {
     for (const headers of [

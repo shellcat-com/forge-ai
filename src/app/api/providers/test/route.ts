@@ -5,7 +5,7 @@ import { safeProviderError } from "../../../../server/providers/errors";
 import { assertLocalRequest, smallJson } from "../../../../server/http/local";
 const input = z
   .object({
-    provider: z.enum(["gemini", "ollama"]),
+    provider: z.enum(["gemini", "ollama", "openrouter"]),
     model: z.string().min(1).max(200),
   })
   .strict();

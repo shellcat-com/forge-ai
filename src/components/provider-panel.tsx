@@ -105,7 +105,7 @@ export function ProviderPanel() {
         {providers.map((p) => (
           <article key={p.id} className="provider-card">
             <span className="starter-icon">
-              {p.id === "gemini" ? "✳" : "◎"}
+              {p.id === "gemini" ? "✳" : p.id === "openrouter" ? "↗" : "◎"}
             </span>
             <h2>{p.name}</h2>
             <span className="provider-badge">
@@ -165,7 +165,8 @@ export function ProviderPanel() {
       <p className="provider-intro">
         Gemini requires a free-tier project and a model verified against current
         pricing. No billing is enabled by Forge. Google’s free-tier data-use
-        terms apply. Groq and OpenRouter are deferred.
+        terms apply. OpenRouter may use paid credits depending on the selected
+        model; Forge never enables billing. Groq remains deferred.
       </p>
     </>
   );

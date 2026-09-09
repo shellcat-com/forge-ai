@@ -21,6 +21,7 @@ export async function request(
     await response.body?.cancel();
     if (response.status === 401 || response.status === 403)
       throw new ProviderError("authentication");
+    if (response.status === 402) throw new ProviderError("quota");
     if (response.status === 429 || response.status >= 500) {
       if (attempt < retries) {
         const retryAfter = response.headers.get("retry-after");

@@ -1,6 +1,7 @@
 import type { ProviderAdapter, ProviderStatus } from "../../shared/providers";
 import { GeminiAdapter } from "./gemini";
 import { OllamaAdapter } from "./ollama";
+import { OpenRouterAdapter } from "./openrouter";
 import { ProviderError, safeProviderError } from "./errors";
 export function provider(id: string): ProviderAdapter {
   if (id === "ollama") return new OllamaAdapter(process.env.OLLAMA_BASE_URL);
@@ -10,16 +11,27 @@ export function provider(id: string): ProviderAdapter {
       process.env.GEMINI_MODEL ?? "",
       process.env.GEMINI_FREE_TIER_CONFIRMED === "true",
     );
+  if (id === "openrouter")
+    return new OpenRouterAdapter(
+      process.env.OPENROUTER_API_KEY ?? "",
+      process.env.OPENROUTER_MODEL ?? "",
+      process.env.OPENROUTER_PAID_MODEL_CONFIRMED === "true",
+    );
   throw new ProviderError("configuration");
 }
 export async function providerStatuses(
   signal: AbortSignal,
 ): Promise<ProviderStatus[]> {
   return Promise.all(
-    (["gemini", "ollama"] as const).map(async (id) => {
+    (["gemini", "openrouter", "ollama"] as const).map(async (id) => {
       const base = {
         id,
-        name: id === "gemini" ? "Google Gemini" : "Local Ollama",
+        name:
+          id === "gemini"
+            ? "Google Gemini"
+            : id === "openrouter"
+              ? "OpenRouter"
+              : "Local Ollama",
       };
       if (id === "gemini" && !process.env.GEMINI_API_KEY)
         return {
@@ -29,10 +41,33 @@ export async function providerStatuses(
           message:
             "Enter GEMINI_API_KEY privately in .env.local, then restart Forge.",
         };
+      if (id === "openrouter" && !process.env.OPENROUTER_API_KEY)
+        return {
+          ...base,
+          available: false,
+          models: [],
+          message:
+            "Enter a fresh OPENROUTER_API_KEY privately in .env.local, then restart Forge.",
+        };
+      if (
+        id === "openrouter" &&
+        process.env.OPENROUTER_PAID_MODEL_CONFIRMED !== "true"
+      )
+        return {
+          ...base,
+          available: false,
+          models: [],
+          message:
+            "Confirm the selected model's current pricing before enabling paid OpenRouter requests.",
+        };
       try {
         const models = await provider(id).listModels(signal);
         const selectedModel =
-          id === "gemini" ? process.env.GEMINI_MODEL : models[0]?.id;
+          id === "gemini"
+            ? process.env.GEMINI_MODEL
+            : id === "openrouter"
+              ? process.env.OPENROUTER_MODEL
+              : models[0]?.id;
         const available =
           models.some((m) => m.id === selectedModel) &&
           (id !== "gemini" ||
@@ -46,7 +81,9 @@ export async function providerStatuses(
             ? "Model discovery succeeded. Test streaming to verify generation."
             : id === "gemini"
               ? "Select GEMINI_MODEL and confirm its free-tier eligibility in server configuration."
-              : "No installed models found. Forge will not download one automatically.",
+              : id === "openrouter"
+                ? "OPENROUTER_MODEL was not found in the current model catalog."
+                : "No installed models found. Forge will not download one automatically.",
         };
       } catch (e) {
         return {
