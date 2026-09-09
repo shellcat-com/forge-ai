@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { ProviderPanel } from "./provider-panel";
 
 const starters = [
   {
@@ -191,23 +192,10 @@ export function Workspace() {
                 <span>thinking partner.</span>
               </h1>
               <p className="provider-intro">
-                Provider connections are the next milestone. Credentials will
-                stay on the server.
+                Discover available models and test a live connection.
+                Credentials stay on the server.
               </p>
-              <div className="provider-cards">
-                {["Google Gemini", "Local Ollama"].map((name, i) => (
-                  <article key={name} className="provider-card">
-                    <span className="starter-icon">{i ? "◎" : "✳"}</span>
-                    <h2>{name}</h2>
-                    <p>
-                      {i
-                        ? "Use models already installed on your Mac."
-                        : "Connect your own free-tier developer API key."}
-                    </p>
-                    <span className="provider-badge">Not connected</span>
-                  </article>
-                ))}
-              </div>
+              <ProviderPanel />
               <button
                 className="text-button"
                 onClick={() => setView("workspace")}

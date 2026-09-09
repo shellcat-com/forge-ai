@@ -2,7 +2,7 @@
 
 ## Current model
 
-The checked-in app is a Next.js server with a client-side workspace. It accepts a prompt and editable starter ideas in browser memory and does not transmit or persist them. The generate action is disabled. There is no provider secret, generation backend, upload path, repository access, shell, generated-code runner, or sandbox.
+The checked-in app is a Next.js server with a client-side workspace. It accepts a prompt and editable starter ideas in browser memory and does not transmit or persist them. The generate action is disabled. Server-only provider adapters can read Gemini credentials and send bounded requests. Local APIs enforce Host and Origin checks. There is no generation backend, upload path, repository access, generated-code runner, or sandbox.
 
 The supplied, not yet container-tested Docker configuration narrows the Next.js server process with an unprivileged user, dropped capabilities, no-new-privileges, a read-only root filesystem, and controlled temporary mounts. This is deployment hardening, not workload isolation.
 

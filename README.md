@@ -4,7 +4,7 @@ A local-first workspace for turning ideas into editable full-stack applications.
 
 ## Current status
 
-The Next.js foundation is implemented: responsive prompt composer, editable starter prompts, provider navigation, local fonts, keyboard focus, and local production builds. Generation remains disabled until providers and isolated execution are implemented. No feature is represented by a simulated successful build.
+The Next.js foundation is implemented: responsive prompt composer, editable starter prompts, provider navigation, local fonts, keyboard focus, and local production builds. Gemini and Ollama adapters, model discovery, and streaming checks are implemented. Ollama streaming is verified locally; Gemini requires private credentials and remains unverified. Application generation stays disabled until isolated execution is implemented. No feature is represented by a simulated successful build.
 
 ## Development
 

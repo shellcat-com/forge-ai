@@ -14,7 +14,7 @@ Maintainers will aim to acknowledge a report within five business days, establis
 
 ## Current boundary
 
-The checked-in application is a Next.js server rendering a client workspace. It makes no model requests, stores no projects, and executes no generated code. The container hardening limits the web server, not untrusted workloads. See [docs/security-model.md](docs/security-model.md) for the current and target threat models.
+The checked-in application is a Next.js server rendering a client workspace. It exposes local-only provider discovery and bounded streaming tests. It stores no projects and executes no generated code. The container hardening limits the web server, not untrusted workloads. See [docs/security-model.md](docs/security-model.md) for the current and target threat models.
 
 ## Out of scope
 

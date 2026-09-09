@@ -700,3 +700,35 @@ h1 > span {
     transform: none;
   }
 }
+.model-label {
+  display: grid;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 11px;
+  margin: 20px 0;
+}
+.model-label select {
+  width: 100%;
+  min-width: 0;
+  background: #0c100a;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px;
+}
+.provider-test {
+  border: 1px solid #56663b;
+  background: #252f19;
+  color: var(--accent);
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 11px;
+  margin-top: 12px;
+}
+.cancel-test {
+  margin-left: 12px;
+}
+.test-result {
+  overflow-wrap: anywhere;
+  min-height: 24px;
+}
