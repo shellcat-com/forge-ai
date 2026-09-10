@@ -11,6 +11,36 @@
       "bytes": 2826
     },
     {
+      "path": "canonical-next-browser.json",
+      "sha256": "7808751b2e2eaf3a6a293e48adccabd5fcb1e3a74148124fd91ff5bf6a594f13",
+      "bytes": 744
+    },
+    {
+      "path": "ci-code-commit.json",
+      "sha256": "bd4d2e3db2bca4778d5f4facb2d83b016c09bcf9f9bb61bb016e0abdc42b9dc6",
+      "bytes": 2658
+    },
+    {
+      "path": "deployment-build-log.txt",
+      "sha256": "36a65b97dedd73750bb235c9346a6568b541123ba5d59d598d7a7b522b2bc3f0",
+      "bytes": 95
+    },
+    {
+      "path": "deployment-cli.txt",
+      "sha256": "0989395667b0dc62972244b79148ccde35cb03de0348edb31db146a1bf3a564b",
+      "bytes": 757
+    },
+    {
+      "path": "deployment-inspect.txt",
+      "sha256": "23cc84047cca09e107b5ffb313124b0e697f7cbbd74fe46ee5bb131bfcf200a7",
+      "bytes": 570
+    },
+    {
+      "path": "deployment.json",
+      "sha256": "6673ce86606726e252ec3ca648a9b95e10061802af5d5c4c89e4a81c9479b42e",
+      "bytes": 1228
+    },
+    {
       "path": "integration.json",
       "sha256": "275cd14d5983b7349c184dfdc4113064898c9a0b20f9718282ef42bc5d0612a8",
       "bytes": 25802
@@ -36,6 +66,31 @@
       "bytes": 208
     },
     {
+      "path": "production-browser.json",
+      "sha256": "7a0ec4eb33119b7aa7b9545aab7a82798ecc1702fae2fccb1f751d74de3003cb",
+      "bytes": 3168
+    },
+    {
+      "path": "production-bytes.json",
+      "sha256": "b10cd1e4cb26943e3061bf823eebae8658193e183b35182e52ae9ae0b910a171",
+      "bytes": 14011
+    },
+    {
+      "path": "production-dark-1440.png",
+      "sha256": "ad5183732ccfa7c7b44fdf41f85f2ff7bcbcb1d76d2d8428b160da69d3259739",
+      "bytes": 161335
+    },
+    {
+      "path": "production-light-390.png",
+      "sha256": "c1fbfd31a9a85b917bb4681d761401774468c810867a4600fe58e9fc4c0e53ca",
+      "bytes": 174086
+    },
+    {
+      "path": "publication-receipt.json",
+      "sha256": "b122e0b4bc8ddac6dc4cf6d30242f15aec61d130cead0bf64e607e6eb3b59f03",
+      "bytes": 4603
+    },
+    {
       "path": "secret-scan.json",
       "sha256": "39420c051e4a25a900e89a791e5856109efeceaafda4162568831fc33152db19",
       "bytes": 182
@@ -51,5 +106,6 @@
       "bytes": 2038
     }
   ],
-  "logNormalization": "CR progress/trailing whitespace stripped; raw logs retained in /tmp during task"
+  "logNormalization": "CR progress/trailing whitespace stripped; raw logs retained in /tmp during task",
+  "codeCommit": "339fb8e44234cca9ec5cfe3590e62709458e40a4"
 }

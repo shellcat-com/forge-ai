@@ -1,0 +1,42 @@
+{
+  "origin": "local-canonical-next-production",
+  "liveBuilder": false,
+  "cases": [
+    {
+      "theme": "light",
+      "width": 390,
+      "status": "passed",
+      "route": "/hosting"
+    },
+    {
+      "theme": "light",
+      "width": 768,
+      "status": "passed",
+      "route": "/hosting"
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "status": "passed",
+      "route": "/hosting"
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "status": "passed",
+      "route": "/hosting"
+    },
+    {
+      "theme": "dark",
+      "width": 768,
+      "status": "passed",
+      "route": "/hosting"
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "status": "passed",
+      "route": "/hosting"
+    }
+  ]
+}
