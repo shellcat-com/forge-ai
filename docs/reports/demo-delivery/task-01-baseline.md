@@ -93,3 +93,7 @@ Task 01's current deliverable is complete as a tested reviewable baseline; **liv
 - 09: independent A01–A22 and BYOK/demo acceptance, measured live corpus, named operations/alerts/release owners. Portfolio success cannot replace PostgreSQL task-board/restart/additive migration acceptance.
 
 Public multi-user generation remains unapproved and unnecessary for the owner demonstration. Missing external access blocks those integrations, not this baseline. Public website hosting and a completed portfolio are not claimed by this PR. Preserve existing branches, review the draft, and do not auto-merge.
+
+## Coordination follow-up
+
+After baseline publication, all user-started Tasks 02–09 checked in. The current coordination board records their session IDs, isolated branches, scoped template/auth/corpus/provenance delegations and shared contract requests. Task 01 reviewed the initial preview SQL proposal and requested lock-order/revocation/native-race fixes before canonical migration publication. Accounting, real identity, versioned storage and image-bundle contracts remain proposals pending implementation evidence. This follow-up changes coordination documents only; no worker implementation or live gate is claimed complete.
