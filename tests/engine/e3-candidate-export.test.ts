@@ -6,7 +6,7 @@ import { describe, expect, it } from 'vitest'
 import { prepareReviewedCandidateExport, readReviewedCandidate, reviewedCandidateHashes, runCandidateExportCheck, validateCandidateArchive } from '../harness/candidate-export.ts'
 
 describe('reviewed platform candidate export (not generated-app acceptance)', () => {
-  it('roundtrips pinned20-file source through reopened immutable artifacts and concrete scanner', async () => {
+  it('roundtrips pinned platform source through reopened immutable artifacts and concrete scanner', async () => {
     const root = await realpath(await mkdtemp(join(tmpdir(), 'forge-export-contract-')))
     try {
       const objects = join(root, 'objects'); await mkdir(objects, { mode: 0o700 })
@@ -30,7 +30,7 @@ describe('reviewed platform candidate export (not generated-app acceptance)', ()
   })
   it.skipIf(process.env.FORGE_RUN_CANDIDATE_EXPORT !== '1')('installs cache-only and verifies clean exported platform scaffold on exactNode24', async () => {
     const evidence = await runCandidateExportCheck()
-    await writeFile(new URL('../../runner/evidence/candidate/export.json', import.meta.url), JSON.stringify(evidence, null, 2) + '\n')
+    await writeFile(process.env.FORGE_CANDIDATE_REPORT ?? new URL('../../runner/evidence/candidate/export.json', import.meta.url), JSON.stringify(evidence, null, 2) + '\n')
     expect(evidence.cleanupConfirmed).toBe(true)
     expect(evidence.error).toBeNull()
     expect(evidence.status).toBe('passed')

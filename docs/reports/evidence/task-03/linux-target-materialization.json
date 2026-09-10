@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "origin": "macOS-npm-target-selection-only",
+  "command": "npm ci --offline --ignore-scripts --no-audit --no-fund --os=linux --cpu=x64 --libc=glibc",
+  "actualLinuxExecution": false,
+  "packagesInstalled": 399,
+  "selectedPackages": [
+    {
+      "name": "next",
+      "version": "16.3.4",
+      "packageJsonSha256": "c4ef8a1c8da320a162485f96d35df7745da90e6becc36882d6e81be9df66eec1"
+    },
+    {
+      "name": "@next/swc-linux-x64-gnu",
+      "version": "16.3.4",
+      "packageJsonSha256": "5d27af3ac2073828f1f74f00b5a5e113f2661976d471b398f120b05634f43962"
+    },
+    {
+      "name": "@rolldown/binding-linux-x64-gnu",
+      "version": "1.2.8",
+      "packageJsonSha256": "bec18d4c9017424f700257be0a119492daa08c44e2f57a2a5203d15d4f8b52db"
+    },
+    {
+      "name": "@unrs/resolver-binding-linux-x64-gnu",
+      "version": "1.12.2",
+      "packageJsonSha256": "72cecf001066926be4b669b4501d629fb81034ddc94dc87bd194415af37f3101"
+    },
+    {
+      "name": "pg",
+      "version": "8.23.0",
+      "packageJsonSha256": "e42dd36cba6e9dd8dbb6f773a2f7be8a8c3c273e18b155e42e75961a4cb8bc28"
+    },
+    {
+      "name": "typescript",
+      "version": "5.9.2",
+      "packageJsonSha256": "5a0bb7f286c4b3f1413a42c05f902311b161f70e5f52d9da10490443bfd595a3"
+    },
+    {
+      "name": "vitest",
+      "version": "4.1.11",
+      "packageJsonSha256": "a28126d97bcaf567da5bed69443b7f3bcd9a7a8c38c8b66e554686b6bb2c10e0"
+    }
+  ],
+  "lockfileSha256": "ce88882e5e2a00763896b4685bb964de44273905ba23d638fdeaac0b06157123",
+  "archiveOnlyCacheReplayPassed": true,
+  "archiveSha256": "e6beda8f3532eccd3c961d9c51000edf3a1dce442275a8095fa1509c4cea9afd"
+}

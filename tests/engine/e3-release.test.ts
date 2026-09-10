@@ -1,17 +1,17 @@
 import { readFile } from 'node:fs/promises'
 import { describe, expect, it } from 'vitest'
-import { validateTemplateRelease } from '../../templates/next-postgres-v1/release.ts'
+import { validateTemplateRelease, protectedTemplatePaths } from '../../templates/next-postgres-v1/release.ts'
 import { sha256 } from '../../engine/contracts/canonical.ts'
 import { checkIds } from '../../engine/contracts/primitives.ts'
 import { hash, now } from './fixtures.ts'
 
 // All report payloads below are fabricated unit inputs, never release evidence.
 const evidenceKeys = ['offlineMaterializationDigest', 'dependencyLicenseReviewDigest', 'isolationSuiteDigest', 'cleanExportDigest', 'referenceBenchmarkDigest'] as const
-async function fixture(overrides: Record<string, unknown> = {}, revoked = false, expectedCorpus = hash) {
+async function fixture(overrides: Record<string, unknown> = {}, revoked = false, expectedCorpus = hash, unprotect = false) {
   const lockfile = await readFile(new URL('../../templates/next-postgres-v1/package-lock.json', import.meta.url), 'utf8')
   const manifest = { schemaVersion: 1, template: { id: 'next-postgres-v1', digest: hash, imageDigest: `sha256:${hash}` },
     stack: 'nextjs-strict-typescript-postgresql', releases: { next: '16.3.4', node: '24.20.0', postgres: '18.6' },
-    lockfileDigest: sha256(lockfile), commandPolicyDigest: hash, requiredChecks: [...checkIds], protectedPaths: ['package.json'] }
+    lockfileDigest: sha256(lockfile), commandPolicyDigest: hash, requiredChecks: [...checkIds], protectedPaths: unprotect ? ['package.json'] : [...protectedTemplatePaths] }
   const objects = new Map<string, Uint8Array>()
   const evidence: Record<string, string> = { approvedBy: 'synthetic-test-operator', approvedAt: now }
   for (const key of evidenceKeys) {
@@ -35,6 +35,9 @@ describe('E3 release evidence schema with synthetic report payloads only', () =>
     { issuedAt: '2026-09-10T12:00:00.000Z' }, { sampleCount: 29, successCount: 29 },
     { sampleCount: 30, successCount: 26 }, { sampleCount: 30, successCount: 31 },
   ])('rejects mismatched report %j', async overrides => { await expect(fixture(overrides)).rejects.toThrow() })
+  it('rejects release manifests without the protected test/build/bootstrap files', async () => {
+    await expect(fixture({}, false, hash, true)).rejects.toThrow('release configuration')
+  })
   it('rejects revoked evidence and a different expected frozen corpus', async () => {
     await expect(fixture({}, true)).rejects.toThrow('revoked')
     await expect(fixture({}, false, 'b'.repeat(64))).rejects.toThrow('benchmark')
