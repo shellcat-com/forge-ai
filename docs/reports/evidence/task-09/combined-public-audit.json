@@ -1,0 +1,192 @@
+{
+  "schemaVersion": 1,
+  "auditedCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014",
+  "command": "gitleaks git --redact=100 --no-banner --report-format json --report-path /tmp/forge-task09-combined-secrets.json --log-opts=4dacd0255e4a04648424eb0b0044c6658b46a014",
+  "gitleaksVersion": "8.30.1",
+  "scannedCommits": 46,
+  "findings": 20,
+  "classificationCounts": {
+    "sha256-field-false-positive": 14,
+    "public-npm-signing-key": 2,
+    "git-commit-argument-or-prose": 2,
+    "intentional-secret-scanner-fixture": 2
+  },
+  "confirmedCredentials": 0,
+  "reviewedFindings": [
+    {
+      "path": "runner/evidence/task-02/manifest.json",
+      "commit": "b7d39d0094bcb54f005e4c7f53f7cf7712a2c5ca",
+      "line": 44,
+      "classification": "sha256-field-false-positive"
+    },
+    {
+      "path": "runner/evidence/task-02/manifest.json",
+      "commit": "31e0ee548e8dbb9beac6a7d2a1a1b0fc7d6e73b9",
+      "line": 44,
+      "classification": "sha256-field-false-positive"
+    },
+    {
+      "path": "docs/reports/evidence/task-03/offline-materialization-linux.json",
+      "commit": "b3fb6f6771c482a09fc0a431240e7d3c250172d6",
+      "line": 1,
+      "classification": "sha256-field-false-positive"
+    },
+    {
+      "path": "docs/reports/evidence/task-03/registry-keys.json",
+      "commit": "b3fb6f6771c482a09fc0a431240e7d3c250172d6",
+      "line": 1,
+      "classification": "public-npm-signing-key"
+    },
+    {
+      "path": "docs/reports/evidence/task-03/registry-keys.json",
+      "commit": "b3fb6f6771c482a09fc0a431240e7d3c250172d6",
+      "line": 1,
+      "classification": "public-npm-signing-key"
+    },
+    {
+      "path": "docs/reports/evidence/task-03/offline-materialization-macos.json",
+      "commit": "b3fb6f6771c482a09fc0a431240e7d3c250172d6",
+      "line": 1,
+      "classification": "sha256-field-false-positive"
+    },
+    {
+      "path": "templates/next-postgres-v1/toolchain/image-inputs.json",
+      "commit": "b3fb6f6771c482a09fc0a431240e7d3c250172d6",
+      "line": 15,
+      "classification": "sha256-field-false-positive"
+    },
+    {
+      "path": "docs/reports/evidence/task-03/manifest.json",
+      "commit": "b3fb6f6771c482a09fc0a431240e7d3c250172d6",
+      "line": 10,
+      "classification": "sha256-field-false-positive"
+    },
+    {
+      "path": "docs/reports/evidence/task-03/manifest.json",
+      "commit": "b3fb6f6771c482a09fc0a431240e7d3c250172d6",
+      "line": 14,
+      "classification": "sha256-field-false-positive"
+    },
+    {
+      "path": "docs/reports/evidence/task-04/manifest.json",
+      "commit": "fce0a185143d54154761855a0798f751ffff46c7",
+      "line": 53,
+      "classification": "sha256-field-false-positive"
+    },
+    {
+      "path": "docs/reports/evidence/task-04/manifest.json",
+      "commit": "fce0a185143d54154761855a0798f751ffff46c7",
+      "line": 54,
+      "classification": "sha256-field-false-positive"
+    },
+    {
+      "path": "docs/reports/evidence/task-05/manifest.json",
+      "commit": "c20f3aeea824b4a6db1eabed47f668939125793f",
+      "line": 33,
+      "classification": "sha256-field-false-positive"
+    },
+    {
+      "path": "docs/reports/evidence/task-05/manifest.json",
+      "commit": "c4236ba025fa53583db71b1c1e1b4c87de552664",
+      "line": 25,
+      "classification": "sha256-field-false-positive"
+    },
+    {
+      "path": "docs/reports/evidence/task-05/manifest.json",
+      "commit": "c4236ba025fa53583db71b1c1e1b4c87de552664",
+      "line": 26,
+      "classification": "sha256-field-false-positive"
+    },
+    {
+      "path": "docs/reports/evidence/task-05/manifest.json",
+      "commit": "c4236ba025fa53583db71b1c1e1b4c87de552664",
+      "line": 32,
+      "classification": "sha256-field-false-positive"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/manifest.json",
+      "commit": "e533afe7ffce770d9e1326874956139ea55deb75",
+      "line": 12,
+      "classification": "sha256-field-false-positive"
+    },
+    {
+      "path": "docs/reports/demo-delivery/task-09-acceptance.md",
+      "commit": "2437ec323a824658bbb6dee77bf5a2807e0184e3",
+      "line": 36,
+      "classification": "git-commit-argument-or-prose"
+    },
+    {
+      "path": "docs/reports/demo-delivery/task-09-acceptance.md",
+      "commit": "2437ec323a824658bbb6dee77bf5a2807e0184e3",
+      "line": 87,
+      "classification": "git-commit-argument-or-prose"
+    },
+    {
+      "path": "tests/engine/validation-secrets.test.ts",
+      "commit": "09c193a828d99a1c0a811c0d3d5361bd67af283c",
+      "line": 17,
+      "classification": "intentional-secret-scanner-fixture"
+    },
+    {
+      "path": "tests/engine/validation-secrets.test.ts",
+      "commit": "b981ec6b1dfafdeacd32a3765479fd1613622c9a",
+      "line": 17,
+      "classification": "intentional-secret-scanner-fixture"
+    }
+  ],
+  "trackedPersonalPathFiles": [
+    "docs/evidence/documentation/verification.txt",
+    "docs/evidence/unified/pomodoro-acceptance.txt",
+    "docs/evidence/unified/verification-node24.txt",
+    "docs/implementation-plan.md",
+    "docs/reports/evidence/e0/engine-tests.json",
+    "docs/reports/evidence/e0/engine-tests.log",
+    "docs/reports/evidence/e0/verify.log",
+    "docs/reports/evidence/e1/native-postgres.log",
+    "docs/reports/evidence/e1/native-tests.json",
+    "docs/reports/evidence/e1/verify.log",
+    "docs/reports/evidence/e2-e5/acceptance-tests-final.log",
+    "docs/reports/evidence/e2-e5/combined-independent.log",
+    "docs/reports/evidence/e2-e5/connected-http-v2.log",
+    "docs/reports/evidence/e2-e5/connected-http-v3.log",
+    "docs/reports/evidence/e2-e5/connected-http-v4.log",
+    "docs/reports/evidence/e2-e5/connected-http.log",
+    "docs/reports/evidence/e2-e5/coordinator-tests.log",
+    "docs/reports/evidence/e2-e5/host-flow-integrated.log",
+    "docs/reports/evidence/e2-e5/integrated-tests.json",
+    "docs/reports/evidence/e2-e5/integrated-tests.log",
+    "docs/reports/evidence/e2-e5/lint.log",
+    "docs/reports/evidence/e2-e5/operations-tests.log",
+    "docs/reports/evidence/e2-e5/postgres18-tests.log",
+    "docs/reports/evidence/e2-e5/repository-verify-e1-audit-failure.log",
+    "docs/reports/evidence/e2-e5/repository-verify-final.log",
+    "docs/reports/evidence/e2-e5/repository-verify.log",
+    "docs/reports/evidence/e2-e5/runtime-integrated.log",
+    "docs/reports/evidence/e2-e5/tls-integrated.log",
+    "docs/reports/evidence/e2-e5/ui-repair-integrated.json",
+    "docs/reports/evidence/e2-e5/ui-repair-integrated.log",
+    "docs/reports/evidence/e2-e5/validation-integrated.log",
+    "docs/reports/evidence/e2-e5/validation-native-integrated.log",
+    "docs/reports/evidence/publication/verify.log",
+    "docs/reports/evidence/task-01/integration-verify.log",
+    "runner/evidence/transport-tests.json",
+    "runner/evidence/unit-tests.json",
+    "runner/host/evidence-tests.json",
+    "tests/harness/evidence/validation-integrated-tests.json",
+    "tests/harness/evidence/validation-integrated-tests.log",
+    "tests/harness/evidence/validation-integrated-verify.log",
+    "tests/harness/evidence/validation-tests.json",
+    "tests/harness/evidence/validation-tests.log",
+    "tests/harness/evidence/validation-verify.log"
+  ],
+  "trackedAccountScopedUserIdFiles": [],
+  "trackedPrivateEnvironmentOrSshKeyNames": [],
+  "existingLicenseSha256": "e782f4b38a3cec40ba6029c8009fc7dc8d5fc5ba5b722ce5626415f4e80adfd5",
+  "licenseChangedFromBaseline": false,
+  "limitations": [
+    "Heuristic text/history scan, not exhaustive privacy clearance.",
+    "Screenshots/video/nested archive privacy and redistribution rights remain unresolved.",
+    "Current artwork metadata sanitization does not rewrite historical copies.",
+    "Public signing keys are not credentials."
+  ]
+}

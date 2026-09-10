@@ -1,0 +1,567 @@
+{
+  "schemaVersion": 1,
+  "auditedSourceCommit": "88a5a39daeabe088a119f871166333975588c1b1",
+  "gitTree": "028aef1057942be38968ffaf9174184aecbfba1e",
+  "previousSourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014",
+  "sourceChanges": [
+    "src/app/hosting/hosting.css"
+  ],
+  "sourceDiff": "diff --git a/src/app/hosting/hosting.css b/src/app/hosting/hosting.css\nindex 20c4321..fc13b6f 100644\n--- a/src/app/hosting/hosting.css\n+++ b/src/app/hosting/hosting.css\n@@ -1,3 +1,8 @@\n+/* The standalone availability page must reflow below the app shell minimum. */\n+body:has(> .hosted-site) {\n+  min-width: 0;\n+}\n+\n .hosted-site {\n   max-width: 1200px;\n   margin: 0 auto;\n",
+  "otherChanges": "coordination/report/evidence only",
+  "retainedManifestChecks": 529,
+  "retainedManifestMatches": 529,
+  "coordinatorContractHashesVerified": 59,
+  "coordinatorArtifactsObservedSha256": {
+    "docs/reports/evidence/task-01/combined/ancestry.json": "99ebce94c91b7404d2bb85533b600ac289f6c619640f5d3935c0b7778d83df10",
+    "docs/reports/evidence/task-01/combined/baseline-browser.log": "6d734e8d48c31996ec3cefbcec7b563b61aa3bf4fc5070d4d889890a99e12206",
+    "docs/reports/evidence/task-01/combined/ci-source.json": "fc55db6b8316e69a623064bc0695101f23bb5a9d746dc47c15342b498f22520b",
+    "docs/reports/evidence/task-01/combined/combined-contracts.json": "d835bc1181fea2ebb30be4baba3f79960cc674d5b075ab470bbccd3dee9ce975",
+    "docs/reports/evidence/task-01/combined/control-build.log": "ba90c04c5207a72d9914dc6b9b790762a0656552143fa682c9578b835e4b91f9",
+    "docs/reports/evidence/task-01/combined/disabled-api.log": "cde009d6794e95b8142a83d6112c925695680909e1bcc64fcf8dade2d063296e",
+    "docs/reports/evidence/task-01/combined/disabled-worker.log": "cde009d6794e95b8142a83d6112c925695680909e1bcc64fcf8dade2d063296e",
+    "docs/reports/evidence/task-01/combined/environment.json": "35e191bd130d9a3e96bbadb125b29dbf325a9c25dd930f34849f5f3355909b3c",
+    "docs/reports/evidence/task-01/combined/home-dark-1440.png": "2ad5d98687f9eaefab7d6e212e7994648d22f1d68375551a16d937a4935d0ad6",
+    "docs/reports/evidence/task-01/combined/home-dark-390.png": "9fcf8401382c0b528b297bbe9c067501e5535d22ae06de658ed05043e088daeb",
+    "docs/reports/evidence/task-01/combined/home-dark-768.png": "33ab08c69d2b967734adf3b6a2c0b81233f64f21ec8be3500891d61a6d116d35",
+    "docs/reports/evidence/task-01/combined/home-light-1440.png": "30a37f1ef5f16ee397a0804e37f9b286cd6a3166e0226dca16ff72b5d3f5acdd",
+    "docs/reports/evidence/task-01/combined/home-light-390.png": "07483b80e991e4967f51b3ea0f69f32b2a23f9cdbc44d5f692d9e894e6736b17",
+    "docs/reports/evidence/task-01/combined/home-light-768.png": "9260d4f57d0548556ac872c8d737548634ddf6cbaeb9f0400bee26ce708ed659",
+    "docs/reports/evidence/task-01/combined/hosting-canonical-initial-failure.log": "e2679f1b19716c09181f60e33784f36962d3825f81bcb909642da425dee56d9d",
+    "docs/reports/evidence/task-01/combined/hosting-local.log": "eb08d721d89f89b6d521ce4170021208c0c8418685672fd6602287b56073a4ca",
+    "docs/reports/evidence/task-01/combined/hosting-local/browser.json": "cee00ed74f3433e179d62f8bed3f961b6b765728f931a8f6c163461f41bb4df8",
+    "docs/reports/evidence/task-01/combined/hosting-public.log": "3db67f3889506c49b4a4bbcc1b04f1a92cefb9da47c025abe0f6ab940c9dfeca",
+    "docs/reports/evidence/task-01/combined/hosting-public/browser.json": "083854d213116a24383d389b88950ba68e3e1b6de4c6f602d975a85678106884",
+    "docs/reports/evidence/task-01/combined/identity-browser.log": "d8487e426c80d0bdfed169eb9a50ed20aa1717c6208efb4df48f00ba6f3da5cc",
+    "docs/reports/evidence/task-01/combined/identity-preview-race.log": "0209904cb321c700f343e93e164e8f3b44763a34d1779d94bfd5b36149b8d490",
+    "docs/reports/evidence/task-01/combined/native-control.log": "2169d90463aafb29c708fa7bdeb5e2f60b3a38b052fa48be9527ba25aa66c0a0",
+    "docs/reports/evidence/task-01/combined/native-migration.log": "23515610b66c9e97b1b7ebb8068b98bbc3585e226460787e7a3e4f599032a91f",
+    "docs/reports/evidence/task-01/combined/npm-ci.log": "68e11c2745ebecf4728f9cf03bd961183f9d8daa63cd91c91f846ea112f7a165",
+    "docs/reports/evidence/task-01/combined/preview-browser.json": "73b379e335ed28f344287e5e0bded3f5d9ea3774d5526e18b6a7570d55f1f0bf",
+    "docs/reports/evidence/task-01/combined/preview-browser.log": "73b379e335ed28f344287e5e0bded3f5d9ea3774d5526e18b6a7570d55f1f0bf",
+    "docs/reports/evidence/task-01/combined/preview-identity-race.json": "0209904cb321c700f343e93e164e8f3b44763a34d1779d94bfd5b36149b8d490",
+    "docs/reports/evidence/task-01/combined/preview-types.log": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "docs/reports/evidence/task-01/combined/publisher-prepare.log": "21ded85eb113dc3f37e895f9247bfb58b8ea1a0936a447f201731c327b2005e1",
+    "docs/reports/evidence/task-01/combined/results.json": "d443317ae7d92750a173987d6e31efa7402931520a1bf5688129a7ee4d67f945",
+    "docs/reports/evidence/task-01/combined/runtime-python.log": "5dff172626b13aa6f13aab34a42d1d5a75db8d8d18ceb4a35b55a26f45cf57af",
+    "docs/reports/evidence/task-01/combined/secret-review.json": "893e04117992a82133abb61277a0a8598005c39e16a65606d09e36c91437a7c1",
+    "docs/reports/evidence/task-01/combined/template-python.log": "6166478d771cd46f3fce92a7c5ee29591c8d8e568dbb1c5f7ed98611649adcbf",
+    "docs/reports/evidence/task-01/combined/verify.log": "c455e8a401a99134d2bba9d3aec74f890a29c7f7119b9f57a72a6d77b5650e83"
+  },
+  "coordinatorEvidenceAuthenticity": "Git-authored receipts independently read and hashed; execution performed by Task01, not Task09",
+  "reviewedDeltaSecretFindings": [
+    {
+      "path": "docs/reports/evidence/task-01/combined/combined-contracts.json",
+      "commit": "36b8841153dbc0e99d5642a0a2f0dfa5714ce45b",
+      "line": 55,
+      "classification": "sha256-field-false-positive"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/combined-contracts.json",
+      "commit": "36b8841153dbc0e99d5642a0a2f0dfa5714ce45b",
+      "line": 56,
+      "classification": "sha256-field-false-positive"
+    }
+  ],
+  "deltaSecretScanCommits": 3,
+  "finalTrackedPersonalPathFiles": [
+    "docs/evidence/documentation/verification.txt",
+    "docs/evidence/unified/pomodoro-acceptance.txt",
+    "docs/evidence/unified/verification-node24.txt",
+    "docs/implementation-plan.md",
+    "docs/reports/evidence/e0/engine-tests.json",
+    "docs/reports/evidence/e0/engine-tests.log",
+    "docs/reports/evidence/e0/verify.log",
+    "docs/reports/evidence/e1/native-postgres.log",
+    "docs/reports/evidence/e1/native-tests.json",
+    "docs/reports/evidence/e1/verify.log",
+    "docs/reports/evidence/e2-e5/acceptance-tests-final.log",
+    "docs/reports/evidence/e2-e5/combined-independent.log",
+    "docs/reports/evidence/e2-e5/connected-http-v2.log",
+    "docs/reports/evidence/e2-e5/connected-http-v3.log",
+    "docs/reports/evidence/e2-e5/connected-http-v4.log",
+    "docs/reports/evidence/e2-e5/connected-http.log",
+    "docs/reports/evidence/e2-e5/coordinator-tests.log",
+    "docs/reports/evidence/e2-e5/host-flow-integrated.log",
+    "docs/reports/evidence/e2-e5/integrated-tests.json",
+    "docs/reports/evidence/e2-e5/integrated-tests.log",
+    "docs/reports/evidence/e2-e5/lint.log",
+    "docs/reports/evidence/e2-e5/operations-tests.log",
+    "docs/reports/evidence/e2-e5/postgres18-tests.log",
+    "docs/reports/evidence/e2-e5/repository-verify-e1-audit-failure.log",
+    "docs/reports/evidence/e2-e5/repository-verify-final.log",
+    "docs/reports/evidence/e2-e5/repository-verify.log",
+    "docs/reports/evidence/e2-e5/runtime-integrated.log",
+    "docs/reports/evidence/e2-e5/tls-integrated.log",
+    "docs/reports/evidence/e2-e5/ui-repair-integrated.json",
+    "docs/reports/evidence/e2-e5/ui-repair-integrated.log",
+    "docs/reports/evidence/e2-e5/validation-integrated.log",
+    "docs/reports/evidence/e2-e5/validation-native-integrated.log",
+    "docs/reports/evidence/publication/verify.log",
+    "docs/reports/evidence/task-01/integration-verify.log",
+    "runner/evidence/transport-tests.json",
+    "runner/evidence/unit-tests.json",
+    "runner/host/evidence-tests.json",
+    "tests/harness/evidence/validation-integrated-tests.json",
+    "tests/harness/evidence/validation-integrated-tests.log",
+    "tests/harness/evidence/validation-integrated-verify.log",
+    "tests/harness/evidence/validation-tests.json",
+    "tests/harness/evidence/validation-tests.log",
+    "tests/harness/evidence/validation-verify.log"
+  ],
+  "canonicalInitialZoomFailure": "retained hosting-canonical-initial-failure.log; CSS zoom simulation at390, not native zoom",
+  "nativeZoom": "not-run",
+  "nativeReducedMotion": "not-run",
+  "newPaidApiCalls": 0,
+  "releaseReady": false,
+  "coordinatorFinalEvidenceCommit": "f510a5f8f7480b517f7e9415cf20a062540ca008",
+  "coordinatorManifestChecks": [
+    {
+      "path": "docs/reports/evidence/task-01/combined/ancestry.json",
+      "expected": "99ebce94c91b7404d2bb85533b600ac289f6c619640f5d3935c0b7778d83df10",
+      "actual": "99ebce94c91b7404d2bb85533b600ac289f6c619640f5d3935c0b7778d83df10",
+      "matched": true,
+      "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/baseline-browser.log",
+      "expected": "6d734e8d48c31996ec3cefbcec7b563b61aa3bf4fc5070d4d889890a99e12206",
+      "actual": "6d734e8d48c31996ec3cefbcec7b563b61aa3bf4fc5070d4d889890a99e12206",
+      "matched": true,
+      "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/ci-source.json",
+      "expected": "fc55db6b8316e69a623064bc0695101f23bb5a9d746dc47c15342b498f22520b",
+      "actual": "fc55db6b8316e69a623064bc0695101f23bb5a9d746dc47c15342b498f22520b",
+      "matched": true,
+      "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/combined-contracts.json",
+      "expected": "d835bc1181fea2ebb30be4baba3f79960cc674d5b075ab470bbccd3dee9ce975",
+      "actual": "d835bc1181fea2ebb30be4baba3f79960cc674d5b075ab470bbccd3dee9ce975",
+      "matched": true,
+      "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/control-build.log",
+      "expected": "ba90c04c5207a72d9914dc6b9b790762a0656552143fa682c9578b835e4b91f9",
+      "actual": "ba90c04c5207a72d9914dc6b9b790762a0656552143fa682c9578b835e4b91f9",
+      "matched": true,
+      "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/disabled-api.log",
+      "expected": "cde009d6794e95b8142a83d6112c925695680909e1bcc64fcf8dade2d063296e",
+      "actual": "cde009d6794e95b8142a83d6112c925695680909e1bcc64fcf8dade2d063296e",
+      "matched": true,
+      "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/disabled-worker.log",
+      "expected": "cde009d6794e95b8142a83d6112c925695680909e1bcc64fcf8dade2d063296e",
+      "actual": "cde009d6794e95b8142a83d6112c925695680909e1bcc64fcf8dade2d063296e",
+      "matched": true,
+      "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/environment.json",
+      "expected": "35e191bd130d9a3e96bbadb125b29dbf325a9c25dd930f34849f5f3355909b3c",
+      "actual": "35e191bd130d9a3e96bbadb125b29dbf325a9c25dd930f34849f5f3355909b3c",
+      "matched": true,
+      "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/home-dark-1440.png",
+      "expected": "2ad5d98687f9eaefab7d6e212e7994648d22f1d68375551a16d937a4935d0ad6",
+      "actual": "2ad5d98687f9eaefab7d6e212e7994648d22f1d68375551a16d937a4935d0ad6",
+      "matched": true,
+      "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/home-dark-390.png",
+      "expected": "9fcf8401382c0b528b297bbe9c067501e5535d22ae06de658ed05043e088daeb",
+      "actual": "9fcf8401382c0b528b297bbe9c067501e5535d22ae06de658ed05043e088daeb",
+      "matched": true,
+      "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/home-dark-768.png",
+      "expected": "33ab08c69d2b967734adf3b6a2c0b81233f64f21ec8be3500891d61a6d116d35",
+      "actual": "33ab08c69d2b967734adf3b6a2c0b81233f64f21ec8be3500891d61a6d116d35",
+      "matched": true,
+      "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/home-light-1440.png",
+      "expected": "30a37f1ef5f16ee397a0804e37f9b286cd6a3166e0226dca16ff72b5d3f5acdd",
+      "actual": "30a37f1ef5f16ee397a0804e37f9b286cd6a3166e0226dca16ff72b5d3f5acdd",
+      "matched": true,
+      "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/home-light-390.png",
+      "expected": "07483b80e991e4967f51b3ea0f69f32b2a23f9cdbc44d5f692d9e894e6736b17",
+      "actual": "07483b80e991e4967f51b3ea0f69f32b2a23f9cdbc44d5f692d9e894e6736b17",
+      "matched": true,
+      "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/home-light-768.png",
+      "expected": "9260d4f57d0548556ac872c8d737548634ddf6cbaeb9f0400bee26ce708ed659",
+      "actual": "9260d4f57d0548556ac872c8d737548634ddf6cbaeb9f0400bee26ce708ed659",
+      "matched": true,
+      "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/hosting-canonical-initial-failure.log",
+      "expected": "e2679f1b19716c09181f60e33784f36962d3825f81bcb909642da425dee56d9d",
+      "actual": "e2679f1b19716c09181f60e33784f36962d3825f81bcb909642da425dee56d9d",
+      "matched": true,
+      "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/hosting-local/browser.json",
+      "expected": "cee00ed74f3433e179d62f8bed3f961b6b765728f931a8f6c163461f41bb4df8",
+      "actual": "cee00ed74f3433e179d62f8bed3f961b6b765728f931a8f6c163461f41bb4df8",
+      "matched": true,
+      "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/hosting-local.log",
+      "expected": "eb08d721d89f89b6d521ce4170021208c0c8418685672fd6602287b56073a4ca",
+      "actual": "eb08d721d89f89b6d521ce4170021208c0c8418685672fd6602287b56073a4ca",
+      "matched": true,
+      "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/hosting-public/browser.json",
+      "expected": "083854d213116a24383d389b88950ba68e3e1b6de4c6f602d975a85678106884",
+      "actual": "083854d213116a24383d389b88950ba68e3e1b6de4c6f602d975a85678106884",
+      "matched": true,
+      "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/hosting-public.log",
+      "expected": "3db67f3889506c49b4a4bbcc1b04f1a92cefb9da47c025abe0f6ab940c9dfeca",
+      "actual": "3db67f3889506c49b4a4bbcc1b04f1a92cefb9da47c025abe0f6ab940c9dfeca",
+      "matched": true,
+      "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/identity-browser.log",
+      "expected": "d8487e426c80d0bdfed169eb9a50ed20aa1717c6208efb4df48f00ba6f3da5cc",
+      "actual": "d8487e426c80d0bdfed169eb9a50ed20aa1717c6208efb4df48f00ba6f3da5cc",
+      "matched": true,
+      "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/identity-preview-race.log",
+      "expected": "0209904cb321c700f343e93e164e8f3b44763a34d1779d94bfd5b36149b8d490",
+      "actual": "0209904cb321c700f343e93e164e8f3b44763a34d1779d94bfd5b36149b8d490",
+      "matched": true,
+      "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/native-control.log",
+      "expected": "2169d90463aafb29c708fa7bdeb5e2f60b3a38b052fa48be9527ba25aa66c0a0",
+      "actual": "2169d90463aafb29c708fa7bdeb5e2f60b3a38b052fa48be9527ba25aa66c0a0",
+      "matched": true,
+      "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/native-migration.log",
+      "expected": "23515610b66c9e97b1b7ebb8068b98bbc3585e226460787e7a3e4f599032a91f",
+      "actual": "23515610b66c9e97b1b7ebb8068b98bbc3585e226460787e7a3e4f599032a91f",
+      "matched": true,
+      "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/npm-ci.log",
+      "expected": "68e11c2745ebecf4728f9cf03bd961183f9d8daa63cd91c91f846ea112f7a165",
+      "actual": "68e11c2745ebecf4728f9cf03bd961183f9d8daa63cd91c91f846ea112f7a165",
+      "matched": true,
+      "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/preview-browser.json",
+      "expected": "73b379e335ed28f344287e5e0bded3f5d9ea3774d5526e18b6a7570d55f1f0bf",
+      "actual": "73b379e335ed28f344287e5e0bded3f5d9ea3774d5526e18b6a7570d55f1f0bf",
+      "matched": true,
+      "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/preview-browser.log",
+      "expected": "73b379e335ed28f344287e5e0bded3f5d9ea3774d5526e18b6a7570d55f1f0bf",
+      "actual": "73b379e335ed28f344287e5e0bded3f5d9ea3774d5526e18b6a7570d55f1f0bf",
+      "matched": true,
+      "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/preview-identity-race.json",
+      "expected": "0209904cb321c700f343e93e164e8f3b44763a34d1779d94bfd5b36149b8d490",
+      "actual": "0209904cb321c700f343e93e164e8f3b44763a34d1779d94bfd5b36149b8d490",
+      "matched": true,
+      "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/preview-types.log",
+      "expected": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "actual": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "matched": true,
+      "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/publisher-prepare.log",
+      "expected": "21ded85eb113dc3f37e895f9247bfb58b8ea1a0936a447f201731c327b2005e1",
+      "actual": "21ded85eb113dc3f37e895f9247bfb58b8ea1a0936a447f201731c327b2005e1",
+      "matched": true,
+      "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/results.json",
+      "expected": "d443317ae7d92750a173987d6e31efa7402931520a1bf5688129a7ee4d67f945",
+      "actual": "d443317ae7d92750a173987d6e31efa7402931520a1bf5688129a7ee4d67f945",
+      "matched": true,
+      "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/runtime-python.log",
+      "expected": "5dff172626b13aa6f13aab34a42d1d5a75db8d8d18ceb4a35b55a26f45cf57af",
+      "actual": "5dff172626b13aa6f13aab34a42d1d5a75db8d8d18ceb4a35b55a26f45cf57af",
+      "matched": true,
+      "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/secret-review.json",
+      "expected": "893e04117992a82133abb61277a0a8598005c39e16a65606d09e36c91437a7c1",
+      "actual": "893e04117992a82133abb61277a0a8598005c39e16a65606d09e36c91437a7c1",
+      "matched": true,
+      "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/template-python.log",
+      "expected": "6166478d771cd46f3fce92a7c5ee29591c8d8e568dbb1c5f7ed98611649adcbf",
+      "actual": "6166478d771cd46f3fce92a7c5ee29591c8d8e568dbb1c5f7ed98611649adcbf",
+      "matched": true,
+      "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/verify.log",
+      "expected": "c455e8a401a99134d2bba9d3aec74f890a29c7f7119b9f57a72a6d77b5650e83",
+      "actual": "c455e8a401a99134d2bba9d3aec74f890a29c7f7119b9f57a72a6d77b5650e83",
+      "matched": true,
+      "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/final-delta/baseline-browser.log",
+      "expected": "dcc9daf6c46998033b4c75c65168d74202bbda7ef148a8d0eecb2c97cc8dca16",
+      "actual": "dcc9daf6c46998033b4c75c65168d74202bbda7ef148a8d0eecb2c97cc8dca16",
+      "matched": true,
+      "sourceCommit": "88a5a39daeabe088a119f871166333975588c1b1"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/final-delta/environment.json",
+      "expected": "b5bf63368c452ed3d19dace774ca1b8703de915f30a7d88e14312fad851b16ac",
+      "actual": "b5bf63368c452ed3d19dace774ca1b8703de915f30a7d88e14312fad851b16ac",
+      "matched": true,
+      "sourceCommit": "88a5a39daeabe088a119f871166333975588c1b1"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/final-delta/hosting-canonical/dark-1440.png",
+      "expected": "fda0c509b16196b8c676719becca56185ec1f669e818215f57b3d80192a03819",
+      "actual": "fda0c509b16196b8c676719becca56185ec1f669e818215f57b3d80192a03819",
+      "matched": true,
+      "sourceCommit": "88a5a39daeabe088a119f871166333975588c1b1"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/final-delta/hosting-canonical/dark-390.png",
+      "expected": "80aed49b843dea548c789630d42287e96801dcd987befb4851593b979dc7d11d",
+      "actual": "80aed49b843dea548c789630d42287e96801dcd987befb4851593b979dc7d11d",
+      "matched": true,
+      "sourceCommit": "88a5a39daeabe088a119f871166333975588c1b1"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/final-delta/hosting-canonical/dark-768.png",
+      "expected": "5429fd4695fa7c34727b45d85989edcc5428115a6f5c1e91bf6d090b042e6e13",
+      "actual": "5429fd4695fa7c34727b45d85989edcc5428115a6f5c1e91bf6d090b042e6e13",
+      "matched": true,
+      "sourceCommit": "88a5a39daeabe088a119f871166333975588c1b1"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/final-delta/hosting-canonical/light-1440.png",
+      "expected": "b70a2dc00902981fe31b7f4305d58afc8571b68596c0fe3dcc319d5148cfe9b9",
+      "actual": "b70a2dc00902981fe31b7f4305d58afc8571b68596c0fe3dcc319d5148cfe9b9",
+      "matched": true,
+      "sourceCommit": "88a5a39daeabe088a119f871166333975588c1b1"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/final-delta/hosting-canonical/light-390.png",
+      "expected": "732de711e8c38344da74f2eb67c9f96210ab4366c68595e65e9dc1a07e2621e2",
+      "actual": "732de711e8c38344da74f2eb67c9f96210ab4366c68595e65e9dc1a07e2621e2",
+      "matched": true,
+      "sourceCommit": "88a5a39daeabe088a119f871166333975588c1b1"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/final-delta/hosting-canonical/light-768.png",
+      "expected": "67d6f9a8ce3a42f86a3886da7853c7dbe069bb443542707daba7a1053c3b5100",
+      "actual": "67d6f9a8ce3a42f86a3886da7853c7dbe069bb443542707daba7a1053c3b5100",
+      "matched": true,
+      "sourceCommit": "88a5a39daeabe088a119f871166333975588c1b1"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/final-delta/hosting-canonical/results.json",
+      "expected": "b0739f4b22fc66840a5179db58f3ea4c3f4be9b66d843c191b3486e4650540be",
+      "actual": "b0739f4b22fc66840a5179db58f3ea4c3f4be9b66d843c191b3486e4650540be",
+      "matched": true,
+      "sourceCommit": "88a5a39daeabe088a119f871166333975588c1b1"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/final-delta/hosting-canonical.log",
+      "expected": "c892fd97fa0784a379888559b923d7e781017ea4ff061ebe2ee39af9f7d044ed",
+      "actual": "c892fd97fa0784a379888559b923d7e781017ea4ff061ebe2ee39af9f7d044ed",
+      "matched": true,
+      "sourceCommit": "88a5a39daeabe088a119f871166333975588c1b1"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/final-delta/hosting-harness.mjs.txt",
+      "expected": "b8644aa4f8e6451fa24049b26e3a1710376d9360cee42653e898bd4d89775b84",
+      "actual": "b8644aa4f8e6451fa24049b26e3a1710376d9360cee42653e898bd4d89775b84",
+      "matched": true,
+      "sourceCommit": "88a5a39daeabe088a119f871166333975588c1b1"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/final-delta/results.json",
+      "expected": "b187523634838e7dfcef0df943a91cc4c520a3a1f6318720cf9e9b91f7a90888",
+      "actual": "b187523634838e7dfcef0df943a91cc4c520a3a1f6318720cf9e9b91f7a90888",
+      "matched": true,
+      "sourceCommit": "88a5a39daeabe088a119f871166333975588c1b1"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/final-delta/task08-reflow-negative-controls.json",
+      "expected": "34945f74f3719614e2110420265d6acae274d5c01dd7ff9a39eebb56feffbd73",
+      "actual": "34945f74f3719614e2110420265d6acae274d5c01dd7ff9a39eebb56feffbd73",
+      "matched": true,
+      "sourceCommit": "88a5a39daeabe088a119f871166333975588c1b1"
+    },
+    {
+      "path": "docs/reports/evidence/task-01/final-delta/verify.log",
+      "expected": "0b9759d8b0680736bdf62a73d5c285e502f22f9e1555d9af9c3468b258398d41",
+      "actual": "0b9759d8b0680736bdf62a73d5c285e502f22f9e1555d9af9c3468b258398d41",
+      "matched": true,
+      "sourceCommit": "88a5a39daeabe088a119f871166333975588c1b1"
+    }
+  ],
+  "coordinatorManifestMatched": 48,
+  "finalCoordinatorResults": [
+    {
+      "name": "verify",
+      "command": [
+        "npm",
+        "run",
+        "verify"
+      ],
+      "environment": {},
+      "exitCode": 0,
+      "seconds": 41.16
+    },
+    {
+      "name": "baseline-browser",
+      "command": [
+        "python3",
+        "scripts/check-baseline-browser.py"
+      ],
+      "environment": {},
+      "exitCode": 0,
+      "seconds": 11.9
+    }
+  ],
+  "finalCoordinatorBrowserResults": {
+    "source": "88a5a39",
+    "origin": "local-production-Next-route",
+    "cases": [
+      {
+        "theme": "light",
+        "width": 390,
+        "keyboard": true,
+        "reflow": true,
+        "cssZoomSimulation": true,
+        "reducedMotionMediaEmulation": true,
+        "nativeBrowserZoom": false,
+        "nativeOsMotion": false,
+        "pageErrors": []
+      },
+      {
+        "theme": "light",
+        "width": 768,
+        "keyboard": true,
+        "reflow": true,
+        "cssZoomSimulation": true,
+        "reducedMotionMediaEmulation": true,
+        "nativeBrowserZoom": false,
+        "nativeOsMotion": false,
+        "pageErrors": []
+      },
+      {
+        "theme": "light",
+        "width": 1440,
+        "keyboard": true,
+        "reflow": true,
+        "cssZoomSimulation": true,
+        "reducedMotionMediaEmulation": true,
+        "nativeBrowserZoom": false,
+        "nativeOsMotion": false,
+        "pageErrors": []
+      },
+      {
+        "theme": "dark",
+        "width": 390,
+        "keyboard": true,
+        "reflow": true,
+        "cssZoomSimulation": true,
+        "reducedMotionMediaEmulation": true,
+        "nativeBrowserZoom": false,
+        "nativeOsMotion": false,
+        "pageErrors": []
+      },
+      {
+        "theme": "dark",
+        "width": 768,
+        "keyboard": true,
+        "reflow": true,
+        "cssZoomSimulation": true,
+        "reducedMotionMediaEmulation": true,
+        "nativeBrowserZoom": false,
+        "nativeOsMotion": false,
+        "pageErrors": []
+      },
+      {
+        "theme": "dark",
+        "width": 1440,
+        "keyboard": true,
+        "reflow": true,
+        "cssZoomSimulation": true,
+        "reducedMotionMediaEmulation": true,
+        "nativeBrowserZoom": false,
+        "nativeOsMotion": false,
+        "pageErrors": []
+      }
+    ]
+  },
+  "finalCoordinatorEnvironment": {
+    "sourceCommit": "88a5a39daeabe088a119f871166333975588c1b1",
+    "initialCleanSource": "4dacd0255e4a04648424eb0b0044c6658b46a014",
+    "clone": "same fresh GitHub reproduction clone, fetched published88a5a39 and detached checkout; own .next removed before rebuilding",
+    "dependencies": "original independent npm ci; root package and lock byte-identical; no reinstall or shared-symlink replacement",
+    "node": "24.20.0",
+    "npm": "11.11.0",
+    "sourceDelta": [
+      "src/app/hosting/hosting.css"
+    ],
+    "cssSha256": "95c661ad2292644fd216a14ee6f183a695ecaaad10f3f8bde810fe6485491fc6",
+    "checks": "npm run verify; python3 scripts/check-baseline-browser.py; node /tmp/forge-task01-hosting-final.mjs (exact harness retained as text)",
+    "visualReview": "Task01 inspected all6 canonical captures light/dark390/768/1440",
+    "origin": "local platform UI; synthetic auth/database; CSS zoom simulation/media emulation; no live generated portfolio",
+    "sourceCheckoutCleanAfterOwnEvidenceRestore": true
+  }
+}

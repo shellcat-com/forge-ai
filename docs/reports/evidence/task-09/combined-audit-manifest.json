@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "purpose": "independent-combined-source-review-not-live-attestation",
+  "initialCombinedSourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014",
+  "finalAuditedSourceCommit": "88a5a39daeabe088a119f871166333975588c1b1",
+  "coordinatorEvidenceCommit": "f510a5f8f7480b517f7e9415cf20a062540ca008",
+  "historicalTask09SourceCommit": "2437ec323a824658bbb6dee77bf5a2807e0184e3",
+  "artifactHashBase": "repository-relative",
+  "artifacts": {
+    "docs/reports/evidence/task-09/audit-combined.py": "5d4eb1e0e74c059b89f8688daf2b7ae5adf7486d21cc4c37a1171318f8f11637",
+    "docs/reports/evidence/task-09/combined-ci.json": "fc55db6b8316e69a623064bc0695101f23bb5a9d746dc47c15342b498f22520b",
+    "docs/reports/evidence/task-09/combined-evidence-integrity.json": "162d074b8aaaf9798d973e0559374ed7d80e72a22e164293b8282d89076a344b",
+    "docs/reports/evidence/task-09/combined-package-inventory.json": "a4ae0d7edd8f0e92cf39eb5760e0cd87d92ee9c73ef7723128ad2e397db55ce1",
+    "docs/reports/evidence/task-09/combined-public-audit.json": "798aaa651a9b34f38f02aabf8d5db928799769e9731eb68e1d33d2f0ab274dea",
+    "docs/reports/evidence/task-09/final-ci.json": "a26bb20c25f032326a06fdbca1961841a3fe05670e5c71e8cc506bead62c9962",
+    "docs/reports/evidence/task-09/final-package-inventory.json": "b3fb8a3d9e620730b83402314674ec47b331923316637b29c52db384bdc12777",
+    "docs/reports/evidence/task-09/final-source-delta-review.json": "e865752595304c5d82cb062ca227d2676ea446fb54feb4eb528748c166fb6597",
+    "docs/operations/demo-readiness.md": "ede8a1a5f813e545980813c7e72e10021587409a94f18c9e37bc11972609252b",
+    "docs/reports/demo-delivery/task-09-acceptance.md": "c16a4ccf32e9e0d380875f5f024c648c81d9cde42fb7cf110f1f313331206889"
+  },
+  "packageInventoryToolchain": {
+    "node": "24.20.0",
+    "npm": "11.19.0"
+  },
+  "coordinatorCleanToolchain": {
+    "node": "24.20.0",
+    "npm": "11.11.0",
+    "postgres": "14.18"
+  },
+  "validation": {
+    "existingManifestComparisons": 529,
+    "matched": 529,
+    "coordinatorFinalArtifactComparisons": 48,
+    "coordinatorSourceComparisons": 59,
+    "helperReproduction": "byte-identical two runs",
+    "originalOwnedVerify": "603 passed / 4 optional skips; own clean installation",
+    "combinedVerify": "794 passed / 5 optional skips; coordinator clean installation, exact source CI independently confirmed",
+    "finalSourceCi": "https://github.com/shellcat-com/forge-ai/actions/runs/34439679978"
+  },
+  "live": {
+    "requiredCorpusMinimum": 30,
+    "attempts": 0,
+    "authorizedNewSpendMicros": 0,
+    "latencyDistribution": null,
+    "costDistribution": null,
+    "generatedSource": null,
+    "templateRelease": null,
+    "approvedPolicy": null,
+    "runtimeImage": null,
+    "generatedDeployment": null
+  },
+  "outcomes": {
+    "task09Scope": "complete",
+    "firstLiveGeneratedDemo": "blocked",
+    "privateAlpha": "blocked",
+    "production": "not-established"
+  },
+  "nativeControls": {
+    "browserZoom": "not-run",
+    "osReducedMotion": "not-run"
+  },
+  "collectorAuthenticated": false,
+  "releaseReady": false,
+  "dispatchAuthorized": false,
+  "finalOwnedDiffReview": {
+    "whitespace": "passed git diff --cached --check",
+    "scope": "11 owned documentation/report/evidence files only; no shared implementation or license edits",
+    "secretScan": {
+      "tool": "gitleaks stdin --redact=100",
+      "findings": 2,
+      "disposition": "two SHA256 values in coordinator artifact hash inventory; no credential identified"
+    },
+    "jsonParsing": "all Task09 JSON parsed"
+  }
+}

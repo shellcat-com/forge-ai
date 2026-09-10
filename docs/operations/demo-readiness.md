@@ -4,7 +4,7 @@ This guide describes the canonical Next.js application and the separate RFC engi
 
 ## Clean development setup
 
-Use a fresh clone with Node 24.20.0, npm and native PostgreSQL test tools (`initdb`, `pg_ctl`, `psql`, `postgres`) on PATH. Record `node --version`, `npm --version`, `postgres --version`, the commit and lockfile SHA-256. Never copy another checkout's private environment or database into a reproduction.
+Use a fresh clone with Node 24.20.0, the declared npm 11.11.0 and native PostgreSQL test tools (`initdb`, `pg_ctl`, `psql`, `postgres`) on PATH. Record `node --version`, `npm --version`, `postgres --version`, the commit and lockfile SHA-256. Never copy another checkout's private environment or database into a reproduction.
 
 ```sh
 git clone https://github.com/shellcat-com/forge-ai.git forge-ai
@@ -23,9 +23,9 @@ For keyless public-page inspection after building, run `npm start -- --port 3000
 
 Engine migrations under `engine/migrations` and application migrations under `drizzle` are different authorities. `npm run db:migrate` applies only the application history. Do not route it to an RFC control database or mix the histories. Port, database and image names from old worktree reports are observations, not fresh-install defaults.
 
-## Provider matrix at the audited baseline
+## Provider matrix at the combined source audit
 
-This matrix reports implemented code paths, not live qualification. Check the eventual Task 04 report before updating any row to verified support.
+This matrix reports code inspected at `4dacd0255e4a04648424eb0b0044c6658b46a014`, not live qualification. Consult the [Task 04 boundary](../../engine/providers/README.md) for exact protocol, credential and accounting contracts. No RFC provider is enabled by default.
 
 | Provider/path | Implemented capability | Configuration and acceptance limit |
 | --- | --- | --- |
@@ -34,12 +34,15 @@ This matrix reports implemented code paths, not live qualification. Check the ev
 | OpenRouter, application registry | Model discovery and generation adapter | Server key/model and paid-model confirmation; no automatic spending authorization follows from that flag. |
 | Ollama, application registry | Discovery/generation against configured local endpoint | Existing local workflow only; no automatic model download, no universal hosted BYOK endpoint allowance. Local compute still needs an envelope. |
 | NVIDIA, historical loopback server | Text planning | Separate optional `server/` prototype; a planning response is not generated source or a live RFC adapter qualification. |
-| RFC chat-completions transport | Bounded structured source adapter and failure tests | Exact configured provider/model/credential/policy are required; baseline source/control composition is explicitly fixture-only. |
+| OpenAI, RFC registry candidate | Nonstreaming `chat-completions-json-v1`, plan/files/repair, bounded structured source | The code restricts ID `openai` to `https://api.openai.com/v1/chat/completions` and snapshot `gpt-4.1-2025-04-14`. No installed default policy, price or live qualification; `liveEnabled:false`. This is a source-code restriction, not a current model availability or pricing claim. |
+| Administrator-installed RFC compatible policy | Same text/JSON protocol only | Exact endpoint/model, destination approval, dated prices, token-bound evidence and protected credential are mandatory. No tools, images, audio, streaming, automatic retries or fallback. Live control composition remains unavailable. |
 | Other providers or arbitrary compatible URLs | Unverified | Reject unsupported capabilities/protocols. Similar JSON APIs do not prove streaming, cancellation, pricing, token bounds or destination safety. |
 
 ## BYOK security and limitations
 
-BYOK is included in the delivery scope, but the baseline's environment-based local configuration is not a complete hosted credential connection service. Hosted enablement requires authenticated TLS submission, tenant authorization, encrypted versioned secret storage, destination binding, rotation/deletion and redacted read status. Keys must stay out of browser storage, public environment variables, model context, generated files, previews, exports, diagnostics and telemetry. Never paste a key in an issue, acceptance report or screenshot.
+BYOK is included in the delivery scope. The combined source includes server-side credential connect/rotate/delete, encrypted versioned records, destination validation and per-call accounting modules. Their HTTP/identity/control integration is still absent: the SQL is a proposal and the production dispatch gate is unimplemented. The environment-based local application configuration is a separate path. Hosted enablement requires authenticated TLS submission, tenant authorization, secret persistence, live lifecycle hooks and redacted read status. Keys must stay out of browser storage, public environment variables, model context, generated files, previews, exports, diagnostics and telemetry. Never paste a key in an issue, acceptance report or screenshot.
+
+Credential deletion tombstones the Forge record; it does not revoke the key at the provider, stop a call already dispatched, or erase retained backups. Rotation/deletion must serialize with dispatch, and old encryption keys must remain recoverable for the approved retention window. Native tests use synthetic identity, credentials and a fixture dispatch gate; they do not qualify a hosted connection. The candidate UTF-8 token bound needs exact-model validation before it can underpin a live spending ceiling.
 
 Arbitrary base URLs are an SSRF boundary: the administrator's destination policy must validate DNS and IPv4/IPv6, deny private/link-local/metadata destinations, reject redirects, and bind the credential to the exact approved destination. No user-entered URL may expand the runtime's network policy. Task 04 owns that implementation and negative evidence; Task 05 owns identity, Task 06 secret persistence and Task 01 the durable accounting bridge.
 
@@ -77,5 +80,7 @@ Local Task 09 checks have a $0 external-spend envelope: one test process or two 
 Preserve [MIT LICENSE](../../LICENSE). Bundled fonts retain their [upstream license notices](../../public/fonts/licenses). MIT does not automatically grant redistribution rights for third-party screenshots, videos, brands or generated artwork. Review asset rights and safe attribution before release. Record source hashes and methods without provider account IDs, signed URLs, private logs or personal paths. Preserve originals and historical failures in restricted storage where appropriate; sanitization creates a new artifact/digest and must explicitly supersede old public evidence.
 
 The root package is `private: true`; no npm publication is intended. `npm pack --dry-run --ignore-scripts --json` still exposes the proposed archive inventory. Review both the Git archive and package inventory, nested ZIPs and generated source export; excluding a path from npm does not remove it from the public Git repository or history. Scanners are heuristic: text scans do not examine every screenshot/video frame or prove absence of obfuscated secrets. Never claim an exhaustive privacy/license clearance from a clean scanner result.
+
+At the final source audit `88a5a39`, the existing package contained 778 entries, including historical logs and research media (762 at the preceding `4dacd02` audit). The earlier Task 09 positive allowlist is stale and must not be applied: it omits 14 new runtime paths. Task 01 owns the distribution contract and manifest decision. Preserve a lock-bearing reviewed Git/source export, runtime image inputs and license notices; npm's omission of the root lockfile prevents advertising the current tarball as a clean `npm ci` reproduction. Public media review and third-party dependency/license compatibility remain open.
 
 Follow [CONTRIBUTING.md](../../CONTRIBUTING.md) and [SECURITY.md](../../SECURITY.md). Use a focused `codex/` worktree based on the published canonical commit, preserve tests, provide exact reproduction and residual limitations, and route shared README/manifests/contracts/migrations through Task 01. Report private vulnerabilities through the security process, not a public PR containing secrets. Each Task 09 PR must separate code/test completion, first live demonstration, private-alpha acceptance and production readiness.
