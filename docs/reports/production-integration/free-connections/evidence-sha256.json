@@ -72,6 +72,22 @@
     "sha256": "d53b395149eeb9c045abd71d466e1991c11fb4264e51017e2f816bba4ba77e2c"
   },
   {
+    "path": "neon-install-initial.log",
+    "sha256": "b4bd292e6034e78a708beefae1a4408918afc7c7fcdc8eeae0dbf3fbdb95d0d1"
+  },
+  {
+    "path": "neon-install-recheck.log",
+    "sha256": "333a5ed8779402a3ff5fab01d853f6807cce91d6fe11a023f14d5188237317da"
+  },
+  {
+    "path": "neon-runtime-privileges.log",
+    "sha256": "8f7453e9b446a392a76c8a170bd40870defa6407fe228f8967412a7dbab0da0d"
+  },
+  {
+    "path": "neon-schema-replay.log",
+    "sha256": "e4f35b3a23419c6eeb615eec9a234856e627f564fbd384902039f2eccd05594e"
+  },
+  {
     "path": "results.json",
     "sha256": "7e9dba7f9c330fe12ae0546c9f8919c6ce04c1fb17ec8b9daf9f581dc2f720d7"
   },

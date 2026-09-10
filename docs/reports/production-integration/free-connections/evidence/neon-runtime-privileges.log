@@ -1,0 +1,5 @@
+Dedicated database PUBLIC CONNECT/TEMP revoked; explicit runtime CONNECT grants applied.
+forge_control_api PASS runtime privilege/environment/migration checks
+forge_control_worker PASS runtime privilege/environment/migration checks
+forge_control_maintenance PASS runtime privilege/environment/migration checks
+forge_auth_api PASS dedicated auth privilege checks
