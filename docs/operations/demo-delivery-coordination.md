@@ -129,10 +129,10 @@ All workers received canonical SHA `881e9ac2b11f8f168cb7849b77c4ee7439e55458` an
 | Task | Session ID | Isolated branch/worktree | Current handoff |
 | --- | --- | --- | --- |
 | 02 | `01a08981-52bb-7970-9bae-d28c6f66d418` | `codex/task-02-runtime`, `/tmp/forge-task02-runtime` | Runtime implementation; existing broker authority interface confirmed, real E1 authorization adapter remains 01-owned |
-| 03 | `01a08981-9134-73b1-862b-126b1984ff5e` | `codex/task-03-template`, `/tmp/forge-task03-template` | Template implementation with narrow manifest/lock and portfolio corpus delegation |
-| 04 | `01a08981-bd53-7f60-9e5b-ae5d715cfdf2` | `codex/task-04-byok`, `/tmp/forge-task04-byok` | Provider/accounting port implementation; precise 0005 proposal requested |
-| 05 | `01a08981-f80b-7921-84f9-19f1b55abef7` | `codex/task-05-identity`, `/tmp/forge-task05-identity` | PR #11 / `c4236ba` identity foundation integrated in `417874d`; hosted plugin/composition/0004 and lifecycle hooks pending |
-| 06 | `01a08982-22d5-7611-8aa3-62d4d0467618` | `codex/task-06-persistence`, `/tmp/forge-task06-persistence` | Encrypted versioned backend and native persistence; 0006 proposal pending |
+| 03 | `01a08981-9134-73b1-862b-126b1984ff5e` | `codex/task-03-template`, `/tmp/forge-task03-template` | PR #13 / `b3fb6f6` integrated in `b40486b`; candidate image/template release remains open |
+| 04 | `01a08981-bd53-7f60-9e5b-ae5d715cfdf2` | `codex/task-04-byok`, `/tmp/forge-task04-byok` | PR #15 / `fce0a18`–`bd8d623` integrated via `6c36784`/`ab9fa7b`; 0005/global gate/cleanup integration remains open |
+| 05 | `01a08981-f80b-7921-84f9-19f1b55abef7` | `codex/task-05-identity`, `/tmp/forge-task05-identity` | PR #11 / `c4236ba`–`c20f3ae` integrated via `417874d`/`46ff21c`; hosted plugin/composition/0004 and lifecycle hooks pending |
+| 06 | `01a08982-22d5-7611-8aa3-62d4d0467618` | `codex/task-06-persistence`, `/tmp/forge-task06-persistence` | PR #12 / `aa1a8c1`–`70cff26` integrated via `ae0db48`/`7b80108`; 0006/adoption composition remains open |
 | 07 | `01a08982-57f5-7b93-8f1a-663e051eb871` | `codex/task-07-private-preview`, `/tmp/forge-task07-preview` | Gateway and 0007 proposal; lock/race review changes requested |
 | 08 | `01a08982-8039-7ad0-b1e9-289d23704a0a` | `codex/task-08-live-demo`, `/tmp/forge-task08-live-demo` | Publisher/fallback preparation and bounded public provenance review |
 | 09 | `01a08982-d093-70e0-9a85-0db88a6413d4` | `codex/task-09-acceptance`, `/tmp/forge-task09-acceptance` | Source PR #10 / `4fa7dc2`; harness integrated in `d3244f7`; final integrated/live audit blocked |
@@ -170,3 +170,13 @@ Task 09 integration validation: `vitest run tests/engine/delivery-evidence.test.
 | 09 `10e1962` follow-up | `b6e268f` | 23 retained artifact hashes verified; independent anonymous availability-page observation only. Its 304-file source inventory remains bound to the earlier audited commit and must not be treated as the integrated source digest. |
 
 These are authored-history merges into the integration branch. GitHub automatically marks a source PR merged when its base branch contains the merged head; Task 01 has not called a PR merge/close action or changed `master`. PR #8 remains draft. No shared SQL migration or hosted configuration is enabled by the identity foundation.
+
+| Additional source | Integration | Review evidence / acceptance boundary |
+| --- | --- | --- |
+| 03 `b3fb6f6` / PR #13 | `b40486b` | CI34437962419 passed; 26 artifact + 24 source hashes verified; 19 TS + 5 Python tests pass locally. Raw-log whitespace preserved; D7 candidate, not Linux runtime acceptance. |
+| 04 `fce0a18`, `641ad33`, `bd8d623` / PR #15 | `6c36784`, `ab9fa7b` | CI34438040481 passed; 15 source + final 6 artifact hashes verified; 99 provider/source tests pass locally. Legacy partial uniqueness retained. Shared0005/global gate/cleanup remain unconnected. |
+| 05 `c20f3ae` / PR #11 | `46ff21c` | CI34437879134 passed; 17 updated hashes verified; 26 OIDC protocol tests pass locally. Root-issuer spelling fix, unchanged operator lock logic. |
+| 06 `aa1a8c1`, `70cff26` / PR #12 | `ae0db48`, `7b80108` | CI34437822961 and34438059505 passed; final18 source/evidence hashes verified;5 encryption/config tests pass locally. Same-worker-transaction adoption still required before canonical0006/live use. |
+| 09 `1fbcc99`, `f36e9c8` | `b6f8dfb` | 25 artifact hashes verified; historical304-file inventory remains bound to its original source. |
+
+Task02 review remains open for privileged jail-directory ancestor/ownership/exclusive-create checks and guest expired-RPC rejection before handling. These are independent code corrections, not reasons to claim containment accepted. Task07/08 stable deliveries await their dependency-ordered integration. All local integration unit checks above use the frozen baseline dependency tree; final clean combined reproduction remains pending. No root package/lock or canonical SQL migration changed during these merges.
