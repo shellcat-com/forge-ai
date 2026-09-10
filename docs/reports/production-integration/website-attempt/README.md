@@ -28,6 +28,8 @@ Retained failures in `evidence/`:
 2. The first verification run had two added auth tests fail because an earlier configuration-negative test left local mode enabled. Per-test mode/origin reset fixed test isolation; the focused 12-test rerun passed.
 3. The initial updated browser run completed the website attempt but failed its new 390px CSS zoom assertion. The scoped layout fix passed the subsequent 23 browser checks.
 
+Delivery validation also found that the repository ignores `*.log`. The reviewed logs were explicitly added, final blank-line formatting was normalized, and their hashes were refreshed before the final push. No failure text was removed.
+
 ## Remaining work and release boundary
 
 The complete missing implementation/configuration inventory remains in the [production integration report](../README.md#exact-remaining-gaps-by-category): single-authority account/control composition, hosted BYOK routes/UI, live generation/adoption adapters, an approved cloud worker/sandbox/private preview, application databases and durable publication. The interface fix does not implement those services. An applicable model-call test budget and cloud host/account/region/monthly budget are still required before paid provisioning or testing. The budget question in this follow-up received no answer during implementation; no new spend was authorized or incurred.

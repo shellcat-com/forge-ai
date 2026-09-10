@@ -1,0 +1,78 @@
+
+> forge-ai@0.2.0 verify
+> npm run lint && npm run typecheck && npm test && npm run build
+
+
+> forge-ai@0.2.0 lint
+> eslint .
+
+
+> forge-ai@0.2.0 typecheck
+> tsc --noEmit && tsc -p tsconfig.engine.json
+
+
+> forge-ai@0.2.0 test
+> vitest run
+
+▲ [WARNING] Cannot find base config file "expo/tsconfig.base" [tsconfig.json]
+
+    ../../tsconfig.json:3:13:
+      3 │   "extends": "expo/tsconfig.base"
+        ╵              ~~~~~~~~~~~~~~~~~~~~
+
+
+ RUN  v4.1.11 [clean-checkout]
+
+ ❯ tests/auth/public-auth.test.ts (12 tests | 2 failed) 3906ms
+   × reports the actual hosted build dependency after login and creates no jobs on retries 31ms
+   × uses the same hosted error for existing-project changes while preserving owner authorization 20ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/auth/public-auth.test.ts > reports the actual hosted build dependency after login and creates no jobs on retries
+AssertionError: {"error":"Authentication requires the configured HTTPS origin."}: expected 403 to be 200 // Object.is equality
+
+- Expected
++ Received
+
+- 200
++ 403
+
+ ❯ signup tests/auth/public-auth.test.ts:117:44
+    115|     callbackURL: '/app',
+    116|   })
+    117|   expect(r.status, await r.clone().text()).toBe(200)
+       |                                            ^
+    118|   const row = await cluster.admin.query('SELECT * FROM forge_user WHER…
+    119|   expect(row.rows[0].email_verified).toBe(false)
+ ❯ verified tests/auth/public-auth.test.ts:124:14
+ ❯ tests/auth/public-auth.test.ts:343:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/auth/public-auth.test.ts > uses the same hosted error for existing-project changes while preserving owner authorization
+AssertionError: {"error":"Authentication requires the configured HTTPS origin."}: expected 403 to be 200 // Object.is equality
+
+- Expected
++ Received
+
+- 200
++ 403
+
+ ❯ signup tests/auth/public-auth.test.ts:117:44
+    115|     callbackURL: '/app',
+    116|   })
+    117|   expect(r.status, await r.clone().text()).toBe(200)
+       |                                            ^
+    118|   const row = await cluster.admin.query('SELECT * FROM forge_user WHER…
+    119|   expect(row.rows[0].email_verified).toBe(false)
+ ❯ verified tests/auth/public-auth.test.ts:124:14
+ ❯ tests/auth/public-auth.test.ts:381:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 62 passed | 2 skipped (65)
+      Tests  2 failed | 804 passed | 5 skipped (811)
+   Start at  04:52:48
+   Duration  21.55s (transform 2.30s, setup 0ms, import 6.75s, tests 105.45s, environment 1.30s)

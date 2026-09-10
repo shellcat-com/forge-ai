@@ -43,6 +43,13 @@
       "scope": "staged report and evidence before adding this scan output",
       "findings": 0,
       "log": "evidence/evidence-secret-scan.log"
+    },
+    {
+      "command": "gitleaks git --pre-commit --staged --redact",
+      "exitCode": 0,
+      "scope": "sanitized regression logs explicitly staged despite repository *.log ignore",
+      "findings": 0,
+      "log": "evidence/logs-secret-scan.log"
     }
   ],
   "nativeAuthTests": {
@@ -107,7 +114,7 @@
   "evidenceFiles": [
     {
       "path": "evidence/auth-focused-retest.log",
-      "sha256": "d06d5a601a45981a1b763b6c48f850a1d9f572b55c112acc85b937ed0dec4c7d"
+      "sha256": "635daf34b866ec49767b37b3eb73410ba422f7f28ba584437e452963b03e2a42"
     },
     {
       "path": "evidence/baseline-browser.log",
@@ -194,6 +201,14 @@
       "sha256": "6e6c203830f1aa0195b8240a028261a546b335ebe875dd5e3639c38d1457c7fa"
     },
     {
+      "path": "evidence/logs-secret-scan.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "evidence/logs-secret-scan.log",
+      "sha256": "2f9d76c48578e9d1a96b25a5552e910615a04d29f92eb889ac642a095bf63361"
+    },
+    {
       "path": "evidence/results.json",
       "sha256": "01ef63672e7bc5c295d7e20b6f3acfec5e7faf68be7f2334ab72bbc066ebec17"
     },
@@ -231,11 +246,11 @@
     },
     {
       "path": "evidence/verify-first-failure.log",
-      "sha256": "77d53489e04c65e7873682162a2d4a920b2d3ea4a0d9772ef73a40e1893b7eba"
+      "sha256": "bd1563ead3dd64326392c992949096f67c2a31d0a59543494db0b6782e6ea9b2"
     },
     {
       "path": "evidence/verify.log",
-      "sha256": "a1b50809addaf06d57bfb43430a73a55520cc267a415b688e4f12f13f9c31d7f"
+      "sha256": "08d8856cc53ef7adaa56391348a3405d7470a94a0e8136a5c5f734de0f7d4bc0"
     },
     {
       "path": "evidence/website-attempt.png",

@@ -1,0 +1,15 @@
+✓ Running next.config.ts took 98ms
+⚠ "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+Error: expect(locator).toContainText(expected) failed
+
+Locator: getByRole('alert')
+Expected substring: "Website generation is not connected"
+Error: strict mode violation: getByRole('alert') resolved to 2 elements:
+    1) <p role="alert" class="form-error">Choose an available model in Connections first.</p> aka getByText('Choose an available model in')
+    2) <div role="alert" aria-live="assertive" id="__next-route-announcer__"></div> aka locator('[id="__next-route-announcer__"]')
+
+Call log:
+  - Expect "toContainText" getByRole('alert') with timeout 5000ms
+  - waiting for getByRole('alert')
+
+Cleanup: owned browser, application, PostgreSQL, TLS material and verifier lock removed.

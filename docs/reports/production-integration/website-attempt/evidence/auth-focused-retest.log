@@ -1,0 +1,14 @@
+▲ [WARNING] Cannot find base config file "expo/tsconfig.base" [tsconfig.json]
+
+    ../../tsconfig.json:3:13:
+      3 │   "extends": "expo/tsconfig.base"
+        ╵              ~~~~~~~~~~~~~~~~~~~~
+
+
+ RUN  v4.1.11 [clean-checkout]
+
+
+ Test Files  1 passed (1)
+      Tests  12 passed (12)
+   Start at  04:53:51
+   Duration  3.31s (transform 106ms, setup 0ms, import 669ms, tests 2.56s, environment 0ms)
