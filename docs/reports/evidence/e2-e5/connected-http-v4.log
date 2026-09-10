@@ -1,0 +1,15 @@
+▲ [WARNING] Cannot find base config file "expo/tsconfig.base" [tsconfig.json]
+
+    ../../../tsconfig.json:3:13:
+      3 │   "extends": "expo/tsconfig.base"
+        ╵              ~~~~~~~~~~~~~~~~~~~~
+
+
+ RUN  v4.1.11 /Users/biswaskhatiwada/Documents/ChatGPT/Forge AI _ Full-Stack App Generator
+
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  21:15:49
+   Duration  2.67s (transform 161ms, setup 0ms, import 300ms, tests 2.26s, environment 0ms)
+

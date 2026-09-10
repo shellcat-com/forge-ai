@@ -2,9 +2,9 @@
 
 ## Current model
 
-The checked-in app is a Next.js server with a client-side workspace. It accepts a prompt and editable starter ideas in browser memory and does not transmit or persist them. The generate action is disabled. Server-only provider adapters can read Gemini credentials and send bounded requests. Local APIs enforce Host and Origin checks. There is no generation backend, upload path, repository access, generated-code runner, or sandbox.
+The canonical Next.js application includes server authorization, PostgreSQL project/source data, provider adapters and a separate local Docker worker. These are preserved implementations, not proof of hosted multi-user safety or RFC microVM containment. The default-off RFC `engine/control` service additionally preserves durable leases, approvals, accounting and synthetic source flow. It uses separate fixture identities/schema; application sessions do not authorize it.
 
-The supplied, not yet container-tested Docker configuration narrows the Next.js server process with an unprivileged user, dropped capabilities, no-new-privileges, a read-only root filesystem, and controlled temporary mounts. This is deployment hardening, not workload isolation.
+The [demo-delivery amendment](rfcs/0001-app-generation-vertical-slice.md) includes protected BYOK and Vercel website hosting. Live credential/accounting, hosted authorization, versioned storage, private preview and isolated runtime acceptance remain open. Missing access/configuration must fail closed. Public portfolio viewing grants no generation or private project authority. Generated code never receives control, provider or deployment credentials.
 
 ## Assets
 

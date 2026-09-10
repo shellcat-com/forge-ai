@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-10T02:14:04.492368+00:00",
+  "status": "passed",
+  "approvedIntegrationExtensions": [
+    "engine/control/catalog.ts",
+    "engine/control/database.ts",
+    "engine/control/http.ts",
+    "engine/control/service.ts",
+    "engine/control/stage-adapter.ts",
+    "engine/control/worker.ts"
+  ],
+  "checks": [
+    {
+      "path": "docs/reports/e1-control.md",
+      "sha256": "2058c6b4a7e7fa17eb2711bc0c42e6ddc6902ae53bef03ba607b5488d1a377d0",
+      "matchesE1FrozenEvidence": true
+    },
+    {
+      "path": "docs/reports/evidence/e1/control-build.log",
+      "sha256": "bab7a7620c6e1d5174b473fb061330899eea4de51f8b33ae4e42059fe8d4aa6d",
+      "matchesE1FrozenEvidence": true
+    },
+    {
+      "path": "docs/reports/evidence/e1/e0-native-postgres.log",
+      "sha256": "4276c6d4c496fc43f930c301c83510276cffd7a95aba56542cc7d73a9e352d99",
+      "matchesE1FrozenEvidence": true
+    },
+    {
+      "path": "docs/reports/evidence/e1/integrity.json",
+      "sha256": "8f9908870b136d1313a5d3830cb9deec0f8be9a1ce0499479244620687710371",
+      "matchesE1FrozenEvidence": true
+    },
+    {
+      "path": "docs/reports/evidence/e1/native-postgres.log",
+      "sha256": "7d7dd5a806b54d91996163a918c4b9131fcf3c41f81503d63803e01997bfb8f1",
+      "matchesE1FrozenEvidence": true
+    },
+    {
+      "path": "docs/reports/evidence/e1/native-tests.json",
+      "sha256": "50b2e03e678fa42b4ec8e3fd6c702abc8e6de8ec7db5583a2531177a87109b16",
+      "matchesE1FrozenEvidence": true
+    },
+    {
+      "path": "docs/reports/evidence/e1/verify.log",
+      "sha256": "4e36fade41ea14035d6b9e9391eb073092f9123a0cd5509bd78756664e7c76f3",
+      "matchesE1FrozenEvidence": true
+    },
+    {
+      "path": "engine/control/README.md",
+      "sha256": "9f4d06739e81288115fcb5771bee50cc9c1a05720ceb1e2f17a3c7e319101d7a",
+      "matchesE1FrozenEvidence": true
+    },
+    {
+      "path": "engine/control/config.ts",
+      "sha256": "e222bf62a05c371927e641d4d9046bab1a807bf0bc5acbebdba490c8bb52a343",
+      "matchesE1FrozenEvidence": true
+    },
+    {
+      "path": "engine/control/contracts.ts",
+      "sha256": "2ab27fd36ee7529d541d8fdb661e48a1faa4794d45d6c585f656dfdbe7958280",
+      "matchesE1FrozenEvidence": true
+    },
+    {
+      "path": "engine/control/fixture-stage.ts",
+      "sha256": "67d9cfa9223ea3b3874c1b2ae8a801668f99e5ce30b0fc53984f36f72ce56d59",
+      "matchesE1FrozenEvidence": true
+    },
+    {
+      "path": "engine/control/identity.ts",
+      "sha256": "30ab045c36ce633898976cfe7ea16f9408e8dcd8e9a087827cd4c6299af63fe0",
+      "matchesE1FrozenEvidence": true
+    },
+    {
+      "path": "engine/control/index.ts",
+      "sha256": "d1c9208f4bd74f96820537406e43288b0b281a297c4ff23d67590afca523bbf5",
+      "matchesE1FrozenEvidence": true
+    },
+    {
+      "path": "engine/control/reconciler.ts",
+      "sha256": "4ddd41a0f6b542c86762219efa4f6a53f32f643be46476ef3046dda9433e7738",
+      "matchesE1FrozenEvidence": true
+    },
+    {
+      "path": "engine/control/state.ts",
+      "sha256": "2c8f8467949785a1da0d227920f8f490c3c462c05a814063bcbd433601366e4f",
+      "matchesE1FrozenEvidence": true
+    },
+    {
+      "path": "engine/migrations/0001_control.sql",
+      "sha256": "6838d3f1f443f31253d9064915565ce9cd5fe3cbf96366baacb120827cf8879e",
+      "matchesE1FrozenEvidence": true
+    },
+    {
+      "path": "engine/migrations/0002_durable_control.sql",
+      "sha256": "de4ba2c189d1c84302a0ba90973c78ca517e3fcf75f411b443f45835d7d6de6a",
+      "matchesE1FrozenEvidence": true
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "f8562c30e3d9e65b977a0f0ad824a494709207b98abdebc1ea4c9e8c2685a477",
+      "matchesE1FrozenEvidence": true
+    },
+    {
+      "path": "package.json",
+      "sha256": "d35ad55cbe67d6bdbfdb593f040d3760b5620c696f7ba254dc9dd09919397551",
+      "matchesE1FrozenEvidence": true
+    },
+    {
+      "path": "tests/engine/control.native.test.ts",
+      "sha256": "ac407cd5b799455140d15fff0f0f68e2498ee4a2eb70131558fa262b1647478a",
+      "matchesE1FrozenEvidence": true
+    },
+    {
+      "path": "tests/engine/fixture-worker-child.mjs",
+      "sha256": "a2d409a83ae54f29efeb63077195a2646332b0aff3c6a6e42e297bab50fa085b",
+      "matchesE1FrozenEvidence": true
+    },
+    {
+      "path": "tests/engine/native-postgres.ts",
+      "sha256": "edf7ab56b1ded6008226438a24f5d40eb3cb4b50f964ef6be9686f97759f5483",
+      "matchesE1FrozenEvidence": true
+    },
+    {
+      "path": "tsconfig.control.json",
+      "sha256": "a4d37116af8e5529f466c55ea4e6dd7f28a63af7aff4975620cac9defb9a2715",
+      "matchesE1FrozenEvidence": true
+    },
+    {
+      "path": "tsconfig.engine.json",
+      "sha256": "1a1ab594573b21b23593e55c94829f8a9cc2559ed9c4a1423d97b86e835dfd2c",
+      "matchesE1FrozenEvidence": true
+    }
+  ]
+}

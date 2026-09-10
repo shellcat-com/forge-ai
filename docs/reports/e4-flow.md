@@ -1,31 +1,35 @@
-# E4 connected flow — integration in progress, release blocked
+# E4 connected flow — synthetic integration implemented, release blocked
 
-E4 is not complete. Its exit requires A01–A19/A21 against real required systems. D1–D8 remain open, as explicitly confirmed by the owner. No live generation/execution/preview is enabled, and no fixture result is counted as real acceptance.
+E4 is not complete. Its exit requires A01–A19/A21 against the real required systems. D1–D8 remain OPEN. No live generation, execution or preview is enabled; no fixture result counts as live acceptance.
 
-## Current interface coordination
+## One coordinated control service
 
-E1 task `01a08894-4a5a-7f41-a577-5fc16f5d38bc` owns `engine/control/` and additive control migrations. Its `StageAdapter` receives a claimed immutable stage input with job/step/epoch/operation/input identity. Only E1 authorizes actors, commits state/version/lease CAS, adopts source references and promotes history. E2 provides source generation and artifact operations through this seam. E3 supplies broker admission and authenticated check evidence; it has no project-head authority.
+E1 task `01a08894-4a5a-7f41-a577-5fc16f5d38bc` completed its fixture handoff and released the catalog, stage adapter, service, worker, guarded artifact locator extension and additive0003. Its45 native tests and frozen report/evidence remain unchanged. The E2 bridge (`20c4045`) injects a catalog and immutable source repository into that existing service. It does not create a second authorizer, job service or promotion authority.
 
-The current E1 implementation intentionally accepts only fixture stage results, fixture catalog digests and inline fixture blobs. It cannot yet adopt arbitrary immutable artifact versions or admit a real model policy. The coordinator requested a documented catalog/read-port/artifact-adoption resolution; E1 files will not be changed concurrently. No duplicate control service will be built.
+Real candidate bytes now pass through complete manifest validation, exact immutable object adoption, unified diff review, source-file reads, source promotion/history/restoration and scanner-bound ZIP export. The integration factory uses the pinned platform scaffold and an explicitly synthetic provider response. Build/check/preview stages remain fixtures. Source reads reauthorize after object I/O; export replay keeps one adopted artifact per idempotent action and checks current membership, scanner policy, verification freshness and expiry.
 
-## Connected client logic
+HTTP routes add `/jobs/{id}/plan`, `/jobs/{id}/changes`, `/snapshots/{id}/files`, `/snapshots/{id}/file?path=...`, `/snapshots/{id}/exports` and `/artifacts/{id}`. The legacy scoped artifact JSON route remains. Attachments have no-store, nosniff, restrictive CSP and attachment disposition; filenames and internal storage locations are not accepted from source content.
 
-`src/engine/client.ts` and `flow.ts` now implement same-origin cookie/CSRF transport and the current E1 fixture API projections. The flow loads sessions/capabilities/projects/jobs/history; submits exact review digests/state versions; retains immutable action IDs/request bodies after ambiguous errors; coalesces duplicate actions; protects against out-of-order session/project/job/history responses; refreshes authoritative state during SSE and after terminal events; and supports explicit promotion/restoration acknowledgement. Reader disconnect never cancels the server job. A retained-cursor410 exposes replay-required because the current E1 job projection lacks a new checkpoint cursor.
+## Optional UI and client
 
-The client has7 tests and flow has16 worker tests. They are synthetic HTTP tests, not authenticated production browser evidence. The modules remain dormant: no UI route imports them yet. Actual preview/source-export endpoints are marked `ENDPOINT_UNAVAILABLE`; no clickable fake preview or generated download is supplied.
+`VITE_FORGE_ENGINE_UI=true` enables `#/engine`; it defaults false. The route uses shared Forge components and scoped semantic CSS. Existing local projects, samples and loopback text planning remain separate and labeled. No local state creates a control identity. Without a configured server session, the route explains that the control service is unavailable.
 
-## Independent gateway policy implementation
+The client loads authorized projects/jobs/history, verifies actual plan/manifest/diff/source/verification hashes with WebCrypto, and binds approval to the exact displayed review digest/state version. It retains action UUIDs and immutable request bodies after ambiguous failures, fences stale reads and navigation, aborts reader requests on departure, and keeps cancellation a separate server mutation. Source is escaped text. Private preview is disabled. Source export supplies a verified ZIP only when the scoped bridge permits it.
 
-`engine/preview/policy.ts` contains strict validation for exact host and fresh control grants (at most 30 seconds), session/idle/absolute expiries, one-use launch request shape, reserved host cookie handling, same-origin guest mutations, normalized request paths, credential/header stripping, reserved/Domain/duplicate-cookie rejection and restrictive response headers. Six targeted synthetic tests passed initially; these are policy helper tests only.
+The static design fixture at `tests/harness/engine-view.html` explicitly says its buttons contact no service. Light/dark390/768/1440 and keyboard focus were inspected with no horizontal overflow. Native browser zoom and OS reduced-motion activation remain NOT-RUN in the available tool. Explicit CSS200%zoom and forced existing reduced-motion styles were separately inspected: engine content fits and transition/animation durations are0s; existing topbar overflows under CSSzoom because media breakpoints are unchanged. These simulations do not count as native behavior.
 
-The module is not a ticket store, authorizer, router, HTTP proxy or running gateway. Ticket consumption must be atomic in the existing control service, and the eventual proxy must resolve upstreams solely from trusted environment records. DNS/TLS, a separate registrable site, real session revocation, browser-cookie behavior and round-trip health remain D6/E1 integration work. No source is served publicly.
+## Verification and limits
 
-## Remaining connected flow work
+Worker evidence:18 native bridge cases plus45 E1 regressions passed; source/client/workspace58 targeted tests passed. The coordinator native HTTP/client test passed2/2 after fixing history pagination and promotion-project envelope mismatches (`evidence/e2-e5/connected-http-v4.log`). It starts at client project creation/admission. The native repair suite passed4/4 after fixing identical synthetic repair bytes, and91 browser client/flow/source/workspace tests passed, including revoked-session clearing and stable retries after refresh/navigation. Final `npm run verify`:532 passed,4 optional skips; lint/typecheck/build passed. Both default and enabled UI production bundles and standalone control compilation passed.
 
-1. Review E1 report/native tests and freeze catalog + stage/artifact read/adoption ports with its owner.
-2. Integrate E2 generation, reviewable manifest/diff and export operations through existing durable stages; persist provider uncertainty and reservations before dispatch.
-3. Integrate E3 signed broker calls, exact candidate evidence, cancellation and cleanup. Real Linux host, release image and template checks remain D2/D7 gates.
-4. Connect frontend review/approval/repair/preview/history/restore/export to the actual authorized API; preserve local/sample/loopback behavior. Read Forge UI skill and perform full visual/browser matrix when UI changes occur.
-5. Run real task-board plus priority migration, source restoration, clean export and private preview acceptance only after gates are satisfied. Report blocked scenarios explicitly.
+The headless synthetic flow runs with `npx vitest run tests/engine/e4-control-http.test.ts tests/engine/e2-control-integration.test.ts`. It starts a disposable native PostgreSQL cluster and existing HTTP service, consumes explicit fixture identity/provider/execution results, and cleans up. See [development instructions](../operations/engine-development.md).
 
-See [implementation board](e2-e5-board.md), [decision sheet](engine-decisions.md), and forthcoming E2/E3/validation reports for worker evidence and restart instructions.
+## Remaining real integration
+
+- D1/D5: approved OIDC, production database/object storage/KMS, deployment and retention/backup ownership.
+- D3/D4: approved model/account/spend, real response and usage tests, durable per-provider-call reservations and uncertain-charge reconciliation. Current bridge permits one explicit zero-cost fixture product per stage.
+- D2/D7: hardened Linux/KVM, actual executor/guest RPC/image build, reviewed release digests and real isolated template/database/security tests. The default runner remains unavailable; no host fallback exists.
+- D6: separate preview site/TLS, atomic tickets in E1, trusted environment routing and private gateway. `engine/preview/policy.ts` is six tested policy helpers, not a running gateway.
+- Complete real task-board/priority migration, bounded repair, private preview, restore and clean generated export acceptance. Broader commercial functionality remains deferred by RFC0001.
+
+Remote publication also needs architectural reconciliation: E1 reported a separate engine/Next.js rewrite on remote master. Those changes have not been merged into this active implementation or included in its evidence.

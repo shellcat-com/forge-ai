@@ -1,0 +1,9 @@
+▲ [WARNING] Cannot find base config file "expo/tsconfig.base" [tsconfig.json]
+
+    ../../../tsconfig.json:3:13:
+      3 │   "extends": "expo/tsconfig.base"
+        ╵              ~~~~~~~~~~~~~~~~~~~~
+
+(node:99686) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+JSON report written to /Users/biswaskhatiwada/Documents/ChatGPT/Forge AI _ Full-Stack App Generator/docs/reports/evidence/e2-e5/ui-repair-integrated.json

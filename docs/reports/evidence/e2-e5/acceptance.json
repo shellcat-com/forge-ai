@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "purpose": "implementation-checkpoint-not-release-attestation",
-  "recordedAt": "2026-09-10T01:23:46.358838Z",
+  "recordedAt": "2026-09-10T02:20:23.692567+00:00",
   "rfc": "docs/rfcs/0001-app-generation-vertical-slice.md",
   "decisions": [
     {
@@ -46,18 +46,20 @@
     }
   ],
   "milestones": {
-    "E1": "in-progress",
+    "E1": "fixture-verified",
     "E2": "blocked",
     "E3": "blocked",
     "E4": "blocked",
     "E5": "blocked"
   },
   "limitations": [
-    "No live A01-A22 acceptance is claimed. Supporting fixture, native-synthetic and scaffold checks are separate evidence layers.",
-    "D1-D8 are OPEN. E1 is active; no E2-E5 milestone exit has passed prerequisites.",
-    "Unavailable release source/template/policy digests and decision closure evidence are null. Artifact checksums identify actual local evidence bytes only.",
-    "191-test root evidence is a recorded targeted snapshot. The current combined repository verification failure is preserved in a versioned historical log. Any future evidence-file overwrite requires explicit ledger refresh and review.",
-    "No real provider run, isolated Linux execution, generated-app DB/browser flow, deployed restore or measured capacity campaign is represented."
+    "A21 existing Forge compatibility passed; A01-A20/A22 remain blocked. No live app-building acceptance is claimed.",
+    "All D1-D8 remain OPEN; E1 fixture exit passed, E2-E5 release exits remain blocked.",
+    "Unavailable release digests and decision approvals remain null. Evidence hashes identify local bytes only.",
+    "Historical failed runs are preserved. Current repository verification explicitly supersedes the E1 audit failure; UI/HTTP schema mismatches were fixed before final verification.",
+    "No live generation, hardened Linux/KVM execution, private gateway, deployed backup or measured live capacity/quality campaign ran.",
+    "Optional UI visual matrix passed normal dimensions; CSSzoom/forced reduced-style simulations are separate. Native browser zoom and OS media activation remain NOT-RUN.",
+    "Remote master has a separate engine architecture; E1 checkpoint PR7 remains conflicting. No merge or public deployment is claimed."
   ],
   "support": [
     {
@@ -205,16 +207,17 @@
       "scope": [
         "historical combined npm run verify",
         "tests/engine/control.native.test.ts ambiguous provider liability after worker death"
-      ]
+      ],
+      "current": false
     },
     {
       "id": "existing-forge-browser",
       "status": "passed",
       "provenance": "existing-forge-browser",
       "artifactPath": "docs/reports/evidence/e2-e5/forge-browser-compatibility.json",
-      "artifactSha256": "ed513f3a1c027fac195da4f22c4b0bfa95fd1270cc6548909de3480e2db2618c",
+      "artifactSha256": "e2c3138d2dceb099cbceefdf65f5cda9f348601cdd4c4c55c38ad4568ecf4ebb",
       "environment": "Codex in-app browser at127.0.0.1:5173; existing dark preference preserved; coordinator recorded2026-09-10T01:19:00Z.",
-      "description": "Recorded local brief creation, disabled unconnected planning boundary, four fixed sample steps, design-package and brief export clicks, and targeted synthetic cleanup passed. Download bytes not independently inspected. No engine UI route connected and no generated-app A19 evidence.",
+      "description": "Existing local brief/sample/preset and brief-export interactions passed; download-byte limitation retained. Optional engine UI was separately tested and supplies no live acceptance.",
       "digests": {
         "source": null,
         "template": null,
@@ -227,6 +230,184 @@
         "fixed sample walkthrough",
         "design-package and brief export actions",
         "targeted cleanup"
+      ],
+      "current": true,
+      "acceptanceChecks": [
+        "local-brief",
+        "sample",
+        "export"
+      ]
+    },
+    {
+      "id": "current-repository-verify",
+      "status": "passed",
+      "provenance": "repository-verification",
+      "artifactPath": "docs/reports/evidence/e2-e5/repository-verify-final.log",
+      "artifactSha256": "c3f0d4c81bba01bfc24fb75bb4f8255cc6bc1c437303f3e52e042c22437dbf3f",
+      "environment": "Coordinator integrated checkout; macOS; local fixtures/platform-authored scaffold. No live provider or isolated runner acceptance.",
+      "description": "Current complete npm run verify passed lint, strict TypeScript, all mandatory tests including unchanged loopback/server boundaries and E1 regressions, then production build. Optional explicit candidate/native drills skipped by default have separate evidence. Historical E1 audit failure is superseded, not erased.",
+      "digests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "testCounts": null,
+      "scope": [
+        "npm run verify",
+        "existing Forge and loopback server tests",
+        "native E1/E2/control HTTP/repair tests"
+      ],
+      "current": true,
+      "acceptanceChecks": [
+        "npm-verify",
+        "loopback-constraints"
+      ],
+      "supersedesEvidenceIds": [
+        "combined-verify-e1-audit-failure"
+      ]
+    },
+    {
+      "id": "e1-frozen-native",
+      "status": "passed",
+      "provenance": "native-postgres-synthetic",
+      "artifactPath": "docs/reports/evidence/e1/native-tests.json",
+      "artifactSha256": "50b2e03e678fa42b4ec8e3fd6c702abc8e6de8ec7db5583a2531177a87109b16",
+      "environment": "Coordinator integrated checkout; macOS; local fixtures/platform-authored scaffold. No live provider or isolated runner acceptance.",
+      "description": "E1 owner frozen45-case native fixture exit evidence. The same untouched E1 test file is rerun by current repository verification against the additive bridge; historical report and evidence remain unchanged.",
+      "digests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "testCounts": {
+        "total": 45,
+        "passed": 45,
+        "failed": 0,
+        "skipped": 0
+      },
+      "scope": [
+        "tests/engine/control.native.test.ts"
+      ],
+      "current": true,
+      "acceptanceChecks": [
+        "e1-fixture-suite"
+      ]
+    },
+    {
+      "id": "connected-http-source",
+      "status": "passed",
+      "provenance": "native-postgres-synthetic",
+      "artifactPath": "docs/reports/evidence/e2-e5/connected-http-v4.log",
+      "artifactSha256": "302d71494c82c33468b2686c7f8cc0e6a908f2200a882acd1bc7d6c120607211",
+      "environment": "Coordinator integrated checkout; macOS; local fixtures/platform-authored scaffold. No live provider or isolated runner acceptance.",
+      "description": "2/2 real loopback HTTP/native PostgreSQL tests connect browser transport project creation/admission, displayed plan/source review, fixture verification, promotion/history and hash-bound immutable ZIP export/replay. Tenant/CSRF/path/header cases passed. Identity/provider/execution remain explicit fixtures.",
+      "digests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "testCounts": null,
+      "scope": [
+        "tests/engine/e4-control-http.test.ts"
+      ]
+    },
+    {
+      "id": "ui-repair-integrated",
+      "status": "passed",
+      "provenance": "native-postgres-synthetic",
+      "artifactPath": "docs/reports/evidence/e2-e5/ui-repair-integrated.json",
+      "artifactSha256": "a6cbeb12c11983f23974dc18d9576c1dd56093410c08dbdc423a893533f62a3a",
+      "environment": "Coordinator integrated checkout; macOS; local fixtures/platform-authored scaffold. No live provider or isolated runner acceptance.",
+      "description": "95/95 integrated tests:91 synthetic client/flow/source/workspace cases and4 actual native control/source repair cases with injected verification failure. Repair changes bytes/diff, demands fresh approval, caps two repairs and fences cancellation/late epochs. No runner or provider acceptance.",
+      "digests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "testCounts": {
+        "total": 95,
+        "passed": 95,
+        "failed": 0,
+        "skipped": 0
+      },
+      "scope": [
+        "src/engine/*.test.ts",
+        "tests/engine/e4-repair-integration.test.ts"
+      ]
+    },
+    {
+      "id": "candidate-clean-export",
+      "status": "passed",
+      "provenance": "platform-scaffold-build",
+      "artifactPath": "runner/evidence/candidate/export.json",
+      "artifactSha256": "b0dca6cd6a9e407c3778a183916d7afb14273ee6c60a6048c6ab745b36e6b2a4",
+      "environment": "Coordinator integrated checkout; macOS; local fixtures/platform-authored scaffold. No live provider or isolated runner acceptance.",
+      "description": "Hash-pinned20-file platform scaffold passed immutable persist/reopen/scan/export, canonical ZIP validation and clean exactNode24.20.0 offline install/lint/typecheck/test/build. No provider source, guest execution or app database tested.",
+      "digests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "testCounts": null,
+      "scope": [
+        "platform-authored clean source export",
+        "exact Node24 offline build"
+      ]
+    },
+    {
+      "id": "candidate-postgres18",
+      "status": "passed",
+      "provenance": "native-postgres-synthetic",
+      "artifactPath": "docs/reports/evidence/e2-e5/postgres18-candidate.json",
+      "artifactSha256": "e311b4584446bbf118b2560d571a9968674a5c6a5a856addde12418ca62dc4d6",
+      "environment": "Coordinator integrated checkout; macOS; local fixtures/platform-authored scaffold. No live provider or isolated runner acceptance.",
+      "description": "Actual PostgreSQL18.6 template bootstrap/default privileges, reviewed fresh/prior migrations and database restart passed in a temporary socket-only cluster. Not app-process persistence or isolation.",
+      "digests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "testCounts": null,
+      "scope": [
+        "platform-authored PG18.6 candidate"
+      ]
+    },
+    {
+      "id": "candidate-local-recovery",
+      "status": "passed",
+      "provenance": "native-postgres-synthetic",
+      "artifactPath": "runner/evidence/candidate/recovery.json",
+      "artifactSha256": "f67dba8ae1c1cac625ac93924d3f4d11b3920e128743bb4985a3dda46f2af9e1",
+      "environment": "Coordinator integrated checkout; macOS; local fixtures/platform-authored scaffold. No live provider or isolated runner acceptance.",
+      "description": "Fresh local PostgreSQL18.6 dump/restore/restart restored21 immutable versions and2 prebackup rows;1 deliberate postbackup row was lost. Damaged/missing backups rejected.831ms local restoration is not deployed RTO/PITR or E1 control recovery.",
+      "digests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "testCounts": null,
+      "scope": [
+        "local platform candidate backup/restore",
+        "immutable version references",
+        "corruption/missing backup rejection"
+      ]
+    },
+    {
+      "id": "runner-local-tls",
+      "status": "passed",
+      "provenance": "unit-fixture",
+      "artifactPath": "docs/reports/evidence/e2-e5/tls-integrated.log",
+      "artifactSha256": "9306c2f7bb9f9fe8548446283c969792e0137a473014b48e8edb8cf4a7ce0605",
+      "environment": "Coordinator integrated checkout; macOS; local fixtures/platform-authored scaffold. No live provider or isolated runner acceptance.",
+      "description": "12 real local TLS handshake tests with explicit fixture PKI passed. Fixed HTTPS agent socket reuse bypass of per-client pinning; no deployed workload identity or runner tested.",
+      "digests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "testCounts": null,
+      "scope": [
+        "runner TLS client/server pinning"
       ]
     }
   ],
@@ -245,13 +426,15 @@
         "D7"
       ],
       "blockers": [
-        "No approved live provider/spend, real isolated host/template, or completed E1 authenticated artifact adoption and persistence browser flow."
+        "No approved live provider/spend, isolated Linux host/release, production identity/storage, or generated application browser persistence evidence. E1 fixture integration is complete."
       ],
       "supportingEvidenceIds": [
         "integrated-unit-support",
-        "candidate-node24"
+        "candidate-node24",
+        "connected-http-source",
+        "ui-repair-integrated"
       ],
-      "supportSummary": "Synthetic candidate/artifact/review/broker and immutable reference harness tests; no model-generated app ran.",
+      "supportSummary": "Synthetic candidate/artifact/review/broker and immutable reference harness tests; no model-generated app ran. Later native synthetic source/HTTP/repair integration passed; real prerequisites remain blocked.",
       "releaseEvidenceIds": [],
       "releaseDigests": {
         "source": null,
@@ -285,7 +468,8 @@
       ],
       "supportingEvidenceIds": [
         "integrated-unit-support",
-        "native-synthetic-migrations"
+        "native-synthetic-migrations",
+        "candidate-postgres18"
       ],
       "supportSummary": "Additive SQL parser plus native/embedded fresh/prior synthetic schema/default validation.",
       "releaseEvidenceIds": [],
@@ -317,9 +501,11 @@
         "A01 has not passed; E1 source-head/history/restore integration and real isolated data-reset confirmation remain incomplete."
       ],
       "supportingEvidenceIds": [
-        "integrated-unit-support"
+        "integrated-unit-support",
+        "connected-http-source",
+        "ui-repair-integrated"
       ],
-      "supportSummary": "Synthetic immutable source/restore/artifact reopening; no transactional project-head acceptance.",
+      "supportSummary": "Synthetic immutable source/restore/artifact reopening; no transactional project-head acceptance. Later native synthetic source/HTTP/repair integration passed; real prerequisites remain blocked.",
       "releaseEvidenceIds": [],
       "releaseDigests": {
         "source": null,
@@ -349,9 +535,12 @@
       ],
       "supportingEvidenceIds": [
         "integrated-unit-support",
-        "candidate-node24"
+        "candidate-node24",
+        "connected-http-source",
+        "ui-repair-integrated",
+        "candidate-clean-export"
       ],
-      "supportSummary": "Scanner-gated inert source ZIP and immutable storage roundtrip; actual scaffold builds separately.",
+      "supportSummary": "Scanner-gated inert source ZIP and immutable storage roundtrip; actual scaffold builds separately. Later native synthetic source/HTTP/repair integration passed; real prerequisites remain blocked.",
       "releaseEvidenceIds": [],
       "releaseDigests": {
         "source": null,
@@ -379,9 +568,11 @@
         "E1 approval/promotion/cancellation transactional tests and real runner byte-binding integration remain incomplete."
       ],
       "supportingEvidenceIds": [
-        "integrated-unit-support"
+        "integrated-unit-support",
+        "connected-http-source",
+        "ui-repair-integrated"
       ],
-      "supportSummary": "Approval contracts and signed broker fixture binding; E1 transactional races not included.",
+      "supportSummary": "Approval contracts and signed broker fixture binding; E1 transactional races not included. Later native synthetic source/HTTP/repair integration passed; real prerequisites remain blocked.",
       "releaseEvidenceIds": [],
       "releaseDigests": {
         "source": null,
@@ -435,7 +626,8 @@
         "E1 durable admission/replay integration is active; actual browser disconnect/reload plus concurrent idempotency acceptance has not run."
       ],
       "supportingEvidenceIds": [
-        "integrated-unit-support"
+        "integrated-unit-support",
+        "e1-frozen-native"
       ],
       "supportSummary": "Dormant client SSE reconstruction/deduplication/gap tests; no live browser/durable request replay.",
       "releaseEvidenceIds": [],
@@ -466,9 +658,11 @@
         "Real provider/object/control/broker crash boundaries, liability reconciliation and deployed orphan inventory are unavailable."
       ],
       "supportingEvidenceIds": [
-        "integrated-unit-support"
+        "integrated-unit-support",
+        "connected-http-source",
+        "ui-repair-integrated"
       ],
-      "supportSummary": "Fixture broker delayed-create, ambiguous operation and local artifact persistence tests.",
+      "supportSummary": "Fixture broker delayed-create, ambiguous operation and local artifact persistence tests. Later native synthetic source/HTTP/repair integration passed; real prerequisites remain blocked.",
       "releaseEvidenceIds": [],
       "releaseDigests": {
         "source": null,
@@ -554,7 +748,8 @@
         "Exact entitled live provider capability/error/cancellation/charge behavior has not been evaluated; no API spend authorized."
       ],
       "supportingEvidenceIds": [
-        "integrated-unit-support"
+        "integrated-unit-support",
+        "e1-frozen-native"
       ],
       "supportSummary": "Synthetic HTTP transport faults, adapter deadline/cancellation, schema and usage handling.",
       "releaseEvidenceIds": [],
@@ -706,9 +901,11 @@
         "A01 has not passed; E1-integrated approved repairs with live calls, real checks, bounded budget and last-passing-state recovery have not run."
       ],
       "supportingEvidenceIds": [
-        "integrated-unit-support"
+        "integrated-unit-support",
+        "connected-http-source",
+        "ui-repair-integrated"
       ],
-      "supportSummary": "Fixture repair-policy/call/deadline/review validation only.",
+      "supportSummary": "Fixture repair-policy/call/deadline/review validation only. Later native synthetic source/HTTP/repair integration passed; real prerequisites remain blocked.",
       "releaseEvidenceIds": [],
       "releaseDigests": {
         "source": null,
@@ -734,7 +931,8 @@
         "Owner spend policy is open; E1 native concurrent reservation/ambiguous-charge ledger integration is still active."
       ],
       "supportingEvidenceIds": [
-        "integrated-unit-support"
+        "integrated-unit-support",
+        "e1-frozen-native"
       ],
       "supportSummary": "Synthetic uncertainty/usage hooks and readiness calculations; no completed E1 quota race claim.",
       "releaseEvidenceIds": [],
@@ -764,7 +962,8 @@
         "No deployed expiry/deletion/data destruction/retention or control-and-object restore drill; RPO/RTO unmeasured."
       ],
       "supportingEvidenceIds": [
-        "integrated-unit-support"
+        "integrated-unit-support",
+        "candidate-local-recovery"
       ],
       "supportSummary": "Local artifact reopening and synthetic recovery evaluator tests only.",
       "releaseEvidenceIds": [],
@@ -851,30 +1050,23 @@
     {
       "id": "A21",
       "scenario": "Compatibility with existing Forge",
-      "releaseStatus": "failed",
+      "releaseStatus": "passed",
       "prerequisites": [],
       "blockingDecisions": [],
-      "blockers": [
-        "Combined npm run verify failed: native E1 reconciler inserts NULL audit_events.actor_id. E1 owner fixing; final combined verification is held until handoff. Historical failure retained and must be explicitly superseded by a successful final run."
-      ],
+      "blockers": [],
       "supportingEvidenceIds": [
-        "integrated-unit-support",
-        "prior-worker-verify",
-        "combined-verify-e1-audit-failure",
-        "existing-forge-browser"
+        "current-repository-verify",
+        "existing-forge-browser",
+        "combined-verify-e1-audit-failure"
       ],
-      "supportSummary": "Existing Forge browser actions passed with export-byte limitations; prior worker verification passed, but current combined repository verification failed at E1 reconciler audit actor constraint. A21 is failed at this checkpoint.",
+      "supportSummary": "Current npm verify and existing local brief/sample/export/loopback behavior passed. Historical failure explicitly superseded; download-byte limitation remains in its browser record.",
       "releaseEvidenceIds": [],
       "releaseDigests": {
         "source": null,
         "template": null,
         "policy": null
       },
-      "missingAssertions": [
-        "npm-verify",
-        "local-brief-sample-export",
-        "loopback-restrictions"
-      ]
+      "missingAssertions": []
     },
     {
       "id": "A22",
@@ -910,5 +1102,11 @@
         "all-promoted-checks"
       ]
     }
-  ]
+  ],
+  "milestoneEvidenceIds": {
+    "E1": [
+      "e1-frozen-native",
+      "current-repository-verify"
+    ]
+  }
 }

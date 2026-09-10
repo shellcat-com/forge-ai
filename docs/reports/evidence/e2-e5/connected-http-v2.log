@@ -1,0 +1,35 @@
+▲ [WARNING] Cannot find base config file "expo/tsconfig.base" [tsconfig.json]
+
+    ../../../tsconfig.json:3:13:
+      3 │   "extends": "expo/tsconfig.base"
+        ╵              ~~~~~~~~~~~~~~~~~~~~
+
+
+ RUN  v4.1.11 /Users/biswaskhatiwada/Documents/ChatGPT/Forge AI _ Full-Stack App Generator
+
+ ❯ tests/engine/e4-control-http.test.ts (2 tests | 1 failed) 2487ms
+   × connects browser transport to displayed reviews, source, promotion, history and export over the existing control service 595ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/engine/e4-control-http.test.ts > connects browser transport to displayed reviews, source, promotion, history and export over the existing control service
+Error: INVALID_FLOW_RESPONSE
+ ❯ src/engine/flow.ts:63:137
+     61| const identity = (value: unknown): string => JSON.stringify(value, (_k…
+     62|   ? Object.fromEntries(Object.entries(item).sort(([a], [b]) => a.local…
+     63| const decode = <T>(schema: z.ZodType<T>) => (value: unknown): T => { c…
+       |                                                                                                                                         ^
+     64|
+     65| /** Headless fixture-control client. No rendering, browser storage, au…
+ ❯ current.promise.client.mutate.revision src/engine/flow.ts:231:68
+ ❯ EngineClient.mutate src/engine/client.ts:120:12
+ ❯ tests/engine/e4-control-http.test.ts:65:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 passed (2)
+   Start at  21:06:13
+   Duration  2.98s (transform 221ms, setup 0ms, import 375ms, tests 2.49s, environment 0ms)
+
