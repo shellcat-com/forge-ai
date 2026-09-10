@@ -8,8 +8,8 @@ Updated 2026-09-10 UTC. Task 01 is the only baseline/shared-code integrator. Sch
 - Canonical integration branch: `codex/demo-delivery-baseline`.
 - Published worker starting commit: `881e9ac2b11f8f168cb7849b77c4ee7439e55458`. Create isolated `codex/` worktrees at that exact SHA; do not use the dirty shared `master` checkout.
 - Composition parents: reconciled PR #7 `a71519bdffd61b83d24413efc1a53327b4304160` plus source checkpoint `2c98c4f8ea6c2dd4feaef7eee561b373f545b0fe`. Remote `master` was `6a8095ef705e0d1ae319b35c869a03e33540341f` (merged PR #4). Refresh refs before each integration.
-- PR dependency: [PR #7](https://github.com/shellcat-com/forge-ai/pull/7) is already an ancestor of this composition. It remains open and untouched. This task targets `master` and therefore includes its changes; review PR #7 first or account for those changes in this PR. No duplicate cherry-pick, merge to master, force-push or branch deletion is authorized.
-- Integration PR: PENDING publication. [Task 01 report](../reports/demo-delivery/task-01-baseline.md) records final head, checks, limitations and evidence. The worker starting SHA stays stable when later evidence commits advance the branch.
+- PR dependency: [PR #7](https://github.com/shellcat-com/forge-ai/pull/7) is already an ancestor of this composition. It was merged externally while this task ran: current `master` is `42a376387835c2d7140b6c484c3517fe466714eb`. Task 01 did not merge or close it. An ancestry-only merge (`591f87c`) records that base without changing source bytes. This task targets `master`; PR #7 is now a satisfied dependency. No duplicate cherry-pick, merge to master, force-push or branch deletion is authorized.
+- Integration PR: [draft PR #8](https://github.com/shellcat-com/forge-ai/pull/8). Clean reproduction/code commit: `591f87c7a2e9e8f8f18b356852e922f2d3c1bf19`; later report/evidence commits do not change that implementation. [Task 01 report](../reports/demo-delivery/task-01-baseline.md) records final head, checks, limitations and evidence. The worker starting SHA stays stable when later evidence commits advance the branch.
 
 ## Composition and provenance decisions
 
@@ -39,14 +39,14 @@ Every task owns its named report under `docs/reports/demo-delivery/`. Uncreated 
 | 05 identity | `engine/control/identity.ts`, new identity adapter modules and dedicated tests; review/reuse `src/server/auth` | 01 route/schema/session bridge; 04 credential owner checks; 07 revocation | `task-05-identity.md`; awaiting worker assignment, D1 live users |
 | 06 persistence/hosting | `engine/artifacts`, new hosted storage/worker configuration, storage/recovery tests and runbooks | 01 database/control/worker shared edits; 04 secret boundary; 08 Vercel deployment configuration | `task-06-persistence.md`; awaiting worker assignment, D5 |
 | 07 private preview | `engine/preview`, new gateway modules, preview tests | 01 atomic tickets/DB; 02 exact environment routing; 05 membership; 06 storage | `task-07-preview.md`; awaiting worker assignment, D6 |
-| 08 live flow/demo | Next.js UI `src/app`, `src/components`, `src/engine` adaptation and UI tests; public deployment scripts/evidence | API route changes via 01; consumes 02–07; shares hosting config with 06 by request; sole Vercel writer | `task-08-demo.md`; awaiting worker assignment, real dependencies |
-| 09 acceptance | `engine/validation`, acceptance harness/ledger and independent tests; open-source readiness docs | Coordinate corpus with 03; validate integrated 02–08; never relabel fixtures | `task-09-validation.md`; awaiting worker assignment, D8 |
+| 08 live flow/demo | Next.js UI `src/app`, `src/components`, `src/engine` adaptation and UI tests; public deployment scripts/evidence | API route changes via 01; consumes 02–07; shares hosting config with 06 by request; sole Vercel writer | `task-08-live-demo.md`; awaiting worker assignment, real dependencies |
+| 09 acceptance | `engine/validation`, acceptance harness/ledger and independent tests; open-source readiness docs | Coordinate corpus with 03; validate integrated 02–08; never relabel fixtures | `task-09-acceptance.md`; awaiting worker assignment, D8 |
 
 Overlapping files are requests, not joint ownership. Submit proposed path, exact contract/diff, dependency commit, migration need and targeted test to Task 01. It records acceptance or revision here before applying. Existing reports/fixture evidence are not overwritten. Architecture changes require an RFC amendment; user direction already resolves BYOK, Vercel and domain scope without another permission round.
 
 ## Contract signatures and integration status
 
-These are inspected existing signatures, frozen for baseline consumers. They are not provider/runtime acceptance signatures. Task 01 records any versioned replacement and dependent tests before merging it. **No Task 02–09 implementation sign-off has been received.**
+These are inspected existing signatures, frozen for baseline consumers. They are not provider/runtime acceptance signatures. Task 01 records any versioned replacement and dependent tests before merging it. **No Task 02–09 implementation sign-off has been received.** Exact baseline file hashes: [contract signatures](../reports/evidence/task-01/contract-signatures.json).
 
 | Contract | Current signature / authority | Required evolution / responsible parties |
 | --- | --- | --- |
@@ -100,7 +100,7 @@ flowchart TD
 
 Independent implementation/tests may proceed in parallel after publication. Integration order: 03 contract/image inputs; 05 identity and 06 storage foundations; 04 accounting/provider; 02 runtime with 03 pins; 07 preview; 08 live UI/demo; 09 combined acceptance. 09 harness preparation starts earlier. Task 01 integrates each reviewed owned commit with its author intact, checks ancestry plus patch equivalence, records source/integration SHAs, runs affected native/browser checks, then reproduces combined verification in a clean checkout. New worker changes are not implied by historical checkpoint commits.
 
-Integration log: PR #7 + `2c98c4f` composed by merge; no Task 02–09 delivery yet. Shared requests: none received. No scheduler/team was created.
+Integration log: PR #7 + `2c98c4f` composed in `881e9ac`; worker SHA recorded in `90d841a`; isolated browser harness in `d4f7b50`; newly merged master ancestry recorded without source changes in `591f87c`. No Task 02–09 delivery yet. Shared requests: none received. No scheduler/team was created.
 
 ## Decision direction versus acceptance
 

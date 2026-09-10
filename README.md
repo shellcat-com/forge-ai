@@ -25,3 +25,7 @@ Fixture browser checks: `FORGE_TEST_URL=http://127.0.0.1:3002 FORGE_UNIFIED_FIXT
 The E0/E1 contracts, durable fixture control service and validation harness are retained for isolated research and regression checks. They are not connected to the Next.js application, its Better Auth sessions, production database or worker. `npm run verify` checks both code paths; native PostgreSQL tools must be on `PATH`. `npm run test:db:control` and `npm run control:build` check the separate fixture schema and service. See [the merge reconciliation](docs/reports/pr7-reconciliation.md) for the architecture, identity and migration boundaries.
 
 The earlier Neon Auth browser/API prototype is historical, unrouted source. Its old Vite flags and migration commands do not configure the current application. Use the current [cloud setup guide](docs/cloud-setup-status.md) for Better Auth.
+
+## Demo-delivery baseline
+
+The [coordination board](docs/operations/demo-delivery-coordination.md) records the canonical worker commit, shared contracts, migrations and Task 02–09 dependencies. [RFC 0001 §0](docs/rfcs/0001-app-generation-vertical-slice.md) includes open-source BYOK, Vercel hosting for Forge and a real public generated portfolio, with no purchased domain. Live BYOK/accounting, isolated runtime, persistent hosted services and private preview acceptance remain open; selecting website hosting does not establish a working hosted builder. See the [tested baseline report](docs/reports/demo-delivery/task-01-baseline.md).
