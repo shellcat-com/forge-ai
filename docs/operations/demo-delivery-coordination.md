@@ -6,7 +6,7 @@ Updated 2026-09-10 UTC. Task 01 is the only baseline/shared-code integrator. Sch
 
 - Verified origin: `https://github.com/shellcat-com/forge-ai.git`; PR target: `master`.
 - Canonical integration branch: `codex/demo-delivery-baseline`.
-- Published worker starting commit: **PENDING first tested merge commit**. Until that field is populated, workers do read-only preparation. Once populated, create isolated `codex/` worktrees at that exact SHA; do not use the dirty shared `master` checkout.
+- Published worker starting commit: `881e9ac2b11f8f168cb7849b77c4ee7439e55458`. Create isolated `codex/` worktrees at that exact SHA; do not use the dirty shared `master` checkout.
 - Composition parents: reconciled PR #7 `a71519bdffd61b83d24413efc1a53327b4304160` plus source checkpoint `2c98c4f8ea6c2dd4feaef7eee561b373f545b0fe`. Remote `master` was `6a8095ef705e0d1ae319b35c869a03e33540341f` (merged PR #4). Refresh refs before each integration.
 - PR dependency: [PR #7](https://github.com/shellcat-com/forge-ai/pull/7) is already an ancestor of this composition. It remains open and untouched. This task targets `master` and therefore includes its changes; review PR #7 first or account for those changes in this PR. No duplicate cherry-pick, merge to master, force-push or branch deletion is authorized.
 - Integration PR: PENDING publication. [Task 01 report](../reports/demo-delivery/task-01-baseline.md) records final head, checks, limitations and evidence. The worker starting SHA stays stable when later evidence commits advance the branch.

@@ -1,6 +1,6 @@
 # Task 01 — Canonical baseline
 
-Status: integration checks passed; clean remote reproduction and browser/CI verification follow publication. Not live release acceptance. Branch `codex/demo-delivery-baseline`, intended draft PR base `master`. The [coordination board](../../operations/demo-delivery-coordination.md) records composition, assignments, contracts, migrations and unresolved infrastructure.
+Status: integration checks passed; clean remote reproduction and browser/CI verification follow publication. Not live release acceptance. Worker baseline commit `881e9ac2b11f8f168cb7849b77c4ee7439e55458`; branch `codex/demo-delivery-baseline`, draft PR base `master`. The [coordination board](../../operations/demo-delivery-coordination.md) records composition, assignments, contracts, migrations and unresolved infrastructure.
 
 The canonical composition merges PR #7 at `a71519bdffd61b83d24413efc1a53327b4304160` with checkpoint `2c98c4f8ea6c2dd4feaef7eee561b373f545b0fe`. It preserves the merged Next.js app and completed E1/source-flow work. Neither the dirty shared checkout nor worker branches were rewritten. PR #7's newer reconciliation supersedes the old report's claim that it remains conflicting. All changes are isolated in `../forge-demo-delivery-task01`.
 
@@ -22,7 +22,7 @@ Node 24.20.0 / npm 11.11.0, PostgreSQL 14.18 (Homebrew):
 - `npm run control:build`: passed; both `node dist-engine/control/index.js api` and `worker` exited disabled with no listener/database/worker. [Build log](../evidence/task-01/integration-control.log).
 - Historical acceptance-ledger CLI: passed byte-hash validation; remains 21 blocked, E1 fixture-verified, no live release. [Summary](../evidence/task-01/historical-ledger-validation.json).
 - Preservation diff: application UI/server/worker/manifests, accepted contracts/SQL/template unchanged from their selected parents. [Record](../evidence/task-01/preservation.json).
-- `git diff --check`: passed. Gitleaks reviewed all added/changed content against master; one intentional synthetic secret-scanner negative-test fixture, zero real credentials identified. [Disposition](../evidence/task-01/secret-review.json).
+- `git diff --check` on the working edits passed; the full staged merge reports trailing whitespace/blank EOF in retained raw evidence logs and original RFC Markdown hard breaks. These bytes are preserved, not silently cleaned. Source/configuration whitespace checks pass. Gitleaks reviewed all added/changed content against master; one intentional synthetic secret-scanner negative-test fixture, zero real credentials identified. [Disposition](../evidence/task-01/secret-review.json).
 
 The initial integrated typecheck failure was fixed before this passing run; type-import whitespace was normalized afterward and will be checked again in clean reproduction. No runtime behavior changed in that normalization. All synthetic/native tests and browser checks will be labeled separately from skipped/live acceptance. Native PostgreSQL tests use fresh disposable private-socket clusters, never user databases or `.env.local`. Browser configuration has no provider keys and performs no generation.
 
