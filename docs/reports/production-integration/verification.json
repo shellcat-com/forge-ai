@@ -1,7 +1,7 @@
 {
   "classification": "local integration; full hosted release incomplete",
   "baseline": "4afc9cb587df24bfc7c31deee13cbc8af2d7ad42",
-  "testedCommit": null,
+  "testedCommit": "c5b035d81bce7437a31c404c5a7b72e7644d924c",
   "toolchain": {
     "node": "24.20.0",
     "npm": "11.11.0",

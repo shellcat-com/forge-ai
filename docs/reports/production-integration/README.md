@@ -8,6 +8,8 @@ Verified origin: `https://github.com/shellcat-com/forge-ai.git`. Remote default 
 
 Read the current working agreement, README, architecture/security/provider documentation, RFC 0001, coordination records, baseline report, and PR #17's independent release audit. PR #17 remains review-only and unmodified. Existing Tasks 02–08 source is already included through PR #8. The new scope and ownership/migration decision is [ADR 0002](../../decisions/0002-public-self-service.md). PR base is `codex/demo-delivery-baseline`; PR #8 must be resolved before a final release to `master`.
 
+Tested implementation commit: `c5b035d81bce7437a31c404c5a7b72e7644d924c`. Subsequent delivery commits update reports only. No deployed commit is assigned to these local results.
+
 The repository's legacy Docker workflow and RFC control system remain distinct. This task does not introduce another identity authority, queue, cloud provider, worker or frontend rewrite. It does not simply remove fixture guards.
 
 ## Implemented and reused
