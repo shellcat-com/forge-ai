@@ -1,0 +1,21 @@
+
+> forge-ai@0.1.0 test:db:e1
+> vitest run tests/engine/control.native.test.ts --reporter=default --reporter=json --outputFile.json=docs/reports/evidence/e1/native-tests.json
+
+▲ [WARNING] Cannot find base config file "expo/tsconfig.base" [tsconfig.json]
+
+    ../../../tsconfig.json:3:13:
+      3 │   "extends": "expo/tsconfig.base"
+        ╵              ~~~~~~~~~~~~~~~~~~~~
+
+
+ RUN  v4.1.11 /Users/biswaskhatiwada/Documents/ChatGPT/Forge AI _ Full-Stack App Generator
+
+ ✓ tests/engine/control.native.test.ts (45 tests) 6653ms
+
+ Test Files  1 passed (1)
+      Tests  45 passed (45)
+   Start at  20:26:59
+   Duration  7.03s (transform 126ms, setup 0ms, import 251ms, tests 6.65s, environment 0ms)
+
+JSON report written to /Users/biswaskhatiwada/Documents/ChatGPT/Forge AI _ Full-Stack App Generator/docs/reports/evidence/e1/native-tests.json

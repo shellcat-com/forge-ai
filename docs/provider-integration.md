@@ -13,7 +13,7 @@ interface ProviderAdapter {
 }
 ```
 
-The concrete types do not exist yet. Their eventual design should keep provider-specific request fields inside the adapter and expose normalized text deltas, tool requests, usage, completion, and typed errors to orchestration.
+Versioned runtime schemas and TypeScript contracts now exist in [engine/contracts/provider.ts](../engine/contracts/provider.ts), with explicit fixture tests and no live generation adapter. They normalize bounded text deltas, rejected tool proposals, optional classified usage, structured completion and typed errors. Provider-specific wire parsing, cancellation/timeout enforcement and account capability validation remain E2 work. The loopback NVIDIA planning prototype remains separate and is not upgraded to production support by these contracts.
 
 ## Requirements
 

@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "origin": "platform-authored-candidate-host-browser",
+  "isolationAcceptance": false,
+  "providerGeneration": false,
+  "testedAt": "2026-09-10T01:01:38.477Z",
+  "node": "v25.8.1",
+  "host": "darwin 25.3.0",
+  "browser": "operator-supplied cached Chromium",
+  "results": [
+    {
+      "colorScheme": "light",
+      "width": 390,
+      "heading": 1,
+      "overflow": false,
+      "focused": true,
+      "zoomOverflow": false,
+      "reducedMotion": true,
+      "passed": true
+    },
+    {
+      "colorScheme": "light",
+      "width": 768,
+      "heading": 1,
+      "overflow": false,
+      "focused": true,
+      "zoomOverflow": false,
+      "reducedMotion": true,
+      "passed": true
+    },
+    {
+      "colorScheme": "light",
+      "width": 1440,
+      "heading": 1,
+      "overflow": false,
+      "focused": true,
+      "zoomOverflow": false,
+      "reducedMotion": true,
+      "passed": true
+    },
+    {
+      "colorScheme": "dark",
+      "width": 390,
+      "heading": 1,
+      "overflow": false,
+      "focused": true,
+      "zoomOverflow": false,
+      "reducedMotion": true,
+      "passed": true
+    },
+    {
+      "colorScheme": "dark",
+      "width": 768,
+      "heading": 1,
+      "overflow": false,
+      "focused": true,
+      "zoomOverflow": false,
+      "reducedMotion": true,
+      "passed": true
+    },
+    {
+      "colorScheme": "dark",
+      "width": 1440,
+      "heading": 1,
+      "overflow": false,
+      "focused": true,
+      "zoomOverflow": false,
+      "reducedMotion": true,
+      "passed": true
+    },
+    {
+      "processHealth": true,
+      "passed": true
+    }
+  ]
+}

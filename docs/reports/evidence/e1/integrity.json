@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "acceptedE0MigrationSha256": "6838d3f1f443f31253d9064915565ce9cd5fe3cbf96366baacb120827cf8879e",
+  "currentE0MigrationSha256": "6838d3f1f443f31253d9064915565ce9cd5fe3cbf96366baacb120827cf8879e",
+  "unchanged": true,
+  "localLinks": "passed",
+  "whitespace": "passed"
+}

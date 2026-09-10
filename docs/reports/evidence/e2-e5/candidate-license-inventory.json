@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "origin": "npm-lockfile-metadata-only",
+  "legalReviewComplete": false,
+  "packageCount": 482,
+  "licenses": {
+    "0BSD": 1,
+    "Apache-2.0": 38,
+    "Apache-2.0 AND LGPL-3.0-or-later": 3,
+    "Apache-2.0 AND LGPL-3.0-or-later AND MIT": 1,
+    "BSD-2-Clause": 7,
+    "BSD-3-Clause": 2,
+    "BlueOak-1.0.0": 1,
+    "CC-BY-4.0": 1,
+    "CC0-1.0": 1,
+    "ISC": 19,
+    "LGPL-3.0-or-later": 10,
+    "MIT": 384,
+    "MPL-2.0": 13,
+    "Python-2.0": 1
+  },
+  "missing": []
+}

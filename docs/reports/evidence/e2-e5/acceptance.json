@@ -1,0 +1,914 @@
+{
+  "schemaVersion": 1,
+  "purpose": "implementation-checkpoint-not-release-attestation",
+  "recordedAt": "2026-09-10T01:23:46.358838Z",
+  "rfc": "docs/rfcs/0001-app-generation-vertical-slice.md",
+  "decisions": [
+    {
+      "id": "D1",
+      "status": "OPEN",
+      "closureEvidence": null
+    },
+    {
+      "id": "D2",
+      "status": "OPEN",
+      "closureEvidence": null
+    },
+    {
+      "id": "D3",
+      "status": "OPEN",
+      "closureEvidence": null
+    },
+    {
+      "id": "D4",
+      "status": "OPEN",
+      "closureEvidence": null
+    },
+    {
+      "id": "D5",
+      "status": "OPEN",
+      "closureEvidence": null
+    },
+    {
+      "id": "D6",
+      "status": "OPEN",
+      "closureEvidence": null
+    },
+    {
+      "id": "D7",
+      "status": "OPEN",
+      "closureEvidence": null
+    },
+    {
+      "id": "D8",
+      "status": "OPEN",
+      "closureEvidence": null
+    }
+  ],
+  "milestones": {
+    "E1": "in-progress",
+    "E2": "blocked",
+    "E3": "blocked",
+    "E4": "blocked",
+    "E5": "blocked"
+  },
+  "limitations": [
+    "No live A01-A22 acceptance is claimed. Supporting fixture, native-synthetic and scaffold checks are separate evidence layers.",
+    "D1-D8 are OPEN. E1 is active; no E2-E5 milestone exit has passed prerequisites.",
+    "Unavailable release source/template/policy digests and decision closure evidence are null. Artifact checksums identify actual local evidence bytes only.",
+    "191-test root evidence is a recorded targeted snapshot. The current combined repository verification failure is preserved in a versioned historical log. Any future evidence-file overwrite requires explicit ledger refresh and review.",
+    "No real provider run, isolated Linux execution, generated-app DB/browser flow, deployed restore or measured capacity campaign is represented."
+  ],
+  "support": [
+    {
+      "id": "integrated-unit-support",
+      "status": "passed",
+      "provenance": "unit-fixture",
+      "artifactPath": "docs/reports/evidence/e2-e5/integrated-tests.json",
+      "artifactSha256": "2e6d25316b8797379f37fac0920b3f38bed84fc3040ce946da784499219a96ba",
+      "environment": "Coordinator shared checkout; macOS, Vitest; explicit provider/runner/control-authority fixtures.",
+      "description": "191/191 recorded assertions passed with no skips. Includes explicit synthetic native SQL drill; the separate native item identifies that limited contribution. JSON labels used in evaluator tests are synthetic, not live samples. E1 is still active; this is not final combined verification.",
+      "digests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "testCounts": {
+        "total": 191,
+        "passed": 191,
+        "failed": 0,
+        "skipped": 0
+      },
+      "scope": [
+        "tests/engine/e2-*.test.ts",
+        "tests/engine/e3-*.test.ts",
+        "tests/engine/validation-*.test.ts",
+        "tests/engine/operations.test.ts",
+        "tests/engine/preview-policy.test.ts",
+        "src/engine/client.test.ts"
+      ]
+    },
+    {
+      "id": "native-synthetic-migrations",
+      "status": "passed",
+      "provenance": "native-postgres-synthetic",
+      "artifactPath": "tests/harness/evidence/validation-integrated-tests.json",
+      "artifactSha256": "216e5051178eaf914e137cc3c7b8d3769ae129e141d7ee980cf184511424c151",
+      "environment": "Fresh native PostgreSQL14.18 cluster, private Unix socket, synthetic reviewed schema and limited roles; stopped/removed.",
+      "description": "87/87 aggregate validation assertions passed; only validation-native.test.ts is native PostgreSQL evidence. It checks fresh/prior migration defaults, runtime privilege denial and cleanup. It does not prove guest PostgreSQL18.6, generated-app restart or isolation.",
+      "digests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "testCounts": {
+        "total": 87,
+        "passed": 87,
+        "failed": 0,
+        "skipped": 0
+      },
+      "scope": [
+        "tests/engine/validation-native.test.ts"
+      ]
+    },
+    {
+      "id": "candidate-browser",
+      "status": "passed",
+      "provenance": "platform-scaffold-browser",
+      "artifactPath": "runner/evidence/candidate/browser.json",
+      "artifactSha256": "a6d76239cc1d48222ab9c44b9474fa65d5caa614820efc4e4b6d0d65da2a5f11",
+      "environment": "macOS25.3.0, Node25.8.1, operator-supplied cached Chromium; platform-authored candidate.",
+      "description": "Six theme/viewport checks plus process health passed, including focus, zoom overflow and reduced motion. Not generated app CRUD, real app DB persistence, private gateway or microVM acceptance.",
+      "digests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "testCounts": null,
+      "scope": [
+        "light/dark 390/768/1440",
+        "keyboard focus",
+        "zoom/reduced-motion",
+        "process health"
+      ]
+    },
+    {
+      "id": "candidate-node24",
+      "status": "passed",
+      "provenance": "platform-scaffold-build",
+      "artifactPath": "runner/evidence/candidate/node24.json",
+      "artifactSha256": "4802b356adeea8ac7aa0ef0cba420179853969ebb59c1e8719286f20f16dab90",
+      "environment": "macOS arm64, exact Node24.20.0 archive checksum verified by E3; Next16.3.4 scaffold.",
+      "description": "Candidate lint/typecheck/protected test/build passed; no guest PostgreSQL connection, offline-image or Linux isolation acceptance.",
+      "digests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "testCounts": null,
+      "scope": [
+        "candidate lint/typecheck",
+        "protected environment test",
+        "Next production webpack build"
+      ]
+    },
+    {
+      "id": "candidate-advisory-snapshot",
+      "status": "passed",
+      "provenance": "candidate-dependency-audit",
+      "artifactPath": "docs/reports/evidence/e2-e5/candidate-npm-audit.json",
+      "artifactSha256": "3d2adac858467940d36d3cd05f64b62394993bbc7217015de307abc3690bfb8d",
+      "environment": "Recorded npm audit response for pinned candidate lock; advisory database snapshot only.",
+      "description": "Recorded npm audit metadata reports zero listed vulnerabilities. This is not exhaustive security proof, completed license review, isolated dependency preparation, or D7 approval.",
+      "digests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "testCounts": null,
+      "scope": [
+        "npm audit candidate lock"
+      ]
+    },
+    {
+      "id": "prior-worker-verify",
+      "status": "passed",
+      "provenance": "prior-repository-verification",
+      "artifactPath": "tests/harness/evidence/validation-integrated-verify.log",
+      "artifactSha256": "2e984066d6bdec0d44283c89b4bb2a0a0feeccbd0b316976d8a689fee641ea46",
+      "environment": "Validation worktree with E2/E3 committed reference snapshots; E1 concurrent integration absent.",
+      "description": "npm run verify passed 287 tests with one intentional opt-in native skip and production build. Prior bounded snapshot only; A21 remains not-run pending final combined verification and existing Forge browser flows.",
+      "digests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "testCounts": null,
+      "scope": [
+        "prior worker lint/typecheck/test/build"
+      ]
+    },
+    {
+      "id": "combined-verify-e1-audit-failure",
+      "status": "failed",
+      "provenance": "repository-verification",
+      "artifactPath": "docs/reports/evidence/e2-e5/repository-verify-e1-audit-failure.log",
+      "artifactSha256": "c6d2ef88d6d732055d3124e0cc11bb726f6784f7984f8625b5e741e2b6008495",
+      "environment": "Coordinator shared checkout; macOS; combined repository verification including E1 native PostgreSQL tests.",
+      "description": "Historical combined npm run verify failure: lint/typecheck passed; 331 tests passed, one failed, one skipped. E1 reconciler audit_events.actor_id NOT NULL failure at engine/control/reconciler.ts:100. Build was not reached. E1 owner acknowledged and is fixing it; no E1 files changed by this ledger task.",
+      "digests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "testCounts": null,
+      "scope": [
+        "historical combined npm run verify",
+        "tests/engine/control.native.test.ts ambiguous provider liability after worker death"
+      ]
+    },
+    {
+      "id": "existing-forge-browser",
+      "status": "passed",
+      "provenance": "existing-forge-browser",
+      "artifactPath": "docs/reports/evidence/e2-e5/forge-browser-compatibility.json",
+      "artifactSha256": "ed513f3a1c027fac195da4f22c4b0bfa95fd1270cc6548909de3480e2db2618c",
+      "environment": "Codex in-app browser at127.0.0.1:5173; existing dark preference preserved; coordinator recorded2026-09-10T01:19:00Z.",
+      "description": "Recorded local brief creation, disabled unconnected planning boundary, four fixed sample steps, design-package and brief export clicks, and targeted synthetic cleanup passed. Download bytes not independently inspected. No engine UI route connected and no generated-app A19 evidence.",
+      "digests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "testCounts": null,
+      "scope": [
+        "local brief creation",
+        "planning boundary",
+        "fixed sample walkthrough",
+        "design-package and brief export actions",
+        "targeted cleanup"
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "id": "A01",
+      "scenario": "Task-board first generation with real configured provider",
+      "releaseStatus": "blocked",
+      "prerequisites": [],
+      "blockingDecisions": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D7"
+      ],
+      "blockers": [
+        "No approved live provider/spend, real isolated host/template, or completed E1 authenticated artifact adoption and persistence browser flow."
+      ],
+      "supportingEvidenceIds": [
+        "integrated-unit-support",
+        "candidate-node24"
+      ],
+      "supportSummary": "Synthetic candidate/artifact/review/broker and immutable reference harness tests; no model-generated app ran.",
+      "releaseEvidenceIds": [],
+      "releaseDigests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "missingAssertions": [
+        "source-reviewed",
+        "all-required-checks",
+        "task-crud",
+        "app-restart-persistence"
+      ]
+    },
+    {
+      "id": "A02",
+      "scenario": "Change request adds priority with PostgreSQL migration",
+      "releaseStatus": "blocked",
+      "prerequisites": [
+        "A01"
+      ],
+      "blockingDecisions": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D7"
+      ],
+      "blockers": [
+        "A01 has not passed; real generated priority edit, guest fresh/prior migration and browser regression are absent."
+      ],
+      "supportingEvidenceIds": [
+        "integrated-unit-support",
+        "native-synthetic-migrations"
+      ],
+      "supportSummary": "Additive SQL parser plus native/embedded fresh/prior synthetic schema/default validation.",
+      "releaseEvidenceIds": [],
+      "releaseDigests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "missingAssertions": [
+        "approved-priority-diff",
+        "fresh-and-prior-migrations",
+        "priority-crud-regression"
+      ]
+    },
+    {
+      "id": "A03",
+      "scenario": "Existing immutable source and restoration",
+      "releaseStatus": "blocked",
+      "prerequisites": [
+        "A01"
+      ],
+      "blockingDecisions": [
+        "D1",
+        "D2",
+        "D5",
+        "D7"
+      ],
+      "blockers": [
+        "A01 has not passed; E1 source-head/history/restore integration and real isolated data-reset confirmation remain incomplete."
+      ],
+      "supportingEvidenceIds": [
+        "integrated-unit-support"
+      ],
+      "supportSummary": "Synthetic immutable source/restore/artifact reopening; no transactional project-head acceptance.",
+      "releaseEvidenceIds": [],
+      "releaseDigests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "missingAssertions": [
+        "failed-head-unchanged",
+        "restore-new-history",
+        "acknowledged-data-reset"
+      ]
+    },
+    {
+      "id": "A04",
+      "scenario": "Source export",
+      "releaseStatus": "blocked",
+      "prerequisites": [
+        "A01"
+      ],
+      "blockingDecisions": [
+        "D2",
+        "D5",
+        "D7"
+      ],
+      "blockers": [
+        "A01 has not passed; source ZIP exists in tests, but a clean export install/migrate/build/run in the required environment has not run."
+      ],
+      "supportingEvidenceIds": [
+        "integrated-unit-support",
+        "candidate-node24"
+      ],
+      "supportSummary": "Scanner-gated inert source ZIP and immutable storage roundtrip; actual scaffold builds separately.",
+      "releaseEvidenceIds": [],
+      "releaseDigests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "missingAssertions": [
+        "clean-lockfile-install",
+        "export-build-run",
+        "export-secret-exclusion"
+      ]
+    },
+    {
+      "id": "A05",
+      "scenario": "Missing approval, stale digest, concurrent promotion/cancel",
+      "releaseStatus": "blocked",
+      "prerequisites": [],
+      "blockingDecisions": [
+        "D1",
+        "D2",
+        "D5",
+        "D7"
+      ],
+      "blockers": [
+        "E1 approval/promotion/cancellation transactional tests and real runner byte-binding integration remain incomplete."
+      ],
+      "supportingEvidenceIds": [
+        "integrated-unit-support"
+      ],
+      "supportSummary": "Approval contracts and signed broker fixture binding; E1 transactional races not included.",
+      "releaseEvidenceIds": [],
+      "releaseDigests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "missingAssertions": [
+        "missing-stale-approval-denied",
+        "promotion-cancel-race",
+        "approved-byte-binding"
+      ]
+    },
+    {
+      "id": "A06",
+      "scenario": "Two users in different tenants plus revoked viewer",
+      "releaseStatus": "blocked",
+      "prerequisites": [],
+      "blockingDecisions": [
+        "D1",
+        "D5",
+        "D6"
+      ],
+      "blockers": [
+        "No approved identity/accounts or deployed all-endpoint two-tenant/revocation test, including private preview gateway."
+      ],
+      "supportingEvidenceIds": [
+        "integrated-unit-support"
+      ],
+      "supportSummary": "Preview grant structural/expiry policy only; no complete E1 tenant endpoint evidence.",
+      "releaseEvidenceIds": [],
+      "releaseDigests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "missingAssertions": [
+        "all-endpoints-two-tenant",
+        "revocation-within-target"
+      ]
+    },
+    {
+      "id": "A07",
+      "scenario": "Browser reload/disconnect and duplicate API request",
+      "releaseStatus": "blocked",
+      "prerequisites": [],
+      "blockingDecisions": [
+        "D1",
+        "D5"
+      ],
+      "blockers": [
+        "E1 durable admission/replay integration is active; actual browser disconnect/reload plus concurrent idempotency acceptance has not run."
+      ],
+      "supportingEvidenceIds": [
+        "integrated-unit-support"
+      ],
+      "supportSummary": "Dormant client SSE reconstruction/deduplication/gap tests; no live browser/durable request replay.",
+      "releaseEvidenceIds": [],
+      "releaseDigests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "missingAssertions": [
+        "disconnect-continues",
+        "replay-deduplicates",
+        "idempotent-admission"
+      ]
+    },
+    {
+      "id": "A08",
+      "scenario": "Crash after provider output, blob upload, DB transition, broker create and before acknowledgment",
+      "releaseStatus": "blocked",
+      "prerequisites": [],
+      "blockingDecisions": [
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D7"
+      ],
+      "blockers": [
+        "Real provider/object/control/broker crash boundaries, liability reconciliation and deployed orphan inventory are unavailable."
+      ],
+      "supportingEvidenceIds": [
+        "integrated-unit-support"
+      ],
+      "supportSummary": "Fixture broker delayed-create, ambiguous operation and local artifact persistence tests.",
+      "releaseEvidenceIds": [],
+      "releaseDigests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "missingAssertions": [
+        "all-five-crash-points",
+        "no-duplicate-charge-or-promotion",
+        "orphan-cleanup"
+      ]
+    },
+    {
+      "id": "A09",
+      "scenario": "Stale worker and expired broker lease",
+      "releaseStatus": "blocked",
+      "prerequisites": [],
+      "blockingDecisions": [
+        "D2",
+        "D5",
+        "D7"
+      ],
+      "blockers": [
+        "No real host watchdog/tombstone/epoch and replacement-worker upstream acceptance evidence."
+      ],
+      "supportingEvidenceIds": [
+        "integrated-unit-support"
+      ],
+      "supportSummary": "Fixture stale lease/epoch and delayed completion rejection; no real host watchdog.",
+      "releaseEvidenceIds": [],
+      "releaseDigests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "missingAssertions": [
+        "stale-epoch-denied",
+        "expired-lease-cleanup",
+        "stale-upstream-denied"
+      ]
+    },
+    {
+      "id": "A10",
+      "scenario": "Cancellation in every state and worker/network partition",
+      "releaseStatus": "blocked",
+      "prerequisites": [],
+      "blockingDecisions": [
+        "D2",
+        "D5",
+        "D6",
+        "D7"
+      ],
+      "blockers": [
+        "No actual every-state cancellation/partition campaign with gateway revocation timing and physical resource inventory."
+      ],
+      "supportingEvidenceIds": [
+        "integrated-unit-support"
+      ],
+      "supportSummary": "Fixture cancellation/tombstone and pending cleanup protocols; no physical inventory.",
+      "releaseEvidenceIds": [],
+      "releaseDigests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "missingAssertions": [
+        "every-state-cancel-partition",
+        "route-revocation-target",
+        "fenced-commands",
+        "resource-baseline-or-quarantine"
+      ]
+    },
+    {
+      "id": "A11",
+      "scenario": "Provider auth/rate limit/timeout/refusal/malformed/truncated/split stream",
+      "releaseStatus": "blocked",
+      "prerequisites": [],
+      "blockingDecisions": [
+        "D3",
+        "D4"
+      ],
+      "blockers": [
+        "Exact entitled live provider capability/error/cancellation/charge behavior has not been evaluated; no API spend authorized."
+      ],
+      "supportingEvidenceIds": [
+        "integrated-unit-support"
+      ],
+      "supportSummary": "Synthetic HTTP transport faults, adapter deadline/cancellation, schema and usage handling.",
+      "releaseEvidenceIds": [],
+      "releaseDigests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "missingAssertions": [
+        "all-provider-faults",
+        "bounded-redacted-errors",
+        "no-partial-execution",
+        "uncertain-billing-retained"
+      ]
+    },
+    {
+      "id": "A12",
+      "scenario": "Adversarial path/archive/prompt/shell/package/migration inputs",
+      "releaseStatus": "blocked",
+      "prerequisites": [],
+      "blockingDecisions": [
+        "D2",
+        "D7"
+      ],
+      "blockers": [
+        "Synthetic parser/path/scanner corpus passes; actual escape/network/host-control containment corpus remains blocked on real isolation."
+      ],
+      "supportingEvidenceIds": [
+        "integrated-unit-support",
+        "native-synthetic-migrations",
+        "candidate-advisory-snapshot"
+      ],
+      "supportSummary": "Hostile SQL/path/check-spoof corpus and concrete secret scan; no real escape-containment claim.",
+      "releaseEvidenceIds": [],
+      "releaseDigests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "missingAssertions": [
+        "complete-adversarial-corpus",
+        "no-host-control-access",
+        "no-check-or-network-expansion"
+      ]
+    },
+    {
+      "id": "A13",
+      "scenario": "Process/CPU/RAM/disk abuse and hung build",
+      "releaseStatus": "blocked",
+      "prerequisites": [],
+      "blockingDecisions": [
+        "D2",
+        "D7"
+      ],
+      "blockers": [
+        "No real process/CPU/RAM/disk/hang/neighbor-pressure campaign or physical orphan cleanup measurement."
+      ],
+      "supportingEvidenceIds": [
+        "integrated-unit-support"
+      ],
+      "supportSummary": "Configuration/collector resource caps tested in fixtures; physical resource-abuse test not run.",
+      "releaseEvidenceIds": [],
+      "releaseDigests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "missingAssertions": [
+        "cpu-ram-disk-process-hang",
+        "neighbor-responsive",
+        "bounded-logs",
+        "no-orphans"
+      ]
+    },
+    {
+      "id": "A14",
+      "scenario": "Preview host/ticket/cookie/session/CSRF tests",
+      "releaseStatus": "blocked",
+      "prerequisites": [],
+      "blockingDecisions": [
+        "D1",
+        "D5",
+        "D6"
+      ],
+      "blockers": [
+        "No running separate-site private gateway or real ticket/session/cookie/CSRF/revocation/domain-generation browser campaign."
+      ],
+      "supportingEvidenceIds": [
+        "integrated-unit-support"
+      ],
+      "supportSummary": "Pure host/path/cookie/header/CSRF policy tests; gateway not running.",
+      "releaseEvidenceIds": [],
+      "releaseDigests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "missingAssertions": [
+        "host-ticket-cookie-session-csrf",
+        "no-platform-credentials",
+        "gateway-cookie-protected",
+        "domain-not-reused"
+      ]
+    },
+    {
+      "id": "A15",
+      "scenario": "Template check spoofing, generated assertions removed, false log success",
+      "releaseStatus": "blocked",
+      "prerequisites": [],
+      "blockingDecisions": [
+        "D2",
+        "D7"
+      ],
+      "blockers": [
+        "Fixture checks reject fabricated claims; real immutable external harness and authenticated collector evidence remain unavailable."
+      ],
+      "supportingEvidenceIds": [
+        "integrated-unit-support"
+      ],
+      "supportSummary": "Protected policy and fixture provenance rejection; no model/stdout verification stamp.",
+      "releaseEvidenceIds": [],
+      "releaseDigests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "missingAssertions": [
+        "trusted-checks-immutable",
+        "spoofed-output-fails",
+        "no-stdout-verification"
+      ]
+    },
+    {
+      "id": "A16",
+      "scenario": "Repaired candidate and exhausted budget",
+      "releaseStatus": "blocked",
+      "prerequisites": [
+        "A01"
+      ],
+      "blockingDecisions": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D7"
+      ],
+      "blockers": [
+        "A01 has not passed; E1-integrated approved repairs with live calls, real checks, bounded budget and last-passing-state recovery have not run."
+      ],
+      "supportingEvidenceIds": [
+        "integrated-unit-support"
+      ],
+      "supportSummary": "Fixture repair-policy/call/deadline/review validation only.",
+      "releaseEvidenceIds": [],
+      "releaseDigests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "missingAssertions": [
+        "each-repair-reviewed",
+        "two-repairs-twelve-calls-cost-cap",
+        "last-passing-state"
+      ]
+    },
+    {
+      "id": "A17",
+      "scenario": "Parallel quota admission and ambiguous provider charge",
+      "releaseStatus": "blocked",
+      "prerequisites": [],
+      "blockingDecisions": [
+        "D4",
+        "D5"
+      ],
+      "blockers": [
+        "Owner spend policy is open; E1 native concurrent reservation/ambiguous-charge ledger integration is still active."
+      ],
+      "supportingEvidenceIds": [
+        "integrated-unit-support"
+      ],
+      "supportSummary": "Synthetic uncertainty/usage hooks and readiness calculations; no completed E1 quota race claim.",
+      "releaseEvidenceIds": [],
+      "releaseDigests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "missingAssertions": [
+        "parallel-quota-race",
+        "deduplicated-ledger",
+        "ambiguous-charge-reserved"
+      ]
+    },
+    {
+      "id": "A18",
+      "scenario": "Expiry, deletion and recovery",
+      "releaseStatus": "blocked",
+      "prerequisites": [],
+      "blockingDecisions": [
+        "D2",
+        "D5",
+        "D6",
+        "D8"
+      ],
+      "blockers": [
+        "No deployed expiry/deletion/data destruction/retention or control-and-object restore drill; RPO/RTO unmeasured."
+      ],
+      "supportingEvidenceIds": [
+        "integrated-unit-support"
+      ],
+      "supportSummary": "Local artifact reopening and synthetic recovery evaluator tests only.",
+      "releaseEvidenceIds": [],
+      "releaseDigests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "missingAssertions": [
+        "expiry-delete-revoke-destroy",
+        "artifact-retention",
+        "restore-valid-objects",
+        "measured-rpo-rto"
+      ]
+    },
+    {
+      "id": "A19",
+      "scenario": "App usability and browser coverage",
+      "releaseStatus": "blocked",
+      "prerequisites": [
+        "A01"
+      ],
+      "blockingDecisions": [
+        "D2",
+        "D6",
+        "D7"
+      ],
+      "blockers": [
+        "A01 has not passed; scaffold browser checks are not actual generated CRUD/private-preview/database persistence acceptance."
+      ],
+      "supportingEvidenceIds": [
+        "integrated-unit-support",
+        "candidate-browser"
+      ],
+      "supportSummary": "Actual platform-authored scaffold browser checks; reference CRUD harness runs only against explicit fixtures.",
+      "releaseEvidenceIds": [],
+      "releaseDigests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "missingAssertions": [
+        "actual-next-preview",
+        "all-themes-viewports",
+        "keyboard-crud-focus",
+        "zoom-200-reduced-motion",
+        "database-persistence"
+      ]
+    },
+    {
+      "id": "A20",
+      "scenario": "Load and fault campaign",
+      "releaseStatus": "blocked",
+      "prerequisites": [],
+      "blockingDecisions": [
+        "D1",
+        "D2",
+        "D4",
+        "D5",
+        "D6",
+        "D7",
+        "D8"
+      ],
+      "blockers": [
+        "No approved capacity envelope/operations owner or measured steady/burst/host-fault campaign; no scale claim."
+      ],
+      "supportingEvidenceIds": [
+        "integrated-unit-support"
+      ],
+      "supportSummary": "Synthetic p95/denominator/cost/recovery calculations; no measured load samples.",
+      "releaseEvidenceIds": [],
+      "releaseDigests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "missingAssertions": [
+        "full-denominator-hardware-limits",
+        "steady-and-burst-load",
+        "staged-fault-campaign",
+        "measured-targets"
+      ]
+    },
+    {
+      "id": "A21",
+      "scenario": "Compatibility with existing Forge",
+      "releaseStatus": "failed",
+      "prerequisites": [],
+      "blockingDecisions": [],
+      "blockers": [
+        "Combined npm run verify failed: native E1 reconciler inserts NULL audit_events.actor_id. E1 owner fixing; final combined verification is held until handoff. Historical failure retained and must be explicitly superseded by a successful final run."
+      ],
+      "supportingEvidenceIds": [
+        "integrated-unit-support",
+        "prior-worker-verify",
+        "combined-verify-e1-audit-failure",
+        "existing-forge-browser"
+      ],
+      "supportSummary": "Existing Forge browser actions passed with export-byte limitations; prior worker verification passed, but current combined repository verification failed at E1 reconciler audit actor constraint. A21 is failed at this checkpoint.",
+      "releaseEvidenceIds": [],
+      "releaseDigests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "missingAssertions": [
+        "npm-verify",
+        "local-brief-sample-export",
+        "loopback-restrictions"
+      ]
+    },
+    {
+      "id": "A22",
+      "scenario": "Model/template release benchmark",
+      "releaseStatus": "blocked",
+      "prerequisites": [
+        "A01",
+        "A02"
+      ],
+      "blockingDecisions": [
+        "D2",
+        "D3",
+        "D4",
+        "D7"
+      ],
+      "blockers": [
+        "A01/A02 have not passed; no budget-authorized 30-run live task-board/Pomodoro campaign, cost distribution or release-quality signoff."
+      ],
+      "supportingEvidenceIds": [
+        "integrated-unit-support"
+      ],
+      "supportSummary": "Synthetic provenance/quality evaluator tests reject fake release claims; zero live benchmark attempts.",
+      "releaseEvidenceIds": [],
+      "releaseDigests": {
+        "source": null,
+        "template": null,
+        "policy": null
+      },
+      "missingAssertions": [
+        "frozen-corpus",
+        "quality-at-least-90-percent",
+        "cost-distribution",
+        "all-promoted-checks"
+      ]
+    }
+  ]
+}

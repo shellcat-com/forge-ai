@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "sourceSnapshot": "b981ec6b1dfafdeacd32a3765479fd1613622c9a",
+  "baseCommit": "e8947bb",
+  "observedRemoteMaster": "6a8095e",
+  "verify": {
+    "passed": 408,
+    "skipped": 2
+  },
+  "nativeE1Cases": 45,
+  "nativeE0Assertions": 45,
+  "e1ManifestFullyMatched": true,
+  "generatedCodeExecutionEnabled": false,
+  "mergeStatus": "blocked-by-architecture-conflicts",
+  "node": "v25.8.1",
+  "postgres": "postgres (PostgreSQL) 14.18 (Homebrew)",
+  "sha256": {
+    "docs/reports/evidence/publication/verify.log": "7d34f4884219cc6526b497493c0ccadeacf575ed430813076113d3d23c5a4b31",
+    "docs/reports/evidence/publication/native-postgres.log": "4276c6d4c496fc43f930c301c83510276cffd7a95aba56542cc7d73a9e352d99",
+    "docs/reports/evidence/publication/control-build.log": "bab7a7620c6e1d5174b473fb061330899eea4de51f8b33ae4e42059fe8d4aa6d"
+  }
+}

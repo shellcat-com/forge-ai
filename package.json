@@ -12,17 +12,36 @@
     "typecheck": "tsc -b --pretty false",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:engine": "vitest run tests/engine",
+    "test:db:control": "node scripts/check-control-db.mjs",
     "verify": "npm run lint && npm run typecheck && npm test && npm run build",
     "api": "node --env-file-if-exists=.env.local server/index.mjs",
+    "api:cloud": "node --env-file-if-exists=.env.local server/cloud/index.mjs",
+    "db:migrate": "node --env-file-if-exists=.env.local scripts/migrate-cloud.mjs",
+    "db:generate": "drizzle-kit generate",
     "skills:sync": "node scripts/sync-skills.mjs",
-    "art:prepare": "node scripts/prepare-art.mjs"
+    "art:prepare": "node scripts/prepare-art.mjs",
+    "control:build": "tsc -p tsconfig.control.json",
+    "api:control": "npm run control:build && node dist-engine/control/index.js api",
+    "worker:control": "npm run control:build && node dist-engine/control/index.js worker",
+    "test:db:e1": "vitest run tests/engine/control.native.test.ts"
   },
   "engines": {
     "node": ">=20.19.0"
   },
+  "overrides": {
+    "@esbuild-kit/core-utils": {
+      "esbuild": "^0.25.0"
+    }
+  },
   "devDependencies": {
+    "@electric-sql/pglite": "^0.5.8",
     "@eslint/js": "^9.35.0",
+    "@types/node": "^22.20.2",
+    "@types/pg": "^8.23.1",
+    "drizzle-kit": "^0.31.10",
     "eslint": "^9.35.0",
+    "jsdom": "^29.1.1",
     "prettier": "^3.9.6",
     "sharp": "^0.35.4",
     "typescript": "^5.9.2",
@@ -35,6 +54,11 @@
     "@fontsource/instrument-serif": "^5.3.0",
     "@fontsource/inter": "^5.3.0",
     "@fontsource/press-start-2p": "^5.3.0",
-    "fflate": "^0.8.3"
+    "@neondatabase/auth": "0.5.0-beta",
+    "drizzle-orm": "^0.45.2",
+    "fflate": "^0.8.3",
+    "jose": "^6.2.12",
+    "pg": "^8.23.0",
+    "zod": "^4.6.1"
   }
 }
