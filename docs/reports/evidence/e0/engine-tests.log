@@ -1,0 +1,11 @@
+
+> forge-ai@0.1.0 test:engine
+> vitest run tests/engine --reporter=json --outputFile=docs/reports/evidence/e0/engine-tests.json
+
+▲ [WARNING] Cannot find base config file "expo/tsconfig.base" [tsconfig.json]
+
+    ../../../tsconfig.json:3:13:
+      3 │   "extends": "expo/tsconfig.base"
+        ╵              ~~~~~~~~~~~~~~~~~~~~
+
+JSON report written to /Users/biswaskhatiwada/Documents/ChatGPT/Forge AI _ Full-Stack App Generator/docs/reports/evidence/e0/engine-tests.json

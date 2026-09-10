@@ -1,7 +1,12 @@
 import { randomUUID } from 'node:crypto'
 import { canonicalHash } from '../contracts/canonical.ts'
 import { parseEventCursor, jobEventSchema } from '../contracts/events.ts'
-import { validateApproval, approvalSchema, promotionReviewSchema } from '../contracts/review.ts'
+import {
+  validateApproval,
+  approvalSchema,
+  promotionReviewSchema,
+  verificationSchema,
+} from '../contracts/review.ts'
 import { isTerminal } from '../workflows/jobs.ts'
 import { ControlDatabase, clock, number, one } from './database.ts'
 import type { Tx, Principal } from './database.ts'
@@ -18,7 +23,13 @@ import {
   restoreInputSchema,
   promoteInputSchema,
 } from './contracts.ts'
-import { fixtureTemplateDigest, policyDigest } from './catalog.ts'
+import { defaultControlCatalog } from './catalog.ts'
+import type { ControlCatalog } from './catalog.ts'
+import type { SourceRepository } from '../integration/source-repository.ts'
+import { prepareSourceExport, readSourceFile } from '../generation/source.ts'
+import { planSchema } from '../contracts/source.ts'
+import { sourcePath } from '../contracts/paths.ts'
+import { scopeOf } from './state.ts'
 import {
   appendEvent,
   audit,
@@ -112,10 +123,16 @@ export class ControlService {
   constructor(
     readonly db: ControlDatabase,
     readonly sessions: SessionService,
-    readonly admissionEnabled = false
-  ) {}
+    readonly admissionEnabled = false,
+    readonly catalog: ControlCatalog = defaultControlCatalog,
+    readonly sources?: SourceRepository
+  ) {
+    if (sources && sources.catalog.manifest.template.digest !== catalog.templateDigest)
+      throw new Error('Source catalog mismatch')
+  }
   async createProject(token: string, w: string, csrf: string, key: string, input: unknown) {
     const body = projectInputSchema.parse(input)
+    this.catalog.assertProject(body.presetId, body.presetVersion)
     return this.db.session(token, w, 'editor', async (c, p) => {
       this.sessions.checkCsrf(p.csrf_hash, csrf)
       return idempotent(c, p, w, key, `POST /workspaces/${w}/projects`, body, async () => {
@@ -130,7 +147,7 @@ export class ControlService {
             body.presetId,
             body.presetVersion,
             body.templateId,
-            fixtureTemplateDigest,
+            this.catalog.templateDigest,
           ]
         )
         await audit(c, project, p.user_id, 'project.created')
@@ -240,12 +257,14 @@ export class ControlService {
             'SELECT * FROM lock_admission()'
           )
           const project = await this.project(c, id, true)
+          this.catalog.assertProject(project.preset_id, project.preset_version)
+          this.catalog.policy(body.maxCostMicros)
           if (
             number(project.revision) !== body.baseRevision ||
             project.head_snapshot_id !== body.baseSnapshotId
           )
             throw new ControlError(412, 'REVISION_MISMATCH')
-          if (project.template_digest !== fixtureTemplateDigest)
+          if (project.template_digest !== this.catalog.templateDigest)
             throw new ControlError(409, 'TEMPLATE_REVALIDATION_REQUIRED')
           if (body.maxCostMicros > number(settings.max_job_micros))
             throw new ControlError(429, 'QUOTA_EXCEEDED')
@@ -256,8 +275,8 @@ export class ControlService {
               [restoreSnapshotId, id]
             )
           const revoked = await c.query('SELECT 1 FROM revoked_policies WHERE digest IN ($1,$2)', [
-            fixtureTemplateDigest,
-            policyDigest(body.maxCostMicros),
+            this.catalog.templateDigest,
+            canonicalHash(this.catalog.policy(body.maxCostMicros)),
           ])
           if (revoked.rowCount) throw new ControlError(409, 'POLICY_REVOKED')
           const quota = await one<{
@@ -293,8 +312,8 @@ export class ControlService {
             origin: 'fixture',
             modelPolicyId: 'fixture-v1',
             promptVersion: 'fixture-e1-v1',
-            templateDigest: fixtureTemplateDigest,
-            policyDigest: policyDigest(body.maxCostMicros),
+            templateDigest: this.catalog.templateDigest,
+            policyDigest: canonicalHash(this.catalog.policy(body.maxCostMicros)),
             maxCostMicros: body.maxCostMicros,
             maxAttemptMicros: Math.min(1, body.maxCostMicros),
           })
@@ -312,7 +331,7 @@ export class ControlService {
               body.baseRevision,
               { ...body, ...(restoreSnapshotId ? { restoreSnapshotId } : {}) },
               policy.policyDigest,
-              fixtureTemplateDigest,
+              this.catalog.templateDigest,
               policy.promptVersion,
               policy,
               body.maxCostMicros,
@@ -718,6 +737,324 @@ export class ControlService {
         nextCursor: rows.length > q.limit ? rows[q.limit - 1].id : null,
       }
     })
+  }
+  /** Authorized read snapshots are fenced again after immutable object I/O. */
+  async plan(token: string, jobId: string) {
+    const load = () =>
+      this.db.resource(token, jobId, 'job', 'viewer', async (c) => {
+        const j = await one<JobRow>(c, 'SELECT * FROM jobs WHERE id=$1', [jobId])
+        if (!j.plan_artifact_id) throw new ControlError(409, 'PLAN_UNAVAILABLE')
+        const { payload_json } = await one<{ payload_json: unknown }>(
+          c,
+          'SELECT payload_json FROM fixture_artifact_payloads WHERE artifact_id=$1',
+          [j.plan_artifact_id]
+        )
+        return {
+          scope: scopeOf(j),
+          plan: planSchema.parse(payload_json),
+          artifact: this.sources ? await this.sources.ref(c, scopeOf(j), j.plan_artifact_id) : null,
+          stateVersion: number(j.state_version),
+          reviewDigest: j.review_digest,
+        }
+      })
+    const before = await load()
+    if (this.sources && before.artifact)
+      await this.sources.store.read(before.scope, before.artifact)
+    if (canonicalHash(before) !== canonicalHash(await load()))
+      throw new ControlError(409, 'READ_CHANGED')
+    return {
+      schemaVersion: 1,
+      origin: 'fixture',
+      plan: before.plan,
+      planDigest: canonicalHash(before.plan),
+      stateVersion: before.stateVersion,
+      reviewDigest: before.reviewDigest,
+    }
+  }
+  async changes(token: string, jobId: string) {
+    const sources = this.sources
+    if (!sources) throw new ControlError(409, 'SOURCE_UNAVAILABLE')
+    const load = () =>
+      this.db.resource(token, jobId, 'job', 'viewer', async (c) => {
+        const j = await one<JobRow>(c, 'SELECT * FROM jobs WHERE id=$1', [jobId])
+        if (!j.candidate_snapshot_id) throw new ControlError(409, 'SOURCE_UNAVAILABLE')
+        const binding = await one<{ diff_artifact_id: string }>(
+          c,
+          'SELECT diff_artifact_id FROM job_source_contexts WHERE job_id=$1',
+          [jobId]
+        )
+        const evidence = (
+          await c.query<{ sha256: string; payload_json: unknown }>(
+            `SELECT a.sha256,p.payload_json FROM snapshots s
+        JOIN artifacts a ON a.id=s.verification_artifact_id AND a.status='available' AND a.kind='verification'
+        JOIN fixture_artifact_payloads p ON p.artifact_id=a.id WHERE s.id=$1`,
+            [j.candidate_snapshot_id]
+          )
+        ).rows[0]
+        const verification = evidence ? verificationSchema.parse(evidence.payload_json) : null
+        if (evidence && canonicalHash(verification) !== evidence.sha256)
+          throw new ControlError(409, 'READ_CHANGED')
+        return {
+          scope: scopeOf(j),
+          snapshotId: j.candidate_snapshot_id,
+          source: await sources.snapshot(c, scopeOf(j), j.candidate_snapshot_id),
+          diff: await sources.ref(c, scopeOf(j), binding.diff_artifact_id),
+          verification,
+          verificationDigest: evidence?.sha256 ?? null,
+          stateVersion: number(j.state_version),
+          reviewDigest: j.review_digest,
+        }
+      })
+    const before = await load()
+    await sources.validate(before.scope, before.source)
+    const bytes = await sources.store.read(before.scope, before.diff)
+    if (canonicalHash(before) !== canonicalHash(await load()))
+      throw new ControlError(409, 'READ_CHANGED')
+    return {
+      schemaVersion: 1,
+      origin: 'fixture',
+      snapshotId: before.snapshotId,
+      manifest: before.source.manifest,
+      manifestDigest: canonicalHash(before.source.manifest),
+      verification: before.verification,
+      verificationDigest: before.verificationDigest,
+      diff: {
+        artifactId: before.diff.id,
+        sha256: before.diff.sha256,
+        bytes: before.diff.bytes,
+        unified: Buffer.from(bytes).toString('utf8'),
+      },
+      stateVersion: before.stateVersion,
+      reviewDigest: before.reviewDigest,
+    }
+  }
+  private async sourceRead(
+    token: string,
+    snapshotId: string,
+    role: 'viewer' | 'editor' = 'viewer'
+  ) {
+    const sources = this.sources
+    if (!sources) throw new ControlError(409, 'SOURCE_UNAVAILABLE')
+    return this.db.resource(token, snapshotId, 'snapshot', role, async (c) => {
+      const s = await one<{
+        workspace_id: string
+        project_id: string
+        job_id: string
+        status: string
+        verification_artifact_id: string | null
+      }>(c, 'SELECT * FROM snapshots WHERE id=$1', [snapshotId])
+      await this.project(c, s.project_id)
+      const scope = { workspaceId: s.workspace_id, projectId: s.project_id, jobId: s.job_id }
+      return {
+        scope,
+        source: await sources.snapshot(c, scope, snapshotId),
+        status: s.status,
+        verificationArtifactId: s.verification_artifact_id,
+      }
+    })
+  }
+  async files(token: string, snapshotId: string) {
+    const loaded = await this.sourceRead(token, snapshotId)
+    return {
+      schemaVersion: 1,
+      origin: 'fixture',
+      snapshotId,
+      manifestDigest: canonicalHash(loaded.source.manifest),
+      files: loaded.source.manifest.files.map(({ path, sha256, bytes, mediaType }) => ({
+        path,
+        sha256,
+        bytes,
+        mediaType,
+      })),
+    }
+  }
+  async file(token: string, snapshotId: string, path: string) {
+    sourcePath.parse(path)
+    const loaded = await this.sourceRead(token, snapshotId)
+    const file = loaded.source.manifest.files.find((f) => f.path === path)
+    if (!file) throw new ControlError(404, 'NOT_FOUND')
+    const bytes = await readSourceFile(this.sources!.store, loaded.scope, loaded.source, path)
+    if (canonicalHash(loaded) !== canonicalHash(await this.sourceRead(token, snapshotId)))
+      throw new ControlError(409, 'READ_CHANGED')
+    return {
+      schemaVersion: 1,
+      origin: 'fixture',
+      snapshotId,
+      path,
+      sha256: file.sha256,
+      mediaType: file.mediaType,
+      bytes,
+      manifestDigest: canonicalHash(loaded.source.manifest),
+    }
+  }
+  private async exportEligibility(c: Tx, snapshotId: string) {
+    if (!this.sources) throw new ControlError(409, 'SOURCE_UNAVAILABLE')
+    await c.query('SELECT singleton FROM control_settings FOR SHARE')
+    const row = await one<{ manifest_digest: string; verification_digest: string }>(
+      c,
+      `SELECT s.manifest_digest,a.sha256 AS verification_digest FROM snapshots s JOIN artifacts a ON a.id=s.verification_artifact_id
+       JOIN jobs j ON j.id=s.job_id WHERE s.id=$1 AND s.status='verified' AND s.origin='fixture' AND a.status='available'
+       AND a.created_at>clock_timestamp()-interval '24 hours' AND (a.expires_at IS NULL OR a.expires_at>clock_timestamp())
+       AND s.template_digest=$3 AND j.policy_digest=$4
+       AND NOT EXISTS(SELECT 1 FROM control_settings WHERE security_shutdown)
+       AND NOT EXISTS(SELECT 1 FROM revoked_policies r WHERE r.digest IN(s.template_digest,j.policy_digest,$2))`,
+      [
+        snapshotId,
+        this.sources.scanPolicyDigest,
+        this.sources.catalog.manifest.template.digest,
+        this.sources.catalog.manifest.commandPolicyDigest,
+      ]
+    )
+    return row
+  }
+  /** Scanner/object I/O is outside transactions. Concurrent retries may produce
+   * orphan objects, but one idempotent transaction adopts exactly one attachment. */
+  async sourceExport(token: string, snapshotId: string, csrf: string, key: string) {
+    keySchema.parse(key)
+    const sources = this.sources
+    if (!sources) throw new ControlError(409, 'SOURCE_UNAVAILABLE')
+    const route = `POST /snapshots/${snapshotId}/exports`
+    const input = { schemaVersion: 1, snapshotId, scanPolicyDigest: sources.scanPolicyDigest }
+    const preflight = await this.db.resource(
+      token,
+      snapshotId,
+      'snapshot',
+      'editor',
+      async (c, p, w) => {
+        this.sessions.checkCsrf(p.csrf_hash, csrf)
+        await this.exportEligibility(c, snapshotId)
+        const prior = (
+          await c.query<{
+            request_digest: string
+            response_json: { artifactId: string; jobId: string }
+          }>(
+            'SELECT request_digest,response_json FROM idempotency_records WHERE workspace_id=$1 AND actor_id=$2 AND route=$3 AND key=$4 AND expires_at>clock_timestamp()',
+            [w, p.user_id, route, key]
+          )
+        ).rows[0]
+        if (prior && prior.request_digest !== canonicalHash(input))
+          throw new ControlError(409, 'IDEMPOTENCY_CONFLICT')
+        return prior?.response_json
+      }
+    )
+    if (preflight) return this.exportAttachment(token, preflight.jobId, preflight.artifactId)
+    const before = await this.sourceRead(token, snapshotId, 'editor')
+    const result = await prepareSourceExport(
+      sources.store,
+      before.scope,
+      sources.catalog,
+      before.source,
+      sources.scan
+    )
+    const committed = await this.db.resource(
+      token,
+      snapshotId,
+      'snapshot',
+      'editor',
+      async (c, p, w) => {
+        this.sessions.checkCsrf(p.csrf_hash, csrf)
+        const eligible = await this.exportEligibility(c, snapshotId)
+        if (eligible.manifest_digest !== canonicalHash(before.source.manifest))
+          throw new ControlError(409, 'READ_CHANGED')
+        return idempotent(c, p, w, key, route, input, async () => {
+          const j = await one<JobRow>(c, 'SELECT * FROM jobs WHERE id=$1', [before.scope.jobId])
+          await sources.adoptRef(c, j, result.artifact)
+          await c.query(
+            `INSERT INTO source_exports(workspace_id,project_id,artifact_id,snapshot_id,scan_policy_digest,verification_digest,expires_at)
+          VALUES($1,$2,$3,$4,$5,$6,clock_timestamp()+interval '24 hours')`,
+            [
+              w,
+              before.scope.projectId,
+              result.artifact.id,
+              snapshotId,
+              sources.scanPolicyDigest,
+              eligible.verification_digest,
+            ]
+          )
+          await audit(c, j, p.user_id, 'source.exported')
+          return {
+            status: 201,
+            body: {
+              schemaVersion: 1,
+              origin: 'fixture',
+              artifactId: result.artifact.id,
+              jobId: j.id,
+            },
+          }
+        })
+      }
+    )
+    return this.exportAttachment(
+      token,
+      String(committed.body.jobId),
+      String(committed.body.artifactId)
+    )
+  }
+  private async exportAttachment(token: string, jobId: string, artifactId: string) {
+    const attachment = await this.artifactAttachment(token, jobId, artifactId)
+    return {
+      schemaVersion: 1,
+      origin: 'fixture',
+      snapshotId: attachment.snapshotId!,
+      manifestDigest: attachment.manifestDigest!,
+      jobId,
+      artifactId,
+      sha256: attachment.sha256,
+      bytes: attachment.bytes,
+    }
+  }
+  async artifactAttachmentById(token: string, artifactId: string) {
+    const jobId = await this.db.resource(token, artifactId, 'artifact', 'viewer', async (c) => {
+      const row = await one<{ job_id: string | null }>(
+        c,
+        "SELECT job_id FROM artifacts WHERE id=$1 AND status='available'",
+        [artifactId]
+      )
+      if (!row.job_id) throw new ControlError(404, 'NOT_FOUND')
+      return row.job_id
+    })
+    return this.artifactAttachment(token, jobId, artifactId)
+  }
+  async artifactAttachment(token: string, jobId: string, artifactId: string) {
+    const sources = this.sources
+    if (!sources) throw new ControlError(409, 'SOURCE_UNAVAILABLE')
+    const load = () =>
+      this.db.resource(token, jobId, 'job', 'viewer', async (c, p) => {
+        const j = await one<JobRow>(c, 'SELECT * FROM jobs WHERE id=$1', [jobId])
+        await this.project(c, j.project_id)
+        const ref = await sources.ref(c, scopeOf(j), artifactId)
+        if (ref.jobId !== jobId) throw new ControlError(404, 'NOT_FOUND')
+        let snapshotId: string | null = null,
+          manifestDigest: string | null = null
+        if (ref.kind === 'source-export') {
+          if (p.role === 'viewer') throw new ControlError(403, 'FORBIDDEN')
+          const binding = await one<{ snapshot_id: string; verification_digest: string }>(
+            c,
+            'SELECT snapshot_id,verification_digest FROM source_exports WHERE artifact_id=$1 AND scan_policy_digest=$2 AND expires_at>clock_timestamp()',
+            [artifactId, sources.scanPolicyDigest]
+          )
+          const eligibility = await this.exportEligibility(c, binding.snapshot_id)
+          if (eligibility.verification_digest !== binding.verification_digest)
+            throw new ControlError(409, 'REVALIDATION_REQUIRED')
+          snapshotId = binding.snapshot_id
+          manifestDigest = eligibility.manifest_digest
+        }
+        return { scope: scopeOf(j), ref, snapshotId, manifestDigest }
+      })
+    const before = await load()
+    const bytes = await sources.store.read(before.scope, before.ref)
+    if (canonicalHash(before) !== canonicalHash(await load()))
+      throw new ControlError(409, 'READ_CHANGED')
+    return {
+      schemaVersion: 1,
+      origin: 'fixture',
+      artifactId,
+      kind: before.ref.kind,
+      sha256: before.ref.sha256,
+      bytes,
+      snapshotId: before.snapshotId,
+      manifestDigest: before.manifestDigest,
+    }
   }
   artifact(token: string, jobId: string, artifactId: string) {
     return this.db.resource(token, jobId, 'job', 'viewer', async (c) => ({

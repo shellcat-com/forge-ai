@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "origin": "explicit-ui-fixture",
+  "status": "passed-with-limitations",
+  "checkedAt": "2026-09-10T02:02:23.158372+00:00",
+  "browser": "Codex in-app browser",
+  "page": "http://127.0.0.1:5173/tests/harness/engine-view.html",
+  "checks": {
+    "light": [
+      390,
+      768,
+      1440
+    ],
+    "dark": [
+      390,
+      768,
+      1440
+    ],
+    "horizontalOverflow": false,
+    "sourceAndReviewEscapedAsText": true,
+    "keyboardFocus": "2px visible outline in both themes; project control reached by Tab",
+    "realEngineUnavailableState": "Optional route loads and reports missing control session/service; local workspace link retained",
+    "privatePreviewDisabled": true,
+    "fixtureExportDisabled": true,
+    "simulations": {
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "viewport": 1440,
+      "cssZoom": "200%",
+      "engineMainOverflow": false,
+      "documentOverflow": true,
+      "overflowReason": "Existing Forge topbar does not change media-query breakpoint under CSS zoom; not native browser zoom.",
+      "forcedExistingReducedMotionStyles": {
+        "animationDuration": "0s",
+        "transitionDuration": "0s"
+      }
+    }
+  },
+  "limitations": [
+    "Static design fixture only; no generated application or live identity/provider/runner acceptance.",
+    "Native browser zoom and prefers-reduced-motion emulation unavailable in exposed browser API; not counted as passed.",
+    "Viewport screenshots inspected in tool output; screenshot bytes not persisted."
+  ],
+  "viewportOverrideReset": true
+}

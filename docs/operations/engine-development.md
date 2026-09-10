@@ -17,7 +17,7 @@ The native migration drill is opt-in. It creates a private temporary PostgreSQL 
 FORGE_NATIVE_MIGRATION_TEST=1 npx vitest run tests/engine/validation-native.test.ts
 ```
 
-E1 owns its control database/worker lifecycle and report. Do not run shared integration verification while that task is changing its build; the coordinator will record the final stable `npm run verify` and database results. Control service commands must follow the E1 report and use separate API, worker and maintenance roles. Do not reuse a Neon prototype DSN, migration superuser or provider key.
+E1 completed its fixture handoff; its report and evidence are frozen. The coordinator owns the documented additive source bridge and runs current integrated checks separately. Control service commands must follow the E1 report and use separate API, worker and maintenance roles. Do not reuse a Neon prototype DSN, migration superuser or provider key.
 
 ## Pinned candidate compatibility
 
@@ -42,13 +42,38 @@ FORGE_POSTGRES18_CANDIDATE_TEST=1 npx vitest run tests/engine/e3-postgres-candid
 
 This test requires `postgres --version` to report18.6, creates a fresh socket-only database, loads the actual template bootstrap, tests default privileges and reviewed fresh/prior-seeded additive migrations, restarts the database and removes the cluster. It does not test application-process persistence, the guest credential provisioner, Linux or sandbox containment. Never repurpose it for provider SQL.
 
+The clean source-export and recovery checks have explicit opt-ins and exact local tool requirements:
+
+```sh
+FORGE_RUN_CANDIDATE_EXPORT=1 FORGE_CANDIDATE_NODE24=/absolute/reviewed/node24/bin/node npx vitest run tests/engine/e3-candidate-export.test.ts
+FORGE_RUN_CANDIDATE_RECOVERY=1 FORGE_CANDIDATE_PG18_BIN=/absolute/reviewed/postgres18/bin npx vitest run tests/engine/e5-candidate-recovery.test.ts
+```
+
+These accept only the hash-pinned platform scaffold and fixed synthetic SQL. Export installation uses the existing npm cache in offline mode. Recovery uses disposable Unix-socket clusters, validates the backup inventory before restore and confirms shutdown before removal. Their recorded paths/tool hashes are in `runner/evidence/candidate/`; no privileged service is installed.
+
 ## Source and runner integration boundaries
 
-`ArtifactStore` verifies exact immutable version/hash/bytes; `LocalSyntheticObjectBackend` is restart-persistent local synthetic storage, not approved production object storage. Catalog validation, source assembly, complete manifests, diffs, scanner-bound ZIP preparation and restoration are implemented independently. E1 must authorize scoped reads and adopt exact object references under its lease/state fences.
+`ArtifactStore` verifies exact immutable version/hash/bytes; `LocalSyntheticObjectBackend` is restart-persistent local synthetic storage, not approved production object storage. Catalog validation, source assembly, complete manifests, diffs, scanner-bound ZIP preparation and restoration are implemented independently. The injected E2 source bridge now authorizes scoped reads and adopts exact object references through E1 lease/state fences. Apply additive0003 after0001/0002 for that composition; see the E2 control integration report.
 
 `SandboxBroker` exposes signed, fixed actions only. `UnavailableFirecrackerDriver` remains the production default. The host inventory/watchdog controller has explicit OS-fake tests; no real LinuxExecutor, guest RPC, image builder or installed privileged supervisor is supplied. Do not substitute ordinary host or container execution. The uninstalled files under `runner/host/` are review candidates with missing real-host gates documented in their README.
 
-`EngineClient` and `EngineFlow` are headless current-API clients; they do not create authentication from local state. The current fixture API cannot supply a working real preview/source-export endpoint. The existing local UI remains intact and samples remain labeled. Browser flow connection and immutable-artifact adoption must use the single E1 service after its documented handoff.
+The optional engine UI uses `EngineClient`, `EngineFlow`, `EngineSourceReader` and `EngineWorkspace` with the single control service. It displays actual scoped source/plan/diff bytes, verifies their hashes before allowing approval, retains ambiguous action IDs, and downloads verified fixture source archives. It creates no authentication from local state. Preview remains unavailable.
+
+```sh
+VITE_FORGE_ENGINE_UI=true npm run dev
+```
+
+Open `http://127.0.0.1:5173/#/engine`. The fixed development proxy sends only `/api/v1` to loopback port3002 and preserves the planning proxy on3001. With no configured control session it shows the unavailable state. The normal control CLI remains the original E1 fixture composition; it does not silently enable the candidate adapter or mint a browser session. The UI flag defaults false and does not authorize any engine integration.
+
+The fully connected **synthetic** source flow can be reproduced without credentials, provider calls or app execution:
+
+```sh
+npx vitest run tests/engine/e4-control-http.test.ts tests/engine/e2-control-integration.test.ts
+```
+
+The trusted test factory creates a disposable native PostgreSQL cluster, explicit fixture identity/provider/execution adapters and immutable local artifacts, runs the existing HTTP control service, verifies source review→approval→fixture verification→promotion/history→ZIP export, then removes test resources. It does not expose an HTTP identity-minting endpoint. See `tests/harness/e2-control.ts` for explicit dependency injection; never use it for real people or provider code.
+
+`http://127.0.0.1:5173/tests/harness/engine-view.html?theme=light` is a clearly labeled static UI design fixture. Its actions do not contact a service. It is not part of the production entry bundle.
 
 ## Resume without losing concurrent work
 

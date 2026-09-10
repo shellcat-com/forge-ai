@@ -23,7 +23,7 @@ function setup(override?: (path: string, init?: RequestInit) => Response | Promi
     if (path === '/api/v1/session') return Response.json(session)
     if (path === '/api/v1/capabilities') return Response.json(capabilities)
     if (path === `/api/v1/workspaces/${w}/projects`) return Response.json({ ...envelope('items', [project]), nextCursor: null })
-    if (path === `/api/v1/projects/${p}/snapshots`) return Response.json(envelope('items', history))
+    if (path.startsWith(`/api/v1/projects/${p}/snapshots?`)) return Response.json({ ...envelope('items', history), nextCursor: null })
     if (path === `/api/v1/projects/${p}` && init?.method === 'GET') return Response.json(envelope('project', project))
     if (path === `/api/v1/jobs/${j}`) return Response.json(envelope('job', baseJob))
     throw new Error('Unexpected synthetic route: ' + path)
@@ -194,7 +194,7 @@ describe('headless E4 flow against explicit E1 HTTP fixtures', () => {
     const { flow } = setup(path => {
       if (path === '/api/v1/session') return Response.json({ ...session, memberships: [...session.memberships, { workspace_id: workspace, role: 'editor' }] })
       if (path.includes('/workspaces/')) return new Promise(resolve => { pages.set(path, resolve) })
-      if (path.endsWith('/snapshots')) return new Promise(resolve => { histories.push(resolve) })
+      if (path.includes('/snapshots?')) return new Promise(resolve => { histories.push(resolve) })
       return undefined
     })
     await flow.loadSession()
@@ -207,10 +207,73 @@ describe('headless E4 flow against explicit E1 HTTP fixtures', () => {
     await flow.loadProject(p)
     const oldHistory = flow.loadHistory(), rejectedHistory = expect(oldHistory).rejects.toThrow('STALE_FLOW_READ')
     const newHistory = flow.loadHistory()
-    histories[1](Response.json(envelope('items', [{ ...history[0], id: id(41) }])))
+    histories[1](Response.json({ ...envelope('items', [{ ...history[0], id: id(41) }]), nextCursor: null }))
     await newHistory
-    histories[0](Response.json(envelope('items', history)))
+    histories[0](Response.json({ ...envelope('items', history), nextCursor: null }))
     await rejectedHistory; expect(flow.state.history[0].id).toBe(id(41))
+  })
+
+  it('loads exact history cursors and commits only after all pages pass', async () => {
+    const second = id(42)
+    const { flow, calls } = setup(path => path.includes('/snapshots?') ? Response.json({ ...envelope('items', path.includes('&cursor=') ? [{ ...history[0], id: second }] : history), nextCursor: path.includes('&cursor=') ? null : history[0].id }) : undefined)
+    await ready(flow); await flow.loadHistory()
+    expect(flow.state.history.map(snapshot => snapshot.id)).toEqual([history[0].id, second])
+    expect(calls.filter(call => call.path.includes('/snapshots?')).map(call => call.path)).toEqual([
+      `/api/v1/projects/${p}/snapshots?limit=100`, `/api/v1/projects/${p}/snapshots?limit=100&cursor=${history[0].id}`])
+  })
+  it('rejects repeated cursors, duplicate snapshots and missing cursor envelopes without partial state', async () => {
+    for (const mode of ['loop', 'duplicate', 'missing'] as const) {
+      let pages = 0
+      const { flow } = setup(path => {
+        if (!path.includes('/snapshots?')) return
+        pages++
+        if (mode === 'missing') return Response.json(envelope('items', history))
+        return Response.json({ ...envelope('items', history), nextCursor: mode === 'loop' || pages === 1 ? history[0].id : null })
+      })
+      await ready(flow); await expect(flow.loadHistory()).rejects.toThrow(mode === 'missing' ? 'INVALID_FLOW_RESPONSE' : 'INVALID_HISTORY_PAGINATION')
+      expect(flow.state.history).toEqual([]); expect(pages).toBeLessThanOrEqual(2)
+    }
+  })
+  it('stops at ten history pages without replacing previously loaded history', async () => {
+    let bounded = false, page = 0
+    const { flow } = setup(path => path.includes('/snapshots?') && bounded ? Response.json({ ...envelope('items', [{ ...history[0], id: id(100 + ++page) }]), nextCursor: id(100 + page) }) : undefined)
+    await ready(flow); await flow.loadHistory(); bounded = true
+    await expect(flow.loadHistory()).rejects.toThrow('HISTORY_PAGE_CAP')
+    expect(page).toBe(10); expect(flow.state.history).toEqual(history)
+  })
+  it('aborts a later history page and keeps the prior history unchanged', async () => {
+    const abort = new AbortController(); let paginate = false, release!: (response: Response) => void
+    const { flow } = setup(path => {
+      if (!path.includes('/snapshots?') || !paginate) return
+      if (path.includes('&cursor=')) return new Promise(resolve => { release = resolve })
+      return Response.json({ ...envelope('items', [{ ...history[0], id: id(43) }]), nextCursor: id(43) })
+    })
+    await ready(flow); await flow.loadHistory(); paginate = true
+    const loading = flow.loadHistory(abort.signal), rejected = expect(loading).rejects.toThrow('History read stopped')
+    await vi.waitFor(() => expect(release).toBeDefined()); abort.abort(new Error('History read stopped')); await rejected
+    release(Response.json({ ...envelope('items', [{ ...history[0], id: id(44) }]), nextCursor: null }))
+    expect(flow.state.history).toEqual(history)
+  })
+
+  it('accepts the exact terminal promotion project projection in the E1 envelope', async () => {
+    const promoted = { ...project, headSnapshotId: id(9), revision: 2 }
+    const { flow } = setup(path => path === `/api/v1/jobs/${j}` ? Response.json({ ...envelope('job', { ...baseJob, state: 'SUCCEEDED', candidateSnapshotId: id(9), stateVersion: 12, finishedAt: at }), project: promoted }) : undefined)
+    await ready(flow); await flow.loadJob(j)
+    expect(flow.state.job).toMatchObject({ state: 'SUCCEEDED', candidateSnapshotId: id(9) })
+  })
+  it.each([
+    { ...project, id: id(99), headSnapshotId: id(9), revision: 2 },
+    { ...project, workspaceId: id(99), headSnapshotId: id(9), revision: 2 },
+    { ...project, headSnapshotId: id(99), revision: 2 },
+    { ...project, headSnapshotId: id(9), revision: 1 },
+  ])('rejects a foreign or stale promotion project projection %#', async projected => {
+    const { flow } = setup(path => path === `/api/v1/jobs/${j}` ? Response.json({ ...envelope('job', { ...baseJob, state: 'SUCCEEDED', candidateSnapshotId: id(9), stateVersion: 12, finishedAt: at }), project: projected }) : undefined)
+    await ready(flow); await expect(flow.loadJob(j)).rejects.toThrow('INVALID_FLOW_RESPONSE')
+    expect(flow.state.job).toBeNull()
+  })
+  it('rejects a project projection on a nonterminal job envelope', async () => {
+    const { flow } = setup(path => path === `/api/v1/jobs/${j}` ? Response.json({ ...envelope('job', baseJob), project }) : undefined)
+    await ready(flow); await expect(flow.loadJob(j)).rejects.toThrow('INVALID_FLOW_RESPONSE')
   })
 
 })

@@ -97,7 +97,7 @@ export interface SourceDiff { schemaVersion: 1; baseManifestDigest: string; cand
   files: { path: string; op: 'create' | 'replace' | 'delete'; before: string | null; after: string | null }[]; unified: string }
 /** Full-file unified hunks avoid quadratic diff behavior on hostile repeated lines.
  * Consumers MUST display this untrusted text as escaped text, never HTML. */
-export async function prepareDiff(store: ArtifactStore, s: ArtifactScope, base: StoredSource, candidate: StoredSource): Promise<{ diff: SourceDiff; artifact: ArtifactRef }> {
+export async function computeSourceDiff(store: ArtifactStore, s: ArtifactScope, base: StoredSource, candidate: StoredSource): Promise<SourceDiff> {
   const paths = [...new Set([...base.manifest.files, ...candidate.manifest.files].map(f => f.path))].sort()
   const files: SourceDiff['files'] = []
   let unified = ''
@@ -118,7 +118,14 @@ export async function prepareDiff(store: ArtifactStore, s: ArtifactScope, base: 
     if (after && !after.endsWith('\n')) unified += '\\ No newline at end of file\n'
   }
   const diff: SourceDiff = { schemaVersion: 1, baseManifestDigest: canonicalHash(base.manifest), candidateManifestDigest: canonicalHash(candidate.manifest), files, unified }
-  return { diff, artifact: await store.put(s, 'diff', encoder.encode(unified)) }
+  if (encoder.encode(unified).length > 24 * 1024 * 1024) throw new Error('Diff byte cap')
+  return diff
+}
+/** Persist once when preparing a new review. Revalidation uses computeSourceDiff
+ * to read immutable bytes without creating unreferenced comparison artifacts. */
+export async function prepareDiff(store: ArtifactStore, s: ArtifactScope, base: StoredSource, candidate: StoredSource): Promise<{ diff: SourceDiff; artifact: ArtifactRef }> {
+  const diff = await computeSourceDiff(store, s, base, candidate)
+  return { diff, artifact: await store.put(s, 'diff', encoder.encode(diff.unified)) }
 }
 /** Pure preparation only. E1 persists this with the state transition and later
  * validates actor, digest, revision, revocation and expiry under row locks. */

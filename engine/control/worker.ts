@@ -12,7 +12,9 @@ import { clock, one, number, ControlDatabase } from './database.ts'
 import type { Tx } from './database.ts'
 import { appendEvent, changeState, flushEventSequence, scopeOf } from './state.ts'
 import type { JobRow, StepRow } from './state.ts'
-import { fixturePolicy, fixtureImageDigest } from './catalog.ts'
+import { defaultControlCatalog } from './catalog.ts'
+import type { ControlCatalog } from './catalog.ts'
+import type { SourceRepository } from '../integration/source-repository.ts'
 import { stageResultSchema } from './stage-adapter.ts'
 import type { StageAdapter, StageInput, StageResult } from './stage-adapter.ts'
 export class SimulatedWorkerCrash extends Error {}
@@ -33,8 +35,14 @@ export class ControlWorker {
   constructor(
     readonly db: ControlDatabase,
     readonly adapter: StageAdapter,
-    readonly hooks: WorkerHooks = {}
+    readonly hooks: WorkerHooks = {},
+    readonly catalog: ControlCatalog = defaultControlCatalog,
+    readonly sources?: SourceRepository
   ) {
+    if (sources && sources.catalog.manifest.template.digest !== catalog.templateDigest)
+      throw new Error('Source catalog mismatch')
+    if (catalog.name === 'e2-candidate-fixture' && !sources)
+      throw new Error('Source repository required')
     if (adapter.origin !== 'fixture') throw new Error('Live adapters blocked pending E2/D3/D5')
   }
   async claim(): Promise<StepRow | null> {
@@ -144,6 +152,7 @@ export class ControlWorker {
           await this.payload(c, snap.verification_artifact_id)
         )
     }
+    if (this.sources) Object.assign(input, await this.sources.input(c, j))
     return input
   }
   async putArtifact(
@@ -213,6 +222,38 @@ export class ControlWorker {
         canonicalHash(m.migrations),
       ]
     )
+    await c.query('UPDATE jobs SET candidate_snapshot_id=$2 WHERE id=$1', [j.id, snapshotId])
+    j.candidate_snapshot_id = snapshotId
+    return artifact
+  }
+  async storedCandidate(
+    c: Tx,
+    j: JobRow,
+    result: Extract<StageResult, { kind: 'stored-candidate' }>
+  ) {
+    if (!this.sources) throw new Error('Source repository required')
+    const artifact = await this.sources.adoptSource(c, j, result.source)
+    const diff = await this.sources.adoptRef(c, j, result.diff)
+    const m = result.source.manifest
+    const snapshotId = randomUUID()
+    await c.query(
+      `INSERT INTO snapshots(id,workspace_id,project_id,job_id,parent_id,manifest_artifact_id,manifest_digest,template_digest,schema_digest,status) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,'candidate')`,
+      [
+        snapshotId,
+        j.workspace_id,
+        j.project_id,
+        j.id,
+        j.base_snapshot_id,
+        artifact,
+        canonicalHash(m),
+        j.template_digest,
+        canonicalHash(m.migrations),
+      ]
+    )
+    await c.query('UPDATE job_source_contexts SET diff_artifact_id=$2 WHERE job_id=$1', [
+      j.id,
+      diff,
+    ])
     await c.query('UPDATE jobs SET candidate_snapshot_id=$2 WHERE id=$1', [j.id, snapshotId])
     j.candidate_snapshot_id = snapshotId
     return artifact
@@ -346,7 +387,7 @@ export class ControlWorker {
           executionReviewDigest: canonicalHash(proof.review),
           sourceManifestDigest: proof.review.candidateDigest,
           templateDigest: j.template_digest,
-          imageDigest: fixtureImageDigest,
+          imageDigest: this.catalog.imageDigest,
           commandPolicyDigest: j.policy_digest,
           mounts: [
             { source: 'approved-source', target: '/workspace', readOnly: true },
@@ -415,6 +456,7 @@ export class ControlWorker {
             abort.signal.removeEventListener('abort', onAbort)
           )
         )
+        if (this.sources) await this.sources.validateResult(prepared.input, result, this.catalog)
         await this.leased(s, async (c) => {
           await c.query(
             "UPDATE fixture_operations SET state='completed',result_json=$2 WHERE id=$1 AND lease_epoch=$3",
@@ -449,6 +491,15 @@ export class ControlWorker {
     }
   }
   async complete(s: StepRow, result: StageResult | null) {
+    // Capture immutable references under the lease, then read/validate bytes without
+    // holding DB locks. The adoption transaction below rechecks the lease epoch.
+    let sourceInput: StageInput | undefined
+    if (this.sources) {
+      sourceInput = await this.leased(s, (c, j, current) => this.input(c, j, current))
+      if (s.stage === 'VALIDATING' && sourceInput.selectedSource && !sourceInput.manifest)
+        result = await this.sources.restoration(sourceInput)
+      if (result) await this.sources.validateResult(sourceInput, result, this.catalog)
+    }
     return this.leased(s, async (c, j) => {
       let output: string | null = null,
         target: JobRow['state'],
@@ -468,21 +519,40 @@ export class ControlWorker {
         expiresAt,
       }
       if (j.state === 'QUEUED') target = j.kind === 'generate' ? 'PLANNING' : 'VALIDATING'
-      else if (j.state === 'PLANNING' && result?.kind === 'plan') {
+      else if (
+        j.state === 'PLANNING' &&
+        (result?.kind === 'plan' || result?.kind === 'stored-plan')
+      ) {
         if (
           result.plan.templateDigest !== j.template_digest ||
           result.plan.briefHash !== sha256(String(j.request_json.instruction))
         )
           throw new Error('Plan binding')
-        output = await this.putArtifact(c, j, 'plan', result.plan)
+        if (result.kind === 'stored-plan') {
+          if (!this.sources) throw new Error('Source repository required')
+          await this.sources.bindBase(c, j, result.base)
+          output = await this.sources.adoptRef(c, j, result.planArtifact, result.plan)
+        } else output = await this.putArtifact(c, j, 'plan', result.plan)
         await c.query('UPDATE jobs SET plan_artifact_id=$2 WHERE id=$1', [j.id, output])
         j.plan_artifact_id = output
         target = 'AWAITING_PLAN_APPROVAL'
         review = { ...common, planDigest: canonicalHash(result.plan) }
-      } else if (['GENERATING', 'REPAIRING'].includes(j.state) && result?.kind === 'candidate') {
-        output = await this.candidate(c, j, result)
+      } else if (
+        ['GENERATING', 'REPAIRING'].includes(j.state) &&
+        (result?.kind === 'candidate' || result?.kind === 'stored-candidate')
+      ) {
+        output =
+          result.kind === 'stored-candidate'
+            ? await this.storedCandidate(c, j, result)
+            : await this.candidate(c, j, result)
         target = 'VALIDATING'
       } else if (j.state === 'VALIDATING') {
+        if (j.kind === 'restore' && !j.candidate_snapshot_id && this.sources) {
+          if (result?.kind !== 'stored-candidate' || !sourceInput?.baseSource)
+            throw new Error('Restore result missing')
+          await this.sources.bindBase(c, j, sourceInput.baseSource)
+          output = await this.storedCandidate(c, j, result)
+        }
         if (j.kind === 'restore' && !j.candidate_snapshot_id) {
           const prior = await one<{ manifest_artifact_id: string }>(
             c,
@@ -514,9 +584,23 @@ export class ControlWorker {
         review = {
           ...common,
           candidateDigest: canonicalHash(input.manifest),
-          diffDigest: sha256('fixture diff only'),
-          imageDigest: fixtureImageDigest,
-          commandPolicy: fixturePolicy(number(j.cost_limit_micros)),
+          diffDigest: this.sources
+            ? (
+                await this.sources.ref(
+                  c,
+                  scopeOf(j),
+                  (
+                    await one<{ diff_artifact_id: string }>(
+                      c,
+                      'SELECT diff_artifact_id FROM job_source_contexts WHERE job_id=$1',
+                      [j.id]
+                    )
+                  ).diff_artifact_id
+                )
+              ).sha256
+            : sha256('fixture diff only'),
+          imageDigest: this.catalog.imageDigest,
+          commandPolicy: this.catalog.policy(number(j.cost_limit_micros)),
           migrations: input.manifest.migrations,
           migrationBundleDigest: canonicalHash(input.manifest.migrations),
           dataReset: 'synthetic-data-only',
@@ -549,7 +633,7 @@ export class ControlWorker {
           v.candidateDigest !== canonicalHash(input.manifest) ||
           v.templateDigest !== j.template_digest ||
           v.policyDigest !== j.policy_digest ||
-          v.imageDigest !== fixtureImageDigest ||
+          v.imageDigest !== this.catalog.imageDigest ||
           v.leaseEpoch !== number(s.lease_epoch) ||
           v.jobId !== j.id ||
           v.workspaceId !== j.workspace_id ||

@@ -34,6 +34,8 @@ Original no-text artwork, provenance in docs/design/assets.json. Scenic art fram
 Transitions 160ms ease-out for color and opacity; walkthrough advances on explicit input. Reduced motion removes transitions. Any future looping video requires poster, pause control and reduced-motion static fallback. Current supplied videos are reference candidates, not production dependencies.
 
 ## Content
+The optional `#/engine` workspace uses the existing Forge chrome and scoped semantic-token styles. It requires a server control session and shows explicit synthetic provenance while engine decisions remain open. Plan/source review content must load before approval is enabled. Unknown responses keep controls unavailable; local demo state never supplies a control identity. Source is escaped text, previews open only through an eventual authorized private service, and source export stays separate from deployment.
+
 Do not invent customers, testimonials, metrics, provider availability, security guarantees, or deployed output. Figures explain Brief, Design and Review. Natural landscape greens are allowed; green brand styling is not. English only until translations exist; no decorative language switch.
 
 ## Reuse and validation

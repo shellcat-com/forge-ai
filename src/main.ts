@@ -31,6 +31,11 @@ import {
 } from './pages/workspace.ts'
 import { designs, docs, components } from './pages/designs.ts'
 import { downloadFile, exportPreset } from './export.ts'
+import type { EngineWorkspace } from './engine/workspace.ts'
+let engineWorkspace: EngineWorkspace | undefined
+let engineLoading = false
+let engineLoadFailed = false
+const engineUiEnabled = import.meta.env.VITE_FORGE_ENGINE_UI === 'true'
 const app = document.querySelector<HTMLDivElement>('#app')!
 const initial = (() => {
   try {
@@ -107,6 +112,7 @@ function render(): void {
   const [page, id] = route()
   const key = location.hash
   if (key !== currentRoute) {
+    if (page !== 'engine') engineWorkspace?.leave()
     state.tab = 'Plan'
     state.error = ''
     state.generated = id ? plans.get(id) || '' : ''
@@ -148,6 +154,23 @@ function render(): void {
   } else if (page === 'sample') {
     html = builder(data, state, undefined, true)
     title = 'Sample walkthrough — Forge'
+  } else if (page === 'engine') {
+    title = 'Engine integration — Forge'
+    if (!engineUiEnabled) html = `<div class="marketing">${topbar()}${recovery('The engine is not enabled.', 'Private-alpha setup is still pending. Your local briefs and sample walkthrough remain available.')}${footer()}</div>`
+    else if (engineWorkspace) {
+      html = engineWorkspace.render()
+      queueMicrotask(() => { if (route()[0] === 'engine') engineWorkspace?.enter(route().slice(1)) })
+    } else {
+      html = `<div class="marketing">${topbar()}${recovery(engineLoadFailed ? 'The engine workspace could not load.' : 'Opening the engine workspace…', 'Your local briefs remain available.')}${footer()}</div>`
+      if (!engineLoading && !engineLoadFailed) {
+        engineLoading = true
+        void Promise.all([import('./engine/workspace.ts'), import('./engine/client.ts'), import('./engine/source-client.ts')]).then(([{ EngineWorkspace }, { EngineClient }, { EngineSourceReader }]) => {
+          const client = new EngineClient()
+          engineWorkspace = new EngineWorkspace(() => { if (route()[0] === 'engine') render() }, path => { location.hash = path }, new EngineSourceReader(client), client)
+          if (route()[0] === 'engine') render()
+        }).catch(() => { engineLoadFailed = true; if (route()[0] === 'engine') render() }).finally(() => { engineLoading = false })
+      }
+    }
   } else if (page === 'settings') {
     html = settings(data)
     title = 'Settings — Forge'
@@ -188,6 +211,13 @@ window.addEventListener('hashchange', () => {
   h?.focus({ preventScroll: true })
 })
 document.addEventListener('click', async (event) => {
+  const engineAction = (event.target as HTMLElement).closest<HTMLElement>('[data-engine-action]')
+  if (route()[0] === 'engine' && engineAction && engineWorkspace) {
+    event.preventDefault()
+    try { await engineWorkspace.action(engineAction.dataset.engineAction!, engineAction.dataset.id) }
+    catch { toast('This engine action is unavailable. Refresh the current review.') }
+    return
+  }
   if (
     (event.target as HTMLElement).closest('a[href]') &&
     document.querySelector('.app-sidebar.open')
@@ -417,6 +447,11 @@ document.addEventListener('input', (event) => {
 })
 document.addEventListener('submit', (event) => {
   const form = event.target as HTMLFormElement
+  if (route()[0] === 'engine' && form.dataset.engineForm && engineWorkspace) {
+    event.preventDefault()
+    void engineWorkspace.submit(form.dataset.engineForm, new FormData(form)).catch(() => toast('The engine action could not finish. Your local briefs are unchanged.'))
+    return
+  }
   if (form.id !== 'project-form' && form.id !== 'rename-form') return
   event.preventDefault()
   const values = new FormData(form)
