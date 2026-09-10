@@ -135,7 +135,7 @@ All workers received canonical SHA `881e9ac2b11f8f168cb7849b77c4ee7439e55458` an
 | 06 | `01a08982-22d5-7611-8aa3-62d4d0467618` | `codex/task-06-persistence`, `/tmp/forge-task06-persistence` | PR #12 / `aa1a8c1`–`70cff26` integrated via `ae0db48`/`7b80108`; 0006/adoption composition remains open |
 | 07 | `01a08982-57f5-7b93-8f1a-663e051eb871` | `codex/task-07-private-preview`, `/tmp/forge-task07-preview` | PR #14 / `edcd3c1` integrated in `b2a3493`; reviewed lock/race fixes, unmounted gateway/0007 proposal |
 | 08 | `01a08982-8039-7ad0-b1e9-289d23704a0a` | `codex/task-08-live-demo`, `/tmp/forge-task08-live-demo` | PR #9 / `7bcc738` integrated in `4dacd02`; publisher and public availability page, no generated portfolio |
-| 09 | `01a08982-d093-70e0-9a85-0db88a6413d4` | `codex/task-09-acceptance`, `/tmp/forge-task09-acceptance` | Source PR #10 / `4fa7dc2`; harness integrated in `d3244f7`; final integrated/live audit blocked |
+| 09 | `01a08982-d093-70e0-9a85-0db88a6413d4` | `codex/task-09-acceptance`, `/tmp/forge-task09-acceptance` | PR #10 / final `c839aeb` integrated in `dfbc8b8`; independent combined-source audit complete, live acceptance blocked |
 
 Scoped delegations supersede the broader ownership defaults only as follows:
 
@@ -184,7 +184,7 @@ Task02 review remains open for privileged jail-directory ancestor/ownership/excl
 
 ## Current combined handoff — supersedes earlier pending-delivery observations
 
-Frozen source `4dacd0255e4a04648424eb0b0044c6658b46a014` contains every reviewed Task02–08 foundation and Task09 harness through `f36e9c8`. Earlier follow-up paragraphs are a chronological review log, not current delivery status. The original `881e9ac` worker starting point stays immutable. Task01 requested the existing Task09 session's final independent audit against this combined SHA; no second team was created.
+Frozen source `4dacd0255e4a04648424eb0b0044c6658b46a014` contains every reviewed Task02–08 foundation and Task09 harness through `f36e9c8`. Earlier follow-up paragraphs are a chronological review log, not current delivery status. The original `881e9ac` worker starting point stays immutable. Task01 requested the existing Task09 session's final independent audit, now integrated as recorded below; no second team was created.
 
 | Final source | Authored-history integration | Local review before combined reproduction |
 | --- | --- | --- |
@@ -210,3 +210,8 @@ External inputs still required: approved Linux/KVM access and immutable image; s
 
 
 Final source delta: `595f560009d2a1f1ea697b89cbe00a3eb355562e` preserved in `88a5a39daeabe088a119f871166333975588c1b1`. Only `src/app/hosting/hosting.css` changes: a direct-hosted-root body selector removes the inherited minimum width. This fixes the canonical Next390px CSS zoom simulation without changing ordinary routes, tokens or the deployed static website. Task08 owner verified6 browser cases and negative controls for `/` and `/docs`; Task01 repeats combined verification on the final source. Original failed zoom evidence remains bound to4dacd02, and native browser zoom/OS reduced motion are not claimed.
+
+
+Final handoff: Task09 `c839aebbf2dc7b3c7c8a987a788f91896fb48344` integrated in `dfbc8b8`. Independent audit verified529 existing comparisons,48 coordinator artifacts and59 source hashes, plus exact final sourceCI. Task01 checked10 final audit artifact hashes and reviewed the scope/scanner dispositions. All02–09 delivered foundations/reports are now integrated. Final source88a5a39 passed local794/5/build, appbrowser25/15, canonicalhosting6 and LinuxCI34439679978; full native/identity/preview evidence is retained at the preceding implementation-equivalent engine source4dacd02. Later heads add reports/evidence only. [Final report](../reports/demo-delivery/task-01-baseline.md#final-independent-audit-and-handoff) contains exact checks and limitations.
+
+Canonical0004–7 publication, shared production composition, real runtime/services/identity/preview and generated portfolio acceptance are **remaining dependencies**, not completed baseline features. The real Vercel availability page establishes public website reachability only. Keep PR8 draft; do not auto-merge. No root manifest/lock or canonical migration bytes changed after the original881e9ac baseline.
