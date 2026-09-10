@@ -1,0 +1,6 @@
+
+> forge-ai@0.2.0 test:db:control
+> node scripts/check-control-db.mjs
+
+postgres (PostgreSQL) 14.18 (Homebrew)
+PASS: migration from empty native PostgreSQL; 45 constraint/RLS assertions; fixtures rolled back.
