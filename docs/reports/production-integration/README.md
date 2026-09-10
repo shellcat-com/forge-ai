@@ -2,6 +2,8 @@
 
 2026-09-10. The requested hosted generation-to-publication product is **not complete**. This task implements and verifies a public-account milestone and fixes concrete hosted-boundary/onboarding failures. No real generated application, working published application URL, live mailbox-delivery result or complete product recording is claimed. Further implementation is required in addition to external configuration.
 
+The subsequent [post-login website-attempt investigation](website-attempt/README.md) adds a recording of a basic bakery-site request, corrects the misleading model-connection/worker messages and mobile zoom overflow, and records its own final verification. The account-milestone counts and hashes below remain historical evidence.
+
 ## Baseline, ownership and GitHub
 
 Verified origin: `https://github.com/shellcat-com/forge-ai.git`. Remote default `master` was `42a376387835c2d7140b6c484c3517fe466714eb`. The newer canonical integration branch was `codex/demo-delivery-baseline`, `4afc9cb587df24bfc7c31deee13cbc8af2d7ad42`, draft PR #8. This task branches from that canonical commit as `codex/production-integration`; it does not restart the obsolete Vite checkout or merge/rewrite existing branches. The Documents checkout had stalled Git/file reads; work used a clean independent clone at an isolated Developer directory. Its private `.env.local`, index and concurrent changes were not copied or edited.

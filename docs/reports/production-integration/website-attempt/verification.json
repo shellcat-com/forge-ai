@@ -1,0 +1,245 @@
+{
+  "classification": "Local post-login regression; hosted website generation remains unavailable",
+  "testedCommit": "2289102722f5bcc0012a9288acca2824b1343ddd",
+  "toolchain": {
+    "node": "24.20.0",
+    "npm": "11.11.0",
+    "postgres": "14.18",
+    "browser": "Firefox 155.0 / Playwright 1.63.0"
+  },
+  "checks": [
+    {
+      "command": "npm run verify",
+      "exitCode": 0,
+      "passed": 807,
+      "skipped": 5,
+      "log": "evidence/verify.log"
+    },
+    {
+      "command": "FORGE_AUTH_BROWSER=firefox FORGE_AUTH_BROWSER_OUTPUT=/tmp/forge-website-attempt-complete node --import tsx tests/auth/browser.ts",
+      "exitCode": 0,
+      "passed": 23,
+      "classification": "real app/Better Auth/native PG; synthetic mail and local test-only TLS",
+      "log": "evidence/browser.log"
+    },
+    {
+      "command": "python3 scripts/check-baseline-browser.py",
+      "exitCode": 0,
+      "passed": 25,
+      "skipped": 15,
+      "classification": "local compatibility; no generated code execution",
+      "log": "evidence/baseline-browser.log"
+    },
+    {
+      "command": "gitleaks git --pre-commit --staged --redact",
+      "exitCode": 0,
+      "scope": "source commit staged diff",
+      "findings": 0,
+      "log": "evidence/source-secret-scan.log"
+    },
+    {
+      "command": "gitleaks git --pre-commit --staged --redact",
+      "exitCode": 0,
+      "scope": "staged report and evidence before adding this scan output",
+      "findings": 0,
+      "log": "evidence/evidence-secret-scan.log"
+    }
+  ],
+  "nativeAuthTests": {
+    "passed": 13,
+    "includedInVerify": true
+  },
+  "recording": {
+    "path": "evidence/local-website-attempt.webm",
+    "durationSeconds": 20.08,
+    "bytes": 1574557,
+    "review": "sampled frames and account/website screenshots inspected; passwords masked; synthetic email only"
+  },
+  "generatedWebsite": false,
+  "deployed": false,
+  "liveMailDelivery": false,
+  "paidProviderCalls": 0,
+  "newSpendUsd": 0,
+  "nativeBrowserZoom": "not tested",
+  "osReducedMotion": "not tested",
+  "sourceFiles": [
+    {
+      "path": "DESIGN.md",
+      "sha256": "cc0f32934dadabb6cdcd74733da5a27b9289b28094c7e1a28780ad31a5f82215"
+    },
+    {
+      "path": "docs/operations/public-accounts.md",
+      "sha256": "f485688614a86f134677754164761f2fe2785d390c6908820c2ee876a2043050"
+    },
+    {
+      "path": "src/app/api/projects/[id]/jobs/route.ts",
+      "sha256": "537bf18f2f90f308fc85b5c12e4166958f1c04e0f352e634c6499e1f3710971c"
+    },
+    {
+      "path": "src/app/api/projects/route.ts",
+      "sha256": "44e0c9810085ceb5d0207c626854d1277606c322edd832bd50f4b8031731c4f7"
+    },
+    {
+      "path": "src/app/globals.css",
+      "sha256": "3dc2791181a03ba6758e4980b6334b99e9e13a58c101400313a90f1348685cea"
+    },
+    {
+      "path": "src/components/workspace.tsx",
+      "sha256": "c8e9bbe8f69ef815fac8baccbe9f48ff1937bada3cdaf3e1c625cab2af43108f"
+    },
+    {
+      "path": "src/server/projects/service.ts",
+      "sha256": "82e28a35a5e2dc426d7d9938889a6d0c72e3b636909e6612783cc89f20762e17"
+    },
+    {
+      "path": "src/shared/availability.ts",
+      "sha256": "498869424fb3379e29196b9404b0ddb2196565d2e75e8092830ef2dee9827b99"
+    },
+    {
+      "path": "tests/auth/browser.ts",
+      "sha256": "354f6b6eab5d8a497d89e197362a76c642a7849782a1fd83cdb962b20b9b2909"
+    },
+    {
+      "path": "tests/auth/public-auth.test.ts",
+      "sha256": "64efe178c6ce68b43daabea35d447d003cf92cb8e9557a2a955a23e4bc864c52"
+    }
+  ],
+  "evidenceFiles": [
+    {
+      "path": "evidence/auth-focused-retest.log",
+      "sha256": "d06d5a601a45981a1b763b6c48f850a1d9f572b55c112acc85b937ed0dec4c7d"
+    },
+    {
+      "path": "evidence/baseline-browser.log",
+      "sha256": "911afcbf22b83b5f04f0c67effca67f7754c2000935cfe657bad5255fccaf110"
+    },
+    {
+      "path": "evidence/baseline-first.log",
+      "sha256": "07297f6679e1ddcc299f8f484ce59c82c671c46566ad9d350a610c9dcb455dd6"
+    },
+    {
+      "path": "evidence/baseline-message-recheck.log",
+      "sha256": "de328fd47405c927dbc9e53c2cdc6ab5f44b592eaadabd56c1f142b0f3ab29cf"
+    },
+    {
+      "path": "evidence/browser-zoom-failure.log",
+      "sha256": "474d5dec6f4c679f025d4aa5c5196c8d19e5dcbeb2b0ee334cd0d256931147af"
+    },
+    {
+      "path": "evidence/browser.log",
+      "sha256": "679a5034880102083c4cb19b031bccbd885c3a8fe871e4e24fd77e70ff383b18"
+    },
+    {
+      "path": "evidence/connections-dark-1440.png",
+      "sha256": "c6e234cbd086dc5eb7af16260c9c47f96f7cd2f3c0f7b947cecc8c4b6a50cba7"
+    },
+    {
+      "path": "evidence/connections-dark-390.png",
+      "sha256": "14b8ff7584dc94ff7e2471470b8cfcbc22f6e9f3452875ea8f83f4a7e778c7bc"
+    },
+    {
+      "path": "evidence/connections-dark-768.png",
+      "sha256": "8fb8bb7e8ad2b606a94b3affdbff26535e753d3f03f3f1acf81e5472be54cb2c"
+    },
+    {
+      "path": "evidence/connections-light-1440.png",
+      "sha256": "abd42ebe6a032b281b512fb63cc6d6175d843a6516e66699b106147f0becfdb5"
+    },
+    {
+      "path": "evidence/connections-light-390.png",
+      "sha256": "ecff56e596118408aca169d45f95b60bcfb724206a8e6bba7a8c9a754e7aa837"
+    },
+    {
+      "path": "evidence/connections-light-768.png",
+      "sha256": "e62b17ec0abbb0384d99b9ceef4661e87ae96b6e991eeba54296456125a7bd16"
+    },
+    {
+      "path": "evidence/evidence-secret-scan.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "evidence/evidence-secret-scan.log",
+      "sha256": "f38780a83e9069710c2964002b90c92f3f149fb9418889f8c7cc7b7d2145f98a"
+    },
+    {
+      "path": "evidence/home-dark-1440.png",
+      "sha256": "f4a4d1996c32884c97bf06a26e00b0ac84ea726304b0573d6d057f344ca790ed"
+    },
+    {
+      "path": "evidence/home-dark-390.png",
+      "sha256": "3207dc7922374ece5811cd510e973139a8a1e3cdc739fcf7962e17801867e640"
+    },
+    {
+      "path": "evidence/home-dark-768.png",
+      "sha256": "598116f5b71bd2cab7270f60eba2a6653ceb4a7789966c4803f131592dff4804"
+    },
+    {
+      "path": "evidence/home-light-1440.png",
+      "sha256": "eb562da4df25f1aedaa86297589ee89ec9512cb83d7c3d269e87ae8f4b259b2e"
+    },
+    {
+      "path": "evidence/home-light-390.png",
+      "sha256": "5eb409562cecef04d198240a4f08c8181d42ca455ea338bc76582025fa1b93f4"
+    },
+    {
+      "path": "evidence/home-light-768.png",
+      "sha256": "472a474584441c6d4191ef76d2e94992ab595e0a0f4eb7b217e096081d642faf"
+    },
+    {
+      "path": "evidence/hosted-connections.png",
+      "sha256": "ab80dff965cedbca74d3d78c6cf7662e9a2ec4fdee85a08ed0c9caf4ca69e5b5"
+    },
+    {
+      "path": "evidence/local-website-attempt.webm",
+      "sha256": "6e6c203830f1aa0195b8240a028261a546b335ebe875dd5e3639c38d1457c7fa"
+    },
+    {
+      "path": "evidence/results.json",
+      "sha256": "01ef63672e7bc5c295d7e20b6f3acfec5e7faf68be7f2334ab72bbc066ebec17"
+    },
+    {
+      "path": "evidence/signup-dark-1440.png",
+      "sha256": "0b3e4c011637571d28b23274e4732fe0fcd5a9184d44247f9a528b8fabf0a0f8"
+    },
+    {
+      "path": "evidence/signup-dark-390.png",
+      "sha256": "fc367c9796c3d329032a6baae9d37598980819d2478c85d886fa9f9ec07cb964"
+    },
+    {
+      "path": "evidence/signup-dark-768.png",
+      "sha256": "a154b4665cc323df64e06400cebbae7c829f020f506775267cd2a264193485b0"
+    },
+    {
+      "path": "evidence/signup-light-1440.png",
+      "sha256": "51cab8db4a8071f97d3845da7374997e3b8f1dc3406d16e911387ff6d268a66b"
+    },
+    {
+      "path": "evidence/signup-light-390.png",
+      "sha256": "8b3b706811ba145f113778113d0309813cee9e54833ae2d47a582ebd2bd83369"
+    },
+    {
+      "path": "evidence/signup-light-768.png",
+      "sha256": "0b0c8fa38b73ce57ae860fccc1426bf2fc9e0fa6af9ee9516c38a21d1834331e"
+    },
+    {
+      "path": "evidence/source-secret-scan.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "evidence/source-secret-scan.log",
+      "sha256": "3ed9d17d6352bae9b5f77b067108b38f5b5282148be6d0ab5c1ceca7a4156e2a"
+    },
+    {
+      "path": "evidence/verify-first-failure.log",
+      "sha256": "77d53489e04c65e7873682162a2d4a920b2d3ea4a0d9772ef73a40e1893b7eba"
+    },
+    {
+      "path": "evidence/verify.log",
+      "sha256": "a1b50809addaf06d57bfb43430a73a55520cc267a415b688e4f12f13f9c31d7f"
+    },
+    {
+      "path": "evidence/website-attempt.png",
+      "sha256": "ea1f91fe54ee0556912dc1da9496096641c7980b6a7a81cc05194850730715e2"
+    }
+  ]
+}
