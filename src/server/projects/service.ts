@@ -7,6 +7,18 @@ import { projects, jobs, revisions, runtimeState, messages } from '../db/schema'
 import { templateFiles } from '../generation/template'
 import { validateFiles } from '../generation/files'
 import type { FileMap } from '../generation/files'
+import { authMode } from '../auth/policy'
+import { hostedGenerationUnavailable } from '../../shared/availability'
+
+function requireGenerationMode() {
+  if (authMode() === 'hosted') throw new AccessError(503, hostedGenerationUnavailable)
+}
+
+export async function requireGenerationAvailable() {
+  requireGenerationMode()
+  const state = await readiness()
+  if (!state.worker) throw new AccessError(503, state.message)
+}
 export async function createProject(
   input: {
     prompt: string
@@ -18,6 +30,7 @@ export async function createProject(
   },
   ownerId = 'local-owner'
 ) {
+  requireGenerationMode()
   return db().transaction(async (tx) => {
     await tx.execute(sql`select pg_advisory_xact_lock(hashtext(${ownerId}))`)
     if (input.idempotencyKey) {
@@ -41,29 +54,25 @@ export async function createProject(
     await checkAllowance(tx, ownerId)
     const id = randomUUID(),
       jobId = randomUUID()
-    await tx
-      .insert(projects)
-      .values({
-        id,
-        name: projectName(input.prompt),
-        ownerId,
-        brief: input.prompt,
-        design: input.design ?? { style: '', preserve: '' },
-      })
+    await tx.insert(projects).values({
+      id,
+      name: projectName(input.prompt),
+      ownerId,
+      brief: input.prompt,
+      design: input.design ?? { style: '', preserve: '' },
+    })
     const mode = input.mode ?? 'build'
-    await tx
-      .insert(jobs)
-      .values({
-        id: jobId,
-        projectId: id,
-        kind: mode === 'build' ? 'generate' : mode,
-        prompt: input.prompt,
-        provider: input.provider,
-        model: input.model,
-        payload: {},
-        ownerId,
-        idempotencyKey: input.idempotencyKey,
-      })
+    await tx.insert(jobs).values({
+      id: jobId,
+      projectId: id,
+      kind: mode === 'build' ? 'generate' : mode,
+      prompt: input.prompt,
+      provider: input.provider,
+      model: input.model,
+      payload: {},
+      ownerId,
+      idempotencyKey: input.idempotencyKey,
+    })
     await tx
       .insert(messages)
       .values({ id: randomUUID(), projectId: id, role: 'user', mode, content: input.prompt, jobId })
@@ -85,11 +94,6 @@ async function checkAllowance(
   )
   if (consumesRequest && Number(daily.rows[0].count) >= 10)
     throw new AccessError(429, 'Your daily request limit is reached.')
-  if (process.env.FORGE_AUTH_MODE === 'hosted')
-    throw new AccessError(
-      503,
-      'Hosted generation is awaiting sandbox and monetary-budget verification.'
-    )
 }
 export async function queueJob(
   projectId: string,
@@ -106,6 +110,7 @@ export async function queueJob(
   },
   ownerId = 'local-owner'
 ) {
+  requireGenerationMode()
   if (input.kind === 'edit') validateFiles(input.files ?? {})
   return db().transaction(async (tx) => {
     await tx.execute(sql`select pg_advisory_xact_lock(hashtext(${ownerId}))`)
@@ -136,37 +141,33 @@ export async function queueJob(
       }))
     )
       throw new AccessError(404, 'Revision not found.')
-    await checkAllowance(tx, ownerId, input.kind!=='restore')
+    await checkAllowance(tx, ownerId, input.kind !== 'restore')
     const id = randomUUID()
-    await tx
-      .insert(jobs)
-      .values({
-        id,
-        projectId,
-        kind: input.kind,
-        prompt: input.prompt ?? '',
-        provider: input.provider ?? 'ollama',
-        model: input.model ?? '',
-        payload: {
-          revisionId: input.revisionId,
-          files: input.files,
-          restoreData: input.restoreData,
-        },
-        ownerId,
-        idempotencyKey: input.idempotencyKey,
-        baseRevision: project.activeRevision,
-      })
+    await tx.insert(jobs).values({
+      id,
+      projectId,
+      kind: input.kind,
+      prompt: input.prompt ?? '',
+      provider: input.provider ?? 'ollama',
+      model: input.model ?? '',
+      payload: {
+        revisionId: input.revisionId,
+        files: input.files,
+        restoreData: input.restoreData,
+      },
+      ownerId,
+      idempotencyKey: input.idempotencyKey,
+      baseRevision: project.activeRevision,
+    })
     if (input.prompt)
-      await tx
-        .insert(messages)
-        .values({
-          id: randomUUID(),
-          projectId,
-          role: 'user',
-          mode: input.kind === 'generate' ? 'build' : input.kind,
-          content: input.prompt,
-          jobId: id,
-        })
+      await tx.insert(messages).values({
+        id: randomUUID(),
+        projectId,
+        role: 'user',
+        mode: input.kind === 'generate' ? 'build' : input.kind,
+        content: input.prompt,
+        jobId: id,
+      })
     return { jobId: id }
   })
 }
@@ -222,23 +223,31 @@ export async function projectDetail(id: string) {
     },
     jobs: timeline,
     previewReady:
-      process.env.FORGE_AUTH_MODE !== 'hosted' && state?.projectId === id && !!state.handle && Date.now() - state.heartbeat.getTime() < 12000,
-    previewUrl: process.env.FORGE_AUTH_MODE === 'hosted' ? '' : `http://127.0.0.1:${process.env.FORGE_PREVIEW_PORT || 3101}`,
+      process.env.FORGE_AUTH_MODE !== 'hosted' &&
+      state?.projectId === id &&
+      !!state.handle &&
+      Date.now() - state.heartbeat.getTime() < 12000,
+    previewUrl:
+      process.env.FORGE_AUTH_MODE === 'hosted'
+        ? ''
+        : `http://127.0.0.1:${process.env.FORGE_PREVIEW_PORT || 3101}`,
   }
 }
 export async function readiness() {
   await db().execute(sql`select 1`)
+  if (authMode() === 'hosted')
+    return { database: true, worker: false, message: hostedGenerationUnavailable }
   const state = await db().query.runtimeState.findFirst({
     where: eq(runtimeState.id, 1),
   })
+  const worker = !!state && Date.now() - state.heartbeat.getTime() < 12000
   return {
     database: true,
-    worker: process.env.FORGE_AUTH_MODE !== 'hosted' && !!state && Date.now() - state.heartbeat.getTime() < 12000,
+    worker,
     message:
-      process.env.FORGE_AUTH_MODE === 'hosted'
-        ? 'Hosted generation requires a configured and verified isolated runtime.'
-        : state?.error ??
-          (state ? 'Local development runtime connected. This is not hosted sandbox verification.' :
-            'Generation is unavailable. Configure and verify the approved isolated runtime before building applications. The local development worker alone does not meet that requirement.'),
+      state?.error ??
+      (worker
+        ? 'Local development runtime connected. This is not hosted sandbox verification.'
+        : 'Generation is unavailable. Configure and verify the approved isolated runtime before building applications. The local development worker alone does not meet that requirement.'),
   }
 }

@@ -45,3 +45,5 @@ The Documentation route uses the same public navigation, neutral tokens and type
 
 ## Public account flow
 Hosted installations default to public self-service signup. Keep optional invite-only installations labeled explicitly. Password registration requires a name, email, and at least twelve characters; show verification, recovery delivery failure, rate limiting, expired links and sign-in outcomes without exposing tokens. Only display configured login methods. Local mode has no hosted account endpoints. Account access does not imply that a provider, approved sandbox or publishing service is operational; readiness text must identify the missing capability truthfully.
+
+After login, an unavailable hosted build must identify the missing model/runtime integration before asking for a model selection. Connections must show an explicit unavailable state rather than an empty provider grid or operator-only setup advice. Do not display a usable request allowance when hosted generation is unavailable. A rejected build keeps the composer intact and creates no job. Preserve narrow reflow and text wrapping at increased zoom in the workspace and its composer.

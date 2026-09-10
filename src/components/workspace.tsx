@@ -10,6 +10,7 @@ import { modes } from '../shared/creation'
 import type { CreationMode } from '../shared/creation'
 import type { ProjectSummary, ModelChoice } from '../shared/projects'
 import type { ProviderStatus } from '../shared/providers'
+import { hostedGenerationUnavailable } from '../shared/availability'
 const starterPrompts = [
   [
     'A personal website',
@@ -41,6 +42,7 @@ export function Workspace({ view = 'home', id }: { view?: View; id?: string }) {
     user: { local: boolean; canBuild: boolean; email: string } | null
     mode: string
   }>()
+  const [accountFailed, setAccountFailed] = useState(false)
   const [creating, setCreating] = useState(false)
   const [error, setError] = useState('')
   const [search, setSearch] = useState('')
@@ -71,9 +73,12 @@ export function Workspace({ view = 'home', id }: { view?: View; id?: string }) {
     }
     setLoaded(true)
     void fetch('/api/account')
-      .then((r) => r.json())
+      .then((r) => {
+        if (!r.ok) throw new Error('Account unavailable')
+        return r.json()
+      })
       .then(setAccount)
-      .catch(() => {})
+      .catch(() => setAccountFailed(true))
     void fetch('/api/providers')
       .then((r) => r.json())
       .then((data: ProviderStatus[]) => {
@@ -91,9 +96,19 @@ export function Workspace({ view = 'home', id }: { view?: View; id?: string }) {
       .catch(() => {})
     const refresh = () =>
       fetch('/api/status')
-        .then((r) => r.json())
+        .then(async (r) => {
+          const data = await r.json()
+          if (typeof data.worker !== 'boolean' || typeof data.message !== 'string')
+            throw new Error('Invalid availability response')
+          return data
+        })
         .then(setReady)
-        .catch(() => setReady({ worker: false, message: 'Runtime unavailable.' }))
+        .catch(() =>
+          setReady({
+            worker: false,
+            message: 'Availability could not be checked. Reload to retry.',
+          })
+        )
     void refresh()
     const timer = setInterval(() => void refresh(), 10000)
     return () => clearInterval(timer)
@@ -136,8 +151,28 @@ export function Workspace({ view = 'home', id }: { view?: View; id?: string }) {
   }, [id])
   async function start() {
     if (creating || prompt.trim().length < 20) return
+    if (!account) {
+      setError(
+        accountFailed
+          ? 'Account status could not be checked. Reload to retry.'
+          : 'Checking your account. Please try again in a moment.'
+      )
+      return
+    }
     if (account?.mode === 'hosted' && !account.user) {
       router.push('/login')
+      return
+    }
+    if (!account.user?.canBuild) {
+      setError('Verify your email and confirm account access before building.')
+      return
+    }
+    if (account.mode === 'hosted') {
+      setError(hostedGenerationUnavailable)
+      return
+    }
+    if (!ready?.worker) {
+      setError(ready?.message || 'Checking availability. Please try again in a moment.')
       return
     }
     if (!choice) {
@@ -328,7 +363,11 @@ export function Workspace({ view = 'home', id }: { view?: View; id?: string }) {
           <small>
             {account?.user?.local ? 'Local workspace' : account?.user?.email || 'Hosted beta'}
           </small>
-          <UsageSummary />
+          {account?.mode === 'hosted' ? (
+            <small>Generation unavailable</small>
+          ) : account ? (
+            <UsageSummary />
+          ) : null}
           <ThemeControl />
           <Link href="/login">Account →</Link>
         </div>
@@ -365,9 +404,28 @@ export function Workspace({ view = 'home', id }: { view?: View; id?: string }) {
           ) : view === 'connections' ? (
             <div className="workspace-page">
               <p className="eyebrow">CONNECTIONS</p>
-              <h1>Your tools, connected.</h1>
+              <h1>{account?.mode === 'hosted' ? 'Model connections' : 'Your tools, connected.'}</h1>
               <p>Configured models and their current availability.</p>
-              <ProviderPanel />
+              {account?.mode === 'hosted' ? (
+                <section aria-labelledby="hosted-connections-title">
+                  <h2 id="hosted-connections-title">Model connections are not available yet</h2>
+                  <p role="status">
+                    This installation has not connected hosted API-key storage, model selection or
+                    the cloud build runtime. Signing in does not enable these services.
+                  </p>
+                  <p>
+                    There is no API-key form here yet. Your model account cannot be connected from
+                    this page.
+                  </p>
+                  <Link href="/app">Return to your draft →</Link>
+                </section>
+              ) : account ? (
+                <ProviderPanel />
+              ) : accountFailed ? (
+                <p role="alert">Account status could not be checked. Reload to retry.</p>
+              ) : (
+                <p role="status">Checking account access…</p>
+              )}
             </div>
           ) : view === 'settings' ? (
             <WorkspaceSettings account={account} />
@@ -471,7 +529,11 @@ export function Workspace({ view = 'home', id }: { view?: View; id?: string }) {
                           ? 'Your idea. Your own direction.'
                           : 'Explore the idea without starting a build.'}
                       </span>
-                      <button className="primary" disabled={creating || prompt.trim().length < 20}>
+                      <button
+                        className="primary"
+                        aria-describedby="generation-availability"
+                        disabled={creating || prompt.trim().length < 20}
+                      >
                         {creating
                           ? 'Starting…'
                           : mode === 'build'
@@ -480,11 +542,13 @@ export function Workspace({ view = 'home', id }: { view?: View; id?: string }) {
                       </button>
                     </div>
                   </form>
-                  <p className="runtime-status" role="status">
+                  <p id="generation-availability" className="runtime-status" role="status">
                     {ready?.worker
                       ? 'Worker connected.'
                       : ready?.message || 'Checking availability…'}{' '}
-                    {!choice && <Link href="/app/connections">Connect a model →</Link>}
+                    {!choice && account?.mode === 'local' && (
+                      <Link href="/app/connections">Connect a model →</Link>
+                    )}
                   </p>
                   {error && (
                     <p role="alert" className="form-error">

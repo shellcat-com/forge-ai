@@ -5,7 +5,7 @@
 import next from 'next'
 import { chromium, firefox, expect } from '@playwright/test'
 import { createServer } from 'node:https'
-import { randomBytes } from 'node:crypto'
+import { randomBytes, randomUUID } from 'node:crypto'
 import { readFile, mkdtemp, mkdir, rm, writeFile, access } from 'node:fs/promises'
 import { spawnSync } from 'node:child_process'
 import { join, resolve } from 'node:path'
@@ -153,7 +153,7 @@ try {
     document.addEventListener('DOMContentLoaded', () => {
       const note = document.createElement('div')
       note.textContent =
-        'LOCAL AUTH REGRESSION · synthetic mail · generation and publication unavailable'
+        'LOCAL WORKFLOW REGRESSION · synthetic account/mail · website build unavailable'
       note.style.cssText =
         'position:fixed;bottom:0;left:0;right:0;z-index:999999;background:#141111;color:#fff;padding:8px;font:12px monospace;text-align:center'
       document.body.append(note)
@@ -178,12 +178,49 @@ try {
   await demo.getByRole('button', { name: 'Sign in →', exact: true }).click()
   await expect(demo).toHaveURL(`${origin}/app`)
   await expect(
-    demo
-      .getByRole('status')
-      .filter({ hasText: 'Hosted generation requires a configured and verified isolated runtime.' })
+    demo.getByRole('status').filter({ hasText: 'Website generation is not connected' })
   ).toBeVisible()
   await demo.waitForTimeout(1800)
   observed.push('verified account signs in; hosted runtime accurately unavailable')
+  const websitePrompt =
+    'Build a simple one-page website for a neighborhood bakery, with an introduction, opening hours and a contact section.'
+  await demo.getByLabel('Describe your project').fill(websitePrompt)
+  await demo.waitForTimeout(1600)
+  await demo.getByRole('button', { name: 'Build project ↗', exact: true }).click()
+  await expect(demo.locator('.form-error[role="alert"]')).toContainText(
+    'Website generation is not connected'
+  )
+  await demo.screenshot({ path: join(output, 'website-attempt.png'), fullPage: true })
+  await demo.waitForTimeout(2500)
+  await demo.getByRole('link', { name: 'Connections', exact: true }).click()
+  await expect(
+    demo.getByRole('heading', { name: 'Model connections are not available yet' })
+  ).toBeVisible()
+  await demo.screenshot({ path: join(output, 'hosted-connections.png'), fullPage: true })
+  await demo.waitForTimeout(2500)
+  await demo.getByRole('link', { name: 'Home', exact: true }).click()
+  await expect(demo.getByLabel('Describe your project')).toHaveValue(websitePrompt)
+  await demo.reload()
+  await expect(demo.getByLabel('Describe your project')).toHaveValue(websitePrompt)
+  const attempted = await demo.request.post(`${origin}/api/projects`, {
+    headers: { origin },
+    data: {
+      prompt: websitePrompt,
+      mode: 'build',
+      provider: 'groq',
+      model: 'synthetic-unavailable',
+      idempotencyKey: randomUUID(),
+    },
+  })
+  expect(attempted.status()).toBe(503)
+  expect((await attempted.json()).error).toContain('Website generation is not connected')
+  const counts = await cluster.admin.query(
+    'SELECT (SELECT count(*) FROM forge_projects) AS projects, (SELECT count(*) FROM forge_jobs) AS jobs'
+  )
+  expect(counts.rows[0]).toEqual({ projects: '0', jobs: '0' })
+  observed.push(
+    'simple website request reports unavailable runtime; connections explain missing BYOK; prompt survives navigation and reload; direct API creates no job or project'
+  )
   await demo.goto(`${origin}/login`)
   await demo.getByRole('button', { name: 'Sign out', exact: true }).click()
   await expect(demo.getByRole('button', { name: 'Sign in →', exact: true })).toBeVisible()
@@ -210,8 +247,58 @@ try {
   await expect(demo).toHaveURL(`${origin}/app`)
   await demo.waitForTimeout(1800)
   const video = demo.video()!
+  const visualContext = await browser.newContext({
+    ignoreHTTPSErrors: true,
+    storageState: await context.storageState(),
+  })
   await context.close()
-  await video.saveAs(join(output, 'local-auth-regression.webm'))
+  await video.saveAs(join(output, 'local-website-attempt.webm'))
+  const visual = await visualContext.newPage()
+  for (const theme of ['light', 'dark'] as const)
+    for (const width of [390, 768, 1440])
+      for (const route of ['home', 'connections']) {
+        await visual.setViewportSize({ width, height: 1000 })
+        await visual.emulateMedia({ colorScheme: theme, reducedMotion: 'reduce' })
+        await visual.goto(`${origin}/app${route === 'home' ? '' : '/connections'}`)
+        await expect(
+          visual.getByRole('status').filter({
+            hasText:
+              route === 'home'
+                ? 'Website generation is not connected'
+                : 'This installation has not connected',
+          })
+        ).toBeVisible()
+        if (!(await visual.evaluate(() => document.documentElement.scrollWidth <= innerWidth)))
+          throw new Error(`Workspace overflow at ${route} ${width} ${theme}`)
+        await visual.keyboard.press('Tab')
+        const focus = await visual.evaluate(() => {
+          const element = document.activeElement
+          return (
+            element !== document.body &&
+            element &&
+            getComputedStyle(element).outlineStyle !== 'none'
+          )
+        })
+        if (!focus) throw new Error(`Visible keyboard focus missing at ${route} ${width} ${theme}`)
+        await visual.screenshot({
+          path: join(output, `${route}-${theme}-${width}.png`),
+          fullPage: true,
+        })
+        await visual.evaluate(() => {
+          document.body.style.zoom = '2'
+        })
+        if (!(await visual.evaluate(() => document.documentElement.scrollWidth <= innerWidth))) {
+          await visual.screenshot({
+            path: join(output, `zoom-failure-${route}-${theme}-${width}.png`),
+            fullPage: true,
+          })
+          throw new Error(`Workspace CSS zoom overflow at ${route} ${width} ${theme}`)
+        }
+        observed.push(
+          `${route} ${theme} ${width}: reflow, visible keyboard focus, CSS 200% zoom; reduced-motion emulation`
+        )
+      }
+  await visualContext.close()
   await writeFile(
     join(output, 'results.json'),
     JSON.stringify(

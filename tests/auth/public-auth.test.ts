@@ -11,6 +11,12 @@ import { admitAuthRequest } from '../../src/server/auth/rate-limit'
 import { authMode, assertAuthRequest, signupPolicy } from '../../src/server/auth/policy'
 import { createAuth } from '../../src/server/auth/config'
 import { sendAuthMail } from '../../src/server/auth/delivery'
+import { POST as createProjectRequest } from '../../src/app/api/projects/route'
+import { POST as projectJobRequest } from '../../src/app/api/projects/[id]/jobs/route'
+import { createProject, queueJob, readiness } from '../../src/server/projects/service'
+import { hostedGenerationUnavailable } from '../../src/shared/availability'
+
+vi.mock('server-only', () => ({}))
 
 const origin = 'https://forge.example.com'
 const mails: { to: string; subject: string; url: string }[] = []
@@ -72,6 +78,8 @@ beforeAll(async () => {
   )
 }, 30000)
 beforeEach(async () => {
+  vi.stubEnv('FORGE_AUTH_MODE', 'hosted')
+  vi.stubEnv('BETTER_AUTH_URL', origin)
   vi.stubEnv('FORGE_SIGNUP_POLICY', 'public')
   mailFailure = false
   mails.length = 0
@@ -331,4 +339,91 @@ it('checks narrow auth database authority and refuses accidental project grants'
     await cluster.admin.query('REVOKE SELECT ON forge_projects FROM auth_only_test')
   }
   await expect(assertAuthDatabase()).resolves.toBeUndefined()
+})
+
+it('reports the actual hosted build dependency after login and creates no jobs on retries', async () => {
+  const a = await verified()
+  const body = {
+    prompt: 'Build a simple one-page bakery website with opening hours and a contact section.',
+    mode: 'build',
+    provider: 'groq',
+    model: 'synthetic-unavailable',
+    idempotencyKey: randomUUID(),
+  }
+  // A live legacy heartbeat cannot authorize hosted execution.
+  await cluster.admin.query(
+    'INSERT INTO forge_runtime(id,heartbeat) VALUES(1,now()) ON CONFLICT(id) DO UPDATE SET heartbeat=now()'
+  )
+  try {
+    expect(await readiness()).toMatchObject({ worker: false, message: hostedGenerationUnavailable })
+    expect((await createProjectRequest(req('/api/projects', body))).status).toBe(401)
+    for (let i = 0; i < 2; i++) {
+      const response = await createProjectRequest(req('/api/projects', body, a.cookie))
+      expect(response.status).toBe(503)
+      expect(await response.json()).toEqual({ error: hostedGenerationUnavailable })
+    }
+    await expect(createProject(body, a.id)).rejects.toMatchObject({
+      status: 503,
+      message: hostedGenerationUnavailable,
+    })
+    expect(
+      (await cluster.admin.query('SELECT count(*) FROM forge_projects WHERE owner_id=$1', [a.id]))
+        .rows[0].count
+    ).toBe('0')
+    expect(
+      (await cluster.admin.query('SELECT count(*) FROM forge_jobs WHERE owner_id=$1', [a.id]))
+        .rows[0].count
+    ).toBe('0')
+  } finally {
+    await cluster.admin.query('DELETE FROM forge_runtime WHERE id=1')
+  }
+})
+
+it('uses the same hosted error for existing-project changes while preserving owner authorization', async () => {
+  const a = await verified(),
+    b = await verified('bob@example.invalid')
+  const projectId = randomUUID()
+  await cluster.admin.query('INSERT INTO forge_projects(id,name,owner_id) VALUES($1,$2,$3)', [
+    projectId,
+    'Synthetic existing website',
+    a.id,
+  ])
+  const body = {
+    kind: 'generate' as const,
+    prompt: 'Add a contact section to the bakery website.',
+    provider: 'groq',
+    model: 'synthetic-unavailable',
+    baseRevision: null,
+    idempotencyKey: randomUUID(),
+  }
+  const context = { params: Promise.resolve({ id: projectId }) }
+  const url = `/api/projects/${projectId}/jobs`
+  const owner = await projectJobRequest(req(url, body, a.cookie), context)
+  expect(owner.status).toBe(503)
+  expect(await owner.json()).toEqual({ error: hostedGenerationUnavailable })
+  expect((await projectJobRequest(req(url, body, b.cookie), context)).status).toBe(404)
+  await expect(queueJob(projectId, body, a.id)).rejects.toMatchObject({
+    status: 503,
+    message: hostedGenerationUnavailable,
+  })
+  expect(
+    (await cluster.admin.query('SELECT count(*) FROM forge_jobs WHERE project_id=$1', [projectId]))
+      .rows[0].count
+  ).toBe('0')
+})
+
+it('does not describe an expired local heartbeat as a connected runtime', async () => {
+  vi.stubEnv('FORGE_AUTH_MODE', 'local')
+  await cluster.admin.query(
+    "INSERT INTO forge_runtime(id,heartbeat) VALUES(1,now()-interval '1 minute') ON CONFLICT(id) DO UPDATE SET heartbeat=now()-interval '1 minute'"
+  )
+  try {
+    const status = await readiness()
+    expect(status.worker).toBe(false)
+    expect(status.message).toContain('Generation is unavailable')
+    await cluster.admin.query('UPDATE forge_runtime SET heartbeat=now() WHERE id=1')
+    expect((await readiness()).worker).toBe(true)
+  } finally {
+    await cluster.admin.query('DELETE FROM forge_runtime WHERE id=1')
+  }
 })
