@@ -150,7 +150,12 @@ export class CredentialConnections {
     private readonly auth: CredentialAuthorizer,
     private readonly repository: CredentialRepository,
     private readonly cipher: CredentialCipher,
-    private readonly registry: ProviderRegistry,
+    private readonly registry: {
+      policy(
+        id: string,
+        capability: 'plan' | 'files' | 'repair'
+      ): Pick<ReturnType<ProviderRegistry['policy']>, 'id' | 'endpoint'>
+    },
     private readonly origin: string
   ) {
     const url = new URL(origin)

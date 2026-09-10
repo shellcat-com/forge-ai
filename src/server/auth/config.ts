@@ -14,6 +14,7 @@ export function authCapabilities() {
     google: !!(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET),
     github: !!(process.env.GITHUB_CLIENT_ID && process.env.GITHUB_CLIENT_SECRET),
     email: !!(process.env.FORGE_EMAIL_ENDPOINT && process.env.FORGE_EMAIL_TOKEN),
+    connections: process.env.FORGE_HOSTED_CONTROL === 'true',
   }
 }
 export async function invited(email: string) {

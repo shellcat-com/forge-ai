@@ -1,5 +1,7 @@
 # Production integration report — release incomplete
 
+Latest implementation: [free-service account/key integration](free-connections/README.md). That milestone supersedes the historical account-bridge/BYOK gaps below, records the new $0 managed-Sandbox direction, and preserves all remaining live release gates.
+
 2026-09-10. The requested hosted generation-to-publication product is **not complete**. This task implements and verifies a public-account milestone and fixes concrete hosted-boundary/onboarding failures. No real generated application, working published application URL, live mailbox-delivery result or complete product recording is claimed. Further implementation is required in addition to external configuration.
 
 The subsequent [post-login website-attempt investigation](website-attempt/README.md) adds a recording of a basic bakery-site request, corrects the misleading model-connection/worker messages and mobile zoom overflow, and records its own final verification. The account-milestone counts and hashes below remain historical evidence.

@@ -1,0 +1,7 @@
+✓ Running next.config.ts took 135ms
+⚠ "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+TimeoutError: locator.selectOption: Timeout 30000ms exceeded.
+Call log:
+  - waiting for getByLabel('Provider', { exact: true })
+
+Cleanup: owned browser, application, PostgreSQL, TLS material and verifier lock removed.

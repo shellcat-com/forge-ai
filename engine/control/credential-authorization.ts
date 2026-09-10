@@ -25,7 +25,7 @@ export interface CredentialPrincipal {
 export class CredentialConnectionAuthorizer {
   constructor(
     private readonly db: ControlDatabase,
-    private readonly sessions: SessionService,
+    private readonly sessions: Pick<SessionService, 'checkCsrf'>,
     private readonly origin: string,
     private readonly freshSeconds = 900
   ) {

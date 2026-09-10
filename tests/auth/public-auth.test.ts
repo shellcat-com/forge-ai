@@ -9,12 +9,17 @@ import { POST, GET } from '../../src/app/api/auth/[...all]/route'
 import { actor, projectAccess } from '../../src/server/auth/access'
 import { admitAuthRequest } from '../../src/server/auth/rate-limit'
 import { authMode, assertAuthRequest, signupPolicy } from '../../src/server/auth/policy'
-import { createAuth } from '../../src/server/auth/config'
+import { createAuth, auth } from '../../src/server/auth/config'
 import { sendAuthMail } from '../../src/server/auth/delivery'
 import { POST as createProjectRequest } from '../../src/app/api/projects/route'
 import { POST as projectJobRequest } from '../../src/app/api/projects/[id]/jobs/route'
 import { createProject, queueJob, readiness } from '../../src/server/projects/service'
 import { hostedGenerationUnavailable } from '../../src/shared/availability'
+import { ControlDatabase } from '../../engine/control/database'
+import { HostedIdentityBridge } from '../../engine/control/hosted-identity'
+import { POST as bridgeRequest } from '../../src/app/api/control/session/route'
+import { POST as connectKey, GET as listKeys } from '../../src/app/api/connections/route'
+import { PATCH as rotateKey, DELETE as removeKey } from '../../src/app/api/connections/[id]/route'
 
 vi.mock('server-only', () => ({}))
 
@@ -23,6 +28,8 @@ const mails: { to: string; subject: string; url: string }[] = []
 const password = `Synthetic-${randomBytes(20).toString('hex')}`
 let cluster: Awaited<ReturnType<typeof startNativePostgres>>
 let mailFailure = false
+let hostedApi: ControlDatabase
+let identityBridge: HostedIdentityBridge
 beforeAll(async () => {
   cluster = await startNativePostgres()
   for (const name of [
@@ -34,6 +41,32 @@ beforeAll(async () => {
     await cluster.admin.query(
       await readFile(new URL(`../../drizzle/${name}`, import.meta.url), 'utf8')
     )
+  for (const name of [
+    '0003_immutable_source_bridge.sql',
+    '0004_hosted_identity.sql',
+    '0005_hosted_byok.sql',
+  ])
+    await cluster.admin.query(
+      await readFile(new URL(`../../engine/migrations/${name}`, import.meta.url), 'utf8')
+    )
+  await cluster.admin.query(
+    "UPDATE forge_control.control_settings SET environment='hosted',admission_enabled=false,worker_enabled=false"
+  )
+  await cluster.admin.query(
+    'INSERT INTO forge_control.hosted_identity_settings(issuer,enabled,max_users) VALUES($1,true,100)',
+    [`${origin}/api/auth`]
+  )
+  hostedApi = new ControlDatabase(
+    { ...cluster.config, user: 'e1_api' },
+    'forge_control_api',
+    'hosted'
+  )
+  identityBridge = new HostedIdentityBridge(hostedApi, randomBytes(32))
+  ;(globalThis as { forgeHostedControl?: unknown }).forgeHostedControl = {
+    db: hostedApi,
+    bridge: identityBridge,
+  }
+  vi.stubEnv('FORGE_CREDENTIAL_KEYS_JSON', JSON.stringify({ v1: randomBytes(32).toString('hex') }))
   await cluster.admin
     .query(`CREATE ROLE public_auth_test LOGIN NOSUPERUSER NOBYPASSRLS NOCREATEDB NOCREATEROLE;
     GRANT USAGE ON SCHEMA public TO public_auth_test;
@@ -78,6 +111,7 @@ beforeAll(async () => {
   )
 }, 30000)
 beforeEach(async () => {
+  vi.stubEnv('FORGE_HOSTED_CONTROL', 'false')
   vi.stubEnv('FORGE_AUTH_MODE', 'hosted')
   vi.stubEnv('BETTER_AUTH_URL', origin)
   vi.stubEnv('FORGE_SIGNUP_POLICY', 'public')
@@ -86,6 +120,8 @@ beforeEach(async () => {
   await cluster.admin.query('TRUNCATE forge_auth_admission, forge_user, forge_beta_invites CASCADE')
 })
 afterAll(async () => {
+  await hostedApi?.close()
+  delete (globalThis as { forgeHostedControl?: unknown }).forgeHostedControl
   await pool().end()
   await authPool().end()
   delete (globalThis as { forgeAuthPool?: unknown }).forgeAuthPool
@@ -426,4 +462,56 @@ it('does not describe an expired local heartbeat as a connected runtime', async 
   } finally {
     await cluster.admin.query('DELETE FROM forge_runtime WHERE id=1')
   }
+})
+
+it('bridges a real Better Auth login into private key CRUD and revokes engine access on logout', async () => {
+  vi.stubEnv('FORGE_HOSTED_CONTROL', 'true')
+  const alice = await verified('alice-key@example.invalid')
+  const bob = await verified('bob-key@example.invalid')
+  expect((await bridgeRequest(req('/api/control/session', {}, alice.cookie))).status).toBe(200)
+  const parent = await auth().api.getSession({
+    headers: req('/api/account', undefined, alice.cookie).headers,
+  })
+  const identity = await identityBridge.connect(parent!.session.token)
+  const key = `synthetic-${randomBytes(20).toString('hex')}`
+  const saved = await connectKey(req('/api/connections', { provider: 'groq', key }, alice.cookie))
+  expect(saved.status, await saved.clone().text()).toBe(201)
+  const connection = await saved.json()
+  expect(JSON.stringify(connection)).not.toContain(key)
+  const list = await listKeys(req('/api/connections', undefined, alice.cookie))
+  expect(list.status).toBe(200)
+  expect(await list.text()).not.toContain(key)
+  const foreign = await listKeys(req('/api/connections', undefined, bob.cookie))
+  expect((await foreign.json()).connections).toEqual([])
+  const context = { params: Promise.resolve({ id: connection.id }) }
+  const freshKey = `synthetic-${randomBytes(20).toString('hex')}`
+  expect(
+    (
+      await rotateKey(
+        req(
+          `/api/connections/${connection.id}`,
+          { expectedRevision: 1, key: freshKey },
+          bob.cookie
+        ),
+        context
+      )
+    ).status
+  ).toBe(422)
+  const rotated = await rotateKey(
+    req(`/api/connections/${connection.id}`, { expectedRevision: 1, key: freshKey }, alice.cookie),
+    context
+  )
+  expect(rotated.status, await rotated.clone().text()).toBe(200)
+  expect((await rotated.json()).revision).toBe(2)
+  const removed = await removeKey(
+    req(`/api/connections/${connection.id}`, { expectedRevision: 2 }, alice.cookie),
+    context
+  )
+  expect(removed.status, await removed.clone().text()).toBe(200)
+  expect((await removed.json()).status).toBe('deleted')
+  expect((await post('sign-out', {}, alice.cookie)).status).toBe(200)
+  await expect(
+    hostedApi.session(identity.sessionToken, identity.workspaceId, 'owner', async () => true)
+  ).rejects.toThrow('UNAUTHENTICATED')
+  expect((await listKeys(req('/api/connections', undefined, alice.cookie))).status).toBe(401)
 })

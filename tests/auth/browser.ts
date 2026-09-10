@@ -12,6 +12,8 @@ import { join, resolve } from 'node:path'
 import { tmpdir } from 'node:os'
 import { Pool } from 'pg'
 import { startNativePostgres } from '../engine/native-postgres'
+import { ControlDatabase } from '../../engine/control/database'
+import { HostedIdentityBridge } from '../../engine/control/hosted-identity'
 
 for (const name of ['.env', '.env.local', '.env.production', '.env.production.local']) {
   if (
@@ -25,6 +27,7 @@ for (const name of ['.env', '.env.local', '.env.production', '.env.production.lo
 const output = resolve(
   process.env.FORGE_AUTH_BROWSER_OUTPUT || '/tmp/forge-production-auth-browser'
 )
+const connectionsMode = process.env.FORGE_AUTH_BROWSER_CONNECTIONS === 'true'
 const browserName = process.env.FORGE_AUTH_BROWSER === 'firefox' ? 'firefox' : 'chromium'
 for (const key of Object.keys(process.env)) {
   if (
@@ -43,6 +46,7 @@ let browser: Awaited<ReturnType<typeof chromium.launch>> | undefined
 let application: ReturnType<typeof next> | undefined
 let server: ReturnType<typeof createServer> | undefined
 let authConnection: Pool | undefined
+let controlConnection: ControlDatabase | undefined
 const mail: { to: string; url: string; subject: string }[] = []
 const observed: string[] = []
 const password = randomBytes(24).toString('base64url')
@@ -107,6 +111,32 @@ try {
   const port = (server.address() as { port: number }).port
   const origin = `https://127.0.0.1:${port}`
   process.env.BETTER_AUTH_URL = origin
+  if (connectionsMode) {
+    for (const name of [
+      '0003_immutable_source_bridge.sql',
+      '0004_hosted_identity.sql',
+      '0005_hosted_byok.sql',
+    ])
+      await cluster.admin.query(await readFile(join('engine/migrations', name), 'utf8'))
+    await cluster.admin.query(
+      "UPDATE forge_control.control_settings SET environment='hosted',admission_enabled=false,worker_enabled=false"
+    )
+    await cluster.admin.query(
+      'INSERT INTO forge_control.hosted_identity_settings(issuer,enabled) VALUES($1,true)',
+      [`${origin}/api/auth`]
+    )
+    controlConnection = new ControlDatabase(
+      { ...cluster.config, user: 'e1_api' },
+      'forge_control_api',
+      'hosted'
+    )
+    ;(globalThis as { forgeHostedControl?: unknown }).forgeHostedControl = {
+      db: controlConnection,
+      bridge: new HostedIdentityBridge(controlConnection, randomBytes(32)),
+    }
+    process.env.FORGE_HOSTED_CONTROL = 'true'
+    process.env.FORGE_CREDENTIAL_KEYS_JSON = JSON.stringify({ v1: randomBytes(32).toString('hex') })
+  }
   application = next({ dev: false, hostname: '127.0.0.1', port })
   await application.prepare()
   browser = await (browserName === 'firefox'
@@ -149,16 +179,17 @@ try {
     viewport: { width: 1280, height: 900 },
     recordVideo: { dir: output, size: { width: 1280, height: 900 } },
   })
-  await context.addInitScript(() => {
+  await context.addInitScript((keys: boolean) => {
     document.addEventListener('DOMContentLoaded', () => {
       const note = document.createElement('div')
-      note.textContent =
-        'LOCAL WORKFLOW REGRESSION · synthetic account/mail · website build unavailable'
+      note.textContent = keys
+        ? 'LOCAL CONNECTIONS REGRESSION · synthetic account/mail/keys · no website build'
+        : 'LOCAL WORKFLOW REGRESSION · synthetic account/mail · website build unavailable'
       note.style.cssText =
         'position:fixed;bottom:0;left:0;right:0;z-index:999999;background:#141111;color:#fff;padding:8px;font:12px monospace;text-align:center'
       document.body.append(note)
     })
-  })
+  }, connectionsMode)
   const demo = await context.newPage()
   await demo.goto(`${origin}/login`)
   await demo.getByRole('button', { name: 'Create an account', exact: true }).click()
@@ -193,9 +224,42 @@ try {
   await demo.screenshot({ path: join(output, 'website-attempt.png'), fullPage: true })
   await demo.waitForTimeout(2500)
   await demo.getByRole('link', { name: 'Connections', exact: true }).click()
-  await expect(
-    demo.getByRole('heading', { name: 'Model connections are not available yet' })
-  ).toBeVisible()
+  if (connectionsMode) {
+    await expect(demo.getByRole('heading', { name: 'Your model keys' })).toBeVisible()
+    await demo.getByLabel('Provider', { exact: true }).selectOption('groq')
+    const syntheticKey = `synthetic-${randomBytes(24).toString('hex')}`
+    await demo.getByLabel('API key', { exact: true }).fill(syntheticKey)
+    await demo.getByRole('button', { name: 'Save key', exact: true }).click()
+    await expect(demo.getByRole('status').filter({ hasText: 'Key saved.' })).toBeVisible()
+    await expect(demo.getByLabel('API key', { exact: true })).toHaveValue('')
+    const stored = await cluster.admin.query(
+      'SELECT envelope_json FROM forge_control.provider_credentials'
+    )
+    expect(stored.rowCount).toBe(1)
+    expect(JSON.stringify(stored.rows)).not.toContain(syntheticKey)
+    await demo.reload()
+    await expect(demo.getByRole('heading', { name: 'Groq', exact: true })).toBeVisible()
+    await demo.locator('summary').filter({ hasText: 'Replace key' }).click()
+    await demo
+      .getByLabel('Replacement API key')
+      .fill(`synthetic-replacement-${randomBytes(24).toString('hex')}`)
+    await demo.getByRole('button', { name: 'Replace key', exact: true }).click()
+    await expect(demo.getByRole('status').filter({ hasText: 'Key replaced.' })).toBeVisible()
+    await demo.getByRole('button', { name: 'Remove key', exact: true }).click()
+    await demo.getByRole('button', { name: 'Confirm removal', exact: true }).click()
+    await expect(demo.getByText('No keys connected yet.', { exact: true })).toBeVisible()
+    const removed = await cluster.admin.query(
+      'SELECT envelope_json,deleted,revision FROM forge_control.provider_credentials'
+    )
+    expect(removed.rows).toEqual([{ envelope_json: null, deleted: true, revision: '3' }])
+    observed.push(
+      'real authenticated key save/reload/replace/remove routes; ciphertext-only persistence; no external provider request'
+    )
+  } else {
+    await expect(
+      demo.getByRole('heading', { name: 'Model connections are not available yet' })
+    ).toBeVisible()
+  }
   await demo.screenshot({ path: join(output, 'hosted-connections.png'), fullPage: true })
   await demo.waitForTimeout(2500)
   await demo.getByRole('link', { name: 'Home', exact: true }).click()
@@ -219,7 +283,7 @@ try {
   )
   expect(counts.rows[0]).toEqual({ projects: '0', jobs: '0' })
   observed.push(
-    'simple website request reports unavailable runtime; connections explain missing BYOK; prompt survives navigation and reload; direct API creates no job or project'
+    'simple website request reports unavailable runtime; prompt survives navigation and reload; direct API creates no job or project'
   )
   await demo.goto(`${origin}/login`)
   await demo.getByRole('button', { name: 'Sign out', exact: true }).click()
@@ -252,7 +316,9 @@ try {
     storageState: await context.storageState(),
   })
   await context.close()
-  await video.saveAs(join(output, 'local-website-attempt.webm'))
+  await video.saveAs(
+    join(output, connectionsMode ? 'local-account-connections.webm' : 'local-website-attempt.webm')
+  )
   const visual = await visualContext.newPage()
   for (const theme of ['light', 'dark'] as const)
     for (const width of [390, 768, 1440])
@@ -260,14 +326,17 @@ try {
         await visual.setViewportSize({ width, height: 1000 })
         await visual.emulateMedia({ colorScheme: theme, reducedMotion: 'reduce' })
         await visual.goto(`${origin}/app${route === 'home' ? '' : '/connections'}`)
-        await expect(
-          visual.getByRole('status').filter({
-            hasText:
-              route === 'home'
-                ? 'Website generation is not connected'
-                : 'This installation has not connected',
-          })
-        ).toBeVisible()
+        if (connectionsMode && route === 'connections')
+          await expect(visual.getByRole('heading', { name: 'Your model keys' })).toBeVisible()
+        else
+          await expect(
+            visual.getByRole('status').filter({
+              hasText:
+                route === 'home'
+                  ? 'Website generation is not connected'
+                  : 'This installation has not connected',
+            })
+          ).toBeVisible()
         if (!(await visual.evaluate(() => document.documentElement.scrollWidth <= innerWidth)))
           throw new Error(`Workspace overflow at ${route} ${width} ${theme}`)
         await visual.keyboard.press('Tab')
@@ -303,7 +372,9 @@ try {
     join(output, 'results.json'),
     JSON.stringify(
       {
-        classification: 'local-native-synthetic-mail',
+        classification: connectionsMode
+          ? 'local-native-synthetic-mail-keys'
+          : 'local-native-synthetic-mail',
         browser: browserName,
         passed: observed,
         publicDeployment: false,
@@ -334,6 +405,8 @@ try {
   if (server) await new Promise<void>((resolve) => server!.close(() => resolve()))
   await application?.close()
   await authConnection?.end()
+  await controlConnection?.close()
+  delete (globalThis as { forgeHostedControl?: unknown }).forgeHostedControl
   await (globalThis as { forgePool?: Pool }).forgePool?.end()
   await cluster?.close()
   globalThis.fetch = realFetch

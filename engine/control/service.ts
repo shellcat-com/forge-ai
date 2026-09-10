@@ -119,10 +119,10 @@ export async function idempotent(
   )
   return result
 }
-export class ControlService {
+export class ControlService<S extends Pick<SessionService, 'checkCsrf'> = SessionService> {
   constructor(
     readonly db: ControlDatabase,
-    readonly sessions: SessionService,
+    readonly sessions: S,
     readonly admissionEnabled = false,
     readonly catalog: ControlCatalog = defaultControlCatalog,
     readonly sources?: SourceRepository

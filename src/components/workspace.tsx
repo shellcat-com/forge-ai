@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { ProjectWorkspace } from './project-workspace'
 import { ProviderPanel } from './provider-panel'
+import { HostedConnections } from './hosted-connections'
 import { ThemeControl } from './theme-control'
 import { presets } from '../design/presets'
 import { modes } from '../shared/creation'
@@ -41,6 +42,7 @@ export function Workspace({ view = 'home', id }: { view?: View; id?: string }) {
   const [account, setAccount] = useState<{
     user: { local: boolean; canBuild: boolean; email: string } | null
     mode: string
+    connections?: boolean
   }>()
   const [accountFailed, setAccountFailed] = useState(false)
   const [creating, setCreating] = useState(false)
@@ -406,7 +408,9 @@ export function Workspace({ view = 'home', id }: { view?: View; id?: string }) {
               <p className="eyebrow">CONNECTIONS</p>
               <h1>{account?.mode === 'hosted' ? 'Model connections' : 'Your tools, connected.'}</h1>
               <p>Configured models and their current availability.</p>
-              {account?.mode === 'hosted' ? (
+              {account?.mode === 'hosted' && account.connections ? (
+                <HostedConnections />
+              ) : account?.mode === 'hosted' ? (
                 <section aria-labelledby="hosted-connections-title">
                   <h2 id="hosted-connections-title">Model connections are not available yet</h2>
                   <p role="status">

@@ -1,0 +1,13 @@
+
+> forge-ai@0.2.0 verify
+> npm run lint && npm run typecheck && npm test && npm run build
+
+
+> forge-ai@0.2.0 lint
+> eslint .
+
+
+> forge-ai@0.2.0 typecheck
+> tsc --noEmit && tsc -p tsconfig.engine.json
+
+error TS5033: Could not write file '/Users/biswaskhatiwada/Developer/forge-production-integration/tsconfig.tsbuildinfo': ENOSPC: no space left on device, open '/Users/biswaskhatiwada/Developer/forge-production-integration/tsconfig.tsbuildinfo'.

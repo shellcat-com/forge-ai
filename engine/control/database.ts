@@ -14,7 +14,8 @@ export class ControlDatabase {
   readonly pool: pg.Pool
   constructor(
     config: PoolConfig,
-    readonly role: 'forge_control_api' | 'forge_control_worker' | 'forge_control_maintenance'
+    readonly role: 'forge_control_api' | 'forge_control_worker' | 'forge_control_maintenance',
+    readonly environment: 'synthetic' | 'hosted' = 'synthetic'
   ) {
     this.pool = new pg.Pool({
       max: 8,
@@ -46,8 +47,14 @@ export class ControlDatabase {
       const { rows } = await c.query(
         `SELECT environment FROM forge_control.control_settings WHERE singleton`
       )
-      if (rows[0]?.environment !== 'synthetic')
-        throw new Error('Explicit synthetic database bootstrap required')
+      if (rows[0]?.environment !== this.environment)
+        throw new Error(`Explicit ${this.environment} database bootstrap required`)
+      if (this.environment === 'hosted') {
+        const migrated = await c.query(
+          'SELECT 1 FROM forge_control.schema_migrations WHERE version=4'
+        )
+        if (!migrated.rowCount) throw new Error('Hosted identity migration required')
+      }
     } finally {
       await c.query('RESET ROLE')
       c.release()
@@ -64,7 +71,7 @@ export class ControlDatabase {
       await c.query(`SET LOCAL lock_timeout='3s'`)
       await c.query(`SET LOCAL idle_in_transaction_session_timeout='10s'`)
       await c.query(
-        `SELECT set_config('forge.workspace_id','',true),set_config('forge.user_id','',true)`
+        `SELECT set_config('forge.workspace_id','',true),set_config('forge.user_id','',true),set_config('forge.session_hash','',true)`
       )
       const result = await fn(c)
       await c.query('COMMIT')
