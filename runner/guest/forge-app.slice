@@ -1,0 +1,8 @@
+[Unit]
+Description=Aggregate quota for all generated app processes
+
+[Slice]
+CPUAccounting=yes
+MemoryAccounting=yes
+TasksAccounting=yes
+MemorySwapMax=0

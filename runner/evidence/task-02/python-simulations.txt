@@ -1,0 +1,23 @@
+test_app_unit_has_aggregate_caps_and_no_rpc_family_or_migrator_secret (test_runtime_contract.GuestSimulation.test_app_unit_has_aggregate_caps_and_no_rpc_family_or_migrator_secret) ... ok
+test_canonical_utf16_unicode_vector (test_runtime_contract.GuestSimulation.test_canonical_utf16_unicode_vector) ... ok
+test_credentials_are_random_disjoint_and_absent_from_base_environment (test_runtime_contract.GuestSimulation.test_credentials_are_random_disjoint_and_absent_from_base_environment) ... ok
+test_hostile_paths_and_guest_commands_denied (test_runtime_contract.GuestSimulation.test_hostile_paths_and_guest_commands_denied) ... ok
+test_replay_wrong_key_and_wrong_source_reject (test_runtime_contract.GuestSimulation.test_replay_wrong_key_and_wrong_source_reject) ... ok
+test_rpc_mac_and_response_request_digest (test_runtime_contract.GuestSimulation.test_rpc_mac_and_response_request_digest) ... ok
+test_destroy_before_create_and_changed_attempt_fenced (test_runtime_contract.HostSimulation.test_destroy_before_create_and_changed_attempt_fenced) ... ok
+test_expired_binding_and_new_epoch_fenced (test_runtime_contract.HostSimulation.test_expired_binding_and_new_epoch_fenced) ... ok
+test_failed_delayed_create_persists_tombstone (test_runtime_contract.HostSimulation.test_failed_delayed_create_persists_tombstone) ... ok
+test_failed_stop_cannot_wipe_or_release_volume (test_runtime_contract.HostSimulation.test_failed_stop_cannot_wipe_or_release_volume) ... ok
+test_intent_precedes_launch_and_duplicate_cannot_relaunch (test_runtime_contract.HostSimulation.test_intent_precedes_launch_and_duplicate_cannot_relaunch) ... ok
+test_quota_and_network_validation (test_runtime_contract.HostSimulation.test_quota_and_network_validation) ... ok
+test_real_launcher_plan_uses_no_nic_pinned_assets_and_hard_quotas (test_runtime_contract.HostSimulation.test_real_launcher_plan_uses_no_nic_pinned_assets_and_hard_quotas) ... ok
+test_revoke_without_attempt_adopts_supervisor_attempt_only_for_cleanup (test_runtime_contract.HostSimulation.test_revoke_without_attempt_adopts_supervisor_attempt_only_for_cleanup) ... ok
+test_stop_masks_before_stop_and_reobserves_systemd (test_runtime_contract.HostSimulation.test_stop_masks_before_stop_and_reobserves_systemd) ... ok
+test_watchdog_expiry_persists_fence_before_kill (test_runtime_contract.HostSimulation.test_watchdog_expiry_persists_fence_before_kill) ... ok
+test_cache_links_and_noncanonical_manifest_are_rejected (test_runtime_contract.PackagingSimulation.test_cache_links_and_noncanonical_manifest_are_rejected) ... ok
+test_prepared_cache_matches_archive_bytes_and_rejects_drift (test_runtime_contract.PackagingSimulation.test_prepared_cache_matches_archive_bytes_and_rejects_drift) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.017s
+
+OK

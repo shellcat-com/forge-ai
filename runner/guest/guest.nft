@@ -1,0 +1,5 @@
+table inet forge_guest {
+  chain input { type filter hook input priority 0; policy drop; iifname "lo" accept; }
+  chain output { type filter hook output priority 0; policy drop; oifname "lo" accept; }
+  chain forward { type filter hook forward priority 0; policy drop; }
+}
