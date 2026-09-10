@@ -1,0 +1,26 @@
+{
+  "reviewedAt": "2026-09-10T07:25:15.828426+00:00",
+  "baselineCommit": "efa13a9de63457d0daccde1cc1cda645d332b6ff",
+  "namesOnlyEntries": 38,
+  "allNamesHaveExistingReaders": true,
+  "knownEvidenceSecretFindings": 0,
+  "scanner": "gitleaks 8.30.1 dir with redacted output",
+  "imagesVisuallyInspected": 12,
+  "evidenceNormalization": "ANSI color escapes and trailing whitespace removed; own absolute checkout/home/Node tool paths replaced with labeled placeholders; timestamps and failed/skipped outcomes retained",
+  "limitations": [
+    "Heuristic scan; no exhaustive secret/media rights clearance",
+    "Names-only inventory cannot enable missing production composition",
+    "CSS zoom/media emulation are not native controls"
+  ],
+  "stagedScan": {
+    "findings": 1,
+    "confirmedCredentials": 0,
+    "reviewed": [
+      {
+        "path": "docs/reports/evidence/forge-release/task-09/manifest.json",
+        "line": 18,
+        "classification": "SHA-256 of disabled-api.txt; byte digest independently verified, not a credential"
+      }
+    ]
+  }
+}

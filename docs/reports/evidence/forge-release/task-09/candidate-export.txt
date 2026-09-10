@@ -1,0 +1,10 @@
+
+ RUN  v4.1.11 <audit-checkout>
+
+ ✓ tests/engine/e3-candidate-export.test.ts (3 tests) 18345ms
+     ✓ installs cache-only and verifies clean exported platform scaffold on exactNode24  18103ms
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  02:19:45
+   Duration  18.54s (transform 74ms, setup 0ms, import 129ms, tests 18.35s, environment 0ms)

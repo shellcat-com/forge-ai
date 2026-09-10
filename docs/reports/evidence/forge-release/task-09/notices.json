@@ -1,0 +1,195 @@
+{
+  "origin": "local-installed-dependency-inspection",
+  "lockSha256": "849678e40252047ab5ed464cb2541eb2edb77ae2f1da1a7f801f155499353e93",
+  "licenseSha256": "e782f4b38a3cec40ba6029c8009fc7dc8d5fc5ba5b722ce5626415f4e80adfd5",
+  "licenseUnchanged": true,
+  "ownerApprovalReference": null,
+  "fonts": [
+    {
+      "font": "ibm-plex-mono",
+      "notice": "public/fonts/licenses/ibm-plex-mono.txt",
+      "installedLicenseSha256": "23b0a9d0c6d3f140a0b77e483c5cfa6bba574325ef5cb189ed9f2fec4884533f",
+      "noticeSha256": "23b0a9d0c6d3f140a0b77e483c5cfa6bba574325ef5cb189ed9f2fec4884533f",
+      "exactMatch": true
+    },
+    {
+      "font": "instrument-serif",
+      "notice": "public/fonts/licenses/instrument-serif.txt",
+      "installedLicenseSha256": "b6106a757902d2d412e09d94dc4a226fe3da80485208a98003969f1b8b6b1d74",
+      "noticeSha256": "b6106a757902d2d412e09d94dc4a226fe3da80485208a98003969f1b8b6b1d74",
+      "exactMatch": true
+    },
+    {
+      "font": "inter",
+      "notice": "public/fonts/licenses/inter.txt",
+      "installedLicenseSha256": "3b0a5fca3d17942cde889069889dedbbbd075e9b599968c82a95f4d944e9b345",
+      "noticeSha256": "3b0a5fca3d17942cde889069889dedbbbd075e9b599968c82a95f4d944e9b345",
+      "exactMatch": true
+    },
+    {
+      "font": "press-start-2p",
+      "notice": "public/fonts/licenses/press-start-2p.txt",
+      "installedLicenseSha256": "98e451fe911e5ee4a1a45359535dc30ea7df28b8d9a9cd1f741778efab1387ee",
+      "noticeSha256": "98e451fe911e5ee4a1a45359535dc30ea7df28b8d9a9cd1f741778efab1387ee",
+      "exactMatch": true
+    }
+  ],
+  "lockPackageLicenseCounts": {
+    "MIT": 526,
+    "MIT-0": 2,
+    "Apache-2.0": 49,
+    "OFL-1.1": 4,
+    "LGPL-3.0-or-later": 10,
+    "Apache-2.0 AND LGPL-3.0-or-later AND MIT": 1,
+    "Apache-2.0 AND LGPL-3.0-or-later": 3,
+    "0BSD": 3,
+    "AGPL-3.0-only": 1,
+    "UNDECLARED": 3,
+    "BlueOak-1.0.0": 2,
+    "Python-2.0": 1,
+    "BSD-3-Clause": 6,
+    "CC-BY-4.0": 1,
+    "BSD-2-Clause": 13,
+    "(MPL-2.0 OR Apache-2.0)": 1,
+    "ISC": 13,
+    "MPL-2.0": 12,
+    "CC0-1.0": 1,
+    "AGPL-3.0-or-later": 1
+  },
+  "scope": "declarations and bundled font byte correspondence; dependency compatibility and media rights not approved",
+  "reviewRequiredDeclarations": [
+    {
+      "path": "node_modules/@img/sharp-libvips-darwin-arm64",
+      "version": "1.3.3",
+      "license": "LGPL-3.0-or-later",
+      "dev": false,
+      "optional": true
+    },
+    {
+      "path": "node_modules/@img/sharp-libvips-darwin-x64",
+      "version": "1.3.3",
+      "license": "LGPL-3.0-or-later",
+      "dev": false,
+      "optional": true
+    },
+    {
+      "path": "node_modules/@img/sharp-libvips-linux-arm",
+      "version": "1.3.3",
+      "license": "LGPL-3.0-or-later",
+      "dev": false,
+      "optional": true
+    },
+    {
+      "path": "node_modules/@img/sharp-libvips-linux-arm64",
+      "version": "1.3.3",
+      "license": "LGPL-3.0-or-later",
+      "dev": false,
+      "optional": true
+    },
+    {
+      "path": "node_modules/@img/sharp-libvips-linux-ppc64",
+      "version": "1.3.3",
+      "license": "LGPL-3.0-or-later",
+      "dev": false,
+      "optional": true
+    },
+    {
+      "path": "node_modules/@img/sharp-libvips-linux-riscv64",
+      "version": "1.3.3",
+      "license": "LGPL-3.0-or-later",
+      "dev": false,
+      "optional": true
+    },
+    {
+      "path": "node_modules/@img/sharp-libvips-linux-s390x",
+      "version": "1.3.3",
+      "license": "LGPL-3.0-or-later",
+      "dev": false,
+      "optional": true
+    },
+    {
+      "path": "node_modules/@img/sharp-libvips-linux-x64",
+      "version": "1.3.3",
+      "license": "LGPL-3.0-or-later",
+      "dev": false,
+      "optional": true
+    },
+    {
+      "path": "node_modules/@img/sharp-libvips-linuxmusl-arm64",
+      "version": "1.3.3",
+      "license": "LGPL-3.0-or-later",
+      "dev": false,
+      "optional": true
+    },
+    {
+      "path": "node_modules/@img/sharp-libvips-linuxmusl-x64",
+      "version": "1.3.3",
+      "license": "LGPL-3.0-or-later",
+      "dev": false,
+      "optional": true
+    },
+    {
+      "path": "node_modules/@img/sharp-wasm32",
+      "version": "0.35.4",
+      "license": "Apache-2.0 AND LGPL-3.0-or-later AND MIT",
+      "dev": false,
+      "optional": true
+    },
+    {
+      "path": "node_modules/@img/sharp-win32-arm64",
+      "version": "0.35.4",
+      "license": "Apache-2.0 AND LGPL-3.0-or-later",
+      "dev": false,
+      "optional": true
+    },
+    {
+      "path": "node_modules/@img/sharp-win32-ia32",
+      "version": "0.35.4",
+      "license": "Apache-2.0 AND LGPL-3.0-or-later",
+      "dev": false,
+      "optional": true
+    },
+    {
+      "path": "node_modules/@img/sharp-win32-x64",
+      "version": "0.35.4",
+      "license": "Apache-2.0 AND LGPL-3.0-or-later",
+      "dev": false,
+      "optional": true
+    },
+    {
+      "path": "node_modules/@triplit/client",
+      "version": "1.0.50",
+      "license": "AGPL-3.0-only",
+      "dev": false,
+      "optional": false
+    },
+    {
+      "path": "node_modules/@triplit/db",
+      "version": "1.1.10",
+      "license": "UNDECLARED",
+      "dev": false,
+      "optional": false
+    },
+    {
+      "path": "node_modules/@triplit/logger",
+      "version": "0.0.3",
+      "license": "UNDECLARED",
+      "dev": false,
+      "optional": false
+    },
+    {
+      "path": "node_modules/@triplit/react",
+      "version": "1.0.51",
+      "license": "UNDECLARED",
+      "dev": false,
+      "optional": false
+    },
+    {
+      "path": "node_modules/ua-parser-js",
+      "version": "2.0.10",
+      "license": "AGPL-3.0-or-later",
+      "dev": false,
+      "optional": false
+    }
+  ]
+}

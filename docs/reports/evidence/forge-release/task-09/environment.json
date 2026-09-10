@@ -1,0 +1,17 @@
+{
+  "baselineCommit": "efa13a9de63457d0daccde1cc1cda645d332b6ff",
+  "baselineTree": "5a25e1c3fcccf9ef0f30211122fdcdafa2eb8653",
+  "implementationCommit": "88a5a39daeabe088a119f871166333975588c1b1",
+  "versions": {
+    "node": "v24.20.0",
+    "npm": "11.11.0",
+    "postgres": "postgres (PostgreSQL) 14.18 (Homebrew)",
+    "python": "3.14.6",
+    "os": "macOS-26.3.1-arm64-arm-64bit-Mach-O",
+    "cpuCount": 8,
+    "ramBytes": 17179869184
+  },
+  "privateEnvFilesPresent": false,
+  "environmentPolicy": "env -i; task-owned empty HOME; explicit tool PATH, CI=1, NEXT_TELEMETRY_DISABLED=1; no developer npm configuration or provider credentials",
+  "packageLockSha256": "849678e40252047ab5ed464cb2541eb2edb77ae2f1da1a7f801f155499353e93"
+}

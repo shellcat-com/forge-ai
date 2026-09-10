@@ -1,0 +1,10 @@
+
+ RUN  v4.1.11 <audit-checkout>
+
+ ✓ tests/engine/validation-native.test.ts (1 test) 913ms
+   ✓ runs reviewed synthetic SQL in a fresh native PostgreSQL cluster with limited roles (not isolated runner evidence)  913ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  02:15:58
+   Duration  1.05s (transform 37ms, setup 0ms, import 65ms, tests 913ms, environment 0ms)

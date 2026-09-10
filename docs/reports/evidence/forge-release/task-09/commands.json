@@ -1,0 +1,126 @@
+[
+  {
+    "name": "native-control",
+    "command": [
+      "npm",
+      "run",
+      "test:db:control"
+    ],
+    "extraEnvironment": {},
+    "exitCode": 0,
+    "seconds": 1.38
+  },
+  {
+    "name": "control-build",
+    "command": [
+      "npm",
+      "run",
+      "control:build"
+    ],
+    "extraEnvironment": {},
+    "exitCode": 0,
+    "seconds": 1.11
+  },
+  {
+    "name": "disabled-api",
+    "command": [
+      "node",
+      "dist-engine/control/index.js",
+      "api"
+    ],
+    "extraEnvironment": {},
+    "exitCode": 0,
+    "seconds": 0.13
+  },
+  {
+    "name": "disabled-worker",
+    "command": [
+      "node",
+      "dist-engine/control/index.js",
+      "worker"
+    ],
+    "extraEnvironment": {},
+    "exitCode": 0,
+    "seconds": 0.13
+  },
+  {
+    "name": "native-migration",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "tests/engine/validation-native.test.ts",
+      "--maxWorkers=1"
+    ],
+    "extraEnvironment": {
+      "FORGE_NATIVE_MIGRATION_TEST": "1"
+    },
+    "exitCode": 0,
+    "seconds": 1.37
+  },
+  {
+    "name": "identity-browser",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "tests/engine/identity.native.test.ts",
+      "--maxWorkers=1"
+    ],
+    "extraEnvironment": {
+      "FORGE_IDENTITY_BROWSER": "true",
+      "FORGE_IDENTITY_BROWSER_EXECUTABLE": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+    },
+    "exitCode": 0,
+    "seconds": 4.36
+  },
+  {
+    "name": "preview-browser",
+    "command": [
+      "node",
+      "--import",
+      "tsx",
+      "tests/preview/browser.ts"
+    ],
+    "extraEnvironment": {},
+    "exitCode": 0,
+    "seconds": 3.62
+  },
+  {
+    "name": "identity-preview-race",
+    "command": [
+      "node",
+      "--import",
+      "tsx",
+      "tests/preview/identity-race.ts",
+      "<audit-checkout>/engine/control/identity-operator.ts"
+    ],
+    "extraEnvironment": {},
+    "exitCode": 0,
+    "seconds": 2.65
+  },
+  {
+    "name": "baseline-browser",
+    "command": [
+      "python3",
+      "scripts/check-baseline-browser.py"
+    ],
+    "extraEnvironment": {},
+    "exitCode": 0,
+    "seconds": 13.97
+  },
+  {
+    "name": "runtime-python",
+    "command": [
+      "python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests/runner",
+      "-p",
+      "test_*.py"
+    ],
+    "extraEnvironment": {},
+    "exitCode": 0,
+    "seconds": 0.18
+  }
+]

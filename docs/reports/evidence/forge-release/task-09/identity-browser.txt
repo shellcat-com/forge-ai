@@ -1,0 +1,11 @@
+
+ RUN  v4.1.11 <audit-checkout>
+
+ ✓ tests/engine/identity.native.test.ts (11 tests) 3922ms
+   ✓ browser: Secure bootstrap survives external top-level OIDC return, then logout removes control access  1905ms
+   ✓ exhausted operator retries return safe busy with no partial membership, session or audit changes  833ms
+
+ Test Files  1 passed (1)
+      Tests  11 passed (11)
+   Start at  02:15:59
+   Duration  4.15s (transform 97ms, setup 0ms, import 166ms, tests 3.92s, environment 0ms)
