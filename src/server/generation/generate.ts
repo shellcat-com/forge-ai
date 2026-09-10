@@ -1,4 +1,4 @@
-import { provider, providerStatuses } from '../providers/registry'
+import { provider } from '../providers/registry'
 import { ProviderError, safeProviderError } from '../providers/errors'
 import { applyBatch } from './files'
 import { normalizeClientDirectives } from './normalize'
@@ -115,26 +115,5 @@ export async function generateFiles(
       )
     }
   }
-  try {
-    return await attempt(input.provider, input.model)
-  } catch (error) {
-    if (
-      !signal?.aborted &&
-      ['gemini', 'groq'].includes(input.provider) &&
-      error instanceof ProviderError &&
-      ['quota', 'unavailable', 'timeout'].includes(error.code)
-    ) {
-      const local = (await providerStatuses(AbortSignal.timeout(6000))).find(
-        (p) => p.id === 'ollama' && p.available
-      )
-      if (local?.selectedModel) {
-        await event(
-          'fallback',
-          `${input.provider === 'gemini' ? 'Gemini' : 'Groq'} unavailable. Discarding partial output and switching to local Ollama / ${local.selectedModel}.`
-        )
-        return attempt('ollama', local.selectedModel)
-      }
-    }
-    throw error
-  }
+  return attempt(input.provider, input.model)
 }

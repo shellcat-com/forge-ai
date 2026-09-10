@@ -15,6 +15,7 @@ export interface Actor {
   id: string
   email: string
   local: boolean
+  sessionId?: string
   canBuild: boolean
 }
 export async function actor(request: Request, mutation = false): Promise<Actor> {
@@ -34,6 +35,7 @@ export async function actor(request: Request, mutation = false): Promise<Actor> 
   if (!current) throw new AccessError(401, 'Sign in to continue.')
   return {
     id: current.user.id,
+    sessionId: current.session.id,
     email: current.user.email,
     local: false,
     canBuild: await invited(current.user.email),

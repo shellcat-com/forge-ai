@@ -1,5 +1,9 @@
 # Provider integration
 
+**Current application path:** See [user-owned connections and orchestration](byok-orchestration.md). `src/server/byok` now owns live application dispatch; saved connections replace environment credential selection, including native OpenAI, Anthropic and DeepSeek adapters. The older registry described below remains regression/reference code and is not the application generation entry point. Hosted building remains disabled pending runtime acceptance.
+
+## Historical server-configured registry
+
 The Next.js application's `src/server/providers/registry.ts` registers **Gemini, Groq, OpenRouter and Ollama**. Each has implemented model discovery and generation code; Groq and OpenRouter are not deferred contract-only IDs. This inventory describes source code, not current account entitlement, universal model compatibility or live release qualification.
 
 ## Application adapters

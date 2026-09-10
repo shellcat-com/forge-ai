@@ -1206,3 +1206,24 @@
     max-height: 220px;
   }
 }
+
+/* User-owned connections: all layout rules remain inside the Forge settings panel. */
+.byok-panel { display: grid; gap: 24px; max-width: 1100px; min-width: 0; }
+.byok-panel p, .byok-routing p { line-height: 1.65; overflow-wrap: anywhere; }
+.byok-card { padding: 24px; border: 1px solid var(--border); background: var(--surface); min-width: 0; display: grid; gap: 16px; }
+.byok-form, .byok-routing { display: grid; gap: 16px; }
+.byok-panel label, .byok-routing label { display: grid; gap: 8px; min-width: 0; }
+.byok-panel input, .byok-panel select, .byok-routing input, .byok-routing select { width: 100%; min-width: 0; max-width: 100%; min-height: 44px; padding: 10px; background: var(--canvas); color: var(--ink); border: 1px solid var(--border); font: inherit; font-size: 16px; }
+.byok-panel button, .byok-routing button { min-height: 44px; padding: 10px 16px; border: 1px solid var(--border); background: var(--raised); color: var(--ink); white-space: normal; overflow-wrap: anywhere; }
+.byok-panel button:disabled, .byok-routing button:disabled { opacity: .55; }
+.byok-panel summary, .byok-routing summary { cursor: pointer; padding: 12px 0; min-height: 44px; }
+.byok-panel .byok-check, .byok-routing .byok-check { display: flex; align-items: start; gap: 12px; }
+.byok-panel .byok-check input, .byok-routing .byok-check input { width: 20px; min-height: 24px; flex: 0 0 20px; }
+.byok-connections { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,320px),1fr)); gap: 24px; }
+.byok-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.byok-address { overflow-wrap: anywhere; }
+.byok-role { border-top: 1px solid var(--border); padding-top: 16px; min-width: 0; }
+.byok-role select[multiple] { min-height: 120px; }
+.byok-routing fieldset { min-width: 0; padding: 16px; border: 1px solid var(--border); }
+.byok-panel :focus-visible, .byok-routing :focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+@media (max-width: 600px) { .byok-card { padding: 16px; } }

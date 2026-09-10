@@ -1,10 +1,13 @@
+import { queueByok } from '../../../server/byok/service'
+import { ConnectionStore } from '../../../server/byok/store'
+import { ByokError } from '../../../server/byok/transport'
 import 'server-only'
 import { and, desc, eq, sql } from 'drizzle-orm'
 import { db } from '../../../server/db'
 import { projects } from '../../../server/db/schema'
 import { smallJson } from '../../../server/http/local'
 import { actor, apiError, requireBuilder, AccessError } from '../../../server/auth/access'
-import { createProject, readiness } from '../../../server/projects/service'
+import { readiness } from '../../../server/projects/service'
 import { creationSchema } from '../../../shared/creation'
 export const dynamic = 'force-dynamic'
 export async function GET(request: Request) {
@@ -43,6 +46,7 @@ export async function GET(request: Request) {
       { headers: { 'Cache-Control': 'no-store' } }
     )
   } catch (e) {
+    if (e instanceof ByokError) return Response.json({ error: e.message }, { status: e.status })
     return apiError(e)
   }
 }
@@ -50,6 +54,11 @@ export async function POST(request: Request) {
   try {
     const who = await actor(request, true)
     requireBuilder(who)
+    if (!who.local)
+      throw new AccessError(
+        503,
+        'Hosted app building is disabled until tenant-safe runtime acceptance passes.'
+      )
     const raw = await smallJson(request, 50000)
     const parsed = creationSchema.safeParse(raw)
     if (!parsed.success)
@@ -57,10 +66,16 @@ export async function POST(request: Request) {
         400,
         'Provide a prompt of 20–12,000 characters, a valid mode and model.'
       )
+    if (parsed.data.provider !== 'byok')
+      throw new AccessError(
+        409,
+        'Connect your own models and save task assignments in Connections first.'
+      )
     if (!(await readiness()).worker)
       throw new AccessError(503, 'Start the Forge worker before submitting a request.')
-    return Response.json(await createProject(parsed.data, who.id), { status: 201 })
+    return Response.json(await queueByok(new ConnectionStore(), who, parsed.data), { status: 201 })
   } catch (e) {
+    if (e instanceof ByokError) return Response.json({ error: e.message }, { status: e.status })
     return apiError(e)
   }
 }

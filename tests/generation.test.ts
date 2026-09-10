@@ -31,7 +31,7 @@ for (const cloudProvider of ["gemini", "groq"]) {
     new ProviderError("quota"),
     new DOMException("timeout", "TimeoutError"),
   ]) {
-    it(`discards partial ${cloudProvider} output and explicitly falls back on ${failure.name}/${failure.message}`, async () => {
+    it(`discards partial ${cloudProvider} output without an unapproved fallback on ${failure.name}/${failure.message}`, async () => {
       registry.provider.mockImplementation((id: string) => ({
         async *generate() {
           if (id === cloudProvider) {
@@ -43,16 +43,16 @@ for (const cloudProvider of ["gemini", "groq"]) {
         },
       }));
       const events: string[] = [];
-      const result = await generateFiles(
+      await expect(generateFiles(
         { provider: cloudProvider, model: "cloud", prompt: "Change heading" },
         files,
         async (type) => {
           events.push(type);
         },
-      );
-      expect(result.files["app/page.tsx"]).toContain("After");
-      expect(events).toContain("fallback");
-      expect(registry.provider).toHaveBeenCalledWith("ollama");
+      )).rejects.toBeInstanceOf(Error);
+      expect(files["app/page.tsx"]).toContain("Before");
+      expect(events).not.toContain("fallback");
+      expect(registry.provider).not.toHaveBeenCalledWith("ollama");
     });
   }
 }

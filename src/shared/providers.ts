@@ -1,4 +1,4 @@
-export type ProviderId = "gemini" | "ollama" | "groq" | "openrouter";
+export type ProviderId = "gemini" | "ollama" | "groq" | "openrouter" | "byok";
 export interface ModelDescriptor {
   id: string;
   name: string;

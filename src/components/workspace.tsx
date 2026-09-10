@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { ProjectWorkspace } from './project-workspace'
+import { RoutingSummary } from './byok-panel'
 import { ProviderPanel } from './provider-panel'
 import { ThemeControl } from './theme-control'
 import { presets } from '../design/presets'
@@ -74,21 +75,25 @@ export function Workspace({ view = 'home', id }: { view?: View; id?: string }) {
       .then((r) => r.json())
       .then(setAccount)
       .catch(() => {})
-    void fetch('/api/providers')
-      .then((r) => r.json())
-      .then((data: ProviderStatus[]) => {
-        if (!Array.isArray(data)) return
-        setProviders(data)
-        const provider = ['groq', 'gemini', 'openrouter', 'ollama']
-          .map((id) => data.find((p) => p.id === id && p.available))
-          .find(Boolean)
-        if (provider?.selectedModel)
-          setChoice({
-            provider: provider.id as ModelChoice['provider'],
-            model: provider.selectedModel,
-          })
-      })
-      .catch(() => {})
+    const refreshProviders = () =>
+      fetch('/api/providers')
+        .then((r) => r.json())
+        .then((data: ProviderStatus[]) => {
+          if (!Array.isArray(data)) return
+          setProviders(data)
+          const provider = ['byok']
+            .map((id) => data.find((p) => p.id === id && p.available))
+            .find(Boolean)
+          if (provider?.selectedModel)
+            setChoice({
+              provider: provider.id as ModelChoice['provider'],
+              model: provider.selectedModel,
+            })
+          else setChoice(undefined)
+        })
+        .catch(() => {})
+    void refreshProviders()
+    window.addEventListener('forge:connections', refreshProviders)
     const refresh = () =>
       fetch('/api/status')
         .then((r) => r.json())
@@ -96,7 +101,10 @@ export function Workspace({ view = 'home', id }: { view?: View; id?: string }) {
         .catch(() => setReady({ worker: false, message: 'Runtime unavailable.' }))
     void refresh()
     const timer = setInterval(() => void refresh(), 10000)
-    return () => clearInterval(timer)
+    return () => {
+      clearInterval(timer)
+      window.removeEventListener('forge:connections', refreshProviders)
+    }
   }, [])
   useEffect(() => {
     if (!loaded) return
@@ -366,7 +374,7 @@ export function Workspace({ view = 'home', id }: { view?: View; id?: string }) {
             <div className="workspace-page">
               <p className="eyebrow">CONNECTIONS</p>
               <h1>Your tools, connected.</h1>
-              <p>Configured models and their current availability.</p>
+              <p>Your API connections, verified capabilities and task assignments.</p>
               <ProviderPanel />
             </div>
           ) : view === 'settings' ? (
@@ -486,6 +494,7 @@ export function Workspace({ view = 'home', id }: { view?: View; id?: string }) {
                       : ready?.message || 'Checking availability…'}{' '}
                     {!choice && <Link href="/app/connections">Connect a model →</Link>}
                   </p>
+                  <RoutingSummary />
                   {error && (
                     <p role="alert" className="form-error">
                       {error}
