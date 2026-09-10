@@ -14,6 +14,8 @@ Forge AI is a pre-alpha, self-hostable workspace for turning an app idea into a 
 
 It is intentionally narrow today: a polished Vite + strict TypeScript frontend, browser-local project storage, reusable design presets, deterministic sample walkthroughs, and an optional loopback NVIDIA text-planning API. Forge does not yet authenticate users, generate application files, execute code, run previews, or deploy projects.
 
+An opt-in [Neon authentication and cloud workspace integration](docs/auth-neon.md) is now implemented for staging development. It remains disabled by default and is **not live-authentication verified or production-ready**. The guide records configuration requirements, tests and remaining release blockers; the local demo never represents a real authenticated session.
+
 ## Product Screens
 
 | Landing | Workspace | Design Presets |

@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "milestone": "E0 offline contracts and control migration",
+  "recordedAt": "2026-09-10T00:20:50.457779+00:00",
+  "environment": {
+    "os": "macOS-26.3.1-arm64-arm-64bit-Mach-O",
+    "node": "v25.8.1",
+    "postgres": "postgres (PostgreSQL) 14.18 (Homebrew)"
+  },
+  "origin": "local-contract-and-database-tests",
+  "generatedCodeExecuted": false,
+  "infrastructureProvisioned": false,
+  "results": {
+    "verify": {
+      "status": "passed",
+      "tests": 117,
+      "files": 13
+    },
+    "engine": {
+      "status": "passed",
+      "tests": 71,
+      "files": 3
+    },
+    "nativeControlDatabase": {
+      "status": "passed",
+      "assertions": 45
+    },
+    "embeddedControlDatabase": {
+      "status": "passed"
+    },
+    "browser": {
+      "status": "not-run",
+      "reason": "No E0 UI or browser integration"
+    },
+    "liveProvider": {
+      "status": "not-run",
+      "gate": "E2/D3"
+    },
+    "runnerIsolation": {
+      "status": "not-run",
+      "gate": "E3/D2/D7"
+    },
+    "templateRelease": {
+      "status": "blocked",
+      "gate": "D7"
+    }
+  },
+  "fixturePolicyDigest": null,
+  "releaseTemplateDigest": null,
+  "notes": [
+    "No released template or execution policy was selected. Synthetic policy digests are computed within fixtures and are not live acceptance evidence.",
+    "Shared checkout includes concurrent cloud/auth/UI changes; test totals do not attribute those files to E0."
+  ],
+  "sha256": {
+    "engine/contracts/canonical.ts": "07e949a88ac494eb9dbf2cf8173f113f3d31948be2c337d679ab3094d9da11c1",
+    "engine/contracts/events.ts": "92670814295af4e99a31ed36c69b5336090063c6da53b819cb18388cd9886f62",
+    "engine/contracts/index.ts": "dc9425c7c44e6556b30f9506c4ec9e99885195b313963be29db37fe757dac8ec",
+    "engine/contracts/paths.ts": "8683cefb1862298c66496531503aa981730b4ee0e061361dc69a1ba14bef9251",
+    "engine/contracts/primitives.ts": "61984b87c374cab6c6c1fa4e97c89b2fa1ca779f4a909bbfab786ba7be6dcf74",
+    "engine/contracts/provider.ts": "0c583d1aeaed517176737798b525b8359ddfdc04a084f9e8e40e3750b4765945",
+    "engine/contracts/review.ts": "475a401a97ee8661436de01c5504c855bd62cf00ff174939be319624f325c03c",
+    "engine/contracts/source.ts": "cde9346a14f435be591e7397e339872be0cb09a3feb7102a4a6064b45ef25201",
+    "engine/migrations/0001_control.sql": "6838d3f1f443f31253d9064915565ce9cd5fe3cbf96366baacb120827cf8879e",
+    "engine/testing/fakes.ts": "b1d2af7fcad0b1001082a1c43a20d0d9a1a625108478687cc79a748fa0d7ecc1",
+    "engine/workflows/jobs.ts": "a3e09a5a54717350a36eab1b3185d15876c551b3332952ce1071a3e0f617817d",
+    "scripts/check-control-db.mjs": "635aa44ec1539d619595f8cd5fb6609302c430bb513fc5ce4e86ddf7aec148a3",
+    "tests/engine/contracts.test.ts": "d555a71c91c3d91c667864416558db9814d9528d214622fec934f8fc0d06e5cb",
+    "tests/engine/control-constraints.sql": "d942fedac0033a3c64c8c636bb0d1b79a5237476d22529f6e48125ee9bde2387",
+    "tests/engine/database.test.ts": "e44cb86253a13dd7f8170cbd2b768fad81fbfac79b3e2b680da7b0c146757cc1",
+    "tests/engine/fixtures.ts": "17ed91c4d70a49f45dedec5db143d0b246ae601b6331839e75d0797e0babde55",
+    "tests/engine/jobs.test.ts": "808fd9dc7972349b1d45957efc0f7813688b4963081f5c4230b31e1951ec86f7",
+    "tsconfig.engine.json": "0fc032701f3c8a58ca55f67a1301f8229782ece523b9cb16f4ddc0281ad543a7"
+  }
+}

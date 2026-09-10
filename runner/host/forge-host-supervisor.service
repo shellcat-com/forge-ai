@@ -1,0 +1,46 @@
+# REVIEW CANDIDATE ONLY. Do not install/enable until D2/D7 and a pinned reviewed
+# supervisor+LinuxExecutor exist. No supplied executable currently satisfies this.
+[Unit]
+Description=Forge dedicated microVM host lifecycle and lease watchdog
+After=local-fs.target
+ConditionPathExists=/dev/kvm
+ConditionPathExists=/etc/forge/host.json
+ConditionPathExists=/opt/forge/bin/forge-host-supervisor
+
+[Service]
+Type=simple
+User=root
+Group=root
+ExecStart=/opt/forge/bin/forge-host-supervisor --config /etc/forge/host.json
+Restart=on-failure
+RestartSec=1s
+TimeoutStopSec=30s
+KillMode=control-group
+UMask=0077
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectKernelTunables=yes
+ProtectClock=yes
+ProtectControlGroups=no
+Delegate=cpu memory pids
+RestrictSUIDSGID=yes
+RestrictRealtime=yes
+LockPersonality=yes
+RestrictAddressFamilies=AF_UNIX AF_NETLINK
+CapabilityBoundingSet=CAP_SYS_ADMIN CAP_NET_ADMIN CAP_SYS_RESOURCE CAP_SETUID CAP_SETGID CAP_SYS_CHROOT CAP_DAC_OVERRIDE CAP_MKNOD
+DevicePolicy=closed
+DeviceAllow=/dev/kvm rw
+DeviceAllow=/dev/net/tun rw
+DeviceAllow=/dev/null rw
+DeviceAllow=/dev/zero rw
+DeviceAllow=/dev/urandom r
+ReadWritePaths=/var/lib/forge/host-inventory /var/lib/forge/jailer /run/forge /sys/fs/cgroup/system.slice/forge-host-supervisor.service
+TasksMax=8192
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target

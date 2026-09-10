@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "origin": "platform-authored-candidate-host",
+  "status": "passed",
+  "isolationAcceptance": false,
+  "providerGeneration": false,
+  "testedAt": "2026-09-10T01:05:50.941186+00:00",
+  "node": "24.20.0",
+  "host": "macOS arm64",
+  "archiveUrl": "https://nodejs.org/dist/v24.20.0/node-v24.20.0-darwin-arm64.tar.gz",
+  "checksumUrl": "https://nodejs.org/dist/v24.20.0/SHASUMS256.txt",
+  "archiveSha256": "40e5607e5ecb3db9192723776da2d75d966260fc74a7a9e731c1bd67dda96bc8",
+  "checks": {
+    "lint": "passed",
+    "typecheck": "passed",
+    "protectedEnvironmentTest": "passed",
+    "nextProductionWebpackBuild": "passed"
+  },
+  "remainingGates": [
+    "Linux image and isolated execution",
+    "PostgreSQL18.6 fresh/prior/restart",
+    "reviewed offline dependencies and licenses",
+    "real export in image",
+    "live-provider reference benchmark"
+  ]
+}

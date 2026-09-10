@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "milestone": "E1 vendor-independent fixture control",
+  "recordedAt": "2026-09-10T01:32:04.960068+00:00",
+  "environment": {
+    "os": "macOS-26.3.1-arm64-arm-64bit-Mach-O",
+    "node": "v25.8.1",
+    "postgres": "postgres (PostgreSQL) 14.18 (Homebrew)"
+  },
+  "origin": "native-postgres-synthetic-fixture-integration",
+  "e1GeneratedCodeExecuted": false,
+  "e1LiveProviderCalls": false,
+  "infrastructureProvisioned": false,
+  "results": {
+    "verify": {
+      "status": "passed",
+      "testsPassed": 394,
+      "testsSkipped": 2,
+      "filesPassed": 32,
+      "filesSkipped": 2
+    },
+    "nativeE1": {
+      "status": "passed",
+      "testsPassed": 45,
+      "testsSkipped": 0
+    },
+    "nativeE0": {
+      "status": "passed",
+      "assertions": 45
+    },
+    "controlBuild": {
+      "status": "passed"
+    },
+    "e0MigrationIntegrity": {
+      "status": "passed",
+      "sha256": "6838d3f1f443f31253d9064915565ce9cd5fe3cbf96366baacb120827cf8879e"
+    },
+    "browser": {
+      "status": "not-run",
+      "reason": "No E1 UI integration; native HTTP/cookie/SSE tests are not browser acceptance"
+    },
+    "optionalConcurrentDatabaseTests": {
+      "status": "skipped-in-E1-verify",
+      "flags": [
+        "FORGE_NATIVE_MIGRATION_TEST",
+        "FORGE_POSTGRES18_CANDIDATE_TEST"
+      ]
+    },
+    "externalIdentity": {
+      "status": "blocked",
+      "gate": "D1"
+    },
+    "paidAdmission": {
+      "status": "blocked",
+      "gate": "D4"
+    },
+    "deployedStorageAndBackup": {
+      "status": "blocked",
+      "gate": "D5"
+    },
+    "liveSourceAndRunner": {
+      "status": "not-enabled",
+      "gate": "E2/E3 plus D2/D3/D4/D5/D7"
+    }
+  },
+  "notes": [
+    "Shared checkout contains concurrent E2-E5, runner, template and cloud/auth/UI changes. Repository totals are not exclusive E1 authorship.",
+    "Native PostgreSQL 14.18 is control-schema compatibility evidence, not selection of a generated PostgreSQL release or hosting vendor.",
+    "Fixture source success and cleanup receipts do not establish actual model generation, host isolation, app persistence or private preview."
+  ],
+  "sha256": {
+    "docs/reports/e1-control.md": "2058c6b4a7e7fa17eb2711bc0c42e6ddc6902ae53bef03ba607b5488d1a377d0",
+    "docs/reports/evidence/e1/control-build.log": "bab7a7620c6e1d5174b473fb061330899eea4de51f8b33ae4e42059fe8d4aa6d",
+    "docs/reports/evidence/e1/e0-native-postgres.log": "4276c6d4c496fc43f930c301c83510276cffd7a95aba56542cc7d73a9e352d99",
+    "docs/reports/evidence/e1/integrity.json": "8f9908870b136d1313a5d3830cb9deec0f8be9a1ce0499479244620687710371",
+    "docs/reports/evidence/e1/native-postgres.log": "7d7dd5a806b54d91996163a918c4b9131fcf3c41f81503d63803e01997bfb8f1",
+    "docs/reports/evidence/e1/native-tests.json": "50b2e03e678fa42b4ec8e3fd6c702abc8e6de8ec7db5583a2531177a87109b16",
+    "docs/reports/evidence/e1/verify.log": "4e36fade41ea14035d6b9e9391eb073092f9123a0cd5509bd78756664e7c76f3",
+    "engine/control/README.md": "9f4d06739e81288115fcb5771bee50cc9c1a05720ceb1e2f17a3c7e319101d7a",
+    "engine/control/catalog.ts": "43a3335d6bd95ed42fe0bb52417ea7ecf511976d50a1e6562f581ef6fbd8b301",
+    "engine/control/config.ts": "e222bf62a05c371927e641d4d9046bab1a807bf0bc5acbebdba490c8bb52a343",
+    "engine/control/contracts.ts": "2ab27fd36ee7529d541d8fdb661e48a1faa4794d45d6c585f656dfdbe7958280",
+    "engine/control/database.ts": "09e35506e6d87e89ccf56bcd4f24c422337a87157519c2c2675ecd968fdecd39",
+    "engine/control/fixture-stage.ts": "67d9cfa9223ea3b3874c1b2ae8a801668f99e5ce30b0fc53984f36f72ce56d59",
+    "engine/control/http.ts": "a0c84063c3e6f4e1ce6274a2b40215970b14a1cda01aef8336a8ec52d14dbe3b",
+    "engine/control/identity.ts": "30ab045c36ce633898976cfe7ea16f9408e8dcd8e9a087827cd4c6299af63fe0",
+    "engine/control/index.ts": "d1c9208f4bd74f96820537406e43288b0b281a297c4ff23d67590afca523bbf5",
+    "engine/control/reconciler.ts": "4ddd41a0f6b542c86762219efa4f6a53f32f643be46476ef3046dda9433e7738",
+    "engine/control/service.ts": "a41eae48115ce9a4ebf02095ab15b7df6516ecc283ddfb6888a0d5d84110ea46",
+    "engine/control/stage-adapter.ts": "9a888eb64da52659d12847575e617269266e0599626e0d09417a3521c707b0a8",
+    "engine/control/state.ts": "2c8f8467949785a1da0d227920f8f490c3c462c05a814063bcbd433601366e4f",
+    "engine/control/worker.ts": "327d7bdeb2bee45606afadd0d136d0b487ea7deb983d1b00adac929ac75276b9",
+    "engine/migrations/0001_control.sql": "6838d3f1f443f31253d9064915565ce9cd5fe3cbf96366baacb120827cf8879e",
+    "engine/migrations/0002_durable_control.sql": "de4ba2c189d1c84302a0ba90973c78ca517e3fcf75f411b443f45835d7d6de6a",
+    "package-lock.json": "f8562c30e3d9e65b977a0f0ad824a494709207b98abdebc1ea4c9e8c2685a477",
+    "package.json": "d35ad55cbe67d6bdbfdb593f040d3760b5620c696f7ba254dc9dd09919397551",
+    "tests/engine/control.native.test.ts": "ac407cd5b799455140d15fff0f0f68e2498ee4a2eb70131558fa262b1647478a",
+    "tests/engine/fixture-worker-child.mjs": "a2d409a83ae54f29efeb63077195a2646332b0aff3c6a6e42e297bab50fa085b",
+    "tests/engine/native-postgres.ts": "edf7ab56b1ded6008226438a24f5d40eb3cb4b50f964ef6be9686f97759f5483",
+    "tsconfig.control.json": "a4d37116af8e5529f466c55ea4e6dd7f28a63af7aff4975620cac9defb9a2715",
+    "tsconfig.engine.json": "1a1ab594573b21b23593e55c94829f8a9cc2559ed9c4a1423d97b86e835dfd2c"
+  }
+}

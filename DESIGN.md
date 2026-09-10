@@ -25,9 +25,11 @@ App sidebar 220px, content flexible; builder combines the 220px workspace naviga
 System default, explicit light/dark override in local storage, set before paint. Observe system changes only while preference is System. Preview theme is independent of shell. Native controls inherit color-scheme.
 
 ## Components and behavior
-Use labeled inputs, native buttons and links, details/summary for FAQs, accessible tabs, focus-visible outline, and min 44px touch targets. Keep loading, disabled, empty, failure, and success distinct with text. Local data is labeled; login is preview-only. Application generation remains unavailable. Optional NVIDIA text planning is explicitly labeled and only enabled when the local server reports a loaded key. Sample actions say Sample or Demo.
+Use labeled inputs, native buttons and links, details/summary for FAQs, accessible tabs, focus-visible outline, and min 44px touch targets. Keep loading, disabled, empty, failure, and success distinct with text. Default local mode labels browser data and preview-only login. The opt-in cloud mode supplies Neon-backed authentication screens, guided onboarding and account briefs; service failures never imply a successful login or a switch to local storage. Cloud onboarding presents Idea, Direction, Review and Workspace stages. Application generation remains unavailable. Optional NVIDIA text planning in local mode is explicitly labeled and only enabled when the local server reports a loaded key. Sample actions say Sample or Demo.
 
 ## Artwork and motion
+
+Cloud follow-up: New project reuses the four-stage guide and saves its progress to the account. Replay introduction uses a keyboard-accessible native dialog with explicit Back/Next/Close controls and never resets projects. Optional hosted text planning is a separate, explicitly consented action on a saved brief; display the escaped response as text and never imply execution or deployment.
 Original no-text artwork, provenance in docs/design/assets.json. Scenic art frames demonstrations and login only; no full-page moving Forge hero. UI remains HTML. Image dimensions prevent layout shift. Responsive WebP variants 640/1280/2048 where available. Retain neutral fallback canvas on media failure.
 Transitions 160ms ease-out for color and opacity; walkthrough advances on explicit input. Reduced motion removes transitions. Any future looping video requires poster, pause control and reduced-motion static fallback. Current supplied videos are reference candidates, not production dependencies.
 

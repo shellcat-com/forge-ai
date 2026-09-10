@@ -1,0 +1,152 @@
+{
+  "captured_at": "2026-09-09",
+  "capture_type": "Retraced screenshots and reconstructed timed visual walkthrough",
+  "limitation": "Initial one-time onboarding dialogs and Lovable design-choice dialog were observed live but could not be replayed for local screenshot export.",
+  "prompt": "Build a responsive Pomodoro timer web app. Include a large 25-minute focus timer, Start/Pause and Reset controls, automatic 5-minute break mode, a completed-session count, and a simple settings control for focus and break durations. Keep it accessible, calm, and visually clear on desktop and mobile.",
+  "screenshots": [
+    {
+      "order": 1,
+      "path": "bolt/01-dashboard.png",
+      "label": "Bolt \u2014 dashboard and new-project prompt",
+      "width": 3325,
+      "height": 1399,
+      "sha256": "5690b3d528521dc2ecc11ae9fcce8b0085a1502ff4086df4471d8a9f5f2bc544"
+    },
+    {
+      "order": 2,
+      "path": "bolt/02-project-preview.png",
+      "label": "Bolt \u2014 generated project workspace and preview",
+      "width": 3325,
+      "height": 1399,
+      "sha256": "90980cea226a045d779af3528ad11f956829e9715036b19a870c03319c1be8a3"
+    },
+    {
+      "order": 3,
+      "path": "bolt/03-timer-settings.png",
+      "label": "Bolt \u2014 generated timer settings",
+      "width": 3325,
+      "height": 1399,
+      "sha256": "d15a41ee04e83c8179cd81f02b11f33ee65f01de7fe950c530526afaddfde06e"
+    },
+    {
+      "order": 4,
+      "path": "bolt/04-code-editor.png",
+      "label": "Bolt \u2014 code editor and terminal",
+      "width": 3325,
+      "height": 1399,
+      "sha256": "6a6e8035e759c2871be2234c5bfe7e78e6274d27eb6487622d2c5e8d0ea5daa4"
+    },
+    {
+      "order": 5,
+      "path": "bolt/05-database.png",
+      "label": "Bolt \u2014 database capabilities",
+      "width": 3325,
+      "height": 1399,
+      "sha256": "6d89239324141c5a53fadeb47d5f47b2552dcabd5fb3562be8d392ec1c4d6edf"
+    },
+    {
+      "order": 6,
+      "path": "bolt/06-more-menu.png",
+      "label": "Bolt \u2014 analytics, knowledge, skills and connectors",
+      "width": 3325,
+      "height": 1399,
+      "sha256": "e9c9930f7b79a073bea8b766b3b5a7dd0843f5387b07c2bc94587583afaf4519"
+    },
+    {
+      "order": 7,
+      "path": "bolt/07-version-history.png",
+      "label": "Bolt \u2014 version history",
+      "width": 3325,
+      "height": 1399,
+      "sha256": "dbe22170eff8f7be05af4f3d231127838099984b3d6a10a7da4db98453d3acc2"
+    },
+    {
+      "order": 8,
+      "path": "lovable/01-dashboard.png",
+      "label": "Lovable \u2014 dashboard and new-project prompt",
+      "width": 3310,
+      "height": 1341,
+      "sha256": "ced109e669e1737839d8ed881be4838355b633143e606855ad89d4a7854bf585"
+    },
+    {
+      "order": 9,
+      "path": "lovable/03-project-preview.png",
+      "label": "Lovable \u2014 generated project and visual editing toolbar",
+      "width": 3325,
+      "height": 1347,
+      "sha256": "954c651bfb89c2ab2fed9616700e056e0d68d2a5576b5e1f0d7cb8c997a03af4"
+    },
+    {
+      "order": 10,
+      "path": "lovable/04-code-browser.png",
+      "label": "Lovable \u2014 read-only code browser",
+      "width": 3325,
+      "height": 1347,
+      "sha256": "e4f585c406a864023ab786d885d368acf6f02452b0cc2414bdd04d2b6276cf76"
+    },
+    {
+      "order": 11,
+      "path": "lovable/05-analytics.png",
+      "label": "Lovable \u2014 project analytics",
+      "width": 3325,
+      "height": 1347,
+      "sha256": "ba36938d54dddee8162b4223ea18af803a9e8aa7e361e4119c14c6129ee78bb3"
+    },
+    {
+      "order": 12,
+      "path": "lovable/06-project-settings.png",
+      "label": "Lovable \u2014 project settings and usage",
+      "width": 3325,
+      "height": 1347,
+      "sha256": "7b9da59337251b54ef930daffe1a45bed90956b09d01b207eb0803740bcc8782"
+    },
+    {
+      "order": 13,
+      "path": "emergent/01-dashboard.png",
+      "label": "Emergent \u2014 dashboard and web/mobile prompt",
+      "width": 3325,
+      "height": 1399,
+      "sha256": "3603702f428ec5f558d48ca8971ab17d0d268daacff76acfae7bf86c5ae0b590"
+    },
+    {
+      "order": 14,
+      "path": "emergent/02-generation-workspace.png",
+      "label": "Emergent \u2014 agent generation and test evidence",
+      "width": 3325,
+      "height": 1399,
+      "sha256": "2a4dd3ec43ea06780434d72a6a356f8144201bf754f100bea35bdae1a57dafe0"
+    },
+    {
+      "order": 15,
+      "path": "emergent/03-project-preview.png",
+      "label": "Emergent \u2014 generated project preview",
+      "width": 3325,
+      "height": 1399,
+      "sha256": "39f1a702a26d08dd01194f267fc12fd87d7efcd02e38cf29379812713956105f"
+    },
+    {
+      "order": 16,
+      "path": "emergent/05-manage-connectors.png",
+      "label": "Emergent \u2014 connectors and payments management",
+      "width": 3325,
+      "height": 1399,
+      "sha256": "08718ebae6ffc9ac8332db14c394ee7c4d1cc24f3f705ef90a2372b536dd7a13"
+    },
+    {
+      "order": 17,
+      "path": "emergent/06-live-app.png",
+      "label": "Emergent \u2014 standalone live preview",
+      "width": 3325,
+      "height": 1399,
+      "sha256": "88f8da88c49291805d0bce6ed044c65dab987408ba3211ac8e33e8cf808c2bd2"
+    },
+    {
+      "order": 18,
+      "path": "emergent/07-timer-settings.png",
+      "label": "Emergent \u2014 complete timer settings",
+      "width": 3325,
+      "height": 1399,
+      "sha256": "824e63b51e38ca39039deae6506946a940d797988b009644a5311eece2c1a683"
+    }
+  ]
+}
