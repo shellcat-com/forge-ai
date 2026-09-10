@@ -131,7 +131,7 @@ All workers received canonical SHA `881e9ac2b11f8f168cb7849b77c4ee7439e55458` an
 | 02 | `01a08981-52bb-7970-9bae-d28c6f66d418` | `codex/task-02-runtime`, `/tmp/forge-task02-runtime` | Runtime implementation; existing broker authority interface confirmed, real E1 authorization adapter remains 01-owned |
 | 03 | `01a08981-9134-73b1-862b-126b1984ff5e` | `codex/task-03-template`, `/tmp/forge-task03-template` | Template implementation with narrow manifest/lock and portfolio corpus delegation |
 | 04 | `01a08981-bd53-7f60-9e5b-ae5d715cfdf2` | `codex/task-04-byok`, `/tmp/forge-task04-byok` | Provider/accounting port implementation; precise 0005 proposal requested |
-| 05 | `01a08981-f80b-7921-84f9-19f1b55abef7` | `codex/task-05-identity`, `/tmp/forge-task05-identity` | Identity adapter; narrow auth HTTP delegation; plugin/composition/0004 proposal pending |
+| 05 | `01a08981-f80b-7921-84f9-19f1b55abef7` | `codex/task-05-identity`, `/tmp/forge-task05-identity` | PR #11 / `c4236ba` identity foundation integrated in `417874d`; hosted plugin/composition/0004 and lifecycle hooks pending |
 | 06 | `01a08982-22d5-7611-8aa3-62d4d0467618` | `codex/task-06-persistence`, `/tmp/forge-task06-persistence` | Encrypted versioned backend and native persistence; 0006 proposal pending |
 | 07 | `01a08982-57f5-7b93-8f1a-663e051eb871` | `codex/task-07-private-preview`, `/tmp/forge-task07-preview` | Gateway and 0007 proposal; lock/race review changes requested |
 | 08 | `01a08982-8039-7ad0-b1e9-289d23704a0a` | `codex/task-08-live-demo`, `/tmp/forge-task08-live-demo` | Publisher/fallback preparation and bounded public provenance review |
@@ -160,3 +160,13 @@ No new paid budget, runtime/worker/object/KMS service, domain purchase or live a
 Verification resource coordination: baseline dependencies at `/tmp/forge-task01-clean-reproduction/node_modules` are frozen read-only while worker symlinks use them. Do not install, delete or replace that tree. Supporting worker checks must identify shared dependencies; combined clean reproduction follows reviewed integration. Local disk pressure can block a build without blocking independent implementation or accurately labeled publication.
 
 Task 09 integration validation: `vitest run tests/engine/delivery-evidence.test.ts --maxWorkers=1` passed 13/13 with frozen baseline dependencies. SHA-256 verification matched all 21 retained artifacts and all 304 source inventory entries plus its canonical digest. Gitleaks review of added files found two prose/command false positives in its report (the known baseline Git commit argument and “signed/private”), no credential identified. README now links the committed setup/readiness guide and uses `npm ci`. These checks do not replace the required final clean combined verification.
+
+### Reviewed delivery integrations
+
+| Source | Integration | Validation and remaining dependencies |
+| --- | --- | --- |
+| 09 `2437ec3`, `4fa7dc2` / PR #10 | `d3244f7` | 13 validator tests, 21 artifact hashes/304 source hashes; independent harness only. |
+| 05 `c4236ba` / PR #11 | `417874d` | Node24 source CI passed run34437628422; 15 source/evidence hashes verified; 25 OIDC tests plus 13 validator tests pass together locally. Local targeted checks use frozen dependencies. Hosted authority composition, lifecycle hooks and real identities remain open. |
+| 09 `10e1962` follow-up | `b6e268f` | 23 retained artifact hashes verified; independent anonymous availability-page observation only. Its 304-file source inventory remains bound to the earlier audited commit and must not be treated as the integrated source digest. |
+
+These are authored-history merges into the integration branch. GitHub automatically marks a source PR merged when its base branch contains the merged head; Task 01 has not called a PR merge/close action or changed `master`. PR #8 remains draft. No shared SQL migration or hosted configuration is enabled by the identity foundation.
