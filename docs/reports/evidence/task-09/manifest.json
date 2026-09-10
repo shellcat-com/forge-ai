@@ -70,6 +70,7 @@
     "archive-review.json": "aa456fab233ea8814641b79ae640b94892184058ea2100720c68cd6216e38931",
     "browser-prerequisite-failure.txt": "4908a23cf70ce466f6cf5ea8c678ff4bb7d5bd2688427487ec6eee99620b8b7b",
     "browser.txt": "9d216159e8f6e59dd2d1e066fcb035bcebc01cc1ce362d8874895421815b9d47",
+    "ci-source.json": "75f1842b94edc990812bd30f75f6a942e9a15417a3d4c185c85726db902d7db6",
     "control-build.txt": "ba90c04c5207a72d9914dc6b9b790762a0656552143fa682c9578b835e4b91f9",
     "historical-ledger.json": "0fdae867cb61578fe3eaa11a70ae992fccde838ffaf67b6807dbf133047c8462",
     "home-dark-1440.png": "2ad5d98687f9eaefab7d6e212e7994648d22f1d68375551a16d937a4935d0ad6",
@@ -84,9 +85,11 @@
     "native-migrations.txt": "935a0d014e466e18f3c2b13901b3cfbfc671a9e8dfbf4cb2d267a743bc6cc203",
     "package-proposal.json": "5dc251e68e161882aa3a80b306f9859d1ee69f8602a52c7a4d5bc5cb73152016",
     "public-audit.json": "78916e22bbe556f2d83e475fc1f5bc8a39b5ddfc5ce8bcf3f8c4c21efe3df04f",
+    "public-availability-followup.json": "5fc55d7809eaae0fbd344bbe278192ed19d34da322d6bdeb362731c2cb33fdd0",
     "source-inventory.json": "07b13fd85c9a4ec0e141d76211c077a76d4caecd5435001e22c0098ba62a271e",
     "targeted-tests.json": "faf1b55f024d7dce13a38587e062fa738c5d07f39ee96a83f0dc9edd7da36f94",
     "verify-initial.txt": "612d01f8af80bd4e9a50021ae496aa61ac89c5bf9c4d525ca8c3218f8aa0a0ae",
     "verify.txt": "9760f312e4fe5a659a69530eb56fcde730c648bd14e962b9044945b3d71c4f42"
-  }
+  },
+  "externalFollowup": "public-availability-followup.json"
 }
