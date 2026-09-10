@@ -38,7 +38,7 @@ export const jobs = pgTable('forge_jobs', {
   provider: text('provider').notNull(),
   model: text('model').notNull(),
   payload: jsonb('payload')
-    .$type<{ revisionId?: string; files?: FileMap; restoreData?: boolean }>()
+    .$type<{ revisionId?: string; files?: FileMap; restoreData?: boolean; runId?: string }>()
     .notNull(),
   status: text('status').notNull().default('queued'),
   error: text('error'),

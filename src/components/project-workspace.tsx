@@ -1,6 +1,7 @@
 'use client'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
+import { RoutingPanel, RoutingSummary, RunUsage } from './byok-panel'
 import { ReviewPanel } from './review-panel'
 import { modes } from '../shared/creation'
 import type { CreationMode } from '../shared/creation'
@@ -200,8 +201,7 @@ export function ProjectWorkspace({ id, choice }: { id: string; choice: ModelChoi
   const latest = events.filter((e) => e.type !== 'log').at(-1)
   const latestGeneration = detail.jobs.find((job) => job.kind === 'generate')
   const nextChoice =
-    latestGeneration &&
-    ['gemini', 'groq', 'ollama', 'openrouter'].includes(latestGeneration.provider)
+    latestGeneration && ['byok'].includes(latestGeneration.provider)
       ? {
           provider: latestGeneration.provider as ModelChoice['provider'],
           model: latestGeneration.model,
@@ -343,6 +343,14 @@ export function ProjectWorkspace({ id, choice }: { id: string; choice: ModelChoi
           <p role="status" className="current-status">
             {latest?.message ?? (busy ? 'Waiting for the worker…' : 'Ready for your next change.')}
           </p>
+          <RunUsage id={detail.jobs[0]?.runId} />
+          <RoutingSummary scope={id} />
+          {canBuild && (
+            <details>
+              <summary>Models and task assignments</summary>
+              <RoutingPanel scope={id} />
+            </details>
+          )}
           {canBuild && (
             <form
               className="follow-up"

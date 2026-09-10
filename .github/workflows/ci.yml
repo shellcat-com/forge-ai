@@ -49,6 +49,14 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Install browser for BYOK acceptance
+        run: npx playwright install --with-deps chromium
+
+      - name: Test BYOK browser flow with synthetic provider
+        env:
+          PLAYWRIGHT_CHANNEL: chromium
+        run: npm run test:byok:browser
+
       - name: Verify accepted control database constraints
         run: npm run test:db:control
 

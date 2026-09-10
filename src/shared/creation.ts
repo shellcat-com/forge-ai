@@ -12,7 +12,7 @@ export const creationSchema = z
   .object({
     prompt: z.string().trim().min(20).max(12000),
     mode: z.enum(modes).default('build'),
-    provider: z.enum(['gemini', 'groq', 'ollama', 'openrouter']),
+    provider: z.enum(['gemini', 'groq', 'ollama', 'openrouter', 'byok']),
     model: z.string().min(1).max(200),
     design: designBriefSchema.default({ style: '', preserve: '' }),
     idempotencyKey: z.uuid(),

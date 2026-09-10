@@ -24,6 +24,7 @@ export interface ProjectDetail {
     status: string
     error: string | null
     provider: string
+    runId?: string
     model: string
   }[]
   previewReady: boolean
@@ -35,6 +36,6 @@ export interface TimelineEvent {
   message: string
 }
 export interface ModelChoice {
-  provider: 'gemini' | 'groq' | 'ollama' | 'openrouter'
+  provider: 'gemini' | 'groq' | 'ollama' | 'openrouter' | 'byok'
   model: string
 }

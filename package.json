@@ -29,7 +29,9 @@
     "control:build": "tsc -p tsconfig.control.json",
     "api:control": "npm run control:build && node dist-engine/control/index.js api",
     "worker:control": "npm run control:build && node dist-engine/control/index.js worker",
-    "test:db:e1": "vitest run tests/engine/control.native.test.ts"
+    "test:db:e1": "vitest run tests/engine/control.native.test.ts",
+    "test:byok:browser": "node --import tsx scripts/test-byok-browser.ts",
+    "byok:admin": "node --env-file-if-exists=.env.local --import tsx scripts/byok-admin.ts"
   },
   "engines": {
     "node": "24.x"

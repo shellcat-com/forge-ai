@@ -9,12 +9,14 @@ flowchart LR
  Auth --> PG[(Forge PostgreSQL)]
  Next --> PG
  PG --> Worker[Local worker]
- Worker --> Providers[Configured model adapters]
+ Worker --> Providers[User-owned task router and adapters]
  Worker --> Docker[Isolated Docker candidate]
  Docker --> Preview[Separate loopback preview origin]
  Worker --> Revisions[Saved source, runtime version and development snapshot]
  Revisions --> PG
 ```
+
+The [BYOK architecture and operating guide](byok-orchestration.md) describes encrypted user-owned connections, task assignments, reservations and protocol-specific dispatch. No implicit model credentials or fallback are supplied by Forge.
 
 ## Implemented boundaries
 
@@ -30,15 +32,15 @@ flowchart LR
 
 ## Current limitations
 
-The worker still uses a global process lock and one active local preview. It pauses that preview during rebuilding and recovers the last working revision after failure. Hosted per-project leases, fencing, independent candidates, E2B execution, R2 artifacts, monetary reservations and deployment adapters remain unimplemented. Hosted generation is gated accordingly.
+The worker still uses a global process lock and one active local preview. It pauses that preview during rebuilding and recovers the last working revision after failure. Hosted per-project leases, fencing, independent candidates, E2B execution, R2 artifacts and deployment adapters remain unimplemented. Hosted generation is gated accordingly.
 
-Legacy SQLite applications and their data snapshots remain local. The starter still includes the historical generic items helper; general application-specific server data modules need further implementation. A successful build and HTTP response are not a complete functional or security verification of generated software.
+New app revisions use a private PostgreSQL sidecar; existing SQLite revisions retain their pinned images and snapshots. The starter includes a PostgreSQL items helper; models can implement application-specific data modules within protected source boundaries. A successful build and HTTP response are not a complete functional or security verification of generated software.
 
 Source restoration creates a revision and preserves current development data by default. Explicit development-data recovery is separate. Production rollback is not implemented and must never be inferred from source restoration.
 
 ## Migration
 
-Migrations 0001–0003 are additive. `scripts/import-engine.mjs` copies explicitly selected local engine projects with an explicit owner, verifies source contents and creates an ignored private recovery file. It preserves project, job and revision IDs; event cursors are destination-local. It does not copy runtime handles or modify the source database. Browser JSON import retains original files and creates archived drafts without generating source.
+Migrations 0001–0003 and 0006 are additive. Application migration 0004 is reserved by the active beta integration; this future feature uses 0006 to avoid collision. `scripts/import-engine.mjs` copies explicitly selected local engine projects with an explicit owner, verifies source contents and creates an ignored private recovery file. It preserves project, job and revision IDs; event cursors are destination-local. It does not copy runtime handles or modify the source database. Browser JSON import retains original files and creates archived drafts without generating source.
 
 See [implementation status](implementation-status.md), [cloud status](cloud-setup-status.md), and the [approved plan](implementation-plan.md). Earlier numbered milestone reports describe the original engine at their capture time, not this integration's release status.
 

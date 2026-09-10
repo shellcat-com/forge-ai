@@ -41,29 +41,25 @@ export async function createProject(
     await checkAllowance(tx, ownerId)
     const id = randomUUID(),
       jobId = randomUUID()
-    await tx
-      .insert(projects)
-      .values({
-        id,
-        name: projectName(input.prompt),
-        ownerId,
-        brief: input.prompt,
-        design: input.design ?? { style: '', preserve: '' },
-      })
+    await tx.insert(projects).values({
+      id,
+      name: projectName(input.prompt),
+      ownerId,
+      brief: input.prompt,
+      design: input.design ?? { style: '', preserve: '' },
+    })
     const mode = input.mode ?? 'build'
-    await tx
-      .insert(jobs)
-      .values({
-        id: jobId,
-        projectId: id,
-        kind: mode === 'build' ? 'generate' : mode,
-        prompt: input.prompt,
-        provider: input.provider,
-        model: input.model,
-        payload: {},
-        ownerId,
-        idempotencyKey: input.idempotencyKey,
-      })
+    await tx.insert(jobs).values({
+      id: jobId,
+      projectId: id,
+      kind: mode === 'build' ? 'generate' : mode,
+      prompt: input.prompt,
+      provider: input.provider,
+      model: input.model,
+      payload: {},
+      ownerId,
+      idempotencyKey: input.idempotencyKey,
+    })
     await tx
       .insert(messages)
       .values({ id: randomUUID(), projectId: id, role: 'user', mode, content: input.prompt, jobId })
@@ -136,37 +132,33 @@ export async function queueJob(
       }))
     )
       throw new AccessError(404, 'Revision not found.')
-    await checkAllowance(tx, ownerId, input.kind!=='restore')
+    await checkAllowance(tx, ownerId, input.kind !== 'restore')
     const id = randomUUID()
-    await tx
-      .insert(jobs)
-      .values({
-        id,
-        projectId,
-        kind: input.kind,
-        prompt: input.prompt ?? '',
-        provider: input.provider ?? 'ollama',
-        model: input.model ?? '',
-        payload: {
-          revisionId: input.revisionId,
-          files: input.files,
-          restoreData: input.restoreData,
-        },
-        ownerId,
-        idempotencyKey: input.idempotencyKey,
-        baseRevision: project.activeRevision,
-      })
+    await tx.insert(jobs).values({
+      id,
+      projectId,
+      kind: input.kind,
+      prompt: input.prompt ?? '',
+      provider: input.provider ?? 'ollama',
+      model: input.model ?? '',
+      payload: {
+        revisionId: input.revisionId,
+        files: input.files,
+        restoreData: input.restoreData,
+      },
+      ownerId,
+      idempotencyKey: input.idempotencyKey,
+      baseRevision: project.activeRevision,
+    })
     if (input.prompt)
-      await tx
-        .insert(messages)
-        .values({
-          id: randomUUID(),
-          projectId,
-          role: 'user',
-          mode: input.kind === 'generate' ? 'build' : input.kind,
-          content: input.prompt,
-          jobId: id,
-        })
+      await tx.insert(messages).values({
+        id: randomUUID(),
+        projectId,
+        role: 'user',
+        mode: input.kind === 'generate' ? 'build' : input.kind,
+        content: input.prompt,
+        jobId: id,
+      })
     return { jobId: id }
   })
 }
@@ -201,6 +193,7 @@ export async function projectDetail(id: string) {
       error: true,
       provider: true,
       model: true,
+      payload: true,
     },
   })
   const state = await db().query.runtimeState.findFirst({
@@ -220,7 +213,7 @@ export async function projectDetail(id: string) {
       ...template.protected,
       ...(active?.runtimeVersion ? { 'package-lock.json': active.runtimeVersion.lockfile } : {}),
     },
-    jobs: timeline,
+    jobs: timeline.map(({ payload, ...job }) => ({ ...job, runId: payload.runId })),
     previewReady:
       state?.projectId === id && !!state.handle && Date.now() - state.heartbeat.getTime() < 12000,
     previewUrl: `http://127.0.0.1:${process.env.FORGE_PREVIEW_PORT || 3101}`,
