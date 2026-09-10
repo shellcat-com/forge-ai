@@ -1,6 +1,6 @@
 # Task 07 — private preview gateway
 
-2026-09-10. **Gateway implementation and native/local browser evidence delivered; live private preview remains blocked. No working private preview URL is claimed.** This task purchased no domain/service, ran no billable model call, deployed no gateway, and did not change provider protection. Task 08's explicitly published portfolio is a separate artifact.
+2026-09-10. **Gateway implementation and native/local browser evidence delivered; live private preview remains blocked. No working private preview URL is claimed.** This task purchased no domain/service, ran no billable model call, deployed no gateway, and did not change provider protection. Any Task 08 public portfolio is a separate artifact.
 
 ## Ownership and baseline
 
@@ -22,7 +22,7 @@ Locking: locate untrusted scope without locks, authorize/lock parent login and m
 
 ## No-domain-purchase findings
 
-The [RFC amendment proposal](task-07-preview-rfc-amendment.md) replaces domain ownership with a verified separate browser site/origin requirement. Current gateway configuration recognizes only the tested sibling, one-label `vercel.app` pattern and rejects same-site children/aliases of that pattern, ports and unverified suffixes. This is a narrow provider adapter, not an invented public-suffix parser. Hostname issuance/immutability must still be proven by the deployment owner.
+The [RFC amendment proposal](task-07-preview-rfc-amendment.md) replaces domain ownership with a verified separate browser site/origin requirement. Current gateway configuration recognizes only the tested sibling, one-label `vercel.app` pattern and rejects same-site children, identical hosts, ports and unverified suffixes. Branch aliases still require provider-side exclusion; their naming alone cannot prove immutability. This is a narrow provider adapter, not an invented public-suffix parser. Hostname issuance/immutability must still be proven by the deployment owner.
 
 Chrome observes cross-site navigation between sibling `vercel.app` names, blocks `Domain=vercel.app` cookies, enforces cross-origin document isolation, and protects the gateway's HttpOnly host cookie. A positive control under one registrable site reports same-site despite different hostnames. These observations use real browser networking over loopback HTTPS with local hostname overrides. They do **not** prove public DNS/TLS, Vercel deployment protection or an actual generated application.
 
@@ -75,4 +75,4 @@ Residual limitations: no streaming, WebSockets, guest cookies/authentication, ex
 
 ## Publication
 
-One draft PR targets `codex/demo-delivery-baseline` with Tasks 01/02/05/06 dependencies. GitHub publication and CI results are recorded in the final publication evidence after pushing; no merge or force push is authorized. Code/report commits and PR URL are returned with the final task response.
+Published [draft PR #14](https://github.com/shellcat-com/forge-ai/pull/14) against `codex/demo-delivery-baseline` with Tasks 01/02/05/06 dependencies. Implementation commit: `1b7dc8cdbc1c63d3bada6da5c107cb0140f92907`. [Clean Linux CI](https://github.com/shellcat-com/forge-ai/actions/runs/34438023995) passed clean install, lint, strict typecheck, all enabled tests, production build, native schema checks and standalone control build on these exact implementation bytes. [Publication evidence](evidence-task-07/publication.json) records the result. Subsequent report-only commits do not change the tested implementation. PR remains draft and unmerged; no force push occurred.
