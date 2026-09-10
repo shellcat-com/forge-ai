@@ -1,12 +1,12 @@
 # Task 09 — Independent acceptance and demo readiness
 
-Status: **independent validation code/tests and baseline audit complete; final integrated acceptance, first live demonstration, private alpha and production readiness remain blocked.** This was published as a draft validation PR, not release sign-off; its later feature-branch integration is recorded below. No live provider call, generated-code host execution, public deployment, purchase or domain change occurred.
+Status: **Task 09 code/tests and independent combined-source audit complete; first live generated demonstration, private-alpha acceptance and production readiness remain blocked.** The [combined-source appendix](#combined-source-independent-audit) supersedes baseline-only status statements below while preserving historical evidence identities. This was published as a draft validation PR, not release sign-off; its later feature-branch integration is recorded below. Task 09 made no live provider call, generated-code host execution, public deployment, purchase or domain change.
 
 ## Scope and identities
 
 Worker branch: `codex/task-09-acceptance`; PR base: `codex/demo-delivery-baseline` (Task 01 [draft PR #8](https://github.com/shellcat-com/forge-ai/pull/8), whose base is `master`). The isolated worktree was created at published canonical `881e9ac2b11f8f168cb7849b77c4ee7439e55458`, then fast-forwarded to Task 01's published metadata/evidence head `e533afe7ffce770d9e1326874956139ea55deb75`. Its implementation is Task 01's tested `591f87c7a2e9e8f8f18b356852e922f2d3c1bf19`. The shared Documents checkout and other tasks' code were not changed.
 
-Task 01 had no final integrated Tasks 02–08 commit to supply during this audit. Accordingly this report audits that **baseline plus Task 09's scoped additions**, not hypothetical future fixes. Tasks 02–08 remain implementation/integration dependencies; their new deliverables have not been imported or certified here. Task 08 separately reported no live portfolio artifact. No user access or budget was inferred from installed tools or BYOK direction.
+During the initial baseline audit, Task 01 had no final integrated Tasks 02–08 commit to supply. Those historical checks cover **baseline plus Task 09's scoped additions**. The later combined-source appendix separately audits the published integration, without rebinding these earlier results. Task 08 supplied no live generated portfolio artifact. No user access or budget was inferred from installed tools or BYOK direction.
 
 The [source inventory](../evidence/task-09/source-inventory.json) binds 304 implementation/configuration/test files with per-file SHA-256 and an aggregate source digest. It excludes historical evidence directories and uses the stated stable JSON encoding. [Evidence manifest](../evidence/task-09/manifest.json) records the audited source commit, tool versions, artifact hashes and absent release identities. Source code hashes and template candidate file hashes are not a released source manifest, signed Linux image or authenticated execution receipt. Live source/template/policy/runtime/deployment identities remain null until actual approved collectors supply them.
 
@@ -116,3 +116,80 @@ Task 01 subsequently integrated the reviewed authored commits into `codex/demo-d
 ## Task 03 committed handoff review
 
 Task 09 independently read commit `b3fb6f6771c482a09fc0a431240e7d3c250172d6` from [PR #13](https://github.com/shellcat-com/forge-ai/pull/13), verified all **26 evidence artifact hashes and 24 owned source hashes** against Git object bytes, and confirmed its successful exact-head [CI run](https://github.com/shellcat-com/forge-ai/actions/runs/34437962419). The original `engine/operations/provider-evaluation.ts` and its frozen provider corpus are byte-identical to the baseline. The reference-app diff only adds a portfolio entry bound to specification digest `6bbce92a1a970fbf37fc789858a839efbf99c8198b13eb62e99a7d7fe9be1020`; task-board/Pomodoro definitions are unchanged. [Review evidence](../evidence/task-09/task03-handoff-review.json) retains the precise diff and CI identity. This verifies the committed handoff binding, not an independent replay of acquisition/export/database execution. Task 03 still labels the release candidate, real Linux execution false and provider generation false. Its license/provenance caveats, D7 and final combined/live gates remain open; no Task 03 implementation was imported here.
+
+## Combined-source independent audit
+
+The frozen integrated implementation audited read-only is **`4dacd0255e4a04648424eb0b0044c6658b46a014`**, Git tree **`dcc11d680e196ccfdfa367a56c0e7cf882d850d6`**, published by Task 01 on `codex/demo-delivery-baseline`. Task 09 created a separate detached audit worktree and changed no implementation owned by Tasks 01–08. The original 304-file inventory and manifest remain bound to `2437ec3`; they have not been relabeled as combined evidence.
+
+**Independent retained-evidence check:** all **529/529** SHA-256 comparisons matched: 220 current source/evidence entries across nine coordinator/worker manifests, 304 historical Task 09 source entries and five historical candidate-file hashes. The historical entries were checked against their original Git commit. [Complete records](../evidence/task-09/combined-evidence-integrity.json) contain expected/observed digests and commit for every comparison. Published normalized log hashes were checked; raw pre-normalization hashes were not misrepresented as hashes of normalized files. These checks establish byte integrity, not trusted runtime attestation.
+
+**Combined tests:** Task 09 independently queried [CI 34439062868](https://github.com/shellcat-com/forge-ai/actions/runs/34439062868), confirming success at the exact frozen SHA for dependency install, lint, types, tests, production build, native control constraints and standalone control build. [CI receipt](../evidence/task-09/combined-ci.json). Task 01 separately reports a fresh GitHub clone with its own `npm ci`, Node 24.20.0 and the declared npm 11.11.0: `npm run verify` **794 passed / 5 optional skips**, native control **45**, opt-in migration **1**, identity PostgreSQL/Chrome **11**, preview Chrome **21**, final identity operator races **2**, baseline browser **25 passed / 15 gated**, runner Python **21**, template Python **5**, plus disabled API/worker checks. Those are coordinator executions, not additional independent Task 09 runs. This resolves the clean combined toolchain-reproduction gap; it does not turn synthetic credentials, fixture gates, Python simulations or gated browser cases into live evidence.
+
+### Boundaries confirmed in the combined source
+
+| Area | Implemented supporting evidence | Release dependency still open |
+| --- | --- | --- |
+| Control and identity | Disabled-by-default control config; explicit loopback fixture mode, OIDC/tenant/CSRF/revocation modules and native race tests | `index.ts` still constructs fixture identity/stage/cleanup adapters. Real Better Auth lifecycle, route authority and shared lock composition are unmounted. |
+| BYOK/errors/spend | Exact endpoint/model registry, bounded failure taxonomy, TLS-pinned destination checks, encrypted versioned credential CAS, per-call reservation/uncertainty tests | No production `CallDispatchGate`, installed live policy/price, authenticated credential route or live source stage. Reserved-attempt cleanup, global settlement and canonical migration integration remain required. |
+| Runtime, abuse and failures | Linux executor/guest/image modules and host/lease/network/cleanup simulations | Approved Linux/KVM access, immutable image, real external checks and actual abuse/partition/crash cleanup remain unqualified. No host execution or Docker fixture establishes containment. |
+| Storage/restore | Encrypted PostgreSQL object versions, authorization/adoption proposal, local synthetic backup/restore tests | Canonical schema and actual worker-transaction adoption are absent. Tiny same-cluster recovery is not deployed separate-target backup/PITR or accepted RPO/RTO. |
+| Preview | Native local HTTPS/browser/SQL tests for tickets, tenant isolation, revocation and final identity lock race | Canonical gateway routes, exact ready guest authority, deployed DNS/TLS/site/cookie behavior and never-reused live hosts remain unconnected. |
+| Template/export/publication | Exact Task 03 release-candidate hashes, lock/provenance/license inventories and platform scaffold export; Task 08 fenced static-publication modules | No new provider-generated export reproduced independently; Linux image, license compatibility and actual public generated-source deployment remain open. |
+
+Only `0001_control.sql`, `0002_durable_control.sql` and `0003_immutable_source_bridge.sql` are canonical engine migrations. The proposed identity/BYOK/artifact/preview changes have not become approved `0004`–`0007` migrations. Source/policy/runtime/deployment release identities remain absent. Changing environment flags or supplying a BYOK key cannot resolve these dependencies.
+
+The A01–A22 matrix above retains its **blocked final-acceptance** disposition. In particular, A21 now has exact combined CI and clean application/native/browser support, but its complete affected legacy/sample/import/export browser acceptance is still gated. A11/A17 gain provider/accounting contract and native synthetic support; A06/A14 gain local identity/gateway race evidence; A18 gains local encrypted recovery support. None establishes the deployed/live condition stated in its gate. A22 remains **0 of at least 30 live attempts**, with latency and cost distributions **null**, and A20 remains an unrun real build-load campaign. The original 20-request loopback measurement is unchanged. Approved new billable spend remains **$0**.
+
+### Public repository and distribution follow-up
+
+The complete current `npm pack --dry-run --ignore-scripts --json` inventory has **762 entries**, **28,523,107 compressed / 33,571,228 unpacked bytes**. [Inventory](../evidence/task-09/combined-package-inventory.json) retains every path/size/mode, archive list and old-allowlist omissions. The root remains `private:true`; no package was uploaded. The old allowlist is **stale, unapplied and unsafe to adopt as-is**: it omits 14 new runner paths, including the executor, guest protocol and image assembler. Task 01 received this finding and owns any replacement. Root `package-lock.json` is still excluded by npm. Public logs/research ZIPs and unresolved media rights/privacy remain distribution blockers; package filtering would not sanitize Git history.
+
+Gitleaks 8.30.1 scanned the frozen source's **46-commit ancestry** and returned **20 findings**: 14 SHA-field false positives, two public npm signing keys, two prose/Git-argument matches and two occurrences of the deliberate scanner fixture. No real credential was identified. [Reviewed summary](../evidence/task-09/combined-public-audit.json) publishes no matched secret bytes. Current tracked text still has personal local paths in **43 files**; the account-scoped artwork user-ID pattern has zero current matches after Task 08's narrow metadata fix. This does not clear historical copies or unreviewed screenshot/video frames. Existing MIT bytes remain unchanged; third-party media rights and Task 03's dependency notice/compatibility caveats remain open.
+
+The guide now reflects the combined OpenAI registry restriction, unsupported protocols, credential deletion/backup limitations, missing dispatch composition, declared npm version and stale package proposal. The README link/setup change was handled by Task 01. No shared README, manifest, lockfile, migration or license was edited by Task 09.
+
+### Reproduce this audit
+
+Retain the frozen checkout separately from this report checkout; generated audit outputs must go outside the clean audited checkout. With Node 24.20.0/npm 11.11.0 on PATH:
+
+```sh
+git clone https://github.com/shellcat-com/forge-ai.git /tmp/forge-acceptance-source
+git -C /tmp/forge-acceptance-source checkout 4dacd0255e4a04648424eb0b0044c6658b46a014
+cd /tmp/forge-acceptance-source
+npm pack --dry-run --ignore-scripts --json > /tmp/forge-combined-pack.json
+python3 <task09-report-checkout>/docs/reports/evidence/task-09/audit-combined.py \
+  --repository /tmp/forge-acceptance-source \
+  --commit 4dacd0255e4a04648424eb0b0044c6658b46a014 \
+  --package-inventory /tmp/forge-combined-pack.json \
+  --output /tmp/forge-acceptance-review
+npm ci
+npm run verify
+npm run test:db:control
+npm run control:build
+python3 scripts/check-baseline-browser.py
+```
+
+Task 09 ran the Git-byte/package helper twice and reproduced both JSON outputs byte-for-byte. Full/native/browser reproduction commands above are the established clean setup; the final combined full suite was coordinated through Task 01 to avoid competing database/disk resources. The independently queried exact-SHA CI receipt is retained separately. The historical Task 09 full/native/browser logs remain available above. Optional/live skips and prior failed attempts are preserved.
+
+### Separate delivery outcomes
+
+| Outcome | Disposition |
+| --- | --- |
+| Task 09 code/test/report completion | **Complete for the scoped independent work**, with passing original owned tests, exact-source combined CI and byte-integrity/package review. Shared service composition is incomplete and explicitly disabled. |
+| First live generated demonstration | **Blocked.** Anonymous Vercel availability-page reachability passed; a real provider-generated portfolio, bound deployment and clean generated-app reproduction do not exist in the supplied evidence. |
+| Private-alpha acceptance | **Blocked.** Live A01–A22/D1–D8 conditions, real identities/runtime/provider/storage/preview, native accessibility controls and affordable authorized campaigns remain open. |
+| Production readiness | **Not established.** Operations ownership, qualified recovery, abuse/security/availability and public-distribution review remain necessary beyond any portfolio. |
+
+The specific remaining inputs are approved runtime/identity/storage/preview access, the integrated shared authority/schema/lifecycle/accounting implementation, an exact provider/model with an explicit numeric spending envelope, and then actual generated source/export/deployment and retained live campaign evidence. Media/dependency redistribution decisions and native browser zoom/reduced-motion checks remain separate gates. No blocked gate was passed for a deadline.
+
+### Final source delta and retained regression evidence
+
+The final audited implementation is **`88a5a39daeabe088a119f871166333975588c1b1`**. Task 09 independently verified that its only implementation difference from `4dacd02` is five added CSS lines in `src/app/hosting/hosting.css`: `body:has(> .hosted-site) { min-width: 0; }`. The rule applies to the standalone hosting root. Shared engine, migrations, package/lock and other application source bytes are unchanged; intervening changes are reports/evidence. [Exact diff and review](../evidence/task-09/final-source-delta-review.json). All 529 prior manifest comparisons still match at this final source, with historical source bindings preserved.
+
+Task 01 retained the initial canonical `/hosting` CSS-zoom failure at 390px and routed the fix through Task 08. Task 09 independently checked **48/48** coordinator artifact hashes in the combined/final-delta manifests published at evidence commit **`f510a5f8f7480b517f7e9415cf20a062540ca008`**, plus **59/59** bound combined source hashes. Final regression receipts report **794 passed / 5 optional skips** and build, baseline browser **25 passed / 15 gated**, and **six** canonical hosting theme/viewport cases with keyboard/reflow/CSS-zoom/media-emulation support. The exact invoked hosting harness and original failure are retained. These executions and screenshot inspections were performed by Task 01; Task 09 independently verified their committed bytes and reviewed their classification. Actual native browser zoom and OS reduced-motion remain **NOT RUN**. No generated-preview or live-portfolio pass follows from these platform-page results.
+
+[Final exact-source CI 34439679978](https://github.com/shellcat-com/forge-ai/actions/runs/34439679978) independently reports success at `88a5a39`; [receipt](../evidence/task-09/final-ci.json). The final clean rebuild used the same independently installed Node 24.20.0/npm 11.11.0 dependencies with unchanged lockfile and removed its own build output first. It was not a second independent Task 09 full-suite run.
+
+A second complete package inventory at `88a5a39` contains **778 entries**, **28,900,077 compressed / 34,012,939 unpacked bytes**; [all paths](../evidence/task-09/final-package-inventory.json). Task 09's two package scans used Node 24.20.0 with bundled npm **11.19.0**, distinct from Task 01's declared-version clean reproduction. A Gitleaks delta scan of three additional non-merge commits found two SHA-field false positives; the initial ancestry findings remain retained separately. Personal-path file count remains 43. New report evidence may enlarge later package inventories; these counts bind their stated commits. No distribution or acceptance blocker was removed by this narrow CSS fix.
+
+For the final delta reproduction, substitute `88a5a39daeabe088a119f871166333975588c1b1` in the checkout/helper commands above. The guide, report and new audit artifacts are the only final Task 09 changes. PR #10 remains the single validation PR, automatically marked merged when Task 01 integrated its earlier commits into the feature-branch base; Task 01's PR #8 to `master` remains draft. This final report commit is pushed on the same Task 09 branch for Task 01's authored integration. No merge, force-push, duplicate PR or release enablement was performed by Task 09.
