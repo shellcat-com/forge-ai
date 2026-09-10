@@ -53,3 +53,12 @@ Use Node24.20.0/npm11.11.0 and a fresh checkout for clean reproduction; distingu
 Final release requires genuine reproducible app generation, two-user isolation, containment/fencing, durable persistence, preview revocation, publication/rollback, fresh-session production access and approved bounded load/operations evidence. Preserve original A01–A22/D1–D8 gates. A laptop without an approved runtime must report generation unavailable. No live load or billable API campaign has an applicable new budget; current authorized new billable spend is$0.
 
 MIT is preserved; no license selection/change is authorized. Earlier package inventories and stale allowlists remain historical and must be recomputed against the actual release target before distribution decisions. Native browser zoom/OS motion, real generated portfolio and live alpha/production acceptance remain open; the availability site closes none of them.
+
+
+## Reviewed shared-document and release UI findings
+
+Task01 corrected `docs/self-hosting.md` and `docs/provider-integration.md` against existing persistence/worker/provider source, removing stale future-milestone and contract-only claims. Keyless page inspection is now explicitly separated from unavailable release generation; no code or environment defaults changed.
+
+New Task09 found the fresh `/app` helper recommending “Start npm run worker to enable generation.” Task01 confirmed the string in `src/server/projects/service.ts:239` and its display in `src/components/workspace.tsx`. This is **OPEN / release-safe onboarding FAIL**: the legacy worker instruction does not explain the approved-runtime prerequisite. The new Task04 UI owner is not yet identified, so no existing BYOK worker is silently reassigned and no shared UI edit is made. Task09 owns its screenshot/reproduction evidence; this source check does not claim a new browser execution or completed fix. `/hosting` continues to state unavailable honestly.
+
+The new Task09 requested a **review-only** PR handoff. Its forthcoming release report/guide branch must not be merged or integrated automatically. Keep its baselineefa13a9 results independent, including the separately recorded npm11.19 platform-scaffold export versus npm11.11 root reproduction. Shared docs may link its guide after an explicitly reviewed integration; allocated paths are not evidence that files are already in the canonical tree.
