@@ -3,6 +3,7 @@ import { z } from 'zod'
 import { canonicalJson } from '../contracts/canonical.ts'
 import { uuid } from '../contracts/primitives.ts'
 import type { ImmutableObjectBackend } from './store.ts'
+import { ObjectCapacityError } from './capacity.ts'
 
 export const objectByteCap = 32 * 1024 * 1024
 export const keyIdSchema = z.string().regex(/^[A-Za-z0-9][A-Za-z0-9._-]{0,95}$/)
@@ -77,7 +78,8 @@ export class EncryptedObjectBackend implements ImmutableObjectBackend {
         ciphertext,
       })
       return { version }
-    } catch {
+    } catch (error) {
+      if (error instanceof ObjectCapacityError) throw error
       throw new Error('Object write unavailable')
     } finally {
       secret?.fill(0)

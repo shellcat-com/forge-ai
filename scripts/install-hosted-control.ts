@@ -15,6 +15,8 @@ if (!expectedDatabase || config.database !== expectedDatabase)
   throw new Error('Explicit dedicated database name confirmation required')
 const output = process.env.FORGE_INSTALL_SECRET_OUTPUT
 const schemaOnly = process.env.FORGE_INSTALL_SCHEMA_ONLY === 'true'
+const objectsOnly = process.env.FORGE_INSTALL_ONLY_OBJECT_LOGINS === 'true'
+if (schemaOnly && objectsOnly) throw new Error('Select schema-only or object-logins installation')
 if (!schemaOnly) {
   if (!output || !resolve(output).includes('/.private/'))
     throw new Error('An ignored .private output path is required')
@@ -108,6 +110,9 @@ try {
     'docs/examples/public-auth-grants.sql',
     'engine/migrations/0004_hosted_identity.sql',
     'engine/migrations/0005_hosted_byok.sql',
+    'engine/migrations/0006_encrypted_objects.sql',
+    'docs/examples/hosted-object-version-receipt.sql',
+    'docs/examples/hosted-object-database-grants.sql',
     'docs/examples/hosted-control-database-grants.sql',
   ]) {
     stage = path
@@ -130,6 +135,39 @@ try {
     })
     console.log(`Verified ${path}`)
   }
+  stage = 'bounded encrypted storage policy'
+  await db.query(`INSERT INTO forge_objects.policy(singleton,orphan_grace_seconds,deletion_grace_seconds,recovery_window_seconds)
+    VALUES(true,3600,86400,86400) ON CONFLICT(singleton) DO NOTHING`)
+  await transaction(async () => {
+    if ((await db.query('SELECT singleton FROM forge_objects.capacity WHERE singleton')).rowCount)
+      return
+    // A missing policy is reconstructed from retained bytes, never from zero.
+    // Neon migration owners have BYPASSRLS; other supported migration owners
+    // need explicit temporary guard authority to read the FORCE RLS relation.
+    const authority = (
+      await db.query(
+        "SELECT rolsuper OR rolbypassrls AS bypass,pg_has_role(current_user,'forge_object_guard','MEMBER') AS guard_member FROM pg_roles WHERE rolname=current_user"
+      )
+    ).rows[0]
+    if (!authority.bypass) {
+      if (!authority.guard_member) await db.query('GRANT forge_object_guard TO CURRENT_USER')
+      await db.query('SET LOCAL ROLE forge_object_guard')
+    }
+    const usage = (
+      await db.query(
+        'SELECT coalesce(sum(octet_length(ciphertext)),0)::bigint AS bytes,count(*)::integer AS objects FROM forge_objects.versions'
+      )
+    ).rows[0]
+    if (!authority.bypass) {
+      await db.query('RESET ROLE')
+      if (!authority.guard_member) await db.query('REVOKE forge_object_guard FROM CURRENT_USER')
+    }
+    await db.query(
+      `INSERT INTO forge_objects.capacity(singleton,max_bytes,max_objects,used_bytes,used_objects)
+      VALUES(true,67108864,10000,$1,$2) ON CONFLICT(singleton) DO NOTHING`,
+      [usage.bytes, usage.objects]
+    )
+  })
   stage = 'disabled hosted settings'
   await db.query(`INSERT INTO forge_control.control_settings(singleton,environment,admission_enabled,worker_enabled,max_job_micros,max_queued,max_running,max_previews,max_pending_reviews)
     VALUES(true,'hosted',false,false,0,5,1,1,2) ON CONFLICT(singleton) DO NOTHING`)
@@ -137,13 +175,24 @@ try {
     stage = 'separate runtime logins'
     await transaction(async () => {
       for (const [name, role, variable] of [
-        ['forge_hosted_auth', 'forge_auth_api', 'FORGE_AUTH_DATABASE_URL'],
-        ['forge_hosted_api', 'forge_control_api', 'FORGE_CONTROL_API_DATABASE_URL'],
-        ['forge_hosted_worker', 'forge_control_worker', 'FORGE_CONTROL_WORKER_DATABASE_URL'],
+        ...(objectsOnly
+          ? []
+          : [
+              ['forge_hosted_auth', 'forge_auth_api', 'FORGE_AUTH_DATABASE_URL'],
+              ['forge_hosted_api', 'forge_control_api', 'FORGE_CONTROL_API_DATABASE_URL'],
+              ['forge_hosted_worker', 'forge_control_worker', 'FORGE_CONTROL_WORKER_DATABASE_URL'],
+              [
+                'forge_hosted_maintenance',
+                'forge_control_maintenance',
+                'FORGE_CONTROL_MAINTENANCE_DATABASE_URL',
+              ],
+            ]),
+        ['forge_hosted_object_reader', 'forge_object_reader', 'FORGE_OBJECT_READER_DATABASE_URL'],
+        ['forge_hosted_object_writer', 'forge_object_writer', 'FORGE_OBJECT_WRITER_DATABASE_URL'],
         [
-          'forge_hosted_maintenance',
-          'forge_control_maintenance',
-          'FORGE_CONTROL_MAINTENANCE_DATABASE_URL',
+          'forge_hosted_object_maintenance',
+          'forge_object_maintenance',
+          'FORGE_OBJECT_MAINTENANCE_DATABASE_URL',
         ],
       ]) {
         if ((await db.query('SELECT 1 FROM pg_roles WHERE rolname=$1', [name])).rowCount)

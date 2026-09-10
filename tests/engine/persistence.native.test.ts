@@ -66,7 +66,7 @@ beforeAll(async () => {
     ).toBe(false)
     await migrator.query(
       await readFile(
-        new URL('../../engine/artifacts/postgres-schema.proposal.sql', import.meta.url),
+        new URL('../../engine/migrations/0006_encrypted_objects.sql', import.meta.url),
         'utf8'
       )
     )
@@ -77,7 +77,8 @@ beforeAll(async () => {
     .query(`CREATE ROLE object_writer_test LOGIN; GRANT forge_object_writer TO object_writer_test;
    CREATE ROLE object_reader_test LOGIN; GRANT forge_object_reader TO object_reader_test;
    CREATE ROLE object_maintenance_test LOGIN; GRANT forge_object_maintenance TO object_maintenance_test;
-   INSERT INTO forge_objects.policy VALUES(true,3600,86400,86400)`)
+   INSERT INTO forge_objects.policy VALUES(true,3600,86400,86400);
+   INSERT INTO forge_objects.capacity(singleton,max_bytes,max_objects) VALUES(true,67108864,10000)`)
   writer = new PostgresCiphertextTransport(
     { ...db.config, user: 'object_writer_test' },
     'forge_object_writer'
@@ -554,3 +555,37 @@ it('restores control jobs and every available encrypted version into a separate 
     await rm(dir, { recursive: true, force: true })
   }
 }, 60000)
+
+it('serializes capacity reservations and preserves existing encrypted source after exhaustion', async () => {
+  const before = (await db.admin.query('SELECT * FROM forge_objects.capacity WHERE singleton')).rows[0]
+  await db.admin.query('UPDATE forge_objects.capacity SET max_bytes=used_bytes+10,max_objects=used_objects+2 WHERE singleton')
+  try {
+    const results = await Promise.allSettled(Array.from({ length: 8 }, () => store.put(scope, 'source-blob', Buffer.from('12345'))))
+    const accepted = results.filter((r) => r.status === 'fulfilled')
+    expect(accepted).toHaveLength(2)
+    for (const r of results) {
+      if (r.status === 'rejected') expect(r.reason).toMatchObject({ code: 'OBJECT_CAPACITY_UNAVAILABLE' })
+      else expect(Buffer.from(await store.read(scope, r.value)).toString()).toBe('12345')
+    }
+    const after = (await db.admin.query('SELECT * FROM forge_objects.capacity WHERE singleton')).rows[0]
+    expect(Number(after.used_bytes) - Number(before.used_bytes)).toBe(10)
+    expect(after.used_objects - before.used_objects).toBe(2)
+    await expect(writer.pool.query('UPDATE forge_objects.capacity SET max_bytes=67108864')).rejects.toThrow('permission denied')
+  } finally {
+    await db.admin.query('UPDATE forge_objects.capacity SET max_bytes=67108864,max_objects=10000 WHERE singleton')
+  }
+})
+
+it('counts only retained ciphertext bytes and permanent identities after purge; missing capacity fails closed', async () => {
+  const row = (await db.admin.query(`SELECT used_bytes,used_objects,
+    (SELECT coalesce(sum(octet_length(ciphertext)),0) FROM forge_objects.versions) AS actual_bytes,
+    (SELECT count(*) FROM forge_objects.versions) AS actual_objects FROM forge_objects.capacity WHERE singleton`)).rows[0]
+  expect(Number(row.used_bytes)).toBe(Number(row.actual_bytes))
+  expect(Number(row.used_objects)).toBe(Number(row.actual_objects))
+  await db.admin.query('DELETE FROM forge_objects.capacity')
+  try {
+    await expect(store.put(scope, 'source-blob', Buffer.from('not saved'))).rejects.toMatchObject({ code: 'OBJECT_CAPACITY_UNAVAILABLE' })
+  } finally {
+    await db.admin.query('INSERT INTO forge_objects.capacity VALUES(true,67108864,10000,$1,$2)', [row.used_bytes,row.used_objects])
+  }
+})

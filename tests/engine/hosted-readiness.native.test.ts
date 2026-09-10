@@ -31,6 +31,7 @@ beforeAll(async () => {
     '0002_runtime_version.sql',
     '0003_unified.sql',
     '0005_public_auth.sql',
+    '0007_email_budget.sql',
   ])
     await cluster.admin.query(
       await readFile(new URL(`../../drizzle/${name}`, import.meta.url), 'utf8')
@@ -41,7 +42,7 @@ beforeAll(async () => {
     await cluster.admin.query(
       await readFile(new URL(`../../engine/migrations/${name}`, import.meta.url), 'utf8')
     )
-  for (const path of ['public-auth-grants.sql', 'hosted-control-database-grants.sql'])
+  for (const path of ['public-auth-grants.sql', 'hosted-control-database-grants.sql', 'hosted-object-version-receipt.sql'])
     await cluster.admin.query(
       await readFile(new URL(`../../docs/examples/${path}`, import.meta.url), 'utf8')
     )
