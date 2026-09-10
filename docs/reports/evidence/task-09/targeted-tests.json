@@ -1,0 +1,61 @@
+{
+  "origin": "synthetic-unit-inputs-not-live-receipts",
+  "total": 13,
+  "passed": 13,
+  "failed": 0,
+  "skipped": 0,
+  "tests": [
+    {
+      "name": "rejects a passing receipt bound to stale controlCommit",
+      "status": "passed"
+    },
+    {
+      "name": "rejects a passing receipt bound to stale sourceDigest",
+      "status": "passed"
+    },
+    {
+      "name": "rejects a passing receipt bound to stale templateDigest",
+      "status": "passed"
+    },
+    {
+      "name": "rejects a passing receipt bound to stale policyDigest",
+      "status": "passed"
+    },
+    {
+      "name": "rejects a passing receipt bound to stale runtimeDigest",
+      "status": "passed"
+    },
+    {
+      "name": "rejects a passing receipt bound to stale deploymentDigest",
+      "status": "passed"
+    },
+    {
+      "name": "never turns a matching digest or self-declared live record into trusted release authority",
+      "status": "passed"
+    },
+    {
+      "name": "requires complete live identities and keeps scaffold/fixture checks supporting only",
+      "status": "passed"
+    },
+    {
+      "name": "does not count CSS zoom or media emulation as actual browser/OS controls",
+      "status": "passed"
+    },
+    {
+      "name": "requires an anonymous portfolio observation, not an owner login",
+      "status": "passed"
+    },
+    {
+      "name": "retains failed attempts including failures from stale identities",
+      "status": "passed"
+    },
+    {
+      "name": "rejects duplicate receipts/attempts and unknown evidence fields",
+      "status": "passed"
+    },
+    {
+      "name": "verifies bytes and rejects tampering, missing files, traversal and external symlinks",
+      "status": "passed"
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+
+> forge-ai@0.1.0 verify
+> npm run lint && npm run typecheck && npm test && npm run build
+
+
+> forge-ai@0.1.0 lint
+> eslint .
+
+
+> forge-ai@0.1.0 typecheck
+> tsc -b --pretty false
+
+
+> forge-ai@0.1.0 test
+> vitest run
+
+▲ [WARNING] Cannot find base config file "expo/tsconfig.base" [tsconfig.json]
+
+    ../../../tsconfig.json:3:13:
+      3 │   "extends": "expo/tsconfig.base"
+        ╵              ~~~~~~~~~~~~~~~~~~~~
+
+
+ RUN  v4.1.11 /Users/biswaskhatiwada/Documents/ChatGPT/Forge AI _ Full-Stack App Generator
+
+(node:1522) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:1704) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  42 passed | 2 skipped (44)
+      Tests  532 passed | 4 skipped (536)
+   Start at  21:18:52
+   Duration  25.27s (transform 2.98s, setup 0ms, import 8.72s, tests 99.04s, environment 2.52s)
+
+
+> forge-ai@0.1.0 build
+> tsc -b && vite build
+
+▲ [WARNING] Cannot find base config file "expo/tsconfig.base" [tsconfig.json]
+
+    ../../../tsconfig.json:3:13:
+      3 │   "extends": "expo/tsconfig.base"
+        ╵              ~~~~~~~~~~~~~~~~~~~~
+
+vite v7.3.6 building client environment for production...
+transforming...
+node_modules/zod/v4/core/util.js (400:0): A comment
+
+"// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+
+in "node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/zod/v4/core/regexes.js (72:0): A comment
+
+"/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+ * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+ * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+
+in "node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+✓ 366 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                                1.00 kB │ gzip:  0.55 kB
+dist/assets/press-start-2p-latin-400-normal-KLytu4cr.woff      6.33 kB
+dist/assets/press-start-2p-latin-400-normal-_wFEWmAB.woff2    12.51 kB
+dist/assets/ibm-plex-mono-latin-400-normal-CvHOgSBP.woff      13.14 kB
+dist/assets/ibm-plex-mono-latin-500-normal-CB9ihrfo.woff      13.16 kB
+dist/assets/ibm-plex-mono-latin-700-normal-CNHXzs6v.woff      13.21 kB
+dist/assets/ibm-plex-mono-latin-400-normal-DMJ8VG8y.woff2     14.71 kB
+dist/assets/ibm-plex-mono-latin-500-normal-DSY6xOcd.woff2     14.89 kB
+dist/assets/ibm-plex-mono-latin-700-normal-7sUh57Bg.woff2     14.91 kB
+dist/assets/instrument-serif-latin-400-normal-BVbkICAY.woff   18.34 kB
+dist/assets/instrument-serif-latin-400-normal-DnYpCC2O.woff2  21.03 kB
+dist/assets/inter-latin-400-normal-C38fXH4l.woff2             23.66 kB
+dist/assets/inter-latin-500-normal-Cerq10X2.woff2             24.27 kB
+dist/assets/inter-latin-600-normal-LgqL8muc.woff2             24.45 kB
+dist/assets/inter-latin-400-normal-CyCys3Eg.woff              30.70 kB
+dist/assets/inter-latin-600-normal-CiBQ2DWP.woff              31.26 kB
+dist/assets/inter-latin-500-normal-BL9OpVg8.woff              31.28 kB
+dist/assets/main-CFx0g5Fv.css                                 41.17 kB │ gzip:  8.68 kB
+dist/assets/index-DsuCO-sc.js                                  2.00 kB │ gzip:  1.03 kB
+dist/assets/main-C6lg9Gua.js                                  59.14 kB │ gzip: 22.05 kB
+✓ built in 504ms

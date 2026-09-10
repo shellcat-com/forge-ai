@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "origin": "platform-authored-candidate-host",
+  "version": "postgres (PostgreSQL) 18.6",
+  "bootstrapSha256": "3a6cfcdb8219b652481f578c19f3b052fae111f8241c71f0ef56e9b9c56eca0e",
+  "initialMigrationSha256": "3b584bb76017fd598454ffaaa670f51c7a9f2c7e409f8ffb6387e09f67769ecf",
+  "additiveMigrationSha256": "eee06cb828aa1f5e2dae525486a54b441674b32df1aef91fc93b3db2b82dabc1",
+  "fresh": true,
+  "priorSeeded": true,
+  "defaultPrivileges": true,
+  "restrictedRoles": true,
+  "databaseRestart": true,
+  "exportMigrationReplay": true,
+  "exportAppliedHashRejection": true,
+  "cleanup": true,
+  "guestExecution": false,
+  "providerGeneration": false,
+  "isolationAcceptance": false,
+  "host": "macOS arm64",
+  "authentication": "socket-local-trust-with-NOLOGIN-bootstrap-and-separate-export-LOGIN-drill",
+  "scramGuestProvisioning": false,
+  "testedAt": "2026-09-10T04:32:59.890Z"
+}

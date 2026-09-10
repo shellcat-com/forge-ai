@@ -1,0 +1,30 @@
+{
+  "sourceSha256": {
+    "engine/preview/control-http.ts": "91cfef5d3096c3f7f85b7af45c4d0e01bfdf268ce7ec5c9f636d6ad4bda2817b",
+    "engine/preview/control.ts": "657df25a1fab291f09a0df48903232b5141e1b2aee37c5a5cfd7e3c69fea6a56",
+    "engine/preview/gateway.ts": "007238c35f94e89a474374305de8bd2c38cda56bca55c969500c9ce13ae8c71e",
+    "engine/preview/host-runtime.ts": "b873f53e24583dd1d3e187f040a68243d946e25e5dc5586895ff622fae6d7b15",
+    "engine/preview/hostnames.ts": "f1f8dc56d1e1e5c11880a9f82e01b067888b743edf8c8a9823cb97d5a18eb8b3",
+    "engine/preview/policy.ts": "4d18de821b008e68831f5977dcc938d7546e3288426f43ea8e5ff552a6c396df",
+    "engine/preview/proposals/0007_preview.sql": "76377399f4999809ca63bd9b00fd278c9f91fa8a9c428f3828070bbddd85ea83",
+    "tests/engine/preview-control.native.test.ts": "4869456552f0563a157bd552f3395b23bbb1ba08b0e8f27ab3904addbbe96858",
+    "tests/engine/preview-host.test.ts": "924b3eb597d6cf0f38d06f9c2a517dc0f1ad66ebcafa91a7db4d7a1127b3ea78",
+    "tests/engine/preview-hostnames.test.ts": "45a6dfb2819ff3359d4ffac5dbd7675bc8d744866b6e19cd68ccc427e40831b8",
+    "tests/engine/preview-policy.test.ts": "0841314cec90170c5411a252a69382af30471535780cfd658e072f779462d476",
+    "tests/harness/preview.ts": "8b939b430fb24de3e0e100608861854b22c52c31a24f873d9f40c40f2a03a0c3",
+    "tests/preview/browser.ts": "70613fba96be9cdea93496b22fd3a935001b1ccc0c0975475ebc5edae3a9b28c",
+    "tests/preview/identity-race.ts": "c92956ead99dafc283fbebbb945c81d9a12b3a43e19261a10ee159bbe8431f05",
+    "tests/preview/tsconfig.json": "42681385e9a3e560cd6e2af3a6464b550364def7028c660598564d0482a7ed9c"
+  },
+  "evidenceSha256": {
+    "docs/reports/demo-delivery/evidence-task-07/browser.json": "be9d9c6f23c30229cbc794aa7f2d799fc3b112aac94cf36fa6093c69f0cce8a4",
+    "docs/reports/demo-delivery/evidence-task-07/control-build.log": "ba90c04c5207a72d9914dc6b9b790762a0656552143fa682c9578b835e4b91f9",
+    "docs/reports/demo-delivery/evidence-task-07/db-control.log": "2169d90463aafb29c708fa7bdeb5e2f60b3a38b052fa48be9527ba25aa66c0a0",
+    "docs/reports/demo-delivery/evidence-task-07/identity-race.json": "702550e8d1ff3f2589320caf512c0e0f225e513f065098b286de936397a46d07",
+    "docs/reports/demo-delivery/evidence-task-07/native.json": "6c5b4677d2e09b0409432c1dac56607806c740cee45feb67cf85871d5011f840",
+    "docs/reports/demo-delivery/evidence-task-07/publication.json": "0ba4fd423020549f8a8dd5f71022be753231f6afa8dd016e0eec83bc893d8e8b",
+    "docs/reports/demo-delivery/evidence-task-07/verification.json": "6e501dace328426c66f478b4281a60be28defab2c9821965271a11778b2c0d7d",
+    "docs/reports/demo-delivery/evidence-task-07/verify-initial-enospc.log": "9045d77e76a50dd31799ba2e9f44996572d80f7b99da0100fe43d09aa0ae0b23",
+    "docs/reports/demo-delivery/evidence-task-07/verify-shared-dependencies.log": "79e341190e4a9ae5707604746bf946f9f77e6e5bc8f773e50c816f6b54989f72"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "codeCommit": "591f87c7a2e9e8f8f18b356852e922f2d3c1bf19",
+  "status": "baseline-interface-hashes-not-live-acceptance",
+  "workerSignoffsReceived": [],
+  "files": {
+    "engine/contracts/provider.ts": "0c583d1aeaed517176737798b525b8359ddfdc04a084f9e8e40e3750b4765945",
+    "engine/control/stage-adapter.ts": "af68b5ea004b923097deb151728fdc0eda5d6c6056febce6cdb68a1c7ee92c42",
+    "engine/integration/contracts.ts": "9a62cbb9ce156f60280a456333a4bcb51592cb7a0924f02f5b5228568fa6cf36",
+    "engine/control/identity.ts": "05fbc3de3c83fe344dfbad034531052a753480a639b867c096008fbaba43869b",
+    "engine/artifacts/store.ts": "5a98713ad8b1ef2e038a1c0db588d7d5e803a779cabff0df5d0e0c798d72db4a",
+    "runner/host/lifecycle.ts": "346236aa6487c5cb4dd9673d5cb67e515783406e4a9bed149bb7b81ee6d8c0ac",
+    "engine/runner-client/index.ts": "3a8e6c2d3433447428495cc6934148cff90a22784e23a858c241cfc370bf5a18"
+  }
+}

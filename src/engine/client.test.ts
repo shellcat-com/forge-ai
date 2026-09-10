@@ -62,3 +62,54 @@ describe('engine browser transport (synthetic HTTP)', () => {
     expect(seen).toEqual([2]); expect(calls).toEqual([`/api/v1/jobs/${scope.jobId}/events`])
   })
 })
+
+describe('bounded source attachment transport with explicit HTTP fixtures', () => {
+  const digest = 'a'.repeat(64)
+  const headers = { 'Content-Type': 'text/plain', 'X-Source-Sha256': digest, 'X-Manifest-Digest': digest }
+  it('allows encoded source paths only in queries and rejects origin/fragment/path escapes', async () => {
+    const transport = vi.fn<typeof fetch>(async () => new Response('ok', { headers }))
+    const client = new EngineClient(transport)
+    expect(await client.attachment('/snapshots/id/file?path=app%2Fpage.tsx', { mediaType: 'text/plain' })).toMatchObject({ sha256: digest, manifestDigest: digest })
+    expect(transport.mock.calls[0][0]).toBe('/api/v1/snapshots/id/file?path=app%2Fpage.tsx')
+    for (const invalid of ['//evil.test/x', '/%2f%2fevil.test', '/a/../x', '/file#fragment', '/file\\path'])
+      await expect(client.attachment(invalid, { mediaType: 'text/plain' })).rejects.toThrow('INVALID_ENGINE_PATH')
+    expect(transport).toHaveBeenCalledTimes(1)
+  })
+  it('bounds declared and streamed attachment sizes and always cancels an over-limit reader', async () => {
+    const cancelled = vi.fn()
+    const client = new EngineClient(async () => new Response(new ReadableStream({ start(controller) { controller.enqueue(new Uint8Array(5)) }, cancel: cancelled }), { headers }))
+    await expect(client.attachment('/source', { mediaType: 'text/plain', maxBytes: 4 })).rejects.toThrow('ENGINE_RESPONSE_TOO_LARGE')
+    expect(cancelled).toHaveBeenCalledTimes(1)
+    const declared = new EngineClient(async () => new Response('small', { headers: { ...headers, 'Content-Length': String(32 * 1024 * 1024 + 1) } }))
+    await expect(declared.attachment('/source', { mediaType: 'text/plain' })).rejects.toThrow('ENGINE_RESPONSE_TOO_LARGE')
+    await expect(declared.attachment('/source', { mediaType: 'text/plain', maxBytes: 32 * 1024 * 1024 + 1 })).rejects.toThrow('INVALID_ENGINE_RESPONSE_LIMIT')
+  })
+  it('keeps ordinary JSON reads at 256 KiB and permits only an explicitly bounded larger review', async () => {
+    const client = new EngineClient(async () => Response.json({ fixture: 'x'.repeat(300 * 1024) }))
+    await expect(client.read('/changes', value => value)).rejects.toThrow('ENGINE_RESPONSE_TOO_LARGE')
+    expect(await client.read('/changes', value => value, undefined, { maxBytes: 512 * 1024 })).toHaveProperty('fixture')
+    await expect(client.read('/changes', value => value, undefined, { maxBytes: 33 * 1024 * 1024 })).rejects.toThrow('INVALID_ENGINE_RESPONSE_LIMIT')
+  })
+  it('aborts stalled attachment body readers and cancels their stream', async () => {
+    const cancelled = vi.fn(), controller = new AbortController()
+    const client = new EngineClient(async () => new Response(new ReadableStream({ cancel: cancelled }), { headers }))
+    const reading = client.attachment('/source', { mediaType: 'text/plain', signal: controller.signal })
+    await new Promise(resolve => setTimeout(resolve, 0)); controller.abort(new Error('Reader stopped'))
+    await expect(reading).rejects.toThrow('Reader stopped'); expect(cancelled).toHaveBeenCalledTimes(1)
+  })
+  it('enforces its 15-second deadline during a stalled attachment request', async () => {
+    const deadline = new AbortController(), timeout = vi.spyOn(AbortSignal, 'timeout').mockReturnValue(deadline.signal)
+    try {
+      const client = new EngineClient(() => new Promise<Response>(() => undefined))
+      const reading = client.attachment('/source', { mediaType: 'text/plain' })
+      deadline.abort(new Error('Deadline reached')); await expect(reading).rejects.toThrow('Deadline reached')
+      expect(timeout).toHaveBeenCalledWith(15_000)
+    } finally { timeout.mockRestore() }
+  })
+  it('clears CSRF on a malformed 401 and never leaks upstream text', async () => {
+    const client = new EngineClient(async () => new Response('<html>CANARY_SECRET</html>', { status: 401 }))
+    client.setCsrf('a'.repeat(43))
+    await expect(client.attachment('/source', { mediaType: 'text/plain' })).rejects.toThrow('ENGINE_UNAVAILABLE')
+    await expect(client.attachment('/exports', { method: 'POST', mediaType: 'application/zip', idempotencyKey: 'valid-stable-action' })).rejects.toThrow('SESSION_REQUIRED')
+  })
+})

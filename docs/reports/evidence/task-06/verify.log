@@ -1,0 +1,163 @@
+
+> forge-ai@0.2.0 verify
+> npm run lint && npm run typecheck && npm test && npm run build
+
+
+> forge-ai@0.2.0 lint
+> eslint .
+
+
+> forge-ai@0.2.0 typecheck
+> tsc --noEmit && tsc -p tsconfig.engine.json
+
+
+> forge-ai@0.2.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /private/tmp/forge-task06-persistence
+
+ ❯ tests/engine/e4-control-http.test.ts (2 tests | 2 skipped) 2736ms
+ ❯ tests/engine/e2-control-integration.test.ts (19 tests | 19 skipped) 2874ms
+ ❯ tests/engine/persistence.native.test.ts (4 tests | 4 skipped) 3345ms
+ ❯ tests/engine/e4-repair-integration.test.ts (4 tests | 4 skipped) 3428ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/engine/e2-control-integration.test.ts [ tests/engine/e2-control-integration.test.ts ]
+Error: initdb: 2026-09-09 23:27:05.756 CDT [32538] PANIC:  could not truncate file "global/1214_fsm" to 2 blocks: No space left on device
+2026-09-09 23:27:05.756 CDT [32538] CONTEXT:  while truncating relation "pg_catalog.pg_shdepend" to 0 blocks
+2026-09-09 23:27:05.756 CDT [32538] STATEMENT:  VACUUM pg_shdepend;
+
+sh: line 1: 32538 Abort trap: 6           "/opt/homebrew/Cellar/postgresql@14/14.18/bin/postgres" --single -F -O -j -c search_path=pg_catalog -c exit_on_error=true template1 > /dev/null
+child process exited with exit code 134
+initdb: removing data directory "/var/folders/y8/bczj85r901sgf3cl21ntxjym0000gn/T/forge-e1-pg-BqxrBl/data"
+
+ ❯ run tests/engine/native-postgres.ts:12:42
+     10|   const run = (cmd: string, args: string[]) => {
+     11|     const r = spawnSync(cmd, args, { encoding: 'utf8', timeout: 60000 …
+     12|     if (r.error || r.status !== 0) throw new Error(`${cmd}: ${r.error?…
+       |                                          ^
+     13|     return r.stdout
+     14|   }
+ ❯ startNativePostgres tests/engine/native-postgres.ts:25:5
+ ❯ createE2ControlHarness tests/harness/e2-control.ts:34:20
+ ❯ tests/engine/e2-control-integration.test.ts:29:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/engine/e4-control-http.test.ts [ tests/engine/e4-control-http.test.ts ]
+Error: initdb: 2026-09-09 23:27:05.725 CDT [32537] PANIC:  could not truncate file "base/1/2608_vm" to 0 blocks: No space left on device
+2026-09-09 23:27:05.725 CDT [32537] CONTEXT:  while truncating relation "pg_catalog.pg_depend" to 0 blocks
+2026-09-09 23:27:05.725 CDT [32537] STATEMENT:  VACUUM pg_depend;
+
+sh: line 1: 32537 Abort trap: 6           "/opt/homebrew/Cellar/postgresql@14/14.18/bin/postgres" --single -F -O -j -c search_path=pg_catalog -c exit_on_error=true template1 > /dev/null
+child process exited with exit code 134
+initdb: removing data directory "/var/folders/y8/bczj85r901sgf3cl21ntxjym0000gn/T/forge-e1-pg-an1SKX/data"
+
+ ❯ run tests/engine/native-postgres.ts:12:42
+     10|   const run = (cmd: string, args: string[]) => {
+     11|     const r = spawnSync(cmd, args, { encoding: 'utf8', timeout: 60000 …
+     12|     if (r.error || r.status !== 0) throw new Error(`${cmd}: ${r.error?…
+       |                                          ^
+     13|     return r.stdout
+     14|   }
+ ❯ startNativePostgres tests/engine/native-postgres.ts:25:5
+ ❯ createE2ControlHarness tests/harness/e2-control.ts:34:20
+ ❯ tests/engine/e4-control-http.test.ts:18:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/engine/e4-repair-integration.test.ts [ tests/engine/e4-repair-integration.test.ts ]
+Error: initdb: 2026-09-09 23:27:05.879 CDT [32545] FATAL:  could not extend file "base/1/2836": No space left on device
+2026-09-09 23:27:05.879 CDT [32545] HINT:  Check free disk space.
+2026-09-09 23:27:05.879 CDT [32545] STATEMENT:  CREATE OR REPLACE FUNCTION ts_debug(config regconfig, document text,
+	    OUT alias text,
+	    OUT description text,
+	    OUT token text,
+	    OUT dictionaries regdictionary[],
+	    OUT dictionary regdictionary,
+	    OUT lexemes text[])
+	 RETURNS SETOF record
+	 LANGUAGE sql
+	 STABLE PARALLEL SAFE STRICT
+	BEGIN ATOMIC
+	select
+	    tt.alias AS alias,
+	    tt.description AS description,
+	    parse.token AS token,
+	    ARRAY ( SELECT m.mapdict::regdictionary
+	            FROM pg_ts_config_map AS m
+	            WHERE m.mapcfg = $1 AND m.maptokentype = parse.tokid
+	            ORDER BY m.mapseqno )
+	    AS dictionaries,
+	    ( SELECT mapdict::regdictionary
+	      FROM pg_ts_config_map AS m
+	      WHERE m.mapcfg = $1 AND m.maptokentype = parse.tokid
+	      ORDER BY ts_lexize(mapdict, parse.token) IS NULL, m.mapseqno
+	      LIMIT 1
+	    ) AS dictionary,
+	    ( SELECT ts_lexize(mapdict, parse.token)
+	      FROM pg_ts_config_map AS m
+	      WHERE m.mapcfg = $1 AND m.maptokentype = parse.tokid
+	      ORDER BY ts_lexize(mapdict, parse.token) IS NULL, m.mapseqno
+	      LIMIT 1
+	    ) AS lexemes
+	FROM ts_parse(
+	        (SELECT cfgparser FROM pg_ts_config WHERE oid = $1 ), $2
+	    ) AS parse,
+	     ts_token_type(
+	        (SELECT cfgparser FROM pg_ts_config WHERE oid = $1 )
+	    ) AS tt
+	WHERE tt.tokid = parse.tokid;
+	END;
+
+2026-09-09 23:27:05.883 CDT [32545] PANIC:  could not create file "pg_logical/replorigin_checkpoint.tmp": No space left on device
+sh: line 1: 32545 Abort trap: 6           "/opt/homebrew/Cellar/postgresql@14/14.18/bin/postgres" --single -F -O -j -c search_path=pg_catalog -c exit_on_error=true template1 > /dev/null
+child process exited with exit code 134
+initdb: removing data directory "/var/folders/y8/bczj85r901sgf3cl21ntxjym0000gn/T/forge-e1-pg-RMxRHH/data"
+
+ ❯ run tests/engine/native-postgres.ts:12:42
+     10|   const run = (cmd: string, args: string[]) => {
+     11|     const r = spawnSync(cmd, args, { encoding: 'utf8', timeout: 60000 …
+     12|     if (r.error || r.status !== 0) throw new Error(`${cmd}: ${r.error?…
+       |                                          ^
+     13|     return r.stdout
+     14|   }
+ ❯ startNativePostgres tests/engine/native-postgres.ts:25:5
+ ❯ createE2ControlHarness tests/harness/e2-control.ts:34:20
+ ❯ tests/engine/e4-repair-integration.test.ts:13:35
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/engine/persistence.native.test.ts [ tests/engine/persistence.native.test.ts ]
+Error: initdb: 2026-09-09 23:27:05.763 CDT [32541] FATAL:  could not extend file "global/1214": No space left on device
+2026-09-09 23:27:05.763 CDT [32541] HINT:  Check free disk space.
+2026-09-09 23:27:05.763 CDT [32541] STATEMENT:  --
+	-- We also set up some things as accessible to standard roles.
+	--
+
+	GRANT EXECUTE ON FUNCTION pg_ls_logdir() TO pg_monitor;
+
+2026-09-09 23:27:05.800 CDT [32541] PANIC:  could not rename file "pg_logical/replorigin_checkpoint.tmp" to "pg_logical/replorigin_checkpoint": No space left on device
+sh: line 1: 32541 Abort trap: 6           "/opt/homebrew/Cellar/postgresql@14/14.18/bin/postgres" --single -F -O -j -c search_path=pg_catalog -c exit_on_error=true template1 > /dev/null
+child process exited with exit code 134
+initdb: removing data directory "/var/folders/y8/bczj85r901sgf3cl21ntxjym0000gn/T/forge-e1-pg-HXUUXh/data"
+
+ ❯ run tests/engine/native-postgres.ts:12:42
+     10|   const run = (cmd: string, args: string[]) => {
+     11|     const r = spawnSync(cmd, args, { encoding: 'utf8', timeout: 60000 …
+     12|     if (r.error || r.status !== 0) throw new Error(`${cmd}: ${r.error?…
+       |                                          ^
+     13|     return r.stdout
+     14|   }
+ ❯ startNativePostgres tests/engine/native-postgres.ts:25:5
+ ❯ tests/engine/persistence.native.test.ts:33:14
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  4 failed | 46 passed | 2 skipped (52)
+      Tests  570 passed | 33 skipped (603)
+   Start at  23:27:03
+   Duration  28.16s (transform 3.07s, setup 0ms, import 8.51s, tests 69.44s, environment 2.96s)

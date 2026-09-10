@@ -1,0 +1,11 @@
+
+ RUN  v4.1.11 /private/tmp/forge-task05-identity
+
+ ✓ tests/engine/oidc-identity.test.ts (26 tests) 89ms
+
+ Test Files  1 passed (1)
+      Tests  26 passed (26)
+   Start at  23:36:24
+   Duration  411ms (transform 70ms, setup 0ms, import 200ms, tests 89ms, environment 0ms)
+
+JSON report written to /private/tmp/forge-task05-identity/docs/reports/evidence/task-05/root-issuer-tests.json

@@ -1,0 +1,10 @@
+
+ RUN  v4.1.11 /private/tmp/forge-task01-final-reproduction
+
+ ✓ tests/engine/validation-native.test.ts (1 test) 860ms
+   ✓ runs reviewed synthetic SQL in a fresh native PostgreSQL cluster with limited roles (not isolated runner evidence)  860ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  23:59:03
+   Duration  988ms (transform 32ms, setup 0ms, import 58ms, tests 860ms, environment 0ms)

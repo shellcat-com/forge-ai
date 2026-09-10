@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "purpose": "independent-baseline-support-not-final-release-attestation",
+  "auditedSourceCommit": "2437ec323a824658bbb6dee77bf5a2807e0184e3",
+  "baselineCommit": "e533afe7ffce770d9e1326874956139ea55deb75",
+  "sourceDigest": "d332560b64f9e5bc6fa26cb0e92846b3967dc3aa366de8c7f26babba6433505e",
+  "sourceInventory": "source-inventory.json",
+  "sourceFileCount": 304,
+  "environment": {
+    "os": "Darwin",
+    "release": "25.3.0",
+    "architecture": "arm64",
+    "node": "24.20.0",
+    "npm": "11.19.0",
+    "manifestNpm": "11.11.0",
+    "postgres": "14.18",
+    "browserSuite": "local installed Google Chrome via Playwright",
+    "hardwareShared": true,
+    "cleanOwnNpmCi": true,
+    "sharedDependencies": false
+  },
+  "candidateFileHashes": {
+    "package-lock.json": "849678e40252047ab5ed464cb2541eb2edb77ae2f1da1a7f801f155499353e93",
+    "templates/next-postgres-v1/package-lock.json": "ce88882e5e2a00763896b4685bb964de44273905ba23d638fdeaac0b06157123",
+    "templates/next-postgres-v1/release.ts": "db285884ad8fb911a6cfa2e90aac533b4065c81788f3dbbcba13974af76d0145",
+    "templates/next-postgres-v1/policy.ts": "f7759d61e0a2b872da4df6c1048e694edc0e0349545f99c7f6bdb48cc4106042",
+    "LICENSE": "e782f4b38a3cec40ba6029c8009fc7dc8d5fc5ba5b722ce5626415f4e80adfd5"
+  },
+  "releaseIdentity": {
+    "sourceManifest": null,
+    "templateManifest": null,
+    "approvedPolicy": null,
+    "runtimeImage": null,
+    "publicDeployment": null
+  },
+  "outcomes": {
+    "independentCodeTests": "passed",
+    "finalIntegratedAudit": "blocked",
+    "firstLiveDemonstration": "blocked",
+    "privateAlphaAcceptance": "blocked",
+    "productionReadiness": "not-established"
+  },
+  "liveCampaign": {
+    "requiredMinimumRuns": 30,
+    "attempted": 0,
+    "dispatched": 0,
+    "measuredCostSamples": 0,
+    "latencySamples": 0,
+    "p50LatencyMs": null,
+    "p95LatencyMs": null,
+    "p50CostUsd": null,
+    "p95CostUsd": null,
+    "approvedProviderSpendUsd": 0,
+    "approvedNewInfrastructureSpendUsd": 0
+  },
+  "nativeControls": {
+    "zoom": "not-run-interrupted-native-control",
+    "reducedMotion": "not-run",
+    "cssZoomAndMediaEmulation": "supporting-simulation-only"
+  },
+  "limitations": [
+    "Final Tasks02\u201308 integrated commit and trusted live runtime/provider/identity/storage/preview evidence unavailable.",
+    "Public logs redact personal paths and normalize trailing whitespace/blank lines; hashes bind these reviewed published bytes.",
+    "verify-initial.txt retains an earlier 602-test run; its complete source snapshot was not frozen and it does not attest the final source.",
+    "browser-prerequisite-failure.txt records early launch before build, not the completed browser campaign.",
+    "All artifacts are locally captured supporting evidence, not signed collector receipts.",
+    "Full screenshots/video-frame privacy and third-party rights review remain open."
+  ],
+  "artifacts": {
+    "archive-review.json": "aa456fab233ea8814641b79ae640b94892184058ea2100720c68cd6216e38931",
+    "browser-prerequisite-failure.txt": "4908a23cf70ce466f6cf5ea8c678ff4bb7d5bd2688427487ec6eee99620b8b7b",
+    "browser.txt": "9d216159e8f6e59dd2d1e066fcb035bcebc01cc1ce362d8874895421815b9d47",
+    "ci-source.json": "75f1842b94edc990812bd30f75f6a942e9a15417a3d4c185c85726db902d7db6",
+    "control-build.txt": "ba90c04c5207a72d9914dc6b9b790762a0656552143fa682c9578b835e4b91f9",
+    "historical-ledger.json": "0fdae867cb61578fe3eaa11a70ae992fccde838ffaf67b6807dbf133047c8462",
+    "home-dark-1440.png": "2ad5d98687f9eaefab7d6e212e7994648d22f1d68375551a16d937a4935d0ad6",
+    "home-dark-390.png": "9fcf8401382c0b528b297bbe9c067501e5535d22ae06de658ed05043e088daeb",
+    "home-dark-768.png": "33ab08c69d2b967734adf3b6a2c0b81233f64f21ec8be3500891d61a6d116d35",
+    "home-light-1440.png": "30a37f1ef5f16ee397a0804e37f9b286cd6a3166e0226dca16ff72b5d3f5acdd",
+    "home-light-390.png": "07483b80e991e4967f51b3ea0f69f32b2a23f9cdbc44d5f692d9e894e6736b17",
+    "home-light-768.png": "9260d4f57d0548556ac872c8d737548634ddf6cbaeb9f0400bee26ce708ed659",
+    "install.txt": "155ba3b68d13fb77491aa7325f4aae2e16055f73b2735060419e75522ea07ed3",
+    "loopback-load.json": "e904e7433bbdaf551d03cc6ac67ae94f4c879daf8c02811d77014f6e72340983",
+    "native-control.txt": "2169d90463aafb29c708fa7bdeb5e2f60b3a38b052fa48be9527ba25aa66c0a0",
+    "native-migrations.txt": "935a0d014e466e18f3c2b13901b3cfbfc671a9e8dfbf4cb2d267a743bc6cc203",
+    "package-proposal.json": "5dc251e68e161882aa3a80b306f9859d1ee69f8602a52c7a4d5bc5cb73152016",
+    "pr-integration.json": "31177b012463e425954056edc6b1d74d3921ee67ba840ac1b463e621100a86ee",
+    "public-audit.json": "78916e22bbe556f2d83e475fc1f5bc8a39b5ddfc5ce8bcf3f8c4c21efe3df04f",
+    "public-availability-followup.json": "5fc55d7809eaae0fbd344bbe278192ed19d34da322d6bdeb362731c2cb33fdd0",
+    "source-inventory.json": "07b13fd85c9a4ec0e141d76211c077a76d4caecd5435001e22c0098ba62a271e",
+    "targeted-tests.json": "faf1b55f024d7dce13a38587e062fa738c5d07f39ee96a83f0dc9edd7da36f94",
+    "task03-handoff-review.json": "40b6c3cd21c94ca94f5e5e6f0863af9637efb8ba042b8f1d8c421cb0370445df",
+    "verify-initial.txt": "612d01f8af80bd4e9a50021ae496aa61ac89c5bf9c4d525ca8c3218f8aa0a0ae",
+    "verify.txt": "9760f312e4fe5a659a69530eb56fcde730c648bd14e962b9044945b3d71c4f42"
+  },
+  "externalFollowup": "public-availability-followup.json"
+}

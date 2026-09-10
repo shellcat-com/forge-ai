@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "status": "candidate",
+  "origin": "actual-official-archive-bytes",
+  "archives": [
+    {
+      "name": "node-v24.20.0-linux-x64.tar.xz",
+      "url": "https://nodejs.org/dist/v24.20.0/node-v24.20.0-linux-x64.tar.xz",
+      "checksumUrl": "https://nodejs.org/dist/v24.20.0/SHASUMS256.txt",
+      "sha256": "2f2c0da162318f0de47665410c7c8c2ed3d36c8f3105de4bbc61176c70a7cbf2",
+      "bytes": 31838904,
+      "checksumDocumentSha256": "c614a913a302d35d1c3a1348d07d84c52e28dceb0b97fd91e4ade05906ca2bd7",
+      "signatureVerified": false
+    },
+    {
+      "name": "postgresql-18.6.tar.bz2",
+      "url": "https://ftp.postgresql.org/pub/source/v18.6/postgresql-18.6.tar.bz2",
+      "checksumUrl": "https://ftp.postgresql.org/pub/source/v18.6/postgresql-18.6.tar.bz2.sha256",
+      "sha256": "555610c24d53e4316da5b7d3fc25c279d96856d5e0e23ee308c328c5fa881d9f",
+      "bytes": 22632314,
+      "checksumDocumentSha256": "92b190ded4a002654768daa8ac41db530354b9be13c7c67059592ddf5bb0c43a",
+      "signatureVerified": false
+    }
+  ]
+}

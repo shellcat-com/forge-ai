@@ -1,0 +1,23 @@
+{
+  "reviewedCommit": "e533afe7ffce770d9e1326874956139ea55deb75",
+  "archives": [
+    {
+      "path": "docs/evidence/forge-unified-checkpoint.zip",
+      "sha256": "edf4df57f7791bcf62c6b47d9083453f0b0b2504de8f3b3b43c5c2cac774b276",
+      "entries": 35,
+      "uncompressedBytes": 1682313,
+      "licenseEntries": [],
+      "review": "Logged-in application or competitor screenshots/video; pixel/frame privacy and redistribution review incomplete",
+      "recommendation": "Exclude from runtime/source export package; Task01/08 review current public-tree placement; preserve original history and evidence privately without claiming rights."
+    },
+    {
+      "path": "research/forge-builder-ux-evidence.zip",
+      "sha256": "4dcf531eb4db49c78728ee32fb6682de3e1152aa78f4acadf518a313556de0f5",
+      "entries": 48,
+      "uncompressedBytes": 8863325,
+      "licenseEntries": [],
+      "review": "Logged-in application or competitor screenshots/video; pixel/frame privacy and redistribution review incomplete",
+      "recommendation": "Exclude from runtime/source export package; Task01/08 review current public-tree placement; preserve original history and evidence privately without claiming rights."
+    }
+  ]
+}

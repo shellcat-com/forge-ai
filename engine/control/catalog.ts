@@ -54,3 +54,21 @@ export const fixturePlan = (brief: string, maxCostMicros: number) => {
   })
 }
 export const policyDigest = (cap: number) => canonicalHash(fixturePolicy(cap))
+
+/** Trusted server configuration only; candidate mode remains zero-cost fixture. */
+export interface ControlCatalog {
+  readonly name: 'e1-fixture' | 'e2-candidate-fixture'
+  readonly templateDigest: string
+  readonly imageDigest: string
+  readonly presetDigest: string
+  policy(maxCostMicros: number): ReturnType<typeof fixturePolicy>
+  assertProject(presetId: string, presetVersion: number): void
+}
+export const defaultControlCatalog: ControlCatalog = Object.freeze({
+  name: 'e1-fixture',
+  templateDigest: fixtureTemplateDigest,
+  imageDigest: fixtureImageDigest,
+  presetDigest: fixturePresetDigest,
+  policy: fixturePolicy,
+  assertProject: () => undefined,
+})

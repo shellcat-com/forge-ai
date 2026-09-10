@@ -1,0 +1,10 @@
+RUN  v4.1.11 /private/tmp/forge-task04-byok
+
+ ✓ tests/engine/byok.native.test.ts (5 tests) 1066ms
+
+ Test Files  1 passed (1)
+      Tests  5 passed (5)
+   Start at  23:36:01
+   Duration  1.41s (transform 93ms, setup 0ms, import 159ms, tests 1.07s, environment 0ms)
+
+JSON report written to /private/tmp/forge-task04-byok/docs/reports/evidence/task-04/native-tests.json

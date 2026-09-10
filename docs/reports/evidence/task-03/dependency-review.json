@@ -1,0 +1,407 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-10T04:29:05.936530+00:00",
+  "origin": "actual-package-byte-review",
+  "status": "candidate-blocked-for-distribution",
+  "packageEntries": 482,
+  "distinctTarballs": 475,
+  "licenseExpressions": {
+    "MIT": 384,
+    "Apache-2.0": 38,
+    "LGPL-3.0-or-later": 10,
+    "Apache-2.0 AND LGPL-3.0-or-later AND MIT": 1,
+    "Apache-2.0 AND LGPL-3.0-or-later": 3,
+    "BlueOak-1.0.0": 1,
+    "ISC": 19,
+    "Python-2.0": 1,
+    "MPL-2.0": 13,
+    "CC-BY-4.0": 1,
+    "BSD-2-Clause": 7,
+    "BSD-3-Clause": 2,
+    "CC0-1.0": 1,
+    "0BSD": 1
+  },
+  "licenseMetadataMatchesLock": true,
+  "missingIncludedLicenseFile": [
+    "node_modules/@humanfs/types",
+    "node_modules/@img/sharp-libvips-darwin-arm64",
+    "node_modules/@img/sharp-libvips-darwin-x64",
+    "node_modules/@img/sharp-libvips-linux-arm",
+    "node_modules/@img/sharp-libvips-linux-arm64",
+    "node_modules/@img/sharp-libvips-linux-ppc64",
+    "node_modules/@img/sharp-libvips-linux-riscv64",
+    "node_modules/@img/sharp-libvips-linux-s390x",
+    "node_modules/@img/sharp-libvips-linux-x64",
+    "node_modules/@img/sharp-libvips-linuxmusl-arm64",
+    "node_modules/@img/sharp-libvips-linuxmusl-x64",
+    "node_modules/@napi-rs/wasm-runtime",
+    "node_modules/@next/env",
+    "node_modules/@next/eslint-plugin-next",
+    "node_modules/@next/swc-darwin-arm64",
+    "node_modules/@next/swc-darwin-x64",
+    "node_modules/@next/swc-linux-arm64-gnu",
+    "node_modules/@next/swc-linux-arm64-musl",
+    "node_modules/@next/swc-linux-x64-gnu",
+    "node_modules/@next/swc-linux-x64-musl",
+    "node_modules/@next/swc-win32-arm64-msvc",
+    "node_modules/@next/swc-win32-x64-msvc",
+    "node_modules/@rolldown/binding-android-arm-eabi",
+    "node_modules/@rolldown/binding-android-arm64",
+    "node_modules/@rolldown/binding-darwin-arm64",
+    "node_modules/@rolldown/binding-darwin-x64",
+    "node_modules/@rolldown/binding-freebsd-x64",
+    "node_modules/@rolldown/binding-linux-arm-gnueabihf",
+    "node_modules/@rolldown/binding-linux-arm64-gnu",
+    "node_modules/@rolldown/binding-linux-arm64-musl",
+    "node_modules/@rolldown/binding-linux-ppc64-gnu",
+    "node_modules/@rolldown/binding-linux-s390x-gnu",
+    "node_modules/@rolldown/binding-linux-x64-gnu",
+    "node_modules/@rolldown/binding-linux-x64-musl",
+    "node_modules/@rolldown/binding-openharmony-arm64",
+    "node_modules/@rolldown/binding-win32-arm64-msvc",
+    "node_modules/@rolldown/binding-win32-x64-msvc",
+    "node_modules/@tybys/wasm-util",
+    "node_modules/@types/json5",
+    "node_modules/@unrs/resolver-binding-android-arm-eabi",
+    "node_modules/@unrs/resolver-binding-android-arm64",
+    "node_modules/@unrs/resolver-binding-darwin-arm64",
+    "node_modules/@unrs/resolver-binding-darwin-x64",
+    "node_modules/@unrs/resolver-binding-freebsd-x64",
+    "node_modules/@unrs/resolver-binding-linux-arm-gnueabihf",
+    "node_modules/@unrs/resolver-binding-linux-arm-musleabihf",
+    "node_modules/@unrs/resolver-binding-linux-arm64-gnu",
+    "node_modules/@unrs/resolver-binding-linux-arm64-musl",
+    "node_modules/@unrs/resolver-binding-linux-loong64-gnu",
+    "node_modules/@unrs/resolver-binding-linux-loong64-musl",
+    "node_modules/@unrs/resolver-binding-linux-ppc64-gnu",
+    "node_modules/@unrs/resolver-binding-linux-riscv64-gnu",
+    "node_modules/@unrs/resolver-binding-linux-riscv64-musl",
+    "node_modules/@unrs/resolver-binding-linux-s390x-gnu",
+    "node_modules/@unrs/resolver-binding-linux-x64-gnu",
+    "node_modules/@unrs/resolver-binding-linux-x64-musl",
+    "node_modules/@unrs/resolver-binding-openharmony-arm64",
+    "node_modules/@unrs/resolver-binding-wasm32-wasi",
+    "node_modules/@unrs/resolver-binding-win32-arm64-msvc",
+    "node_modules/@unrs/resolver-binding-win32-ia32-msvc",
+    "node_modules/@unrs/resolver-binding-win32-x64-msvc",
+    "node_modules/client-only",
+    "node_modules/eslint-config-next",
+    "node_modules/esrecurse",
+    "node_modules/imurmurhash",
+    "node_modules/keyv",
+    "node_modules/language-subtag-registry",
+    "node_modules/language-tags",
+    "node_modules/natural-compare",
+    "node_modules/pg-types",
+    "node_modules/pgpass",
+    "node_modules/stable-hash",
+    "node_modules/stackback",
+    "node_modules/unrs-resolver"
+  ],
+  "distributionReviewRequired": [
+    {
+      "path": "node_modules/@img/sharp-libvips-darwin-arm64",
+      "license": "LGPL-3.0-or-later"
+    },
+    {
+      "path": "node_modules/@img/sharp-libvips-darwin-x64",
+      "license": "LGPL-3.0-or-later"
+    },
+    {
+      "path": "node_modules/@img/sharp-libvips-linux-arm",
+      "license": "LGPL-3.0-or-later"
+    },
+    {
+      "path": "node_modules/@img/sharp-libvips-linux-arm64",
+      "license": "LGPL-3.0-or-later"
+    },
+    {
+      "path": "node_modules/@img/sharp-libvips-linux-ppc64",
+      "license": "LGPL-3.0-or-later"
+    },
+    {
+      "path": "node_modules/@img/sharp-libvips-linux-riscv64",
+      "license": "LGPL-3.0-or-later"
+    },
+    {
+      "path": "node_modules/@img/sharp-libvips-linux-s390x",
+      "license": "LGPL-3.0-or-later"
+    },
+    {
+      "path": "node_modules/@img/sharp-libvips-linux-x64",
+      "license": "LGPL-3.0-or-later"
+    },
+    {
+      "path": "node_modules/@img/sharp-libvips-linuxmusl-arm64",
+      "license": "LGPL-3.0-or-later"
+    },
+    {
+      "path": "node_modules/@img/sharp-libvips-linuxmusl-x64",
+      "license": "LGPL-3.0-or-later"
+    },
+    {
+      "path": "node_modules/@img/sharp-wasm32",
+      "license": "Apache-2.0 AND LGPL-3.0-or-later AND MIT"
+    },
+    {
+      "path": "node_modules/@img/sharp-win32-arm64",
+      "license": "Apache-2.0 AND LGPL-3.0-or-later"
+    },
+    {
+      "path": "node_modules/@img/sharp-win32-ia32",
+      "license": "Apache-2.0 AND LGPL-3.0-or-later"
+    },
+    {
+      "path": "node_modules/@img/sharp-win32-x64",
+      "license": "Apache-2.0 AND LGPL-3.0-or-later"
+    },
+    {
+      "path": "node_modules/axe-core",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "node_modules/caniuse-lite",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "path": "node_modules/lightningcss",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "node_modules/lightningcss-android-arm64",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "node_modules/lightningcss-darwin-arm64",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "node_modules/lightningcss-darwin-x64",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "node_modules/lightningcss-freebsd-x64",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "node_modules/lightningcss-linux-arm-gnueabihf",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "node_modules/lightningcss-linux-arm64-gnu",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "node_modules/lightningcss-linux-arm64-musl",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "node_modules/lightningcss-linux-x64-gnu",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "node_modules/lightningcss-linux-x64-musl",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "node_modules/lightningcss-win32-arm64-msvc",
+      "license": "MPL-2.0"
+    },
+    {
+      "path": "node_modules/lightningcss-win32-x64-msvc",
+      "license": "MPL-2.0"
+    }
+  ],
+  "hooks": [
+    {
+      "path": "node_modules/@eslint-community/eslint-utils/node_modules/eslint-visitor-keys",
+      "commands": {
+        "prepare": "npm run build"
+      },
+      "decision": "do-not-execute"
+    },
+    {
+      "path": "node_modules/@eslint/eslintrc",
+      "commands": {
+        "prepare": "npm run build"
+      },
+      "decision": "do-not-execute"
+    },
+    {
+      "path": "node_modules/@humanfs/core",
+      "commands": {
+        "prepare": "npm run build"
+      },
+      "decision": "do-not-execute"
+    },
+    {
+      "path": "node_modules/@humanfs/node",
+      "commands": {
+        "prepare": "npm run build"
+      },
+      "decision": "do-not-execute"
+    },
+    {
+      "path": "node_modules/@humanfs/types",
+      "commands": {
+        "prepare": "npm run build"
+      },
+      "decision": "do-not-execute"
+    },
+    {
+      "path": "node_modules/@humanwhocodes/module-importer",
+      "commands": {
+        "prepare": "npm run build"
+      },
+      "decision": "do-not-execute"
+    },
+    {
+      "path": "node_modules/@humanwhocodes/retry",
+      "commands": {
+        "prepare": "npm run build"
+      },
+      "decision": "do-not-execute"
+    },
+    {
+      "path": "node_modules/@next/eslint-plugin-next/node_modules/eslint-visitor-keys",
+      "commands": {
+        "prepare": "npm run build"
+      },
+      "decision": "do-not-execute"
+    },
+    {
+      "path": "node_modules/@tybys/wasm-util",
+      "commands": {
+        "prepare": "npm run build"
+      },
+      "decision": "do-not-execute"
+    },
+    {
+      "path": "node_modules/@typescript-eslint/typescript-estree/node_modules/balanced-match",
+      "commands": {
+        "prepare": "tshy"
+      },
+      "decision": "do-not-execute"
+    },
+    {
+      "path": "node_modules/@typescript-eslint/typescript-estree/node_modules/brace-expansion",
+      "commands": {
+        "prepare": "tshy"
+      },
+      "decision": "do-not-execute"
+    },
+    {
+      "path": "node_modules/@typescript-eslint/typescript-estree/node_modules/minimatch",
+      "commands": {
+        "prepare": "tshy"
+      },
+      "decision": "do-not-execute"
+    },
+    {
+      "path": "node_modules/acorn",
+      "commands": {
+        "prepare": "cd ..; npm run build:main"
+      },
+      "decision": "do-not-execute"
+    },
+    {
+      "path": "node_modules/eslint-config-next/node_modules/globals",
+      "commands": {
+        "prepare": "npm run build"
+      },
+      "decision": "do-not-execute"
+    },
+    {
+      "path": "node_modules/globals",
+      "commands": {
+        "prepare": "npm run --silent update-types"
+      },
+      "decision": "do-not-execute"
+    },
+    {
+      "path": "node_modules/is-bun-module",
+      "commands": {
+        "prepare": "bun husky"
+      },
+      "decision": "do-not-execute"
+    },
+    {
+      "path": "node_modules/keyv",
+      "commands": {
+        "prepare": "yarn build"
+      },
+      "decision": "do-not-execute"
+    },
+    {
+      "path": "node_modules/lightningcss",
+      "commands": {
+        "prepare": "patch-package"
+      },
+      "decision": "do-not-execute"
+    },
+    {
+      "path": "node_modules/tinyexec",
+      "commands": {
+        "prepare": "npm run build"
+      },
+      "decision": "do-not-execute"
+    },
+    {
+      "path": "node_modules/ts-api-utils",
+      "commands": {
+        "prepare": "husky"
+      },
+      "decision": "do-not-execute"
+    },
+    {
+      "path": "node_modules/unrs-resolver",
+      "commands": {
+        "postinstall": "node postinstall.js"
+      },
+      "decision": "do-not-execute"
+    },
+    {
+      "path": "node_modules/zod-validation-error",
+      "commands": {
+        "prepare": "husky"
+      },
+      "decision": "do-not-execute"
+    }
+  ],
+  "installHookReview": {
+    "unrsResolverPostinstallSha256": "446a0aeed55eeb28eadd9ac31f0b71654265aba8ca5a99dbc22dab0b26a02469",
+    "behavior": "delegates to napi-postinstall checkAndPreparePackage(packageJson,true); native artifact preparation is unnecessary for observed macOS scaffold with locked optional bindings; execution remains denied",
+    "allHooksExecuted": []
+  },
+  "registrySignatures": {
+    "verifiedLockEntries": 482,
+    "method": "ECDSA SHA256 of name@version:integrity; expiring keys checked against registry publication time, matching npm pacote semantics"
+  },
+  "provenance": {
+    "npmAuditedInstalledPackages": 400,
+    "registrySignaturesVerified": 400,
+    "attestationsVerified": 102,
+    "packagesDeclaringAttestationInFullLock": 173,
+    "entireGraphProvenanceVerified": false
+  },
+  "advisories": {
+    "npmAuditReported": 0,
+    "date": "2026-09-10",
+    "scope": "482 dependency entries; registry-known advisories only; native OS/image SBOM scan not run"
+  },
+  "deprecated": [
+    {
+      "path": "node_modules/eslint",
+      "reason": "This version is no longer supported. Please see https://eslint.org/version-support for other options."
+    }
+  ],
+  "releaseApproved": false,
+  "blockers": [
+    "Actual image/native-library redistribution notices and corresponding-source review incomplete",
+    "74 archive entries lack a conventionally named license file; upstream/parent notice reconciliation pending",
+    "No complete upstream signing-chain verification for Node/PostgreSQL archives",
+    "No actual Linux image/isolated build/export/containment evidence",
+    "No maintainer-selected Forge original-source license in this task",
+    "ESLint 9.35.0 is unsupported per registry; replacement requires explicit reviewed pin change and reproduction"
+  ]
+}

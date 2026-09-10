@@ -1,0 +1,73 @@
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: @better-auth/api-key@1.7.3
+npm warn Found: better-auth@1.6.23
+npm warn node_modules/@neondatabase/auth-ui/node_modules/better-auth
+npm warn   better-auth@"1.6.23" from @neondatabase/auth-ui@0.3.0-beta
+npm warn   node_modules/@neondatabase/auth-ui
+npm warn     @neondatabase/auth-ui@"0.3.0-beta" from @neondatabase/auth@0.5.0-beta
+npm warn     node_modules/@neondatabase/auth
+npm warn   2 more (@better-auth/passkey, @daveyplate/better-auth-ui)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer better-auth@"^1.7.3" from @better-auth/api-key@1.7.3
+npm warn node_modules/@neondatabase/auth-ui/node_modules/@daveyplate/better-auth-ui/node_modules/@better-auth/api-key
+npm warn   @better-auth/api-key@"^1.5.6" from @daveyplate/better-auth-ui@3.4.0
+npm warn   node_modules/@neondatabase/auth-ui/node_modules/@daveyplate/better-auth-ui
+npm warn
+npm warn Conflicting peer dependency: better-auth@1.7.3
+npm warn node_modules/better-auth
+npm warn   peer better-auth@"^1.7.3" from @better-auth/api-key@1.7.3
+npm warn   node_modules/@neondatabase/auth-ui/node_modules/@daveyplate/better-auth-ui/node_modules/@better-auth/api-key
+npm warn     @better-auth/api-key@"^1.5.6" from @daveyplate/better-auth-ui@3.4.0
+npm warn     node_modules/@neondatabase/auth-ui/node_modules/@daveyplate/better-auth-ui
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: @better-auth/api-key@1.7.3
+npm warn Found: better-call@2.0.2
+npm warn node_modules/@neondatabase/auth-ui/node_modules/@daveyplate/better-auth-ui/node_modules/better-call
+npm warn   better-call@"2.0.2" from @daveyplate/better-auth-ui@3.4.0
+npm warn   node_modules/@neondatabase/auth-ui/node_modules/@daveyplate/better-auth-ui
+npm warn     @daveyplate/better-auth-ui@"3.4.0" from @neondatabase/auth-ui@0.3.0-beta
+npm warn     node_modules/@neondatabase/auth-ui
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer better-call@"1.4.0" from @better-auth/api-key@1.7.3
+npm warn node_modules/@neondatabase/auth-ui/node_modules/@daveyplate/better-auth-ui/node_modules/@better-auth/api-key
+npm warn   @better-auth/api-key@"^1.5.6" from @daveyplate/better-auth-ui@3.4.0
+npm warn   node_modules/@neondatabase/auth-ui/node_modules/@daveyplate/better-auth-ui
+npm warn
+npm warn Conflicting peer dependency: better-call@1.4.0
+npm warn node_modules/better-call
+npm warn   peer better-call@"1.4.0" from @better-auth/api-key@1.7.3
+npm warn   node_modules/@neondatabase/auth-ui/node_modules/@daveyplate/better-auth-ui/node_modules/@better-auth/api-key
+npm warn     @better-auth/api-key@"^1.5.6" from @daveyplate/better-auth-ui@3.4.0
+npm warn     node_modules/@neondatabase/auth-ui/node_modules/@daveyplate/better-auth-ui
+npm warn deprecated @esbuild-kit/esm-loader@2.6.5: Merged into tsx: https://tsx.hirok.io
+npm warn deprecated @esbuild-kit/core-utils@3.3.2: Merged into tsx: https://tsx.hirok.io
+npm warn deprecated @react-email/components@1.0.12: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated @react-email/row@0.0.13: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated @react-email/section@0.0.17: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated @react-email/link@0.0.13: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated @react-email/img@0.0.12: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated @react-email/html@0.0.12: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated @react-email/container@0.0.16: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated @react-email/hr@0.0.12: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated @react-email/heading@0.0.16: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated @react-email/code-inline@0.0.6: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated @react-email/font@0.0.10: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated @react-email/head@0.0.13: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated @react-email/column@0.0.14: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated @react-email/text@0.1.6: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated @react-email/preview@0.0.14: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated @react-email/body@0.3.0: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated @react-email/button@0.2.1: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated @react-email/markdown@0.0.18: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated @react-email/tailwind@2.0.7: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated @react-email/code-block@0.2.1: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+
+added 496 packages, and audited 497 packages in 20s
+
+109 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities

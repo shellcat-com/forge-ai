@@ -1,0 +1,661 @@
+{
+  "numTotalTestSuites": 7,
+  "numPassedTestSuites": 7,
+  "numFailedTestSuites": 0,
+  "numPendingTestSuites": 0,
+  "numTotalTests": 53,
+  "numPassedTests": 53,
+  "numFailedTests": 0,
+  "numPendingTests": 0,
+  "numTodoTests": 0,
+  "snapshot": {
+    "added": 0,
+    "failure": false,
+    "filesAdded": 0,
+    "filesRemoved": 0,
+    "filesRemovedList": [],
+    "filesUnmatched": 0,
+    "filesUpdated": 0,
+    "matched": 0,
+    "total": 0,
+    "unchecked": 0,
+    "uncheckedKeysByFile": [],
+    "unmatched": 0,
+    "updated": 0,
+    "didUpdate": false
+  },
+  "startTime": 1789014349400,
+  "success": true,
+  "testResults": [
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [],
+          "fullName": "connects actual 20-file candidate bytes through reviews, promotion, history, immutable export and source restoration (all execution is fixture)",
+          "status": "passed",
+          "title": "connects actual 20-file candidate bytes through reviews, promotion, history, immutable export and source restoration (all execution is fixture)",
+          "duration": 1523.592583,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [],
+          "fullName": "rejects wrong immutable reference scope before adoption",
+          "status": "passed",
+          "title": "rejects wrong immutable reference scope before adoption",
+          "duration": 406.06516699999975,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [],
+          "fullName": "rejects wrong immutable reference hash before adoption",
+          "status": "passed",
+          "title": "rejects wrong immutable reference hash before adoption",
+          "duration": 348.60491699999966,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [],
+          "fullName": "rejects wrong immutable reference version before adoption",
+          "status": "passed",
+          "title": "rejects wrong immutable reference version before adoption",
+          "duration": 365.3185000000003,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [],
+          "fullName": "rejects wrong immutable reference key before adoption",
+          "status": "passed",
+          "title": "rejects wrong immutable reference key before adoption",
+          "duration": 453.25095800000054,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [],
+          "fullName": "rejects an invented plan resource grant and keeps plan metadata unadopted",
+          "status": "passed",
+          "title": "rejects an invented plan resource grant and keeps plan metadata unadopted",
+          "duration": 463.23070800000005,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [],
+          "fullName": "refuses tenant-crossed source reads and nonzero candidate admission",
+          "status": "passed",
+          "title": "refuses tenant-crossed source reads and nonzero candidate admission",
+          "duration": 511.681834,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [],
+          "fullName": "rejects adoption after lease loss during object validation",
+          "status": "passed",
+          "title": "rejects adoption after lease loss during object validation",
+          "duration": 365.2868749999998,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [],
+          "fullName": "replays saved candidate references after crash without repeating the stage product",
+          "status": "passed",
+          "title": "replays saved candidate references after crash without repeating the stage product",
+          "duration": 474.0232500000002,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [],
+          "fullName": "coalesces concurrent export retries into one adopted immutable attachment",
+          "status": "passed",
+          "title": "coalesces concurrent export retries into one adopted immutable attachment",
+          "duration": 1416.2895000000008,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [],
+          "fullName": "blocks export replay after verification revocation/expiry",
+          "status": "passed",
+          "title": "blocks export replay after verification revocation/expiry",
+          "duration": 1239.5404159999998,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [],
+          "fullName": "blocks export replay after policy revocation/expiry",
+          "status": "passed",
+          "title": "blocks export replay after policy revocation/expiry",
+          "duration": 1185.1975839999996,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [],
+          "fullName": "blocks export replay after session revocation/expiry",
+          "status": "passed",
+          "title": "blocks export replay after session revocation/expiry",
+          "duration": 2607.890041999999,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [],
+          "fullName": "refuses cached reference tampering during crash replay",
+          "status": "passed",
+          "title": "refuses cached reference tampering during crash replay",
+          "duration": 1044.6552090000005,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [],
+          "fullName": "rejects a secret-bearing immutable candidate before reference adoption",
+          "status": "passed",
+          "title": "rejects a secret-bearing immutable candidate before reference adoption",
+          "duration": 898.684041999999,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [],
+          "fullName": "uses the guarded artifact locator for available bytes without revealing foreign/missing metadata",
+          "status": "passed",
+          "title": "uses the guarded artifact locator for available bytes without revealing foreign/missing metadata",
+          "duration": 1111.596875000001,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [],
+          "fullName": "reauthorizes a source read after object I/O and refuses revoked sessions",
+          "status": "passed",
+          "title": "reauthorizes a source read after object I/O and refuses revoked sessions",
+          "duration": 1877.0384999999987,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [],
+          "fullName": "refuses exported attachment bytes after role downgrade to viewer",
+          "status": "passed",
+          "title": "refuses exported attachment bytes after role downgrade to viewer",
+          "duration": 1548.0872500000005,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [],
+          "fullName": "revalidates stored candidates with identical diff bytes and zero object writes",
+          "status": "passed",
+          "title": "revalidates stored candidates with identical diff bytes and zero object writes",
+          "duration": 756.2822090000009,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ],
+      "startTime": 1789014351331,
+      "endTime": 1789014369929.2822,
+      "status": "passed",
+      "message": "",
+      "name": "/private/tmp/forge-task08-live-demo/tests/engine/e2-control-integration.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [],
+          "fullName": "connects browser transport to displayed reviews, source, promotion, history and export over the existing control service",
+          "status": "passed",
+          "title": "connects browser transport to displayed reviews, source, promotion, history and export over the existing control service",
+          "duration": 958.952125,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [],
+          "fullName": "enforces source tenant boundaries, CSRF and exact file queries without exposing object locations",
+          "status": "passed",
+          "title": "enforces source tenant boundaries, CSRF and exact file queries without exposing object locations",
+          "duration": 891.8215829999999,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ],
+      "startTime": 1789014350881,
+      "endTime": 1789014352731.8215,
+      "status": "passed",
+      "message": "",
+      "name": "/private/tmp/forge-task08-live-demo/tests/engine/e4-control-http.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "bounded repair with native E1/E2 and explicitly fake execution"
+          ],
+          "fullName": "bounded repair with native E1/E2 and explicitly fake execution requires changed repair bytes, a new diff and fresh execution approval before fixture success",
+          "status": "passed",
+          "title": "requires changed repair bytes, a new diff and fresh execution approval before fixture success",
+          "duration": 1164.3760000000002,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "bounded repair with native E1/E2 and explicitly fake execution"
+          ],
+          "fullName": "bounded repair with native E1/E2 and explicitly fake execution stops at two repairs and four total reserved provider fixture operations despite repeated failures",
+          "status": "passed",
+          "title": "stops at two repairs and four total reserved provider fixture operations despite repeated failures",
+          "duration": 833.2090840000001,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "bounded repair with native E1/E2 and explicitly fake execution"
+          ],
+          "fullName": "bounded repair with native E1/E2 and explicitly fake execution fences an unadopted repair result after cancel changes during commit",
+          "status": "passed",
+          "title": "fences an unadopted repair result after cancel changes during commit",
+          "duration": 585.097917,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "bounded repair with native E1/E2 and explicitly fake execution"
+          ],
+          "fullName": "bounded repair with native E1/E2 and explicitly fake execution fences an unadopted repair result after epoch changes during commit",
+          "status": "passed",
+          "title": "fences an unadopted repair result after epoch changes during commit",
+          "duration": 513.4666660000003,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ],
+      "startTime": 1789014351320,
+      "endTime": 1789014354416.4666,
+      "status": "passed",
+      "message": "",
+      "name": "/private/tmp/forge-task08-live-demo/tests/engine/e4-repair-integration.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "static portfolio publication contract (synthetic authority only)"
+          ],
+          "fullName": "static portfolio publication contract (synthetic authority only) preserves exact engine/build bindings and rechecks authorization after artifact reads",
+          "status": "passed",
+          "title": "preserves exact engine/build bindings and rechecks authorization after artifact reads",
+          "duration": 10.061291000000011,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "static portfolio publication contract (synthetic authority only)"
+          ],
+          "fullName": "static portfolio publication contract (synthetic authority only) refuses fixture source provenance",
+          "status": "passed",
+          "title": "refuses fixture source provenance",
+          "duration": 1.7443329999999833,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "static portfolio publication contract (synthetic authority only)"
+          ],
+          "fullName": "static portfolio publication contract (synthetic authority only) refuses restore source provenance",
+          "status": "passed",
+          "title": "refuses restore source provenance",
+          "duration": 0.4334170000000199,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "static portfolio publication contract (synthetic authority only)"
+          ],
+          "fullName": "static portfolio publication contract (synthetic authority only) refuses fixture verification even with successful check exit codes",
+          "status": "passed",
+          "title": "refuses fixture verification even with successful check exit codes",
+          "duration": 0.5160829999999805,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "static portfolio publication contract (synthetic authority only)"
+          ],
+          "fullName": "static portfolio publication contract (synthetic authority only) refuses candidate mismatch",
+          "status": "passed",
+          "title": "refuses candidate mismatch",
+          "duration": 0.6795419999999979,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "static portfolio publication contract (synthetic authority only)"
+          ],
+          "fullName": "static portfolio publication contract (synthetic authority only) refuses target mismatch",
+          "status": "passed",
+          "title": "refuses target mismatch",
+          "duration": 0.7306250000000034,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "static portfolio publication contract (synthetic authority only)"
+          ],
+          "fullName": "static portfolio publication contract (synthetic authority only) refuses output mismatch",
+          "status": "passed",
+          "title": "refuses output mismatch",
+          "duration": 0.5680409999999938,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "static portfolio publication contract (synthetic authority only)"
+          ],
+          "fullName": "static portfolio publication contract (synthetic authority only) refuses commit mismatch",
+          "status": "passed",
+          "title": "refuses commit mismatch",
+          "duration": 0.6118749999999977,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "static portfolio publication contract (synthetic authority only)"
+          ],
+          "fullName": "static portfolio publication contract (synthetic authority only) refuses expired mismatch",
+          "status": "passed",
+          "title": "refuses expired mismatch",
+          "duration": 0.416499999999985,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "static portfolio publication contract (synthetic authority only)"
+          ],
+          "fullName": "static portfolio publication contract (synthetic authority only) refuses future mismatch",
+          "status": "passed",
+          "title": "refuses future mismatch",
+          "duration": 0.5043749999999818,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "static portfolio publication contract (synthetic authority only)"
+          ],
+          "fullName": "static portfolio publication contract (synthetic authority only) refuses policy mismatch",
+          "status": "passed",
+          "title": "refuses policy mismatch",
+          "duration": 0.3716670000000022,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "static portfolio publication contract (synthetic authority only)"
+          ],
+          "fullName": "static portfolio publication contract (synthetic authority only) refuses scope mismatch",
+          "status": "passed",
+          "title": "refuses scope mismatch",
+          "duration": 0.30350000000001387,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "static portfolio publication contract (synthetic authority only)"
+          ],
+          "fullName": "static portfolio publication contract (synthetic authority only) refuses check mismatch",
+          "status": "passed",
+          "title": "refuses check mismatch",
+          "duration": 0.2555420000000197,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "static portfolio publication contract (synthetic authority only)"
+          ],
+          "fullName": "static portfolio publication contract (synthetic authority only) refuses stale mismatch",
+          "status": "passed",
+          "title": "refuses stale mismatch",
+          "duration": 0.300707999999986,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "static portfolio publication contract (synthetic authority only)"
+          ],
+          "fullName": "static portfolio publication contract (synthetic authority only) rejects changed object bytes and permission revocation after read",
+          "status": "passed",
+          "title": "rejects changed object bytes and permission revocation after read",
+          "duration": 1.8327089999999941,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "static portfolio publication contract (synthetic authority only)"
+          ],
+          "fullName": "static portfolio publication contract (synthetic authority only) does no artifact I/O for a cancelled request",
+          "status": "passed",
+          "title": "does no artifact I/O for a cancelled request",
+          "duration": 0.3670840000000055,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "static portfolio publication contract (synthetic authority only)"
+          ],
+          "fullName": "static portfolio publication contract (synthetic authority only) rejects a full collected artifact containing non-static server output",
+          "status": "passed",
+          "title": "rejects a full collected artifact containing non-static server output",
+          "duration": 1.4601670000000126,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "static portfolio publication contract (synthetic authority only)"
+          ],
+          "fullName": "static portfolio publication contract (synthetic authority only) rejects unsafe upload path ../index.html",
+          "status": "passed",
+          "title": "rejects unsafe upload path ../index.html",
+          "duration": 0.32433299999999576,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "static portfolio publication contract (synthetic authority only)"
+          ],
+          "fullName": "static portfolio publication contract (synthetic authority only) rejects unsafe upload path api/index.html",
+          "status": "passed",
+          "title": "rejects unsafe upload path api/index.html",
+          "duration": 0.11095800000001077,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "static portfolio publication contract (synthetic authority only)"
+          ],
+          "fullName": "static portfolio publication contract (synthetic authority only) rejects unsafe upload path .env",
+          "status": "passed",
+          "title": "rejects unsafe upload path .env",
+          "duration": 0.21074999999999022,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "static portfolio publication contract (synthetic authority only)"
+          ],
+          "fullName": "static portfolio publication contract (synthetic authority only) rejects unsafe upload path vercel.json",
+          "status": "passed",
+          "title": "rejects unsafe upload path vercel.json",
+          "duration": 0.07150000000001455,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "static portfolio publication contract (synthetic authority only)"
+          ],
+          "fullName": "static portfolio publication contract (synthetic authority only) rejects unsafe upload path index.html.map",
+          "status": "passed",
+          "title": "rejects unsafe upload path index.html.map",
+          "duration": 0.060040999999984024,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "static portfolio publication contract (synthetic authority only)"
+          ],
+          "fullName": "static portfolio publication contract (synthetic authority only) rejects unsafe upload path sw.js",
+          "status": "passed",
+          "title": "rejects unsafe upload path sw.js",
+          "duration": 0.1784590000000037,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "static portfolio publication contract (synthetic authority only)"
+          ],
+          "fullName": "static portfolio publication contract (synthetic authority only) rejects unsafe upload path server/app.js",
+          "status": "passed",
+          "title": "rejects unsafe upload path server/app.js",
+          "duration": 0.0863339999999937,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "static portfolio publication contract (synthetic authority only)"
+          ],
+          "fullName": "static portfolio publication contract (synthetic authority only) rejects known, escaped and encoded credential canaries in public bytes",
+          "status": "passed",
+          "title": "rejects known, escaped and encoded credential canaries in public bytes",
+          "duration": 0.567875000000015,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "static portfolio publication contract (synthetic authority only)"
+          ],
+          "fullName": "static portfolio publication contract (synthetic authority only) rejects duplicate/case-fold paths and oversized output",
+          "status": "passed",
+          "title": "rejects duplicate/case-fold paths and oversized output",
+          "duration": 6.499791000000016,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "prebuilt staging and Vercel target preflight"
+          ],
+          "fullName": "prebuilt staging and Vercel target preflight requires exact dedicated project/account and no Git-triggered builds or environment",
+          "status": "passed",
+          "title": "requires exact dedicated project/account and no Git-triggered builds or environment",
+          "duration": 0.4314170000000104,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "prebuilt staging and Vercel target preflight"
+          ],
+          "fullName": "prebuilt staging and Vercel target preflight writes only static bytes and platform-owned configuration without executing app scripts",
+          "status": "passed",
+          "title": "writes only static bytes and platform-owned configuration without executing app scripts",
+          "duration": 14.536833999999999,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ],
+      "startTime": 1789014349684,
+      "endTime": 1789014349728.5369,
+      "status": "passed",
+      "message": "",
+      "name": "/private/tmp/forge-task08-live-demo/tests/engine/publishing.test.ts"
+    }
+  ]
+}
