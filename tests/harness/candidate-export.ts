@@ -16,13 +16,13 @@ import { sourceExportScanner } from '../../engine/validation/secrets.ts'
 import { templateCommandPolicy } from '../../templates/next-postgres-v1/policy.ts'
 import { hash, resources, scope } from '../engine/fixtures.ts'
 
-// Reviewed platform bytes at33b521e. Updating these pins requires source review;
+// Reviewed platform bytes for Task 03. Updating these pins requires source review;
 // they must never be derived dynamically from a provider/catalog at execution.
 export const reviewedCandidateHashes: Readonly<Record<string, string>> = Object.freeze({
-  'package.json': 'f0578b9ade57da65935585a217974c3ca486075677fb5b84dc8684d356de9b5d',
+  'package.json': 'b70d0d782d59c4789bf25de978ec6bf1c3d960f8999cefd8529a729c874d87f8',
   'package-lock.json': 'ce88882e5e2a00763896b4685bb964de44273905ba23d638fdeaac0b06157123',
   'tsconfig.json': '2dec24034b7358c8dd63334c8ec48bad2c47193756195bdcd299ea7a98d57cb0',
-  'README.md': '47002c6eb05d086fe71b892735d70ef54c254c52182fc5123a311f05b0252949',
+  'README.md': '151c55bad1310eec0013e4679fca7d63bba99ed4ef49e70261085d6e08a8272a',
   '.env.example': 'ff5b23c8e57d9fb72bd4b6b3ad1af4be2f2380b47d89cac607d1cbc1349a2774',
   '.gitignore': '1528d94034311b7ae5d887c3d280593f62269a74dd29345b057ef9c7e57f0f44',
   'next.config.mjs': '5aed4d4997b94d6d25dd69e593f5852348a42d47b2784b5eff279c1b2b61c2bd',
@@ -39,6 +39,11 @@ export const reviewedCandidateHashes: Readonly<Record<string, string>> = Object.
   'lib/database.ts': '4ba61030e73f3effcd7dab986486b72f6467bc0a46f5326d8ee43afa642442dd',
   'platform/environment.ts': '045a2836811b76baba7e859803814a8171ed786363fd391173ef5802d7a7e42a',
   'platform/environment.test.ts': 'b26d32ee058db90b82edf0a93140c80df0de1bb531bcd775bc558fd85819bd4c',
+  'vitest.config.mjs': '3294987e302dce1604112b34ec5ee92c1e68d1da487c83d15970a58fdb6d06be',
+  'platform/reference-migrate.mjs': 'b21d1c79c82c7e4301e2dcd5aee2cfc1154b881d68149479f94dd140c5074f75',
+  'reference/migrations/0001_tasks.sql': '3b584bb76017fd598454ffaaa670f51c7a9f2c7e409f8ffb6387e09f67769ecf',
+  'reference/migrations/0002_priority.sql': 'eee06cb828aa1f5e2dae525486a54b441674b32df1aef91fc93b3db2b82dabc1',
+  'reference/portfolio.json': '6bbce92a1a970fbf37fc789858a839efbf99c8198b13eb62e99a7d7fe9be1020',
 })
 const paths = Object.keys(reviewedCandidateHashes).sort()
 export async function readReviewedCandidate(): Promise<CatalogFile[]> {
@@ -130,12 +135,12 @@ export async function runCandidateExportCheck() {
   const evidence = { schemaVersion: 1, origin: 'platform-authored-candidate-clean-export', status: 'failed',
     testedAt: new Date().toISOString(), host: `${process.platform}/${process.arch}`, node: '24.20.0',
     isolationAcceptance: false, generatedAppAcceptance: false, providerGeneration: false, databaseTested: false,
-    artifactBackendEvidence: 'fixture', sourceBaseline: '33b521e', dependencyBaseline: 'b981ec6',
+    artifactBackendEvidence: 'fixture', sourceBaseline: 'task-03-reviewed-scaffold', dependencyBaseline: 'unchanged-lock-ce88882e',
     sourceManifestDigest: '', templateDigest: '', archiveSha256: '', lockfileDigest: reviewedCandidateHashes['package-lock.json'],
     fileHashes: reviewedCandidateHashes, sourceRoot, objectRoot, cleanupConfirmed: false, commands, error: null as string | null }
   try {
     await mkdir(sourceRoot, { mode: 0o700 }); await mkdir(objectRoot, { mode: 0o700 })
-    const cache = join(homedir(), '.npm')
+    const cache = process.env.FORGE_CANDIDATE_CACHE ?? join(homedir(), '.npm')
     const version = await command(node, ['--version'], sourceRoot, cache, 10000)
     commands.push(version)
     if (version.exitCode !== 0 || version.output.trim() !== 'v24.20.0') throw new Error('Exact Node24.20.0 required')

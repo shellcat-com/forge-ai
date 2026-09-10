@@ -15,6 +15,13 @@ export const referenceCorpus = {
     brief: 'Pomodoro timer with start/pause/reset, separate work and break durations, and PostgreSQL session history surviving app-process restart.',
     uiContract: ['Start', 'Pause', 'Reset', 'Work duration', 'Break duration', 'Session history'],
   },
+  portfolio: {
+    "brief": "Generate a public professional portfolio in Next.js App Router and strict TypeScript. Use only owner-reviewed public name, biography, skills, project descriptions and links. Provide introduction, selected projects, about and contact sections, accessible navigation, responsive layouts, semantic headings, visible focus and reduced-motion support. Do not fabricate credentials, employers, testimonials, contact details or project outcomes. No database or contact-form backend is required for these read-only requirements.",
+    "specificationPath": "templates/next-postgres-v1/reference/portfolio.json",
+    "specificationSha256": "6bbce92a1a970fbf37fc789858a839efbf99c8198b13eb62e99a7d7fe9be1020",
+    "databaseRequired": false,
+    "engineDatabaseAcceptanceStillRequired": true,
+  },
   viewports: [390, 768, 1440], themes: ['light', 'dark'], zoomPercent: 200, reducedMotion: true,
 } as const
 export const referenceCorpusDigest = canonicalHash(referenceCorpus)
