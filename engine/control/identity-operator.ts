@@ -28,7 +28,7 @@ export class IdentityOperator {
     private readonly pool: Pool,
     private readonly issuer: string
   ) {
-    exactHttps(issuer)
+    exactHttps(issuer, true)
   }
   private async tx<T>(workspaceId: string, fn: (tx: PoolClient) => Promise<T>): Promise<T> {
     for (let attempt = 0; attempt < 12; attempt++) {

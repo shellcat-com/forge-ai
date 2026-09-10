@@ -14,7 +14,7 @@ export interface OidcConfiguration {
   redirectUri: string
   algorithm: 'RS256' | 'ES256' | 'EdDSA'
 }
-export function exactHttps(value: string): URL {
+export function exactHttps(value: string, allowRootIssuer = false): URL {
   const url = new URL(value)
   if (
     url.protocol !== 'https:' ||
@@ -22,7 +22,7 @@ export function exactHttps(value: string): URL {
     url.password ||
     url.hash ||
     url.search ||
-    url.href !== value ||
+    (url.href !== value && !(allowRootIssuer && url.pathname === '/' && url.href === `${value}/`)) ||
     value.length > 2048
   )
     throw new Error('An exact administrator-configured HTTPS URL is required')
@@ -41,7 +41,7 @@ export class OidcIdentityAdapter implements IdentityAdapter {
     config: OidcConfiguration,
     private readonly transport: typeof fetch = fetch
   ) {
-    const issuer = exactHttps(config.issuer)
+    const issuer = exactHttps(config.issuer, true)
     for (const endpoint of [config.authorizationEndpoint, config.tokenEndpoint, config.jwksUri]) {
       if (exactHttps(endpoint).origin !== issuer.origin)
         throw new Error('OIDC endpoints must belong to the pinned issuer origin')
