@@ -1,6 +1,19 @@
 import sharp from 'sharp'
 import { readFile, writeFile } from 'node:fs/promises'
 const manifest = JSON.parse(await readFile('docs/design/assets.json', 'utf8'))
+if (
+  manifest.some((asset) => {
+    try {
+      const url = new URL(asset.source)
+      return url.protocol !== 'https:' || url.pathname === '/' || url.username || url.password
+    } catch {
+      return true
+    }
+  })
+)
+  throw new Error(
+    'Public provenance omits private artwork download URLs. Supply a separately reviewed source catalog before preparing artwork; no files were fetched or changed.'
+  )
 for (const asset of manifest) {
   const response = await fetch(asset.source)
   if (!response.ok) throw new Error(`Asset ${asset.name}: ${response.status}`)
