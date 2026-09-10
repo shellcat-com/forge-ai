@@ -315,3 +315,29 @@ it('preserves one legacy fixture attempt per step while allowing multiple number
   await accounting.reserve(callTerms(byokRequest(),byokPolicy,binding))
   expect((await db.admin.query('SELECT count(*) FROM forge_control.provider_attempts WHERE job_id=$1',[binding.jobId])).rows[0].count).toBe('3')
 })
+
+it('zero-price calls still reserve durable numbered attempts and stop at twelve under concurrency', async () => {
+  const { binding } = await seed(0)
+  const policy = {
+    ...byokPolicy, id: 'groq', endpoint: 'https://api.groq.com/openai/v1/chat/completions', model: 'openai/gpt-oss-20b',
+    price: { ...byokPolicy.price, version: 'synthetic-free-v1', inputMicrosPerMillion: 0, outputMicrosPerMillion: 0,
+      freeOnly: true as const, entitlementDigest: 'b'.repeat(64), validFrom: new Date(Date.now() - 1000).toISOString(),
+      expiresAt: new Date(Date.now() + 300000).toISOString() },
+  }
+  const results = await Promise.allSettled(Array.from({ length: 20 }, () => accounting.reserve(
+    callTerms({ ...byokRequest(), model: policy.model }, policy, binding))))
+  const accepted = results.filter((r) => r.status === 'fulfilled')
+  expect(accepted).toHaveLength(12)
+  expect(results.filter((r) => r.status === 'rejected')).toHaveLength(8)
+  const row = await db.admin.query('SELECT provider_calls FROM forge_control.jobs WHERE id=$1', [binding.jobId])
+  expect(row.rows[0].provider_calls).toBe(12)
+  const attempts = await db.admin.query('SELECT maximum_micros FROM forge_control.provider_attempts WHERE job_id=$1', [binding.jobId])
+  expect(attempts.rows).toHaveLength(12)
+  expect(attempts.rows.every((r) => r.maximum_micros === '0')).toBe(true)
+  if (accepted[0].status !== 'fulfilled') throw new Error('Expected synthetic free reservation')
+  const receipt = accepted[0].value.receipt
+  expect(await accounting.dispatch(receipt)).toBe(true)
+  expect(await accounting.dispatch(receipt)).toBe(false)
+  await accounting.settle(receipt, { classification: 'measured', inputTokens: 10, outputTokens: 10, amountMicros: 0, usageDigest: 'a'.repeat(64) })
+  expect((await db.admin.query('SELECT provider_calls FROM forge_control.jobs WHERE id=$1', [binding.jobId])).rows[0].provider_calls).toBe(12)
+})

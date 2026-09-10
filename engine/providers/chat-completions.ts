@@ -6,11 +6,13 @@ import { limits } from '../contracts/primitives.ts'
 import { pinnedProviderFetch, providerDestination } from './destination.ts'
 import { assertModelBounds, inputTokenUpperBound } from './registry.ts'
 import type { ProviderPolicy } from './registry.ts'
+import type { HostedProviderId } from './hosted-catalog.ts'
+import { assertHostedRequestProfile, hostedRequestBody } from './hosted-request.ts'
 
 const envelope = z.object({ service_tier: z.string().optional(), model: z.string().optional(), id: z.string().min(1).max(120).optional(),
   choices: z.array(z.object({ finish_reason: z.string(), message: z.object({ content: z.string().nullable().optional(),
     refusal: z.string().nullable().optional(), tool_calls: z.array(z.unknown()).optional(), function_call: z.unknown().optional() }) })).length(1),
-  usage: z.object({ prompt_tokens_details: z.object({ cached_tokens: z.number().int().nonnegative().max(Number.MAX_SAFE_INTEGER) }).optional(), prompt_tokens: z.number().int().nonnegative().max(Number.MAX_SAFE_INTEGER),
+  usage: z.object({ cost: z.number().nonnegative().finite().nullable().optional(), prompt_tokens_details: z.object({ cached_tokens: z.number().int().nonnegative().max(Number.MAX_SAFE_INTEGER) }).optional(), prompt_tokens: z.number().int().nonnegative().max(Number.MAX_SAFE_INTEGER),
     completion_tokens: z.number().int().nonnegative().max(Number.MAX_SAFE_INTEGER) }).optional() })
 type ErrorCode = Extract<GenerationEvent, { type: 'error' }>['code']
 class TransportFailure extends Error {
@@ -23,6 +25,8 @@ export interface ChatCompletionsOptions {
   approvedEndpoints: readonly string[]
   model: ModelDescriptor
   policy?: ProviderPolicy
+  /** Explicit dialect for reviewed hosted models; does not enable a worker. */
+  hostedProfile?: HostedProviderId
   getCredential: (signal: AbortSignal) => Promise<string | null>
   /** Injected HTTP transport is for explicitly labelled transport tests only. */
   fetch?: typeof globalThis.fetch
@@ -44,6 +48,12 @@ export class ChatCompletionsAdapter implements ProviderAdapter {
     const url = providerDestination(options.endpoint, options.approvedEndpoints)
     this.endpoint = url.href
     this.model = modelDescriptorSchema.parse(options.model)
+    if (options.hostedProfile) {
+      assertHostedRequestProfile(options.hostedProfile, this.endpoint, this.model.id)
+      if (options.policy && (options.policy.id !== options.hostedProfile
+        || options.policy.model !== this.model.id || options.policy.endpoint !== this.endpoint))
+        throw new Error('PROVIDER_PROFILE_MISMATCH')
+    }
     if (this.model.capabilities.streaming || !this.model.capabilities.structuredOutput || this.model.capabilities.toolCalls)
       throw new Error('Adapter requires nonstreaming structured-only model policy')
     if (options.fetch && options.evidenceOrigin !== 'fixture') throw new Error('Injected transport must use fixture provenance')
@@ -102,7 +112,7 @@ export class ChatCompletionsAdapter implements ProviderAdapter {
       dispatched = true
       const response = await abortable(this.transport(this.endpoint, { method: 'POST', redirect: 'error', signal: controller.signal,
         headers: { Authorization: `Bearer ${credential}`, 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ model: request.model, messages: request.context, stream: false,
+        body: JSON.stringify(this.options.hostedProfile ? hostedRequestBody(this.options.hostedProfile, request) : { model: request.model, messages: request.context, stream: false,
           max_completion_tokens: request.maxOutputTokens, ...(this.options.policy ? { service_tier: 'default', store: false } : {}), response_format: { type: 'json_object' } }) }), controller.signal)
       received = true
       if (!response.ok) {
@@ -119,7 +129,11 @@ export class ChatCompletionsAdapter implements ProviderAdapter {
       const raw = await readBounded(response, cap, controller.signal)
       if (raw.includes(credential)) throw new TransportFailure('INVALID_OUTPUT')
       const parsed = envelope.parse(JSON.parse(raw))
-      if (containsCredential(parsed, credential) || (this.options.policy && parsed.model !== request.model)) throw new TransportFailure('INVALID_OUTPUT')
+      if (containsCredential(parsed, credential) || ((this.options.policy || this.options.hostedProfile) && parsed.model !== request.model)) throw new TransportFailure('INVALID_OUTPUT')
+      if (this.options.hostedProfile === 'openrouter' && parsed.usage?.cost != null && parsed.usage.cost !== 0)
+        throw new TransportFailure('INVALID_OUTPUT')
+      if (this.options.hostedProfile === 'groq' && parsed.service_tier !== undefined && parsed.service_tier !== 'on_demand')
+        throw new TransportFailure('INVALID_OUTPUT')
       if (parsed.usage && (parsed.usage.prompt_tokens > inputBound || parsed.usage.completion_tokens > request.maxOutputTokens))
         throw new TransportFailure('INVALID_OUTPUT')
       if (parsed.usage) {
