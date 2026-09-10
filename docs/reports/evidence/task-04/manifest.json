@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "task": "04-byok",
+  "workerBaseline": "881e9ac2b11f8f168cb7849b77c4ee7439e55458",
+  "branch": "codex/task-04-byok",
+  "capturedAt": "2026-09-10T04:38:00Z",
+  "localRuntime": {
+    "nodeObserved": "25.8.1",
+    "npm": "11.11.0",
+    "postgres": "14.18",
+    "os": "macOS"
+  },
+  "dependencyMode": "read-only shared node_modules symlink; not clean install",
+  "packageLockSha256": "849678e40252047ab5ed464cb2541eb2edb77ae2f1da1a7f801f155499353e93",
+  "liveProviderCalls": 0,
+  "liveSourceEvidence": false,
+  "paidBudgetAuthorizedMicros": 0,
+  "sqlStatus": "proposal only, native disposable database tested; Task01 integration pending",
+  "fullVerify": {
+    "passed": 655,
+    "skipped": 4,
+    "lint": "pass",
+    "typecheck": "pass",
+    "nextBuild": "pass",
+    "beforeFinalLegacyIndexTest": true
+  },
+  "finalNativeProposal": {
+    "passed": 5,
+    "skipped": 0,
+    "globalDispatchGate": "synthetic fixture; production integration blocked"
+  },
+  "controlSqlAssertions": 45,
+  "standaloneControlBuild": "pass",
+  "browser": "not run; no route or UI changed",
+  "secretReview": {
+    "tool": "gitleaks stdin --redact",
+    "findings": 0,
+    "scope": "owned staged diff; synthetic test credentials only"
+  },
+  "logNormalization": "CR/trailing whitespace and blank outer lines only",
+  "rawLogSha256": {
+    "verify.log": "2cdb8ebbe8eae7f6411d459e9e6944a55b968feef556f35b3076a50caf6f4aca",
+    "control-db.log": "2169d90463aafb29c708fa7bdeb5e2f60b3a38b052fa48be9527ba25aa66c0a0",
+    "native-tests.log": "20bbddbff0d41d7675a25b6d495799927f075817f1b7ec72d06cb23a545f906d",
+    "control-build.log": "623299b6458a7661c18844aae08d655e8919622a31059edb6c4a50578761af56"
+  },
+  "sourceSha256": {
+    "engine/generation/accounted-source.ts": "141253e38b861646fe2ec0b953c31538b9d359dae91c4c73f258241fd1bd70aa",
+    "engine/providers/README.md": "55738d5d8a9cef0470296e352bd143ec2b6dca2dd56184636b119054f74c889c",
+    "engine/providers/accounting-postgres.ts": "acb417261cc40a8479d33135a6d2eb560f505871c70cb05ca799f6500d81efb3",
+    "engine/providers/accounting.ts": "f64d4caba6015ec06a7d0189455f6000efb20ee8727c0a19a6b38ec33e0285d5",
+    "engine/providers/chat-completions.ts": "5cc4513cdb2a707aa1bdbdfae54f16ab430fe43f816c950e3ca8053fe13abd4d",
+    "engine/providers/credentials-postgres.ts": "f8e3a5cc2832a4c2a8dc72fda01ba421f405ee5446f170a087300d4a98ff176f",
+    "engine/providers/credentials.ts": "cfc039d5bb9e33069658d285b9920344ebb62c66b9d415ef2bd377c205e2ec90",
+    "engine/providers/destination.ts": "d2582ebbd2fc4bf49effc5a615d1ebcaf64a0b6b027b4cf5f1096ff232b4bf92",
+    "engine/providers/proposals/0005-byok.sql": "4088f628aad7a0eef41d6d95c68463eee07d52d134d51321b1996bfee951ac75",
+    "engine/providers/registry.ts": "2386126dda2cab0f94c623be6cda3dc31dd719f3ca2c4dbafe299b087c3b05bb",
+    "tests/engine/byok-fixtures.ts": "f45ed699b43106633255cbf6b1330b44bd66b8fcc57c9c9c16528defa2d01873",
+    "tests/engine/byok-transport.test.ts": "6c3f1eff5a924c95d06ec520fe70f646a0d290234daf361e311c8f5a98b44164",
+    "tests/engine/byok.native.test.ts": "a39d69aea6d927d5f6a59d070bb2418d539968cc70fa8a1db5130c8bc45487c0",
+    "tests/engine/byok.test.ts": "0e0d1e7e0d648d540b204851b71d4fce85cc2af52b0ed3ba16039bfff3d0a8e9",
+    "tests/engine/e2-generation.test.ts": "14a25e6d87f7495e392c12a8b042bbdb5fb1e154181f2b61c47d042f0822f9aa"
+  },
+  "evidenceSha256": {
+    "verify.log": "01f26827f0421b1dc069c04aa8cb19b9a0d487183e61d3e220058e6d54ef74b1",
+    "native-tests.json": "52b32bb3de19ad777cf9f522c983f6999da0b231c7d03db08fed0e9a07d4baaf",
+    "control-db.log": "2d4780c99e3281fa964ec194e69766a37680ae0af55b025e82136bffbe285f8b",
+    "native-tests.log": "6923b273874147c8d0b52b85e0ba099e58165d490a754fc73f0ca939b85d6d96",
+    "control-build.log": "8e8262a11afa14681f56b79c9a85f8d61c45967ac7da5f8a04e91c13e58aabdd"
+  }
+}
