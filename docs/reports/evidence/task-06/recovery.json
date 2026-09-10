@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "origin": "local-native-synthetic",
+  "hostedBackupAccepted": false,
+  "postgres": "postgres (PostgreSQL) 14.18 (Homebrew)",
+  "sourceAndTarget": "separate databases in one disposable socket-only cluster",
+  "backupBytes": 216190,
+  "backupSha256": "56f6225de3eae1211483db274950414bf3a1ea87bd8aee9d2d22696890a4519d",
+  "restoredJobs": 2,
+  "verifiedAvailableVersions": 4,
+  "verifiedLiveObjectReferences": 3,
+  "fixtureInlineArtifactPayloads": "preserved by full dump, separate from encrypted object denominator",
+  "observedLostPostBackupObjects": 1,
+  "expectedLostPostBackupObjects": 1,
+  "localRestoreVerificationMs": 148,
+  "backupAgeAtSimulatedLossMs": 88,
+  "detectionAndProvisioningIncluded": false,
+  "walReplay": false,
+  "processRestart": "separate write/read child processes",
+  "retentionTimeTravel": "migration-owner-only synthetic timestamps",
+  "cleanupConfirmed": true
+}

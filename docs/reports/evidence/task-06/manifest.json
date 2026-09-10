@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "baseline": "881e9ac2b11f8f168cb7849b77c4ee7439e55458",
+  "node": "24.20.0",
+  "postgres": "14.18",
+  "dependencyMode": "read-only symlink to frozen Task01 installation; not clean dependency reproduction",
+  "rootLockSha256": "849678e40252047ab5ed464cb2541eb2edb77ae2f1da1a7f801f155499353e93",
+  "hostedAcceptance": false,
+  "files": [
+    {
+      "path": "engine/artifacts/encrypted-backend.ts",
+      "bytes": 5516,
+      "sha256": "20537f8bfd6ac4f3ae00b978c324ea4e5599f154044bb5286da9d968a295cb1e"
+    },
+    {
+      "path": "engine/artifacts/postgres-backend.ts",
+      "bytes": 8102,
+      "sha256": "134b97adee8f976965b11a60c350ea8e59d1784506918142228b5ba39fdaa9b2"
+    },
+    {
+      "path": "engine/artifacts/postgres-schema.proposal.sql",
+      "bytes": 10600,
+      "sha256": "cf7d981f5a62bd9196247664ab0b14f961c9a662b544353e3680756b7e5b80eb"
+    },
+    {
+      "path": "engine/hosting/persistence-config.ts",
+      "bytes": 4663,
+      "sha256": "f92698b4bd204bf4ba334a11223925d7848f61317d5143f24776af1e5ad97302"
+    },
+    {
+      "path": "tests/engine/encrypted-objects.test.ts",
+      "bytes": 3974,
+      "sha256": "e4f9d614bb681a7495a4df1126cd712778542eaeef85bc853a3dde323b3cce11"
+    },
+    {
+      "path": "tests/engine/persistence-config.test.ts",
+      "bytes": 3349,
+      "sha256": "caa14d64d9148f56a24819e8f27a000537a53bf7072858469b0b7a10dcb98eae"
+    },
+    {
+      "path": "tests/engine/persistence.native.test.ts",
+      "bytes": 21714,
+      "sha256": "b4ce990dfbb6036e70dc0d23d0ee60c86f94a08a0e64462f3331fd2d34ef142f"
+    },
+    {
+      "path": "tests/harness/persistence-child.ts",
+      "bytes": 1338,
+      "sha256": "d749c5a17dae7f07c75fbacf348f24ae56fb9ce9681e033b4caf86f205125978"
+    },
+    {
+      "path": "docs/reports/evidence/task-06/e0-native.log",
+      "bytes": 208,
+      "sha256": "2169d90463aafb29c708fa7bdeb5e2f60b3a38b052fa48be9527ba25aa66c0a0"
+    },
+    {
+      "path": "docs/reports/evidence/task-06/native-tests.json",
+      "bytes": 17900,
+      "sha256": "b5725455942450cb0b315b8066b4ef9d76feb8d862a6d94979485339d0253602"
+    },
+    {
+      "path": "docs/reports/evidence/task-06/native-tests.log",
+      "bytes": 4118,
+      "sha256": "b3110e917ef2b2d3fd2af412787ed57c458167028c7eca3cbd9f19bbcccfe807"
+    },
+    {
+      "path": "docs/reports/evidence/task-06/recovery.json",
+      "bytes": 914,
+      "sha256": "127db9c97092227e8637e7d04fe0ff9d02eaa71775fbab49103a3cfd9580c92b"
+    },
+    {
+      "path": "docs/reports/evidence/task-06/scoped-lint.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/reports/evidence/task-06/static-checks.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/reports/evidence/task-06/targeted-tests.json",
+      "bytes": 4513,
+      "sha256": "3cbb6fb1ae9fdcfde5f7b19d32c08a2bd08b58cce32565da92057a436da8c2cb"
+    },
+    {
+      "path": "docs/reports/evidence/task-06/targeted-tests.log",
+      "bytes": 757,
+      "sha256": "118114758fd869255632de08d5e08a0c921d0c5f15db09bc5eaf5c5d990b9b7b"
+    },
+    {
+      "path": "docs/reports/evidence/task-06/verify.log",
+      "bytes": 7863,
+      "sha256": "bd52e17f8c6735f9a7d40f492e8ba6ed731a45373d67cd81a76b3b2636cdc04e"
+    }
+  ],
+  "logNormalization": "Trailing whitespace and final blank lines removed; diagnostic content preserved"
+}

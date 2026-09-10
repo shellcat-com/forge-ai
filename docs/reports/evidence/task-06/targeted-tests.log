@@ -1,0 +1,15 @@
+
+ RUN  v4.1.11 /private/tmp/forge-task06-persistence
+
+ ✓ tests/engine/persistence.native.test.ts (4 tests) 1936ms
+   ✓ stores encrypted bytes across actual process exits; rejects versions, tenants and excessive DB authority  403ms
+   ✓ restores control jobs and every available encrypted version into a separate target with measured synthetic loss  423ms
+ ✓ tests/engine/encrypted-objects.test.ts (2 tests) 7ms
+ ✓ tests/engine/persistence-config.test.ts (3 tests) 7ms
+
+ Test Files  3 passed (3)
+      Tests  9 passed (9)
+   Start at  23:33:58
+   Duration  2.43s (transform 138ms, setup 0ms, import 288ms, tests 1.95s, environment 0ms)
+
+JSON report written to /private/tmp/forge-task06-persistence/docs/reports/evidence/task-06/targeted-tests.json
