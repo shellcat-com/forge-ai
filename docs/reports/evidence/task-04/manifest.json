@@ -34,8 +34,10 @@
   "browser": "not run; no route or UI changed",
   "secretReview": {
     "tool": "gitleaks stdin --redact",
-    "findings": 0,
-    "scope": "owned staged diff; synthetic test credentials only"
+    "initialOwnedCodeDiffFindings": 0,
+    "finalDiffIncludingManifestFindings": 2,
+    "confirmedSecrets": 0,
+    "disposition": "Both generic-api-key findings are verified SHA-256 file checksums for credentials.ts and credentials-postgres.ts in this manifest; no credential values. No scanner bypass/allowlist added."
   },
   "logNormalization": "CR/trailing whitespace and blank outer lines only",
   "rawLogSha256": {
