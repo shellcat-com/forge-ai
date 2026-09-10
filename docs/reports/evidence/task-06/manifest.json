@@ -91,6 +91,11 @@
       "path": "docs/reports/evidence/task-06/verify.log",
       "bytes": 7863,
       "sha256": "bd52e17f8c6735f9a7d40f492e8ba6ed731a45373d67cd81a76b3b2636cdc04e"
+    },
+    {
+      "path": "docs/reports/evidence/task-06/ci.json",
+      "bytes": 3998,
+      "sha256": "5a3bbec2ebb3809aca7f851d5c2278df9ccfb4d2f412d1952ef2d1d8b39e9c87"
     }
   ],
   "logNormalization": "Trailing whitespace and final blank lines removed; diagnostic content preserved"

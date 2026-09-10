@@ -4,6 +4,8 @@ Vercel is selected for the Forge website and public generated portfolio, with pl
 
 Task 08 reports a read-only account check of team `biswas07` with active Hobby billing. This task has not independently inspected account configuration, function quotas, Fluid settings, database connections or a deployed Forge project. Existing unrelated projects are not deployment targets.
 
+Publication handoff: Task 08 subsequently reports its dedicated `forge-ai-demo` static fallback at [forge-ai-demo-omega.vercel.app](https://forge-ai-demo-omega.vercel.app), with no API, Functions, worker or engine environment and controls explicitly unavailable. This is peer-reported website evidence, not this task's hosted persistence probe or a generated portfolio. That exact origin is the candidate for future same-origin configuration; authenticated control routing must still be integrated and verified by Tasks 01/05/08.
+
 ## Handler suitability
 
 The following assessment is based on the canonical source and official documentation reviewed 2026-09-10 UTC. Public limits are not account access, budget approval or live acceptance.
@@ -49,4 +51,4 @@ For a website-only deployment, show storage/worker/control unavailable and do no
 
 ## Exact remaining access/decisions
 
-Task 01 must accept/publish the object schema and wire same-transaction adoption and the app/control identity bridge. Task 04 owns encrypted provider credential storage and budgets; Task 05 owns real session/membership authorization. Task 06's local key resolver does not select a managed KMS. Specify approved Neon target/region, restricted-role capability and connection envelope; object backend/residency/retention/capacity; key escrow and restore operator; external worker host and maintenance schedule; off-site backup/PITR/deletion policy. Task 08 supplies exact Vercel target/origin and coordinates all deployment writes. No missing service has been bought or reported ready.
+Task 01 must accept/publish the object schema and wire same-transaction adoption and the app/control identity bridge. Task 04 owns encrypted provider credential storage and budgets; Task 05 owns real session/membership authorization. Task 06's local key resolver does not select a managed KMS. Specify approved Neon target/region, restricted-role capability and connection envelope; object backend/residency/retention/capacity; key escrow and restore operator; external worker host and maintenance schedule; off-site backup/PITR/deletion policy. Task 08 owns authenticated routing at the assigned origin and coordinates all deployment writes. No missing service has been bought or reported ready.
