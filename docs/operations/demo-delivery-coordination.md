@@ -1,6 +1,6 @@
 # Demo-delivery coordination
 
-Updated 2026-09-10 UTC. Task 01 is the only baseline/shared-code integrator. Scheduling belongs to the existing Today Coordinator if one is assigned. No new workers or second team were launched by Task 01. Tasks 02–09 are now active user-started sessions in isolated worktrees; their IDs are recorded below. No implementation sign-off or live acceptance is implied. The prior E0 and E2–E5 tasks are idle; no Today Coordinator was found in the inspected inventory.
+Updated 2026-09-10 UTC. Task 01 is the only baseline/shared-code integrator. Scheduling belongs to the existing Today Coordinator if one is assigned. No new workers or second team were launched by Task 01. Tasks 02–09 are existing user-started sessions in isolated worktrees; their IDs are recorded below. Their reviewed implementation foundations are now integrated; live acceptance is not implied. The prior E0 and E2–E5 tasks are idle; no Today Coordinator was found in the inspected inventory.
 
 ## Canonical repository and publication
 
@@ -9,7 +9,7 @@ Updated 2026-09-10 UTC. Task 01 is the only baseline/shared-code integrator. Sch
 - Published worker starting commit: `881e9ac2b11f8f168cb7849b77c4ee7439e55458`. Create isolated `codex/` worktrees at that exact SHA; do not use the dirty shared `master` checkout.
 - Composition parents: reconciled PR #7 `a71519bdffd61b83d24413efc1a53327b4304160` plus source checkpoint `2c98c4f8ea6c2dd4feaef7eee561b373f545b0fe`. Remote `master` was `6a8095ef705e0d1ae319b35c869a03e33540341f` (merged PR #4). Refresh refs before each integration.
 - PR dependency: [PR #7](https://github.com/shellcat-com/forge-ai/pull/7) is already an ancestor of this composition. It was merged externally while this task ran: current `master` is `42a376387835c2d7140b6c484c3517fe466714eb`. Task 01 did not merge or close it. An ancestry-only merge (`591f87c`) records that base without changing source bytes. This task targets `master`; PR #7 is now a satisfied dependency. No duplicate cherry-pick, merge to master, force-push or branch deletion is authorized.
-- Integration PR: [draft PR #8](https://github.com/shellcat-com/forge-ai/pull/8). Clean reproduction/code commit: `591f87c7a2e9e8f8f18b356852e922f2d3c1bf19`; later report/evidence commits do not change that implementation. [Task 01 report](../reports/demo-delivery/task-01-baseline.md) records final head, checks, limitations and evidence. The worker starting SHA stays stable when later evidence commits advance the branch.
+- Integration PR: [draft PR #8](https://github.com/shellcat-com/forge-ai/pull/8). Frozen combined source commit: `4dacd0255e4a04648424eb0b0044c6658b46a014`. Original baseline reproduction at `591f87c7a2e9e8f8f18b356852e922f2d3c1bf19` remains historical; final combined reproduction is tracked in the report. [Task 01 report](../reports/demo-delivery/task-01-baseline.md) records final head, checks, limitations and evidence. The worker starting SHA stays stable when later evidence commits advance the branch.
 
 ## Composition and provenance decisions
 
@@ -33,27 +33,27 @@ Every task owns its named report under `docs/reports/demo-delivery/`. Uncreated 
 | Task | Exclusive implementation area | Shared requests / dependencies | Report / current state |
 | --- | --- | --- | --- |
 | 01 coordination | This board, RFC/architecture, `engine/control` except assigned identity, `engine/contracts`, `engine/integration`, application API/worker integration, migrations, manifests/lockfiles, tsconfig/CI | Serial review of all shared changes; signatures and migration allocation below | [task-01-baseline.md](../reports/demo-delivery/task-01-baseline.md); baseline integration |
-| 02 runtime | `runner` except template-specific candidate/browser fixtures; `engine/runner-client`; dedicated runtime tests | 03 image/release contract; 01 authorization and shared schemas; 07 runtime routing | `task-02-runtime.md`; active implementation; D2 access |
-| 03 template | `templates/next-postgres-v1`, template/release tests and candidate scaffold fixtures | 02 image tooling; lockfile edits requested through 01; reference corpus changes reviewed with 09 | `task-03-template.md`; active implementation; D7 |
-| 04 BYOK/generation | `engine/providers`, `engine/generation`, provider tests; review/reuse `src/server/providers` | 05 credential authorization; 06 secret backend; 01 registry UI boundary, call reservations and migration | `task-04-byok.md`; active implementation; D3/D4 |
-| 05 identity | `engine/control/identity.ts`, new identity adapter modules and dedicated tests; review/reuse `src/server/auth` | 01 route/schema/session bridge; 04 credential owner checks; 07 revocation | `task-05-identity.md`; active implementation; D1 live users |
-| 06 persistence/hosting | `engine/artifacts`, new hosted storage/worker configuration, storage/recovery tests and runbooks | 01 database/control/worker shared edits; 04 secret boundary; 08 Vercel deployment configuration | `task-06-persistence.md`; active implementation; D5 |
-| 07 private preview | `engine/preview`, new gateway modules, preview tests | 01 atomic tickets/DB; 02 exact environment routing; 05 membership; 06 storage | `task-07-preview.md`; active implementation; D6 |
-| 08 live flow/demo | Next.js UI `src/app`, `src/components`, `src/engine` adaptation and UI tests; public deployment scripts/evidence | API route changes via 01; consumes 02–07; shares hosting config with 06 by request; sole Vercel writer | `task-08-live-demo.md`; active implementation; real dependencies |
-| 09 acceptance | `engine/validation`, acceptance harness/ledger and independent tests; open-source readiness docs | Coordinate corpus with 03; validate integrated 02–08; never relabel fixtures | `task-09-acceptance.md`; active implementation; D8 |
+| 02 runtime | `runner` except template-specific candidate/browser fixtures; `engine/runner-client`; dedicated runtime tests | 03 image/release contract; 01 authorization and shared schemas; 07 runtime routing | [task-02-runtime.md](../reports/demo-delivery/task-02-runtime.md); integrated foundation; D2 access |
+| 03 template | `templates/next-postgres-v1`, template/release tests and candidate scaffold fixtures | 02 image tooling; lockfile edits requested through 01; reference corpus changes reviewed with 09 | [task-03-template.md](../reports/demo-delivery/task-03-template.md); integrated foundation; D7 |
+| 04 BYOK/generation | `engine/providers`, `engine/generation`, provider tests; review/reuse `src/server/providers` | 05 credential authorization; 06 secret backend; 01 registry UI boundary, call reservations and migration | [task-04-byok.md](../reports/demo-delivery/task-04-byok.md); integrated foundation; D3/D4 |
+| 05 identity | `engine/control/identity.ts`, new identity adapter modules and dedicated tests; review/reuse `src/server/auth` | 01 route/schema/session bridge; 04 credential owner checks; 07 revocation | [task-05-identity.md](../reports/demo-delivery/task-05-identity.md); integrated foundation; D1 live users |
+| 06 persistence/hosting | `engine/artifacts`, new hosted storage/worker configuration, storage/recovery tests and runbooks | 01 database/control/worker shared edits; 04 secret boundary; 08 Vercel deployment configuration | [task-06-persistence.md](../reports/demo-delivery/task-06-persistence.md); integrated foundation; D5 |
+| 07 private preview | `engine/preview`, new gateway modules, preview tests | 01 atomic tickets/DB; 02 exact environment routing; 05 membership; 06 storage | [task-07-preview.md](../reports/demo-delivery/task-07-preview.md); integrated foundation; D6 |
+| 08 live flow/demo | Next.js UI `src/app`, `src/components`, `src/engine` adaptation and UI tests; public deployment scripts/evidence | API route changes via 01; consumes 02–07; shares hosting config with 06 by request; sole Vercel writer | [task-08-live-demo.md](../reports/demo-delivery/task-08-live-demo.md); integrated foundation; real dependencies |
+| 09 acceptance | `engine/validation`, acceptance harness/ledger and independent tests; open-source readiness docs | Coordinate corpus with 03; validate integrated 02–08; never relabel fixtures | [task-09-acceptance.md](../reports/demo-delivery/task-09-acceptance.md); integrated foundation; D8 |
 
 Overlapping files are requests, not joint ownership. Submit proposed path, exact contract/diff, dependency commit, migration need and targeted test to Task 01. It records acceptance or revision here before applying. Existing reports/fixture evidence are not overwritten. Architecture changes require an RFC amendment; user direction already resolves BYOK, Vercel and domain scope without another permission round.
 
 ## Contract signatures and integration status
 
-These are inspected existing signatures, frozen for baseline consumers. They are not provider/runtime acceptance signatures. Task 01 records any versioned replacement and dependent tests before merging it. **No Task 02–09 implementation sign-off has been received.** Exact baseline file hashes: [contract signatures](../reports/evidence/task-01/contract-signatures.json).
+These are the original baseline signatures with explicitly recorded implementation evolution. They are not provider/runtime acceptance signatures. Task 01 records any versioned replacement and dependent tests before merging it. **Reviewed foundation code is integrated through `4dacd02`; production composition and live acceptance remain unsigned.** Exact baseline file hashes: [contract signatures](../reports/evidence/task-01/contract-signatures.json).
 
 | Contract | Current signature / authority | Required evolution / responsible parties |
 | --- | --- | --- |
 | Provider v1 | `ProviderAdapter.listModels(signal): Promise<ModelDescriptor[]>`; `validateCredentials(signal): Promise<CredentialStatus>`; `generate(request: GenerationRequest, signal): AsyncIterable<GenerationEvent>` in `engine/contracts/provider.ts` | 04 proposes policy-bound credentials and bounded per-call usage; 01 owns schema/accounting acceptance. Preserve explicit fixture/provider origin. |
 | Stage v1 | `StageAdapter.origin: 'fixture'`; `run(input: StageInput, signal): Promise<StageResult>` in `engine/control/stage-adapter.ts` | 01+02+04 must add a validated live result path. Do not widen a literal and treat synthetic verification/cleanup as real. Input retains job/step/operation, lease epoch, digest and source bindings. |
 | Source bridge v1 | `storedSourceSchema = {manifest, manifestArtifact, blobs}`; stored candidate has version 1, fixture origin, source and diff reference | 01 owns adoption under native DB state/lease fences; 04 supplies immutable source, 06 versioned objects. |
-| Identity v1 | `authorizationUrl(transaction): string`; `exchange(code, verifier, nonceHash, redirectUri): Promise<IdentityClaims>`; current adapter/claims origin is `'fixture'` | 05 proposes real Better Auth/OIDC subject/session mapping; 01 reviews persisted memberships and app/control boundary. No synthetic ID conversion. |
+| Identity v1 | `authorizationUrl(transaction): string`; `exchange(code, verifier, nonceHash, redirectUri): Promise<IdentityClaims>`; adapter/claims origin now supports `'fixture' | 'oidc'`; fixture startup remains explicit | 05 proposes real Better Auth/OIDC subject/session mapping; 01 reviews persisted memberships and app/control boundary. No synthetic ID conversion. |
 | Object storage | `createOnly(key, bytes): Promise<{version:string}>`; `readVersion(key, version): Promise<Uint8Array>`; evidence `'fixture'|'durable'` in `engine/artifacts/store.ts` | 06 supplies authenticated versioned encrypted backend and restart/tenant/restore proof; flag alone proves nothing. |
 | Runtime | `LinuxExecutor.launch(descriptor, attemptId, signal)`; `revokeIngress`; `stopLauncherAndVm`; `wipeAppStorageAndCredentials`; `observe(...): Promise<HostObservation>` in `runner/host/lifecycle.ts` | 02 implements trusted OS adapter; 03 pins image; preserve signed descriptors, attempt IDs, epoch/tombstone cleanup and missing driver default. |
 | Broker | `RunnerTransport.send(request: BrokerRequest & {requestId:string}, signal): Promise<unknown>` | 02 preserves authenticated fixed actions; 01 authorizes exact jobs; 07 routes exact environment generations only. |
@@ -128,13 +128,13 @@ All workers received canonical SHA `881e9ac2b11f8f168cb7849b77c4ee7439e55458` an
 
 | Task | Session ID | Isolated branch/worktree | Current handoff |
 | --- | --- | --- | --- |
-| 02 | `01a08981-52bb-7970-9bae-d28c6f66d418` | `codex/task-02-runtime`, `/tmp/forge-task02-runtime` | Runtime implementation; existing broker authority interface confirmed, real E1 authorization adapter remains 01-owned |
+| 02 | `01a08981-52bb-7970-9bae-d28c6f66d418` | `codex/task-02-runtime`, `/tmp/forge-task02-runtime` | PR #16 / `f276d54` integrated in `27191e8`; default-disabled runtime, E1 authority remains 01-owned |
 | 03 | `01a08981-9134-73b1-862b-126b1984ff5e` | `codex/task-03-template`, `/tmp/forge-task03-template` | PR #13 / `b3fb6f6` integrated in `b40486b`; candidate image/template release remains open |
 | 04 | `01a08981-bd53-7f60-9e5b-ae5d715cfdf2` | `codex/task-04-byok`, `/tmp/forge-task04-byok` | PR #15 / `fce0a18`–`bd8d623` integrated via `6c36784`/`ab9fa7b`; 0005/global gate/cleanup integration remains open |
 | 05 | `01a08981-f80b-7921-84f9-19f1b55abef7` | `codex/task-05-identity`, `/tmp/forge-task05-identity` | PR #11 / `c4236ba`–`c20f3ae` integrated via `417874d`/`46ff21c`; hosted plugin/composition/0004 and lifecycle hooks pending |
 | 06 | `01a08982-22d5-7611-8aa3-62d4d0467618` | `codex/task-06-persistence`, `/tmp/forge-task06-persistence` | PR #12 / `aa1a8c1`–`70cff26` integrated via `ae0db48`/`7b80108`; 0006/adoption composition remains open |
-| 07 | `01a08982-57f5-7b93-8f1a-663e051eb871` | `codex/task-07-private-preview`, `/tmp/forge-task07-preview` | Gateway and 0007 proposal; lock/race review changes requested |
-| 08 | `01a08982-8039-7ad0-b1e9-289d23704a0a` | `codex/task-08-live-demo`, `/tmp/forge-task08-live-demo` | Publisher/fallback preparation and bounded public provenance review |
+| 07 | `01a08982-57f5-7b93-8f1a-663e051eb871` | `codex/task-07-private-preview`, `/tmp/forge-task07-preview` | PR #14 / `edcd3c1` integrated in `b2a3493`; reviewed lock/race fixes, unmounted gateway/0007 proposal |
+| 08 | `01a08982-8039-7ad0-b1e9-289d23704a0a` | `codex/task-08-live-demo`, `/tmp/forge-task08-live-demo` | PR #9 / `7bcc738` integrated in `4dacd02`; publisher and public availability page, no generated portfolio |
 | 09 | `01a08982-d093-70e0-9a85-0db88a6413d4` | `codex/task-09-acceptance`, `/tmp/forge-task09-acceptance` | Source PR #10 / `4fa7dc2`; harness integrated in `d3244f7`; final integrated/live audit blocked |
 
 Scoped delegations supersede the broader ownership defaults only as follows:
@@ -180,3 +180,30 @@ These are authored-history merges into the integration branch. GitHub automatica
 | 09 `1fbcc99`, `f36e9c8` | `b6f8dfb` | 25 artifact hashes verified; historical304-file inventory remains bound to its original source. |
 
 Task02 review remains open for privileged jail-directory ancestor/ownership/exclusive-create checks and guest expired-RPC rejection before handling. These are independent code corrections, not reasons to claim containment accepted. Task07/08 stable deliveries await their dependency-ordered integration. All local integration unit checks above use the frozen baseline dependency tree; final clean combined reproduction remains pending. No root package/lock or canonical SQL migration changed during these merges.
+
+
+## Current combined handoff — supersedes earlier pending-delivery observations
+
+Frozen source `4dacd0255e4a04648424eb0b0044c6658b46a014` contains every reviewed Task02–08 foundation and Task09 harness through `f36e9c8`. Earlier follow-up paragraphs are a chronological review log, not current delivery status. The original `881e9ac` worker starting point stays immutable. Task01 requested the existing Task09 session's final independent audit against this combined SHA; no second team was created.
+
+| Final source | Authored-history integration | Local review before combined reproduction |
+| --- | --- | --- |
+| 02 `f276d540ee111a47e0ab6ee8147b43caab914445` / PR16 | `27191e8` | 17 source + 7 artifact hashes; 27 runtime TS and 21 Python simulations pass; added-file secret scan clear. Privileged jail ancestors and expired guest RPC fixes reviewed. No Linux/KVM execution. |
+| 07 `edcd3c16bac857ea5c1cd40fdf8fbeba75f11c43` / PR14 | `b2a3493` | 15 source + 9 artifact hashes; 15 host/hostname/policy tests pass; added-file scan clear. Local browser/operator concurrency rerun belongs to combined verification. |
+| 08 `7bcc738a65fe6e54150ba0738196b57801d044e4` / PR9 | `4dacd02` | 20 artifact hashes/lengths; 28 publishing tests pass; added-file scan clear; retained mobile-light/desktop-dark screenshots inspected. Metadata edits preserve all art bytes. |
+
+Source PRs can be automatically marked merged when their base receives these commits; no GitHub PR merge/close operation or master mutation was performed. The sole integration deliverable remains draft PR8, base `master`.
+
+Accepted directions have these separate unresolved integration dependencies:
+
+1. **01 identity composition / 0004:** install and configure the reviewed compatible Better Auth OIDC provider only with its schema/lifecycle hooks, static client and exact issuer; connect real subject/membership/session revocation to E1. No second identity authority or fixture-ID conversion.
+2. **01 accounting / 0005:** actual `CallDispatchGate.lockAndAuthorize(c, terms)` must lock current global/workspace/project/job/step authority, lease, credential revision, policy and spend. Integrate the whole-job/global envelope and retain `reserved` as well as dispatched/uncertain call liabilities during cleanup. The reviewed proposal preserves legacy uniqueness but is not safe to publish alone.
+3. **01 objects / 0006:** `lockObjectForAdoption(c: PoolClient, ref)` must run in the actual leased worker adoption transaction before the artifact insert. Same-database advisory locks, fresh authorization, retention and backup key availability remain requirements. Local separate-database restore does not prove separate-host recovery.
+4. **01 live source/runner composition:** implement fresh E1 `authority(descriptor)` and validated live `StageAdapter` result/adoption. Bind both final template and image digests; release/materialize the real image and separately isolated external checker before enabling dispatch. Current fixture source/repair path stays explicit.
+5. **01 preview / 0007:** mount reviewed control/gateway handlers only after canonical identity/schema/worker teardown integration and a selected real private TLS/protection arrangement. Task07 local Chromium and native races are supporting evidence; Vercel public website hosting does not authorize private preview ingress.
+6. **03/08 portfolio release:** `next-postgres-portfolio-static-v1` remains an unregistered proposed profile. The portfolio brief is not a release template. Register reviewed `PublicationAuthority`, bind an actual approved provider job and complete build output, then publish/recheck the generated artifact. Existing Next/PostgreSQL task-board acceptance remains required.
+7. **09 audit/distribution:** final source audit and current package inventory; old positive allowlist proposal omits new runtime files and must not be applied. Root `private:true`, package/lock and canonical SQL bytes remain unchanged. Git checkout plus lockfile is the reproducible source distribution; no npm publication is claimed.
+
+Task08 has published [a public availability website](https://forge-ai-demo-omega.vercel.app), independently observed by Task09. It explicitly has no hosted builder, sign-in, key submission, private preview or generated portfolio. The immutable deployment/source/digest are recorded in its report. This closes only public website reachability evidence, not D5 durable hosting or the required real generated portfolio.
+
+External inputs still required: approved Linux/KVM access and immutable image; supported entitled model and an explicit numeric live budget (currently authorized new billable API spend **$0**); owner/test identities and issuer access; actual worker/PostgreSQL/object/KMS/backup/retention choices; private preview ingress/protection; and named operational acceptance owners. No new purchase or public multi-user generation approval is inferred.

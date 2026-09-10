@@ -1,0 +1,100 @@
+{
+  "recordedAt": "2026-09-10T04:59:12.744Z",
+  "outcome": "PASS",
+  "browser": "153.0.8010.36",
+  "database": "postgres (PostgreSQL) 14.18 (Homebrew)",
+  "evidence": "real browser/TLS/native PostgreSQL; synthetic identity/app/runtime and local hostname mapping",
+  "trust": "self-signed local TLS with ignoreHTTPSErrors; not public DNS/TLS or Vercel protection evidence",
+  "tests": [
+    {
+      "name": "anonymous browser denied",
+      "result": "PASS"
+    },
+    {
+      "name": "browser rejects Domain=vercel.app public-suffix cookie",
+      "result": "PASS"
+    },
+    {
+      "name": "different origin under same registrable site is same-site; host cookie withheld",
+      "result": "PASS"
+    },
+    {
+      "name": "sibling vercel.app domains are cross-site in real Chromium",
+      "result": "PASS"
+    },
+    {
+      "name": "same-origin policy blocks cross-host iframe document access",
+      "result": "PASS"
+    },
+    {
+      "name": "canonical ticket HTTP endpoint requires CSRF proof",
+      "result": "PASS"
+    },
+    {
+      "name": "cross-site POST launch, Strict cookie and explicit same-site continuation work",
+      "result": "PASS"
+    },
+    {
+      "name": "HttpOnly host-only gateway cookie resists guest JavaScript overwrite",
+      "result": "PASS"
+    },
+    {
+      "name": "Forge and provider cookies/credentials withheld from fixture guest",
+      "result": "PASS"
+    },
+    {
+      "name": "replayed launch denied through TLS gateway",
+      "result": "PASS"
+    },
+    {
+      "name": "foreign and null launch origins denied",
+      "result": "PASS"
+    },
+    {
+      "name": "cookie collision and forwarded host rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "upstream redirect, reserved Set-Cookie and encoded gateway namespace rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "guest mutation requires exact preview origin",
+      "result": "PASS"
+    },
+    {
+      "name": "expired ticket and cross-tenant session denied by actual TLS gateway",
+      "result": "PASS"
+    },
+    {
+      "name": "browser denies stale environment epoch before any guest routing",
+      "result": "PASS"
+    },
+    {
+      "name": "unhealthy runtime denied",
+      "result": "PASS"
+    },
+    {
+      "name": "total preview timeout aborts stalled upstream",
+      "result": "PASS"
+    },
+    {
+      "name": "browser renewal rotates session and revokes old credential",
+      "result": "PASS"
+    },
+    {
+      "name": "membership revocation during in-flight response withholds body and denies browser reload",
+      "result": "PASS"
+    },
+    {
+      "name": "maintenance invalidates revoked viewer credential",
+      "result": "PASS"
+    }
+  ],
+  "fixtureAppRequests": 9,
+  "blocked": [
+    "live Vercel protection authorized/unauthorized browsers",
+    "generated-app readiness/restart on Task 02 runtime",
+    "public DNS/TLS and issued immutable deployment host"
+  ]
+}

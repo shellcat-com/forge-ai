@@ -1,0 +1,164 @@
+[
+  {
+    "name": "verify",
+    "command": [
+      "npm",
+      "run",
+      "verify"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 49.21
+  },
+  {
+    "name": "native-control",
+    "command": [
+      "npm",
+      "run",
+      "test:db:control"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 1.07
+  },
+  {
+    "name": "control-build",
+    "command": [
+      "npm",
+      "run",
+      "control:build"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 0.95
+  },
+  {
+    "name": "disabled-api",
+    "command": [
+      "node",
+      "dist-engine/control/index.js",
+      "api"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 0.13
+  },
+  {
+    "name": "disabled-worker",
+    "command": [
+      "node",
+      "dist-engine/control/index.js",
+      "worker"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 0.13
+  },
+  {
+    "name": "native-migration",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "tests/engine/validation-native.test.ts",
+      "--maxWorkers=1"
+    ],
+    "environment": {
+      "FORGE_NATIVE_MIGRATION_TEST": "1"
+    },
+    "exitCode": 0,
+    "seconds": 1.27
+  },
+  {
+    "name": "identity-browser",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "tests/engine/identity.native.test.ts",
+      "--maxWorkers=1"
+    ],
+    "environment": {
+      "FORGE_IDENTITY_BROWSER": "true",
+      "FORGE_IDENTITY_BROWSER_EXECUTABLE": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+    },
+    "exitCode": 0,
+    "seconds": 4.17
+  },
+  {
+    "name": "preview-types",
+    "command": [
+      "node_modules/.bin/tsc",
+      "-p",
+      "tests/preview/tsconfig.json"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 0.96
+  },
+  {
+    "name": "preview-browser",
+    "command": [
+      "node",
+      "--import",
+      "tsx",
+      "tests/preview/browser.ts"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 3.53
+  },
+  {
+    "name": "identity-preview-race",
+    "command": [
+      "node",
+      "--import",
+      "tsx",
+      "tests/preview/identity-race.ts",
+      "/tmp/forge-task01-final-reproduction/engine/control/identity-operator.ts"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 2.59
+  },
+  {
+    "name": "baseline-browser",
+    "command": [
+      "python3",
+      "scripts/check-baseline-browser.py"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 12.7
+  },
+  {
+    "name": "runtime-python",
+    "command": [
+      "python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests/runner",
+      "-p",
+      "test_*.py"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 0.13
+  },
+  {
+    "name": "template-python",
+    "command": [
+      "python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "templates/next-postgres-v1/toolchain",
+      "-p",
+      "test_*.py"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 0.08
+  }
+]
