@@ -7,6 +7,7 @@ export default tseslint.config(
       "dist/**",
       "dist-cloud/**",
       "dist-engine/**",
+      "cloudflare/scheduler/.wrangler/**",
       "runner/evidence/**",
       "public/monaco/**",
       "templates/**",
