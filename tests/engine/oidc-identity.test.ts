@@ -140,3 +140,8 @@ it('bounds streamed responses and rejects missing/bad signatures', async () => {
 it('constant comparison handles Unicode byte lengths without throwing', () => {
   expect(secureEqual('é', 'a')).toBe(false)
 })
+
+it('preserves the exact no-slash form of a root OIDC issuer', () => {
+  const issuer = 'https://identity.example.invalid'
+  expect(new OidcIdentityAdapter({ ...oidcConfig, issuer }).issuer).toBe(issuer)
+})

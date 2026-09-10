@@ -12,16 +12,17 @@
     "verifySkipped": 5,
     "targetedPassed": 81,
     "targetedSkipped": 0,
-    "sqlAssertions": 45
+    "sqlAssertions": 45,
+    "finalOidcProtocolPassed": 26
   },
   "hashes": {
     "engine/control/identity.ts": "deadbfbde1c3f7fac6d58259932909c9378e80ab97cb34773b5329ffb8c94d64",
     "engine/control/http.ts": "48da5fccdd32a32dbb6c5479f4e30655492aa1bd416dc832ba82aceb53f143da",
-    "engine/control/oidc-identity.ts": "bb51c4563be51cf5d149d1be259bdd44f5892c5c07196ae39a151e14f8854a69",
+    "engine/control/oidc-identity.ts": "f2eacd72a81738c6cf8198c02ae625edb1e797cbc6d22bbb34529f186f19cfd8",
     "engine/control/credential-authorization.ts": "d332c1000445803579acf741faa935f8521491e9ffd70fa3184447885a4cfcb8",
-    "engine/control/identity-operator.ts": "3c5ca5152e1e50cfb4c0377d0a1d1c93753d1c5b8f205625538b9960b6b22f9e",
+    "engine/control/identity-operator.ts": "6e6c06121e763d8609339f88bb01b216d7495c84104074f14c949dc63365631c",
     "tests/engine/identity.native.test.ts": "74b4c9ddca8cbf5e5319da0fc928ee7da7e91860a76b4a8abf00f2b95dad4495",
-    "tests/engine/oidc-identity.test.ts": "0921f701bcdeb496bc9534d91b603ee0c34d66eb1f908584ff01373d34ff31b1",
+    "tests/engine/oidc-identity.test.ts": "3d9626e69193bdf5328c0a2b061d0d2eb7ca06772e9b7c43141eb1c648f755d3",
     "docs/operations/proposals/task-05-better-auth.md": "64e63ff438cfe8e37a5b238b5746304c72cca99051faf054c1e8d9f1cc945a29",
     "docs/operations/proposals/task-05-better-auth-schema.json": "a72b8befde092e0f8e2fdb93ac5b3587faeeba7524616f3f5836a4a7f1d0ce3a",
     "docs/reports/evidence/task-05/verify.log": "4f11fc7e3d8daaee3b3ac300a15d6101c77adb240d87e26ccc4a64f24635d900",
@@ -29,7 +30,9 @@
     "docs/reports/evidence/task-05/identity-tests.json": "40f6d014e61e7e5212fc4e3d67cf2d0f1225c2bd1c7b35e1b8b5cc82d3f0666e",
     "docs/reports/evidence/task-05/control-db.log": "2169d90463aafb29c708fa7bdeb5e2f60b3a38b052fa48be9527ba25aa66c0a0",
     "docs/reports/evidence/task-05/control-build.log": "ba90c04c5207a72d9914dc6b9b790762a0656552143fa682c9578b835e4b91f9",
-    "docs/operations/proposals/task-05-better-auth-LICENSE.txt": "7a07f7d9085cb3157e4377d944988c9712933141b0f7201955ceccfac92abde4"
+    "docs/operations/proposals/task-05-better-auth-LICENSE.txt": "7a07f7d9085cb3157e4377d944988c9712933141b0f7201955ceccfac92abde4",
+    "docs/reports/evidence/task-05/root-issuer-tests.log": "0258ddac124e16b43c7ee3adab31e6fee27f43f9ced2898dacf2cec3ba54ca07",
+    "docs/reports/evidence/task-05/root-issuer-tests.json": "7bc89a736ea63c9f10a9347eb420967f3402952204b6804dd8ef5d32c066eb04"
   },
   "finalContentionFixChecks": [
     "targeted ESLint",
@@ -37,5 +40,10 @@
     "81 native/protocol/browser tests"
   ],
   "fullLocalVerifyPredatesContentionFix": true,
-  "logsNormalized": "carriage returns and trailing whitespace only"
+  "logsNormalized": "carriage returns and trailing whitespace only",
+  "finalRootIssuerFixChecks": [
+    "targeted ESLint",
+    "strict engine TypeScript",
+    "26 OIDC protocol tests"
+  ]
 }
