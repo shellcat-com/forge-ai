@@ -1,0 +1,340 @@
+
+> forge-ai@0.2.0 verify
+> npm run lint && npm run typecheck && npm test && npm run build
+
+
+> forge-ai@0.2.0 lint
+> eslint .
+
+
+> forge-ai@0.2.0 typecheck
+> tsc --noEmit && tsc -p tsconfig.engine.json
+
+
+> forge-ai@0.2.0 test
+> vitest run
+
+▲ [WARNING] Cannot find base config file "expo/tsconfig.base" [tsconfig.json]
+
+    ../../tsconfig.json:3:13:
+      3 │   "extends": "expo/tsconfig.base"
+        ╵              ~~~~~~~~~~~~~~~~~~~~
+
+
+ RUN  v4.1.11 /Users/biswaskhatiwada/Developer/forge-production-integration
+
+ ❯ tests/engine/preview-control.native.test.ts (23 tests | 13 failed) 122825ms
+   × binds sessions to exact tenant/generation/host and rotates once on concurrent renewal 5225ms
+   × denies continued access after disabled-workspace and revokes credentials during cleanup 5676ms
+   × denies continued access after environment-expiry and revokes credentials during cleanup 5598ms
+   × denies continued access after session-expiry and revokes credentials during cleanup 5716ms
+   × denies continued access after revoked-route and revokes credentials during cleanup 6303ms
+   × denies continued access after shutdown and revokes credentials during cleanup 5705ms
+   × prevents API/worker cross-authority grants and permanent hostname reuse 6192ms
+   × serializes logout against consume and renew without deadlocks or usable orphan sessions 6429ms
+   × serializes revoke against consume and renew without deadlocks or usable orphan sessions 5665ms
+   × serializes cancel against consume and renew without deadlocks or usable orphan sessions 5797ms
+   × renews different viewer sessions concurrently and returns the updated idle expiry 6162ms
+   × rejects legacy unbound tickets, generation mismatch, foreign worker registration and PUBLIC privileges 5828ms
+   × revocation schedules canonical resource teardown and cleanup preserves hostname tombstone 5968ms
+ ❯ tests/engine/e2-control-integration.test.ts (19 tests | 13 failed) 40154ms
+   × refuses tenant-crossed source reads and nonzero candidate admission 2251ms
+   × rejects adoption after lease loss during object validation 92ms
+   × replays saved candidate references after crash without repeating the stage product 66ms
+   × coalesces concurrent export retries into one adopted immutable attachment 93ms
+   × blocks export replay after verification revocation/expiry 86ms
+   × blocks export replay after policy revocation/expiry 52ms
+   × blocks export replay after session revocation/expiry 37ms
+   × refuses cached reference tampering during crash replay 438ms
+   × rejects a secret-bearing immutable candidate before reference adoption 77ms
+   × uses the guarded artifact locator for available bytes without revealing foreign/missing metadata 43ms
+   × reauthorizes a source read after object I/O and refuses revoked sessions 67ms
+   × refuses exported attachment bytes after role downgrade to viewer 12ms
+   × revalidates stored candidates with identical diff bytes and zero object writes 16ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 26 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/engine/e2-control-integration.test.ts > refuses tenant-crossed source reads and nonzero candidate admission
+Error: Did not reach SUCCEEDED: {"schemaVersion":1,"origin":"fixture","id":"3f07dbc7-a053-4d13-920a-444685d4b58f","workspaceId":"941163c0-412d-4988-bc5f-c0e46f918205","projectId":"5c0367e6-64d9-4695-b942-adefca692fba","state":"PLANNING","stateVersion":2,"baseRevision":1,"baseSnapshotId":null,"reviewDigest":null,"review":null,"candidateSnapshotId":null,"cleanupPending":true,"finishedAt":null}
+ ❯ reach tests/harness/e2-control.ts:211:13
+    209|         else await w.runOnce()
+    210|       }
+    211|       throw new Error(`Did not reach ${target}: ${JSON.stringify(await…
+       |             ^
+    212|     }
+    213|
+ ❯ tests/engine/e2-control-integration.test.ts:192:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/26]⎯
+
+ FAIL  tests/engine/e2-control-integration.test.ts > rejects adoption after lease loss during object validation
+error: could not extend file "base/14225/18618": No space left on device
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ Object.reset tests/harness/e2-control.ts:215:7
+    213|
+    214|     async function reset() {
+    215|       await db.admin.query(`DO $$ DECLARE names text; BEGIN
+       |       ^
+    216|       SELECT string_agg(format('forge_control.%I',tablename),',') INTO…
+    217|       EXECUTE 'TRUNCATE TABLE '||names||' CASCADE'; END $$`)
+ ❯ tests/engine/e2-control-integration.test.ts:50:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/26]⎯
+
+ FAIL  tests/engine/e2-control-integration.test.ts > replays saved candidate references after crash without repeating the stage product
+error: could not extend file "base/14225/18621": No space left on device
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ Object.reset tests/harness/e2-control.ts:215:7
+    213|
+    214|     async function reset() {
+    215|       await db.admin.query(`DO $$ DECLARE names text; BEGIN
+       |       ^
+    216|       SELECT string_agg(format('forge_control.%I',tablename),',') INTO…
+    217|       EXECUTE 'TRUNCATE TABLE '||names||' CASCADE'; END $$`)
+ ❯ tests/engine/e2-control-integration.test.ts:50:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/26]⎯
+
+ FAIL  tests/engine/e2-control-integration.test.ts > coalesces concurrent export retries into one adopted immutable attachment
+error: could not extend file "base/14225/18631": No space left on device
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ Object.reset tests/harness/e2-control.ts:215:7
+    213|
+    214|     async function reset() {
+    215|       await db.admin.query(`DO $$ DECLARE names text; BEGIN
+       |       ^
+    216|       SELECT string_agg(format('forge_control.%I',tablename),',') INTO…
+    217|       EXECUTE 'TRUNCATE TABLE '||names||' CASCADE'; END $$`)
+ ❯ tests/engine/e2-control-integration.test.ts:50:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/26]⎯
+
+ FAIL  tests/engine/e2-control-integration.test.ts > blocks export replay after verification revocation/expiry
+error: could not create file "base/14225/18632": No space left on device
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ Object.reset tests/harness/e2-control.ts:215:7
+    213|
+    214|     async function reset() {
+    215|       await db.admin.query(`DO $$ DECLARE names text; BEGIN
+       |       ^
+    216|       SELECT string_agg(format('forge_control.%I',tablename),',') INTO…
+    217|       EXECUTE 'TRUNCATE TABLE '||names||' CASCADE'; END $$`)
+ ❯ tests/engine/e2-control-integration.test.ts:50:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/26]⎯
+
+ FAIL  tests/engine/e2-control-integration.test.ts > blocks export replay after policy revocation/expiry
+error: could not create file "base/14225/18633": No space left on device
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ Object.reset tests/harness/e2-control.ts:215:7
+    213|
+    214|     async function reset() {
+    215|       await db.admin.query(`DO $$ DECLARE names text; BEGIN
+       |       ^
+    216|       SELECT string_agg(format('forge_control.%I',tablename),',') INTO…
+    217|       EXECUTE 'TRUNCATE TABLE '||names||' CASCADE'; END $$`)
+ ❯ tests/engine/e2-control-integration.test.ts:50:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/26]⎯
+
+ FAIL  tests/engine/e2-control-integration.test.ts > blocks export replay after session revocation/expiry
+error: could not create file "base/14225/18634": No space left on device
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ Object.reset tests/harness/e2-control.ts:215:7
+    213|
+    214|     async function reset() {
+    215|       await db.admin.query(`DO $$ DECLARE names text; BEGIN
+       |       ^
+    216|       SELECT string_agg(format('forge_control.%I',tablename),',') INTO…
+    217|       EXECUTE 'TRUNCATE TABLE '||names||' CASCADE'; END $$`)
+ ❯ tests/engine/e2-control-integration.test.ts:50:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/26]⎯
+
+ FAIL  tests/engine/e2-control-integration.test.ts > refuses cached reference tampering during crash replay
+error: could not extend file "base/14225/18776": No space left on device
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ Object.reset tests/harness/e2-control.ts:215:7
+    213|
+    214|     async function reset() {
+    215|       await db.admin.query(`DO $$ DECLARE names text; BEGIN
+       |       ^
+    216|       SELECT string_agg(format('forge_control.%I',tablename),',') INTO…
+    217|       EXECUTE 'TRUNCATE TABLE '||names||' CASCADE'; END $$`)
+ ❯ tests/engine/e2-control-integration.test.ts:50:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/26]⎯
+
+ FAIL  tests/engine/e2-control-integration.test.ts > rejects a secret-bearing immutable candidate before reference adoption
+error: could not create file "base/14225/18779": No space left on device
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ Object.reset tests/harness/e2-control.ts:215:7
+    213|
+    214|     async function reset() {
+    215|       await db.admin.query(`DO $$ DECLARE names text; BEGIN
+       |       ^
+    216|       SELECT string_agg(format('forge_control.%I',tablename),',') INTO…
+    217|       EXECUTE 'TRUNCATE TABLE '||names||' CASCADE'; END $$`)
+ ❯ tests/engine/e2-control-integration.test.ts:50:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/26]⎯
+
+ FAIL  tests/engine/e2-control-integration.test.ts > uses the guarded artifact locator for available bytes without revealing foreign/missing metadata
+error: could not create file "base/14225/18780": No space left on device
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ Object.reset tests/harness/e2-control.ts:215:7
+    213|
+    214|     async function reset() {
+    215|       await db.admin.query(`DO $$ DECLARE names text; BEGIN
+       |       ^
+    216|       SELECT string_agg(format('forge_control.%I',tablename),',') INTO…
+    217|       EXECUTE 'TRUNCATE TABLE '||names||' CASCADE'; END $$`)
+ ❯ tests/engine/e2-control-integration.test.ts:50:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/26]⎯
+
+ FAIL  tests/engine/e2-control-integration.test.ts > reauthorizes a source read after object I/O and refuses revoked sessions
+error: could not create file "base/14225/18781": No space left on device
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ Object.reset tests/harness/e2-control.ts:215:7
+    213|
+    214|     async function reset() {
+    215|       await db.admin.query(`DO $$ DECLARE names text; BEGIN
+       |       ^
+    216|       SELECT string_agg(format('forge_control.%I',tablename),',') INTO…
+    217|       EXECUTE 'TRUNCATE TABLE '||names||' CASCADE'; END $$`)
+ ❯ tests/engine/e2-control-integration.test.ts:50:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/26]⎯
+
+ FAIL  tests/engine/e2-control-integration.test.ts > refuses exported attachment bytes after role downgrade to viewer
+error: could not create file "base/14225/18782": No space left on device
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ Object.reset tests/harness/e2-control.ts:215:7
+    213|
+    214|     async function reset() {
+    215|       await db.admin.query(`DO $$ DECLARE names text; BEGIN
+       |       ^
+    216|       SELECT string_agg(format('forge_control.%I',tablename),',') INTO…
+    217|       EXECUTE 'TRUNCATE TABLE '||names||' CASCADE'; END $$`)
+ ❯ tests/engine/e2-control-integration.test.ts:50:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/26]⎯
+
+ FAIL  tests/engine/e2-control-integration.test.ts > revalidates stored candidates with identical diff bytes and zero object writes
+error: could not create file "base/14225/18783": No space left on device
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ Object.reset tests/harness/e2-control.ts:215:7
+    213|
+    214|     async function reset() {
+    215|       await db.admin.query(`DO $$ DECLARE names text; BEGIN
+       |       ^
+    216|       SELECT string_agg(format('forge_control.%I',tablename),',') INTO…
+    217|       EXECUTE 'TRUNCATE TABLE '||names||' CASCADE'; END $$`)
+ ❯ tests/engine/e2-control-integration.test.ts:50:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/26]⎯
+
+ FAIL  tests/engine/preview-control.native.test.ts > binds sessions to exact tenant/generation/host and rotates once on concurrent renewal
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/engine/preview-control.native.test.ts:54:1
+     52|   await expect(h.preview.consume(fresh.ticket, p.host)).rejects.toThro…
+     53| })
+     54| it('binds sessions to exact tenant/generation/host and rotates once on…
+       | ^
+     55|   const p = await h.ready(),
+     56|     other = await h.ready('p2.vercel.app'),
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/26]⎯
+
+ FAIL  tests/engine/preview-control.native.test.ts > denies continued access after disabled-workspace and revokes credentials during cleanup
+ FAIL  tests/engine/preview-control.native.test.ts > denies continued access after environment-expiry and revokes credentials during cleanup
+ FAIL  tests/engine/preview-control.native.test.ts > denies continued access after session-expiry and revokes credentials during cleanup
+ FAIL  tests/engine/preview-control.native.test.ts > denies continued access after revoked-route and revokes credentials during cleanup
+ FAIL  tests/engine/preview-control.native.test.ts > denies continued access after shutdown and revokes credentials during cleanup
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/engine/preview-control.native.test.ts:89:2
+     87|   'revoked-route',
+     88|   'shutdown',
+     89| ])('denies continued access after %s and revokes credentials during cl…
+       |  ^
+     90|   const p = await h.ready(),
+     91|     t = await p.issue(),
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/26]⎯
+
+ FAIL  tests/engine/preview-control.native.test.ts > prevents API/worker cross-authority grants and permanent hostname reuse
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/engine/preview-control.native.test.ts:152:1
+    150|   await h.db.admin.query('UPDATE forge_control.control_settings SET se…
+    151| })
+    152| it('prevents API/worker cross-authority grants and permanent hostname …
+       | ^
+    153|   const p = await h.ready()
+    154|   await expect(h.db.api.tx((c) => c.query('SELECT * FROM preview_route…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/26]⎯
+
+ FAIL  tests/engine/preview-control.native.test.ts > serializes logout against consume and renew without deadlocks or usable orphan sessions
+ FAIL  tests/engine/preview-control.native.test.ts > serializes revoke against consume and renew without deadlocks or usable orphan sessions
+ FAIL  tests/engine/preview-control.native.test.ts > serializes cancel against consume and renew without deadlocks or usable orphan sessions
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/engine/preview-control.native.test.ts:170:39
+    168|   ).rejects.toThrow()
+    169| })
+    170| it.each(['logout', 'revoke', 'cancel'])(
+       |                                       ^
+    171|   'serializes %s against consume and renew without deadlocks or usable…
+    172|   async (action) => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/26]⎯
+
+ FAIL  tests/engine/preview-control.native.test.ts > renews different viewer sessions concurrently and returns the updated idle expiry
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/engine/preview-control.native.test.ts:200:1
+    198|   }
+    199| )
+    200| it('renews different viewer sessions concurrently and returns the upda…
+       | ^
+    201|   const p = await h.ready(),
+    202|     viewer = await h.actor('viewer')
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/26]⎯
+
+ FAIL  tests/engine/preview-control.native.test.ts > rejects legacy unbound tickets, generation mismatch, foreign worker registration and PUBLIC privileges
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/engine/preview-control.native.test.ts:224:1
+    222|   await expect(h.preview.revoke(viewer.token, viewer.csrf, p.route.id,…
+    223| })
+    224| it('rejects legacy unbound tickets, generation mismatch, foreign worke…
+       | ^
+    225|   const p = await h.ready(),
+    226|     t = await p.issue()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/26]⎯
+
+ FAIL  tests/engine/preview-control.native.test.ts > revocation schedules canonical resource teardown and cleanup preserves hostname tombstone
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/engine/preview-control.native.test.ts:256:1
+    254|   expect(privileges.rows[0].allowed).toBe(false)
+    255| })
+    256| it('revocation schedules canonical resource teardown and cleanup prese…
+       | ^
+    257|   const { ControlReconciler, FixtureCleanupAdapter } =
+    258|     await import('../../engine/control/reconciler.ts')
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/26]⎯
+
+
+ Test Files  2 failed | 67 passed | 2 skipped (71)
+      Tests  26 failed | 905 passed | 5 skipped (936)
+   Start at  18:17:59
+   Duration  395.79s (transform 7.29s, setup 0ms, import 32.42s, tests 330.92s, environment 4.78s)
+

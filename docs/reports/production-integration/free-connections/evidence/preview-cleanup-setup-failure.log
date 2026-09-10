@@ -1,0 +1,33 @@
+▲ [WARNING] Cannot find base config file "expo/tsconfig.base" [tsconfig.json]
+
+    ../../tsconfig.json:3:13:
+      3 │   "extends": "expo/tsconfig.base"
+        ╵              ~~~~~~~~~~~~~~~~~~~~
+
+
+ RUN  v4.1.11 /Users/biswaskhatiwada/Developer/forge-production-integration
+
+ ❯ tests/engine/preview-control.native.test.ts (23 tests | 1 failed) 51612ms
+   × revocation schedules canonical resource teardown and cleanup preserves hostname tombstone 6794ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/engine/preview-control.native.test.ts > revocation schedules canonical resource teardown and cleanup preserves hostname tombstone
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/engine/preview-control.native.test.ts:264:1
+    262|   expect(privileges.rows[0].allowed).toBe(false)
+    263| })
+    264| it('revocation schedules canonical resource teardown and cleanup prese…
+       | ^
+    265|   const { ControlReconciler, FixtureCleanupAdapter } =
+    266|     await import('../../engine/control/reconciler.ts')
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 28 passed (29)
+   Start at  18:31:07
+   Duration  59.87s (transform 4.06s, setup 0ms, import 1.93s, tests 57.58s, environment 0ms)
+

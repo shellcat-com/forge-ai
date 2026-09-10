@@ -1,0 +1,15 @@
+Verified drizzle/0001_initial.sql
+Verified drizzle/0002_runtime_version.sql
+Verified drizzle/0003_unified.sql
+Verified drizzle/0005_public_auth.sql
+Verified drizzle/0007_email_budget.sql
+Verified engine/migrations/0001_control.sql
+Verified engine/migrations/0002_durable_control.sql
+Verified engine/migrations/0003_immutable_source_bridge.sql
+Verified docs/examples/public-auth-grants.sql
+Verified engine/migrations/0004_hosted_identity.sql
+Verified engine/migrations/0005_hosted_byok.sql
+Verified engine/migrations/0006_encrypted_objects.sql
+Verified docs/examples/hosted-object-database-grants.sql
+Verified docs/examples/hosted-control-database-grants.sql
+Hosted schema and restricted logins installed. Admission, worker and enrollment remain disabled.
