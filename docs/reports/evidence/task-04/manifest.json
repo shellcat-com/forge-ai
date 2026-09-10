@@ -68,6 +68,25 @@
     "native-tests.json": "52b32bb3de19ad777cf9f522c983f6999da0b231c7d03db08fed0e9a07d4baaf",
     "control-db.log": "2d4780c99e3281fa964ec194e69766a37680ae0af55b025e82136bffbe285f8b",
     "native-tests.log": "6923b273874147c8d0b52b85e0ba099e58165d490a754fc73f0ca939b85d6d96",
-    "control-build.log": "8e8262a11afa14681f56b79c9a85f8d61c45967ac7da5f8a04e91c13e58aabdd"
+    "control-build.log": "8e8262a11afa14681f56b79c9a85f8d61c45967ac7da5f8a04e91c13e58aabdd",
+    "ci-source.json": "b60a67c63f6fa3200ebd8904c33ef3964aee0568d2364764854b5f5261f66bb4"
+  },
+  "ci": {
+    "conclusion": "success",
+    "databaseId": 34438040481,
+    "event": "pull_request",
+    "headSha": "641ad33e191d628ad245f1867953c3f53044c02b",
+    "status": "completed",
+    "url": "https://github.com/shellcat-com/forge-ai/actions/runs/34438040481",
+    "node": "24.20.0",
+    "testsPassed": 704,
+    "testsSkipped": 5,
+    "composition": "GitHub pull-request merge with current Task01 baseline; includes newer baseline tests",
+    "nativeControlAssertions": 45,
+    "install": "npm ci",
+    "lint": "pass",
+    "typecheck": "pass",
+    "build": "pass",
+    "standaloneControlBuild": "pass"
   }
 }
