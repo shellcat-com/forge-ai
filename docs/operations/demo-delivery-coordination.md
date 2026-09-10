@@ -100,7 +100,7 @@ flowchart TD
 
 Independent implementation/tests may proceed in parallel after publication. Integration order: 03 contract/image inputs; 05 identity and 06 storage foundations; 04 accounting/provider; 02 runtime with 03 pins; 07 preview; 08 live UI/demo; 09 combined acceptance. 09 harness preparation starts earlier. Task 01 integrates each reviewed owned commit with its author intact, checks ancestry plus patch equivalence, records source/integration SHAs, runs affected native/browser checks, then reproduces combined verification in a clean checkout. New worker changes are not implied by historical checkpoint commits.
 
-Integration log: PR #7 + `2c98c4f` composed in `881e9ac`; worker SHA recorded in `90d841a`; isolated browser harness in `d4f7b50`; newly merged master ancestry recorded without source changes in `591f87c`. No Task 02–09 delivery yet. Shared requests are tracked in the follow-up log below. No scheduler/team was created.
+Integration log: PR #7 + `2c98c4f` composed in `881e9ac`; worker SHA recorded in `90d841a`; isolated browser harness in `d4f7b50`; newly merged master ancestry recorded without source changes in `591f87c`. Task 09 independent harness/evidence commits `2437ec3` and `4fa7dc2` integrated with original authorship in `d3244f7`; [PR #10](https://github.com/shellcat-com/forge-ai/pull/10) remains the source review. This is early harness preparation, not final release acceptance. Other deliveries remain under review. Shared requests are tracked in the follow-up log below. No scheduler/team was created.
 
 ## Decision direction versus acceptance
 
@@ -124,7 +124,7 @@ Current: [Task 01 baseline](../reports/demo-delivery/task-01-baseline.md). Histo
 
 ## Active worker handoff and shared-request log
 
-All workers received canonical SHA `881e9ac2b11f8f168cb7849b77c4ee7439e55458` and instructions to consult this latest branch document: the first merge commit predates publication metadata. Readable Git database/main integration checkout: `/tmp/forge-task01-clean-reproduction`. Shared Documents Git reads have hung; workers use isolated worktrees from this readable clone. Do not repair/delete Codex-internal refs or overwrite shared working files. Baseline checks remain recorded at `591f87c`/`e533afe`; no worker code has been integrated yet.
+All workers received canonical SHA `881e9ac2b11f8f168cb7849b77c4ee7439e55458` and instructions to consult this latest branch document: the first merge commit predates publication metadata. Readable Git database/main integration checkout: `/tmp/forge-task01-clean-reproduction`. Shared Documents Git reads have hung; workers use isolated worktrees from this readable clone. Do not repair/delete Codex-internal refs or overwrite shared working files. Baseline checks remain recorded at `591f87c`/`e533afe`; Task 09 independent harness is now integrated in `d3244f7` (13 focused tests, 21 artifact hashes and 304 source hashes verified). Combined clean reproduction after implementation integration remains pending.
 
 | Task | Session ID | Isolated branch/worktree | Current handoff |
 | --- | --- | --- | --- |
@@ -135,7 +135,7 @@ All workers received canonical SHA `881e9ac2b11f8f168cb7849b77c4ee7439e55458` an
 | 06 | `01a08982-22d5-7611-8aa3-62d4d0467618` | `codex/task-06-persistence`, `/tmp/forge-task06-persistence` | Encrypted versioned backend and native persistence; 0006 proposal pending |
 | 07 | `01a08982-57f5-7b93-8f1a-663e051eb871` | `codex/task-07-private-preview`, `/tmp/forge-task07-preview` | Gateway and 0007 proposal; lock/race review changes requested |
 | 08 | `01a08982-8039-7ad0-b1e9-289d23704a0a` | `codex/task-08-live-demo`, `/tmp/forge-task08-live-demo` | Publisher/fallback preparation and bounded public provenance review |
-| 09 | `01a08982-d093-70e0-9a85-0db88a6413d4` | `codex/task-09-acceptance`, `/tmp/forge-task09-acceptance` | Independent evidence validator/readiness audit; moved to published metadata head `e533afe` |
+| 09 | `01a08982-d093-70e0-9a85-0db88a6413d4` | `codex/task-09-acceptance`, `/tmp/forge-task09-acceptance` | Source PR #10 / `4fa7dc2`; harness integrated in `d3244f7`; final integrated/live audit blocked |
 
 Scoped delegations supersede the broader ownership defaults only as follows:
 
@@ -158,3 +158,5 @@ Shared contracts in review (direction accepted, code/acceptance not signed off):
 No new paid budget, runtime/worker/object/KMS service, domain purchase or live acceptance has been authorized by these implementation directions. Task 08 separately reports read-only Vercel account/capacity preflight and plans an explicit website-only unavailable fallback under its existing hosting authorization; this is not a published URL or generated-portfolio acceptance. Completed worker commits will be reviewed and integrated in dependency order; the baseline remains unchanged until then.
 
 Verification resource coordination: baseline dependencies at `/tmp/forge-task01-clean-reproduction/node_modules` are frozen read-only while worker symlinks use them. Do not install, delete or replace that tree. Supporting worker checks must identify shared dependencies; combined clean reproduction follows reviewed integration. Local disk pressure can block a build without blocking independent implementation or accurately labeled publication.
+
+Task 09 integration validation: `vitest run tests/engine/delivery-evidence.test.ts --maxWorkers=1` passed 13/13 with frozen baseline dependencies. SHA-256 verification matched all 21 retained artifacts and all 304 source inventory entries plus its canonical digest. Gitleaks review of added files found two prose/command false positives in its report (the known baseline Git commit argument and “signed/private”), no credential identified. README now links the committed setup/readiness guide and uses `npm ci`. These checks do not replace the required final clean combined verification.

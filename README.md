@@ -6,7 +6,9 @@ The unified Next.js application combines the approved Forge interface with the e
 
 ## Development
 
-Use Node 24. Run `npm install`, `npm run setup:local`, `npm run db:migrate`, `npm run runtime:build`, then run `npm run worker` and `npm run dev` in separate terminals. Enter provider credentials only in ignored `.env.local`.
+Use Node 24. Run `npm ci`, `npm run setup:local`, `npm run db:migrate`, `npm run runtime:build`, then run `npm run worker` and `npm run dev` in separate terminals. Enter provider credentials only in ignored `.env.local`.
+
+The application includes Gemini, Groq, OpenRouter and local Ollama adapters. Their presence does not qualify hosted BYOK credentials, per-call spending controls, isolated runtime execution or a live reference benchmark. See the [reproducible setup, provider matrix and demo-readiness guide](docs/operations/demo-readiness.md) and [independent acceptance report](docs/reports/demo-delivery/task-09-acceptance.md) for tested boundaries and remaining gates.
 
 Run `npm run verify` and `npm run test:e2e` to verify changes. See [implementation status](docs/implementation-status.md) for verified capabilities, cloud setup, and remaining release gates. See [self hosting](docs/self-hosting.md), [runtime isolation](docs/runtime.md), and [design](DESIGN.md).
 
