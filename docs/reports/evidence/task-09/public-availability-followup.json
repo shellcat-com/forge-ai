@@ -1,0 +1,65 @@
+{
+  "recordedAt": "2026-09-10T04:33:55Z",
+  "origin": "independent-browser-observation-of-platform-authored-availability-page",
+  "browser": "fresh task-scoped Codex in-app browser; no Forge or Vercel login performed, no owner browser cookies or bypass header supplied",
+  "pages": [
+    {
+      "url": "https://forge-ai-demo-omega.vercel.app/",
+      "result": "rendered-without-login",
+      "title": "Forge AI \u2014 Hosted builder availability"
+    },
+    {
+      "url": "https://forge-ai-demo-kcmp4ynqr-biswas07.vercel.app/",
+      "result": "rendered-without-login",
+      "title": "Forge AI \u2014 Hosted builder availability"
+    }
+  ],
+  "visibleState": {
+    "hostedBuilder": "unavailable",
+    "keyOrBriefSubmission": "not-connected",
+    "liveGeneratedPortfolio": "explicitly-not-published"
+  },
+  "ownerReportedSourceCommit": "339fb8e44234cca9ec5cfe3590e62709458e40a4",
+  "ownerReportedStaticFilesDigest": "9c32175e25d487270efc35b55864fc85e52cef2d47896c53b35f863d604d9098",
+  "deploymentToSourceAttestationIndependentlyVerified": false,
+  "metadataFixReview": {
+    "sourceCommit": "339fb8e44234cca9ec5cfe3590e62709458e40a4",
+    "files": [
+      {
+        "path": "docs/design/assets.json",
+        "sha256": "bd0415e8a9dfaa4c197de487577e5fd9cb5a0b048a26caf513c0ac3e09667462",
+        "accountUrlFound": false,
+        "jobIdentifierFieldFound": false
+      },
+      {
+        "path": "public/art/provenance.json",
+        "sha256": "bd0415e8a9dfaa4c197de487577e5fd9cb5a0b048a26caf513c0ac3e09667462",
+        "accountUrlFound": false,
+        "jobIdentifierFieldFound": false
+      },
+      {
+        "path": "docs/design/research.md",
+        "sha256": "c27f7a688f96c195db75ba6788c661a6d3072f1bd3e5854dbfbf69d259bf512f",
+        "accountUrlFound": false,
+        "jobIdentifierFieldFound": false
+      },
+      {
+        "path": "skills/forge-project-design/references/assets.json",
+        "sha256": "bd0415e8a9dfaa4c197de487577e5fd9cb5a0b048a26caf513c0ac3e09667462",
+        "accountUrlFound": false,
+        "jobIdentifierFieldFound": false
+      }
+    ],
+    "artworkByteChangesFromBaseline": 0,
+    "result": "identified account URL and job-ID fields absent in four reviewed files",
+    "integratedIntoTask09": false,
+    "rightsClearance": false
+  },
+  "firstLiveGeneratedDemonstrationPassed": false,
+  "limitations": [
+    "Public website reachability only; no generated app or engine tested.",
+    "External web reader initially refused both new URLs; direct in-app browser rendered them without any security warning bypass.",
+    "No native zoom/OS reduced-motion activation or exhaustive responsive test on this page.",
+    "Task03 reported candidate export/dependency results separately; not imported or re-executed by this observation."
+  ]
+}
