@@ -4,6 +4,10 @@ export default tseslint.config(
   {
     ignores: [
       ".next/**",
+      "dist/**",
+      "dist-cloud/**",
+      "dist-engine/**",
+      "runner/evidence/**",
       "public/monaco/**",
       "templates/**",
       "node_modules/**",
@@ -18,9 +22,15 @@ export default tseslint.config(
   { files: ['server/**/*.mjs', 'scripts/**/*.mjs'], languageOptions: { globals: { fetch: 'readonly', Response: 'readonly', Buffer: 'readonly', AbortController: 'readonly', setTimeout: 'readonly', clearTimeout: 'readonly', process: 'readonly', console: 'readonly' } } },
   ...tseslint.configs.recommended,
   {
-    files: ["scripts/**/*.mjs", "runtime/**/*.mjs"],
+    files: ["scripts/**/*.mjs", "runtime/**/*.mjs", "server/**/*.mjs", "tests/engine/**/*.mjs", "drizzle.config.mjs"],
     languageOptions: {
       globals: {
+        URL: "readonly",
+        fetch: "readonly",
+        Response: "readonly",
+        AbortController: "readonly",
+        setInterval: "readonly",
+        clearInterval: "readonly",
         process: "readonly",
         console: "readonly",
         Buffer: "readonly",

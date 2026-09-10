@@ -9,7 +9,7 @@
     "build": "next build --webpack",
     "start": "node --env-file-if-exists=.env.local scripts/start.mjs",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.engine.json",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
@@ -23,7 +23,13 @@
     "prebuild": "node scripts/copy-editor.mjs",
     "api": "node --env-file-if-exists=.env.local server/index.mjs",
     "skills:sync": "node scripts/sync-skills.mjs",
-    "art:prepare": "node scripts/prepare-art.mjs"
+    "art:prepare": "node scripts/prepare-art.mjs",
+    "test:engine": "vitest run tests/engine",
+    "test:db:control": "node scripts/check-control-db.mjs",
+    "control:build": "tsc -p tsconfig.control.json",
+    "api:control": "npm run control:build && node dist-engine/control/index.js api",
+    "worker:control": "npm run control:build && node dist-engine/control/index.js worker",
+    "test:db:e1": "vitest run tests/engine/control.native.test.ts"
   },
   "engines": {
     "node": "24.x"
@@ -44,7 +50,10 @@
     "tsx": "^4.23.13",
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.42.0",
-    "vitest": "^4.1.11"
+    "vitest": "^4.1.11",
+    "@electric-sql/pglite": "^0.5.8",
+    "drizzle-kit": "^0.31.10",
+    "jsdom": "^29.1.1"
   },
   "packageManager": "npm@11.11.0",
   "dependencies": {
@@ -64,9 +73,14 @@
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "server-only": "^0.0.1",
-    "zod": "^4.5.4"
+    "zod": "^4.6.1",
+    "@neondatabase/auth": "0.5.0-beta",
+    "jose": "^6.2.12"
   },
   "overrides": {
-    "dompurify": "3.4.15"
+    "dompurify": "3.4.15",
+    "@esbuild-kit/core-utils": {
+      "esbuild": "^0.25.0"
+    }
   }
 }

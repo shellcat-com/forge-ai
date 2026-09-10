@@ -1,0 +1,4 @@
+
+> forge-ai@0.1.0 control:build
+> tsc -p tsconfig.control.json
+

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "status": "review-candidate-not-applied",
+  "perGuestMaximums": {
+    "cpu.max": "200000 100000",
+    "memory.max": "4294967296",
+    "memory.swap.max": "0",
+    "pids.max": "512"
+  },
+  "scratchMaximumBytes": 8589934592,
+  "requirements": [
+    "Create unique per-environment cgroup and fixed-capacity scratch image before launcher start",
+    "Never delegate cgroup management to guest code",
+    "Record actual parent host resource overhead and reserve capacity before guest admission",
+    "Observe cgroup.events populated=0 before deletion; no inference from kill request success",
+    "Stop launcher, VM and all descendants before wiping disposable app disk/credentials",
+    "All guest/launcher cgroups must remain descendants of system.slice/forge-host-supervisor.service so systemd KillMode=control-group fences them on supervisor exit",
+    "Place the supervisor in a separate child cgroup before enabling domain controllers; verify the no-internal-process constraint on the selected systemd/kernel",
+    "Never move microVMs outside the supervisor unit subtree or claim KillMode covers unrelated cgroups",
+    "Host pids.max bounds VMM threads; enforcing 512 guest app processes additionally requires trusted guest-side process limits, which are not implemented here"
+  ]
+}

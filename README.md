@@ -19,3 +19,9 @@ The approved hosted beta is not complete. [Status and acceptance gaps](docs/impl
 For this integration worktree, the configured app and preview ports are 3002 and 3102, with a separate `forge_unified` database and `forge-workspace:unified` Docker image. These avoid disturbing the original engine. Use `docker build -f runtime/Dockerfile -t forge-workspace:unified .` to rebuild that image. Stop the production app before rebuilding its `.next` output, then restart it. Wait for worker shutdown before starting another worker.
 
 Fixture browser checks: `FORGE_TEST_URL=http://127.0.0.1:3002 FORGE_UNIFIED_FIXTURES=1 npm run test:e2e`. The optional generated-Pomodoro acceptance gate uses `FORGE_POMODORO_PREVIEW=http://127.0.0.1:3102`; its current failures are documented and block release. No provider evaluation is launched by default.
+
+## RFC fixture checkpoint
+
+The E0/E1 contracts, durable fixture control service and validation harness are retained for isolated research and regression checks. They are not connected to the Next.js application, its Better Auth sessions, production database or worker. `npm run verify` checks both code paths; native PostgreSQL tools must be on `PATH`. `npm run test:db:control` and `npm run control:build` check the separate fixture schema and service. See [the merge reconciliation](docs/reports/pr7-reconciliation.md) for the architecture, identity and migration boundaries.
+
+The earlier Neon Auth browser/API prototype is historical, unrouted source. Its old Vite flags and migration commands do not configure the current application. Use the current [cloud setup guide](docs/cloud-setup-status.md) for Better Auth.

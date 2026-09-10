@@ -28,6 +28,12 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: npm
 
+      - name: Install native PostgreSQL test tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql
+          echo "$(pg_config --bindir)" >> "$GITHUB_PATH"
+
       - name: Install dependencies
         run: npm ci
 
@@ -42,3 +48,9 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: Verify accepted control database constraints
+        run: npm run test:db:control
+
+      - name: Build standalone control service
+        run: npm run control:build

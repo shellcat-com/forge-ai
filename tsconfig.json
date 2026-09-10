@@ -38,6 +38,12 @@
   ],
   "exclude": [
     "node_modules",
-    "templates"
+    "templates",
+    "engine",
+    "runner",
+    "tests/engine",
+    "tests/harness",
+    "src/engine",
+    "dist-engine"
   ]
 }

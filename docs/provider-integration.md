@@ -21,3 +21,7 @@ Contract tests use synthetic fixtures. The live Ollama script prints only comple
 
 ## Unified application integration
 The approved neutral interface in DESIGN.md is authoritative. Five design examples are optional. Hosted authentication, cloud execution, and publishing must be verified before being described as available. See docs/implementation-status.md.
+
+## RFC checkpoint contracts
+
+`engine/contracts/provider.ts` and `engine/providers/` retain independent versioned contracts and bounded adapter experiments. Their tests use explicit fixtures. They are not adapters registered with the application's `src/server/providers` or production worker; importing the checkpoint does not enable another provider or authorize live requests. The separate loopback NVIDIA planner retains its existing boundary.

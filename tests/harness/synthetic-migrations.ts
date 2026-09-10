@@ -1,0 +1,10 @@
+/** Reviewed synthetic schema fixtures; never provider output. */
+export const taskMigration = `-- Reviewed synthetic reference schema, not provider output.
+CREATE TABLE app.tasks (
+ id uuid PRIMARY KEY,
+ title varchar(200) NOT NULL,
+ status varchar(20) NOT NULL DEFAULT 'active' CHECK (status IN ('active', 'completed')),
+ created_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE INDEX task_status ON app.tasks (status);`
+export const priorityMigration = "ALTER TABLE app.tasks ADD COLUMN priority varchar(10) NOT NULL DEFAULT 'medium' CHECK (priority IN ('low', 'medium', 'high'));"
