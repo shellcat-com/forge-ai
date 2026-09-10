@@ -17,7 +17,7 @@ The user-started release verification brief requires **Forge itself publicly hos
 
 Open-source self-hosting and hosted BYOK remain included. First supported generated stack remains Next.js + strict TypeScript + PostgreSQL. No custom domain purchase, credit sales, subscriptions, payment checkout or Forge model-billing product is required. Existing bounded usage, abuse controls and provider-cost liability accounting remain necessary. Provider credentials are separate from hosting credentials. No arbitrary model/stack compatibility, live spending or unresolved infrastructure choice is inferred.
 
-The existing RFC includes the BYOK/Vercel/public-portfolio scope amendment. The additional in-product publishing/recorded Forge demonstration requirement must be reflected in a reviewed architecture amendment when its concrete contracts are integrated; this board records the direction without silently changing private-preview or execution acceptance gates.
+RFC0001 §0.1 now records the additional in-product publishing/recorded Forge demonstration direction. Its concrete publication/hosting contracts remain unresolved; this scope amendment does not change private-preview or execution acceptance gates.
 
 ## Ownership and active assignments
 
