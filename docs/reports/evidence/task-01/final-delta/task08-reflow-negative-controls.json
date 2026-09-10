@@ -1,0 +1,103 @@
+{
+  "source": "4dacd0255e4a04648424eb0b0044c6658b46a014 + hosting.css scoped body minimum fix",
+  "otherRoutesRetain320px": true,
+  "origin": "local-production-Next-route",
+  "cases": [
+    {
+      "theme": "light",
+      "width": 390,
+      "keyboard": true,
+      "reflow": true,
+      "cssZoomSimulation": true,
+      "reducedMotionMediaEmulation": true,
+      "nativeBrowserZoom": false,
+      "nativeOsMotion": false,
+      "pageErrors": [],
+      "zoomMetrics": {
+        "scrollWidth": 390,
+        "innerWidth": 390,
+        "bodyMinWidth": "0px"
+      }
+    },
+    {
+      "theme": "light",
+      "width": 768,
+      "keyboard": true,
+      "reflow": true,
+      "cssZoomSimulation": true,
+      "reducedMotionMediaEmulation": true,
+      "nativeBrowserZoom": false,
+      "nativeOsMotion": false,
+      "pageErrors": [],
+      "zoomMetrics": {
+        "scrollWidth": 768,
+        "innerWidth": 768,
+        "bodyMinWidth": "0px"
+      }
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "keyboard": true,
+      "reflow": true,
+      "cssZoomSimulation": true,
+      "reducedMotionMediaEmulation": true,
+      "nativeBrowserZoom": false,
+      "nativeOsMotion": false,
+      "pageErrors": [],
+      "zoomMetrics": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440,
+        "bodyMinWidth": "0px"
+      }
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "keyboard": true,
+      "reflow": true,
+      "cssZoomSimulation": true,
+      "reducedMotionMediaEmulation": true,
+      "nativeBrowserZoom": false,
+      "nativeOsMotion": false,
+      "pageErrors": [],
+      "zoomMetrics": {
+        "scrollWidth": 390,
+        "innerWidth": 390,
+        "bodyMinWidth": "0px"
+      }
+    },
+    {
+      "theme": "dark",
+      "width": 768,
+      "keyboard": true,
+      "reflow": true,
+      "cssZoomSimulation": true,
+      "reducedMotionMediaEmulation": true,
+      "nativeBrowserZoom": false,
+      "nativeOsMotion": false,
+      "pageErrors": [],
+      "zoomMetrics": {
+        "scrollWidth": 768,
+        "innerWidth": 768,
+        "bodyMinWidth": "0px"
+      }
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "keyboard": true,
+      "reflow": true,
+      "cssZoomSimulation": true,
+      "reducedMotionMediaEmulation": true,
+      "nativeBrowserZoom": false,
+      "nativeOsMotion": false,
+      "pageErrors": [],
+      "zoomMetrics": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440,
+        "bodyMinWidth": "0px"
+      }
+    }
+  ]
+}
