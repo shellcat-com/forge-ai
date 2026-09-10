@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "origin": "existing-app-loopback-http",
+  "liveGeneration": false,
+  "envelope": {
+    "concurrency": 2,
+    "requests": 20,
+    "perRequestTimeoutMs": 5000,
+    "externalSpendUsd": 0
+  },
+  "elapsedMs": 45,
+  "samples": [
+    {
+      "attempt": 0,
+      "status": 200,
+      "latencyMs": 13.668499999999995,
+      "outcome": "passed"
+    },
+    {
+      "attempt": 1,
+      "status": 200,
+      "latencyMs": 4.151290999999986,
+      "outcome": "passed"
+    },
+    {
+      "attempt": 2,
+      "status": 200,
+      "latencyMs": 4.1192920000000015,
+      "outcome": "passed"
+    },
+    {
+      "attempt": 3,
+      "status": 200,
+      "latencyMs": 3.0931659999999965,
+      "outcome": "passed"
+    },
+    {
+      "attempt": 4,
+      "status": 200,
+      "latencyMs": 3.0831249999999955,
+      "outcome": "passed"
+    },
+    {
+      "attempt": 5,
+      "status": 200,
+      "latencyMs": 1.9748340000000155,
+      "outcome": "passed"
+    },
+    {
+      "attempt": 6,
+      "status": 200,
+      "latencyMs": 2.1999169999999992,
+      "outcome": "passed"
+    },
+    {
+      "attempt": 7,
+      "status": 200,
+      "latencyMs": 4.716542000000004,
+      "outcome": "passed"
+    },
+    {
+      "attempt": 8,
+      "status": 200,
+      "latencyMs": 2.669458999999989,
+      "outcome": "passed"
+    },
+    {
+      "attempt": 9,
+      "status": 200,
+      "latencyMs": 2.562250000000006,
+      "outcome": "passed"
+    },
+    {
+      "attempt": 10,
+      "status": 200,
+      "latencyMs": 13.457667000000015,
+      "outcome": "passed"
+    },
+    {
+      "attempt": 11,
+      "status": 200,
+      "latencyMs": 4.0376660000000015,
+      "outcome": "passed"
+    },
+    {
+      "attempt": 12,
+      "status": 200,
+      "latencyMs": 4.020417000000009,
+      "outcome": "passed"
+    },
+    {
+      "attempt": 13,
+      "status": 200,
+      "latencyMs": 2.983208999999988,
+      "outcome": "passed"
+    },
+    {
+      "attempt": 14,
+      "status": 200,
+      "latencyMs": 3.211041999999992,
+      "outcome": "passed"
+    },
+    {
+      "attempt": 15,
+      "status": 200,
+      "latencyMs": 2.103666000000004,
+      "outcome": "passed"
+    },
+    {
+      "attempt": 16,
+      "status": 200,
+      "latencyMs": 4.024124999999998,
+      "outcome": "passed"
+    },
+    {
+      "attempt": 17,
+      "status": 200,
+      "latencyMs": 2.7381670000000042,
+      "outcome": "passed"
+    },
+    {
+      "attempt": 18,
+      "status": 200,
+      "latencyMs": 2.4336660000000165,
+      "outcome": "passed"
+    },
+    {
+      "attempt": 19,
+      "status": 200,
+      "latencyMs": 2.315957999999995,
+      "outcome": "passed"
+    }
+  ],
+  "p50Ms": 3.0831249999999955,
+  "p95Ms": 13.457667000000015,
+  "a20Passed": false
+}

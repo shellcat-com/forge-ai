@@ -1,0 +1,237 @@
+{
+  "schemaVersion": 1,
+  "baselineCommit": "efa13a9de63457d0daccde1cc1cda645d332b6ff",
+  "finalStagedReleaseCommit": null,
+  "demoSignOff": false,
+  "alphaReady": false,
+  "gates": [
+    {
+      "id": "A01",
+      "scenario": "real task-board generation and restart persistence",
+      "status": "BLOCKED",
+      "evidenceAndRemainingGate": "Source/HTTP fixtures pass in verify; real provider, runtime, CRUD and app-process restart absent",
+      "owner": "01/02/03/04/08"
+    },
+    {
+      "id": "A02",
+      "scenario": "additive priority change",
+      "status": "BLOCKED",
+      "evidenceAndRemainingGate": "Native fresh/prior synthetic migrations pass; live generated diff/migration/UI absent",
+      "owner": "03/04/08"
+    },
+    {
+      "id": "A03",
+      "scenario": "immutable head and source restoration",
+      "status": "BLOCKED",
+      "evidenceAndRemainingGate": "Native fixture head/restore tests pass; real failed execution, history and acknowledged preview-data reset absent",
+      "owner": "01/02/06/08"
+    },
+    {
+      "id": "A04",
+      "scenario": "generated source export",
+      "status": "BLOCKED",
+      "evidenceAndRemainingGate": "Platform export passes; no real generated archive/isolated database install/build/run",
+      "owner": "03/06/08"
+    },
+    {
+      "id": "A05",
+      "scenario": "approval/digest/promotion/cancel",
+      "status": "BLOCKED",
+      "evidenceAndRemainingGate": "Native exact-digest/stale/cancel races pass; real runtime/deployed authority absent",
+      "owner": "01/02/05"
+    },
+    {
+      "id": "A06",
+      "scenario": "two-user tenant isolation/revocation",
+      "status": "BLOCKED",
+      "evidenceAndRemainingGate": "Native RLS/identity and local TLS preview cases pass; two real users and all deployed endpoints absent",
+      "owner": "01/05/07"
+    },
+    {
+      "id": "A07",
+      "scenario": "reload/disconnect/idempotency/SSE",
+      "status": "BLOCKED",
+      "evidenceAndRemainingGate": "Native replay/revocation/idempotency passes; real owner browser and durable live worker absent",
+      "owner": "01/08"
+    },
+    {
+      "id": "A08",
+      "scenario": "crash recovery and unknown charges",
+      "status": "BLOCKED",
+      "evidenceAndRemainingGate": "Native fixture crash/blob/adoption/settlement tests pass; real provider/runtime crash points and orphan cleanup absent",
+      "owner": "01/02/04/06"
+    },
+    {
+      "id": "A09",
+      "scenario": "stale worker/expired broker lease",
+      "status": "BLOCKED",
+      "evidenceAndRemainingGate": "Epoch/watchdog contracts and preview fencing pass; real guest termination/quarantine absent",
+      "owner": "02/07"
+    },
+    {
+      "id": "A10",
+      "scenario": "cancellation and partitions",
+      "status": "BLOCKED",
+      "evidenceAndRemainingGate": "Native fixture cancellation/teardown and browser route revocation pass; measured live compute cleanup absent",
+      "owner": "01/02/07"
+    },
+    {
+      "id": "A11",
+      "scenario": "provider failure modes",
+      "status": "BLOCKED",
+      "evidenceAndRemainingGate": "Synthetic adapter auth/429/timeout/refusal/truncation/parser/redaction tests pass; exact live provider qualification absent",
+      "owner": "04"
+    },
+    {
+      "id": "A12",
+      "scenario": "adversarial source/archive/network inputs",
+      "status": "BLOCKED",
+      "evidenceAndRemainingGate": "Validation and transport negatives pass; full corpus on approved runtime absent",
+      "owner": "02/03/04"
+    },
+    {
+      "id": "A13",
+      "scenario": "resource abuse/neighbor responsiveness",
+      "status": "BLOCKED",
+      "evidenceAndRemainingGate": "Runtime/collector contract tests pass; real process/CPU/RAM/disk/hang campaign absent",
+      "owner": "02"
+    },
+    {
+      "id": "A14",
+      "scenario": "preview host/ticket/cookie/CSRF",
+      "status": "BLOCKED",
+      "evidenceAndRemainingGate": "21 local TLS/browser cases pass; actual ingress/runtime/TLS and deployed revocation absent",
+      "owner": "01/05/07"
+    },
+    {
+      "id": "A15",
+      "scenario": "external check spoof resistance",
+      "status": "BLOCKED",
+      "evidenceAndRemainingGate": "Protected-source/check-origin negatives pass; actual isolated external checker absent",
+      "owner": "02/03"
+    },
+    {
+      "id": "A16",
+      "scenario": "repair/call/cost limits",
+      "status": "BLOCKED",
+      "evidenceAndRemainingGate": "Native repaired review and synthetic caps pass; live accounting/stage integration absent",
+      "owner": "01/02/04/08"
+    },
+    {
+      "id": "A17",
+      "scenario": "parallel quotas/ambiguous charges",
+      "status": "BLOCKED",
+      "evidenceAndRemainingGate": "Native fixture reservations/deduplication pass; production global dispatch and bounded real price policy absent",
+      "owner": "01/04"
+    },
+    {
+      "id": "A18",
+      "scenario": "expiry/deletion/backups/recovery",
+      "status": "BLOCKED",
+      "evidenceAndRemainingGate": "Local encrypted-object/native restore tests pass; deployed PITR/retention/deletion and measured RPO/RTO absent",
+      "owner": "02/06/07"
+    },
+    {
+      "id": "A19",
+      "scenario": "generated app usability",
+      "status": "BLOCKED",
+      "evidenceAndRemainingGate": "Existing platform/browser checks pass; actual generated preview CRUD/DB persistence and native settings absent",
+      "owner": "02/03/08/09"
+    },
+    {
+      "id": "A20",
+      "scenario": "load/fault/alerts/backpressure",
+      "status": "BLOCKED",
+      "evidenceAndRemainingGate": "Bounded loopback documentation observation only; approved real infrastructure campaign absent",
+      "owner": "01/02/06/09"
+    },
+    {
+      "id": "A21",
+      "scenario": "existing Forge compatibility",
+      "status": "BLOCKED",
+      "evidenceAndRemainingGate": "Current baseline verify and 25 browser checks pass; final staged target and skipped affected flows remain",
+      "owner": "01/08/09"
+    },
+    {
+      "id": "A22",
+      "scenario": "model/template release benchmark",
+      "status": "BLOCKED",
+      "evidenceAndRemainingGate": "Offline corpus tests only; at least 30 live runs with full denominator and cost distribution absent",
+      "owner": "03/04/09"
+    },
+    {
+      "id": "R01",
+      "scenario": "connected public Forge",
+      "status": "FAIL",
+      "evidenceAndRemainingGate": "Fresh public browser confirms availability page, no connected builder or sign-in",
+      "owner": "01/UI owner/08"
+    },
+    {
+      "id": "R02",
+      "scenario": "separate in-product Publish, public generated app and rollback",
+      "status": "BLOCKED",
+      "evidenceAndRemainingGate": "Connector negatives pass; no live source/artifact/deployment receipt or connected Publish authority",
+      "owner": "01/UI owner/08"
+    },
+    {
+      "id": "R03",
+      "scenario": "genuine reproducible Task 08 recording",
+      "status": "BLOCKED",
+      "evidenceAndRemainingGate": "Task 08 explicitly reports no live generated portfolio; no recording/source/job/runtime proof",
+      "owner": "08/09"
+    },
+    {
+      "id": "R04",
+      "scenario": "release-safe laptop onboarding",
+      "status": "FAIL",
+      "evidenceAndRemainingGate": "`/app` helper says \u201cStart npm run worker to enable generation.\u201d It omits approved-runtime prerequisite; `/hosting` is truthful. [Screenshot](../evidence/forge-release/task-09/home-light-390.png)",
+      "owner": "01 \u2192 shared UI owner"
+    },
+    {
+      "id": "R05",
+      "scenario": "existing license owner approval",
+      "status": "BLOCKED",
+      "evidenceAndRemainingGate": "MIT unchanged; no explicit owner approval reference found or supplied",
+      "owner": "Maintainer"
+    },
+    {
+      "id": "R06",
+      "scenario": "dependency notices/distribution",
+      "status": "BLOCKED",
+      "evidenceAndRemainingGate": "Four font notice byte matches; AGPL/LGPL/undeclared dependencies and historical media need usage/distribution review",
+      "owner": "01/03/maintainer"
+    },
+    {
+      "id": "R07",
+      "scenario": "keyless self-host documentation",
+      "status": "PASS",
+      "evidenceAndRemainingGate": "Fresh reproduction, guide, names-only inventory and truthful infrastructure boundaries delivered",
+      "owner": "09"
+    },
+    {
+      "id": "R08",
+      "scenario": "full engine self-host reproduction",
+      "status": "BLOCKED",
+      "evidenceAndRemainingGate": "Real identity, canonical migrations, worker/storage/BYOK/runtime/gateway/publishing composition absent",
+      "owner": "01\u201308"
+    },
+    {
+      "id": "R09",
+      "scenario": "browser-native 200% zoom and OS reduced motion",
+      "status": "NOT RUN",
+      "evidenceAndRemainingGate": "CSS zoom and media emulation only; no native-setting or generated-app pass claimed",
+      "owner": "UI owner/08/09"
+    },
+    {
+      "id": "R10",
+      "scenario": "final exact staged commit sign-off",
+      "status": "BLOCKED",
+      "evidenceAndRemainingGate": "Task 01 confirmed no qualifying staged release commit; independent baseline is not that target",
+      "owner": "01/09"
+    }
+  ],
+  "liveProviderRuns": 0,
+  "liveLatencyDistribution": null,
+  "liveQueueMeasurements": null,
+  "alertRecoveryVerified": false
+}
