@@ -1,0 +1,31 @@
+▲ [WARNING] Cannot find base config file "expo/tsconfig.base" [tsconfig.json]
+
+    ../../tsconfig.json:3:13:
+      3 │   "extends": "expo/tsconfig.base"
+        ╵              ~~~~~~~~~~~~~~~~~~~~
+
+
+ RUN  v4.1.11 $FORGE_CHECKOUT
+
+ ❯ tests/auth/public-auth.test.ts (9 tests | 1 failed) 2041ms
+   × fails closed for mail failure and never follows delivery redirects 97ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/auth/public-auth.test.ts > fails closed for mail failure and never follows delivery redirects
+AssertionError: expected 200 to be greater than or equal to 500
+ ❯ tests/auth/public-auth.test.ts:151:124
+    149|   await expect(sendAuthMail('alice@example.invalid', `${origin}/redact…
+    150|   expect((await post('request-password-reset', { email: 'unknown@examp…
+    151|   expect((await post('request-password-reset', { email: 'alice@example…
+       |                                                                                                                            ^
+    152|   expect((await post('sign-up/email', { email: 'new@example.invalid', …
+    153| })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 8 passed (9)
+   Start at  03:23:14
+   Duration  2.82s (transform 80ms, setup 0ms, import 698ms, tests 2.04s, environment 0ms)

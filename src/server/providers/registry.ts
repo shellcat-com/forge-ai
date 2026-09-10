@@ -4,7 +4,9 @@ import { GroqAdapter } from "./groq";
 import { OllamaAdapter } from "./ollama";
 import { OpenRouterAdapter } from "./openrouter";
 import { ProviderError, safeProviderError } from "./errors";
+import { authMode } from '../auth/policy';
 export function provider(id: string): ProviderAdapter {
+  if (authMode() !== 'local') throw new ProviderError('configuration');
   if (id === "ollama") return new OllamaAdapter(process.env.OLLAMA_BASE_URL);
   if (id === "gemini")
     return new GeminiAdapter(
@@ -28,6 +30,7 @@ export function provider(id: string): ProviderAdapter {
 export async function providerStatuses(
   signal: AbortSignal,
 ): Promise<ProviderStatus[]> {
+  if (authMode() !== 'local') return [];
   return Promise.all(
     (["gemini", "groq", "openrouter", "ollama"] as const).map(async (id) => {
       const base = {

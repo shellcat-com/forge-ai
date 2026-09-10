@@ -222,8 +222,8 @@ export async function projectDetail(id: string) {
     },
     jobs: timeline,
     previewReady:
-      state?.projectId === id && !!state.handle && Date.now() - state.heartbeat.getTime() < 12000,
-    previewUrl: `http://127.0.0.1:${process.env.FORGE_PREVIEW_PORT || 3101}`,
+      process.env.FORGE_AUTH_MODE !== 'hosted' && state?.projectId === id && !!state.handle && Date.now() - state.heartbeat.getTime() < 12000,
+    previewUrl: process.env.FORGE_AUTH_MODE === 'hosted' ? '' : `http://127.0.0.1:${process.env.FORGE_PREVIEW_PORT || 3101}`,
   }
 }
 export async function readiness() {
@@ -233,9 +233,12 @@ export async function readiness() {
   })
   return {
     database: true,
-    worker: !!state && Date.now() - state.heartbeat.getTime() < 12000,
+    worker: process.env.FORGE_AUTH_MODE !== 'hosted' && !!state && Date.now() - state.heartbeat.getTime() < 12000,
     message:
-      state?.error ??
-      (state ? 'Local runtime connected.' : 'Start npm run worker to enable generation.'),
+      process.env.FORGE_AUTH_MODE === 'hosted'
+        ? 'Hosted generation requires a configured and verified isolated runtime.'
+        : state?.error ??
+          (state ? 'Local development runtime connected. This is not hosted sandbox verification.' :
+            'Generation is unavailable. Configure and verify the approved isolated runtime before building applications. The local development worker alone does not meet that requirement.'),
   }
 }

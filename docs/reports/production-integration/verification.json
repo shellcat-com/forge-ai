@@ -1,0 +1,347 @@
+{
+  "classification": "local integration; full hosted release incomplete",
+  "baseline": "4afc9cb587df24bfc7c31deee13cbc8af2d7ad42",
+  "testedCommit": null,
+  "toolchain": {
+    "node": "24.20.0",
+    "npm": "11.11.0",
+    "postgres": "14.18",
+    "browser": "Firefox 155.0 / Playwright 1.63.0"
+  },
+  "checks": [
+    {
+      "check": "verify",
+      "command": [
+        "npm",
+        "run",
+        "verify"
+      ],
+      "exitCode": 0,
+      "log": "evidence/final-verify.log"
+    },
+    {
+      "check": "control-db",
+      "command": [
+        "npm",
+        "run",
+        "test:db:control"
+      ],
+      "exitCode": 0,
+      "log": "evidence/final-control-db.log"
+    },
+    {
+      "check": "control-build",
+      "command": [
+        "npm",
+        "run",
+        "control:build"
+      ],
+      "exitCode": 0,
+      "log": "evidence/final-control-build.log"
+    },
+    {
+      "check": "baseline-browser",
+      "command": [
+        "python3",
+        "scripts/check-baseline-browser.py"
+      ],
+      "exitCode": 0,
+      "log": "evidence/final-baseline-browser.log"
+    }
+  ],
+  "unit": {
+    "passed": 804,
+    "skipped": 5
+  },
+  "baselineBrowser": {
+    "passed": 25,
+    "skipped": 15
+  },
+  "authBrowser": {
+    "passed": 10,
+    "classification": "real application and account library; synthetic mail and local test TLS"
+  },
+  "publicBrowser": {
+    "passed": 6,
+    "liveBuilder": false
+  },
+  "sourceSha256": [
+    {
+      "path": ".env.example",
+      "sha256": "7980bd10bbacb3ebf080bdb804d3ec9fce7c2822ee16f16dc78dcfe646800489"
+    },
+    {
+      "path": "docs/examples/public-auth-grants.sql",
+      "sha256": "e99d32d3fb046c14d68cdea23ec7be6a3af3bc58cbf2bf7e2ee4f0cc4bef2933"
+    },
+    {
+      "path": "drizzle/0005_public_auth.sql",
+      "sha256": "f964314d375f14b006820e9bf1f7584eea74a8847e16ab99ec6e803310bc43e6"
+    },
+    {
+      "path": "src/app/api/auth/[...all]/route.ts",
+      "sha256": "dfa5b453eb2cc52aeaa9934b285b2156dc6aab3dc2c742639389fdc2b2452347"
+    },
+    {
+      "path": "src/app/api/projects/route.ts",
+      "sha256": "13e3e2cd9425a5d5363b8ad77a4e74753a76a1b9c6df936e53bd3c71ae63039d"
+    },
+    {
+      "path": "src/app/api/providers/route.ts",
+      "sha256": "9855d09d24ed0e8c98413edc520d88f3edf2e511af4d2e47fc1d77211b7c9dc0"
+    },
+    {
+      "path": "src/app/api/status/route.ts",
+      "sha256": "414d6efd6403f74deca2fbbcfdcf5c3dad500a7131d0dd9eb89619e9fd58bdb7"
+    },
+    {
+      "path": "src/app/globals.css",
+      "sha256": "43fdb53fe2a37a58cb1aed0af78edf74a07dc9e5bf6e9b6d5a3dd99026490c21"
+    },
+    {
+      "path": "src/components/login.tsx",
+      "sha256": "7e05496c7e2d3d413adb1e76e34aa468be6ee802c09ac41dfb84fd719f08c058"
+    },
+    {
+      "path": "src/server/auth/access.ts",
+      "sha256": "830ddf72eabbf95463458e470c66f979ae55ee3c4dcda2319d8cc663e50f103d"
+    },
+    {
+      "path": "src/server/auth/config.ts",
+      "sha256": "9c26e040a0677e63db50b6644259db55784b36c05b4a432bf7199c374e32f045"
+    },
+    {
+      "path": "src/server/auth/database.ts",
+      "sha256": "54ee5683ff963ecc4c6c843b78a97189806581e2d0d6f171ab058d6ef9465390"
+    },
+    {
+      "path": "src/server/auth/delivery.ts",
+      "sha256": "5c0cf27e83e46aa248cfc38a768b1a75d7be3a81927cca8e43682b53280bee11"
+    },
+    {
+      "path": "src/server/auth/policy.ts",
+      "sha256": "e3a5b490d3419d2cbf336037473604b79ad341c8e1bd255162df03fc71f7c87e"
+    },
+    {
+      "path": "src/server/auth/rate-limit.ts",
+      "sha256": "46e15d9f71236d342e48a45cdd5aa24468459fadef82919f0f210909e4e75d58"
+    },
+    {
+      "path": "src/server/auth/schema.ts",
+      "sha256": "595f324d410bf219b17d5aedf2a76c1d7ba463f7c58ccb195c045aa04eb0659e"
+    },
+    {
+      "path": "src/server/http/local.ts",
+      "sha256": "8a5cf273d0fa5e28daa1d6c400b4df5f97103c377d92855d1e5a40401ef0f786"
+    },
+    {
+      "path": "src/server/projects/service.ts",
+      "sha256": "70b44c8715e49a5a8eabc4cf5abe092daa6c95f08e45da5ce90435d5994f3cbd"
+    },
+    {
+      "path": "src/server/providers/registry.ts",
+      "sha256": "57a220b8d993f64025cb464fc35e9122158a82eee32a345c2d74d8d5b408c268"
+    },
+    {
+      "path": "tests/auth/browser.ts",
+      "sha256": "98832462caf7b790c1342931312212024e3ba66d24160a86dc79fe50edcd67cc"
+    },
+    {
+      "path": "tests/auth/public-auth.test.ts",
+      "sha256": "f52950b5e310c4b28a61d461d69a9b6b1f085e127af3b4d5544d7c9ef48a9cbc"
+    },
+    {
+      "path": "worker/index.ts",
+      "sha256": "458eacc3f24cb587fdbf516688adff1cb64d47be7bba9ee7bafd9a0da9dcf53b"
+    }
+  ],
+  "evidenceSha256": [
+    {
+      "path": "auth-browser-final.log",
+      "sha256": "728f146c777958ccd10e2fc7a7d38a1f997d10df130442425c876a850cc0d96b"
+    },
+    {
+      "path": "auth-browser-v1.log",
+      "sha256": "b8b3cf5ff7dcd1c3fa227783f52319140bc7c17a83a994f56785149cb659a5d8"
+    },
+    {
+      "path": "auth-browser-v2.log",
+      "sha256": "2dce45354ced92ab04c2e660db67ccd7a81dbeb3f08436a709e6d26ce61a3eb0"
+    },
+    {
+      "path": "auth-browser-v3.log",
+      "sha256": "2c3f364e1bbfb1a3809fb52ca987e62c38351ec7d2f620fdf2f9994900e176d5"
+    },
+    {
+      "path": "auth-browser-v4.log",
+      "sha256": "af53af7952452e76fc346cf9ed916ed15e47ebb38a5b43cefd4eb13ad98c16ed"
+    },
+    {
+      "path": "auth-v1.log",
+      "sha256": "47847175b9a9c4d4ece938eb2645bee283ae178ba9ab22ccb118c9836ff4c6c6"
+    },
+    {
+      "path": "auth-v2.log",
+      "sha256": "9b2aba4c6e60dd9689f0ebee897054b5e8828f39a7abbd4c5eb65299efbb5fcb"
+    },
+    {
+      "path": "auth-v3.log",
+      "sha256": "2807e104d4c3d129222e96f63a8ae5a0b66f9efc54af67e42bb157c2812493a6"
+    },
+    {
+      "path": "auth-v4.log",
+      "sha256": "3cd587c7e68fe9cf27c223f88f30b53642f0b94447c1b233b3d078c83e9c5d20"
+    },
+    {
+      "path": "baseline-browser/home-dark-1440.png",
+      "sha256": "0162d8b0fd387e29df70626c60fc8f341b07d7469cb7abd7ecb7172cba18757d"
+    },
+    {
+      "path": "baseline-browser/home-dark-375.png",
+      "sha256": "a3cb139b4d7e5711cc7137ba7370227052a38c29fb6e19fc7e3e307030361299"
+    },
+    {
+      "path": "baseline-browser/home-dark-390.png",
+      "sha256": "59201afebbcf5a274b663a57b565b6056499b1d076ec3eb4a8aad388f23ed68c"
+    },
+    {
+      "path": "baseline-browser/home-dark-768.png",
+      "sha256": "e4ccc6db5a0a73e27c090b921a3a6cf65ad4c3af06a488595a134f46a8d727a3"
+    },
+    {
+      "path": "baseline-browser/home-light-1440.png",
+      "sha256": "c3fedd55710dcf8fb5a24b9e9260f9e7d7e96a10e73faa9bd0d41a7d556c3065"
+    },
+    {
+      "path": "baseline-browser/home-light-375.png",
+      "sha256": "60a6cc18a71cb09cf33b64753204022c25ace3794fdbf1029a6fad409fb95c2c"
+    },
+    {
+      "path": "baseline-browser/home-light-390.png",
+      "sha256": "db899ea6fffc0d155edcbe551e3d94aadd078d8c07e7f968758cf3556913042d"
+    },
+    {
+      "path": "baseline-browser/home-light-768.png",
+      "sha256": "8c362803c5e7173c31d19a26f626c488462ddf692af196a96a3c9782d5beee4d"
+    },
+    {
+      "path": "baseline-browser/projects-dark-1440.png",
+      "sha256": "6963cc33be68e6be589ceb71f5a6eebee57c06b29c450bc367dc1f22df77a2fe"
+    },
+    {
+      "path": "baseline-browser/projects-light-1440.png",
+      "sha256": "85bd8da210c976a0226ba7c6dd7ade33e0dece4b682cd1f328d4cddb877c39c3"
+    },
+    {
+      "path": "baseline-browser/providers-1440.png",
+      "sha256": "683daca3a2e407c40bdd1dca822339b96352b57ec4da1fe8919f6814336f2791"
+    },
+    {
+      "path": "baseline-browser/providers-375.png",
+      "sha256": "2f6c9ea762c54c6da4706d49722d7bd36704e97b42744e0773a30f49d54dcbe7"
+    },
+    {
+      "path": "baseline-browser/providers-768.png",
+      "sha256": "476eb7b281d4d0ef8cb85340cf30be04df1648625be257b3be9cef1c8131ec6f"
+    },
+    {
+      "path": "baseline-verify.log",
+      "sha256": "248e66461af83cd8cd197a66cc61477aa99878dc8defe4b894dd45fbcf9bbc44"
+    },
+    {
+      "path": "final-baseline-browser.log",
+      "sha256": "ff9850a63d24d490b28960291b9f9619594f3a48fcfbc520ef1b1acd2ebfb947"
+    },
+    {
+      "path": "final-control-build.log",
+      "sha256": "ba90c04c5207a72d9914dc6b9b790762a0656552143fa682c9578b835e4b91f9"
+    },
+    {
+      "path": "final-control-db.log",
+      "sha256": "2169d90463aafb29c708fa7bdeb5e2f60b3a38b052fa48be9527ba25aa66c0a0"
+    },
+    {
+      "path": "final-verify.log",
+      "sha256": "3262f8a4ea7295444e5e0b0c446503a54b97614d2d55dba37af4d2617c793d01"
+    },
+    {
+      "path": "firefox-install.log",
+      "sha256": "ed66d8fe80a63262eb024f6b83887e5c6af329b9d016aff8f282315c59acf08b"
+    },
+    {
+      "path": "install.log",
+      "sha256": "eef4f82d71c461705628e866cb0587b0fefd8db05f12c9fdd1006ce73fa11af8"
+    },
+    {
+      "path": "local-auth-regression.webm",
+      "sha256": "3879a3efd69d4da5de21dc3f6c10e4df8678bb3603a4f031657112aef1215857"
+    },
+    {
+      "path": "public-browser.json",
+      "sha256": "641b5411d21227f39e02d41b39f1760ee83d4d5954f8d9a14537e2ddbcc79061"
+    },
+    {
+      "path": "public-check.log",
+      "sha256": "3173b4651226fc41123038084f90aa1132785918f27ee005618d63c2002ae6bb"
+    },
+    {
+      "path": "results.json",
+      "sha256": "481c9d501ca89c01a9d7afad6a72ebdbd9ad2888f3f5ee4356869f2d20182b10"
+    },
+    {
+      "path": "secret-review.json",
+      "sha256": "2d6ffb8974738b6b90985282decc69f22e176984ca40bd0f09ed151558b9d4ac"
+    },
+    {
+      "path": "signup-dark-1440.png",
+      "sha256": "0b3e4c011637571d28b23274e4732fe0fcd5a9184d44247f9a528b8fabf0a0f8"
+    },
+    {
+      "path": "signup-dark-390.png",
+      "sha256": "fc367c9796c3d329032a6baae9d37598980819d2478c85d886fa9f9ec07cb964"
+    },
+    {
+      "path": "signup-dark-768.png",
+      "sha256": "a154b4665cc323df64e06400cebbae7c829f020f506775267cd2a264193485b0"
+    },
+    {
+      "path": "signup-light-1440.png",
+      "sha256": "51cab8db4a8071f97d3845da7374997e3b8f1dc3406d16e911387ff6d268a66b"
+    },
+    {
+      "path": "signup-light-390.png",
+      "sha256": "8b3b706811ba145f113778113d0309813cee9e54833ae2d47a582ebd2bd83369"
+    },
+    {
+      "path": "signup-light-768.png",
+      "sha256": "0b0c8fa38b73ce57ae860fccc1426bf2fc9e0fa6af9ee9516c38a21d1834331e"
+    },
+    {
+      "path": "startup-boundaries.json",
+      "sha256": "e8d981412b370ba20e86be20c72625b4e167ce1a0d54fa8d7e6f142a512a901c"
+    },
+    {
+      "path": "vercel-inspect.log",
+      "sha256": "372e507328af5af67fb09a7099b0a4a469ebcd487b5e5e970893f4067e283167"
+    },
+    {
+      "path": "verify-v1.log",
+      "sha256": "544100160232a2c0bede65c7617871758c60cad42d7526afc52f5f706463534e"
+    },
+    {
+      "path": "verify-v2.log",
+      "sha256": "2798aca7d518cc9e49a96efb04d0a02522d4e755789fdd038c9f67b4629afe75"
+    }
+  ],
+  "liveProviderCalls": 0,
+  "newBillableSpend": 0,
+  "productionChanged": false,
+  "fullAcceptance": "not passed",
+  "logNormalization": "Absolute user/checkout paths and ANSI control sequences removed; trailing whitespace/blank EOF normalized; failures/skips retained.",
+  "secretScan": {
+    "tool": "gitleaks",
+    "ownedStagedFiles": true,
+    "finalFindings": 0,
+    "initialHashFalsePositives": 14
+  }
+}

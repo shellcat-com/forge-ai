@@ -1,0 +1,4 @@
+✓ Running next.config.ts took 563ms
+⚠ "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+PASS: 10 local auth/browser checks. Synthetic inbox only. Evidence: /tmp/forge-production-auth-browser-final
+Cleanup: owned browser, application, PostgreSQL, TLS material and verifier lock removed.

@@ -17,7 +17,10 @@ export async function GET(request: Request) {
       {
         database: false,
         worker: false,
-        message: 'Run npm run setup:local and npm run db:migrate to prepare PostgreSQL.',
+        message:
+          process.env.FORGE_AUTH_MODE === 'hosted'
+            ? 'The workspace database is unavailable. Please retry later.'
+            : 'Run npm run setup:local and npm run db:migrate to prepare PostgreSQL.',
       },
       { status: 503 }
     )

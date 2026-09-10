@@ -1,7 +1,8 @@
+import { authMode, hostedAuthOrigin } from '../auth/policy';
 export function assertLocalRequest(request: Request, mutation = false): void {
   const host = request.headers.get("host");
-  if (process.env.FORGE_AUTH_MODE === "hosted") {
-    const base = new URL(process.env.BETTER_AUTH_URL || "https://invalid.local");
+  if (authMode() === "hosted") {
+    const base = new URL(hostedAuthOrigin());
     const origin = request.headers.get("origin");
     if (base.protocol !== "https:" || host !== base.host || (origin && origin !== base.origin) || (mutation && origin !== base.origin) || request.headers.get("sec-fetch-site") === "cross-site") throw new Error("Forbidden origin");
     return;

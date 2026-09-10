@@ -566,8 +566,16 @@ small {
 }
 .login-page {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   min-height: 100dvh;
+}
+body:has(> .login-page) {
+  min-width: 0;
+}
+.login-form,
+.login-form input {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 .login-form {
   padding: 48px 64px;

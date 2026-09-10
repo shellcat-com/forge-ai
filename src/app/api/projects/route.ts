@@ -58,7 +58,10 @@ export async function POST(request: Request) {
         'Provide a prompt of 20–12,000 characters, a valid mode and model.'
       )
     if (!(await readiness()).worker)
-      throw new AccessError(503, 'Start the Forge worker before submitting a request.')
+      throw new AccessError(
+        503,
+        'Generation is unavailable until the approved isolated runtime is configured and verified.'
+      )
     return Response.json(await createProject(parsed.data, who.id), { status: 201 })
   } catch (e) {
     return apiError(e)

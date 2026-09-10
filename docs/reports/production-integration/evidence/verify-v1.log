@@ -1,0 +1,17 @@
+
+> forge-ai@0.2.0 verify
+> npm run lint && npm run typecheck && npm test && npm run build
+
+
+> forge-ai@0.2.0 lint
+> eslint .
+
+
+> forge-ai@0.2.0 typecheck
+> tsc --noEmit && tsc -p tsconfig.engine.json
+
+tests/auth/public-auth.test.ts(278,77): error TS2322: Type '{ host: string; origin: string; } | { host: string; origin?: undefined; }' is not assignable to type 'HeadersInit | undefined'.
+  Type '{ host: string; origin?: undefined; }' is not assignable to type 'HeadersInit | undefined'.
+    Type '{ host: string; origin?: undefined; }' is not assignable to type 'Record<string, string>'.
+      Property 'origin' is incompatible with index signature.
+        Type 'undefined' is not assignable to type 'string'.
