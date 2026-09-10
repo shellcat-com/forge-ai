@@ -38,10 +38,10 @@
   },
   "evidence": {
     "runner/evidence/task-02/contracts.json": "ec8227a7661e9512241b24deafdf98d4169ecf367e932a34f8b7282b543d342a",
+    "runner/evidence/task-02/diff-scan.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
     "runner/evidence/task-02/native-app.txt": "12e0ef0646614ceb7483f9edc766b745527c75c2691b397c4e427a18d505120e",
     "runner/evidence/task-02/native-control.txt": "2169d90463aafb29c708fa7bdeb5e2f60b3a38b052fa48be9527ba25aa66c0a0",
     "runner/evidence/task-02/python-simulations.txt": "206741b8770b82146c30606ba8ac77403f2f8afb4fc7f861063f17994612d907",
-    "runner/evidence/task-02/secret-scan.json": "c9f7a1f6abdbc769c81ef5200a671f4e8820b4c40ce2c8684ed9481a0103b81e",
     "runner/evidence/task-02/verify-node24.txt": "087492e1409351aa4606318e6627999e3b835c67692931eb6ba16cdb44fed396",
     "runner/evidence/task-02/verify-node25.txt": "4e0d4ad02faa7a2ab0d8a7fe06668505bec43dd3e211647e125719112c924027"
   },
