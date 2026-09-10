@@ -1,0 +1,30 @@
+{
+  "baseline": "881e9ac2b11f8f168cb7849b77c4ee7439e55458",
+  "node": "24.20.0",
+  "nativePostgres": "14.18",
+  "verify": {
+    "status": "PASS",
+    "testsPassed": 621,
+    "testsSkipped": 4,
+    "note": "full verify before final narrow hostname/TLS guard and stronger Task02 health wiring; latest affected tests separately pass"
+  },
+  "focused": {
+    "nativeTransactionTests": 23,
+    "hostRuntimeTests": 8,
+    "hostnameTests": 1,
+    "policyTests": 6,
+    "browserTests": 21,
+    "operatorRaceTests": 2,
+    "nativeSchemaAssertions": 45,
+    "strictEngineAndBrowserTypecheck": "PASS",
+    "lint": "PASS",
+    "controlBuild": "PASS"
+  },
+  "dependencyMode": "npm ci --ignore-scripts first passed; final verification reused exact-lock Task01 packages read-only via per-package symlinks with local caches after ENOSPC",
+  "lockfileSha256": "849678e40252047ab5ed464cb2541eb2edb77ae2f1da1a7f801f155499353e93",
+  "live": {
+    "vercelProtection": "BLOCKED",
+    "generatedAppRestart": "BLOCKED",
+    "realHostCleanup": "BLOCKED"
+  }
+}
