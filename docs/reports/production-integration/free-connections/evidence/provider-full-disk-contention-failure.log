@@ -337,4 +337,3 @@ If this is a long-running test, pass a timeout value as the last argument or con
       Tests  26 failed | 905 passed | 5 skipped (936)
    Start at  18:17:59
    Duration  395.79s (transform 7.29s, setup 0ms, import 32.42s, tests 330.92s, environment 4.78s)
-

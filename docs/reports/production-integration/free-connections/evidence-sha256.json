@@ -129,27 +129,27 @@
   },
   {
     "path": "evidence/preview-additional-setup-failure.log",
-    "sha256": "3641d65b87182f6a009cc5dea80155308f481d4b5c774d724dec8d6d8e247a42"
+    "sha256": "a0f5a8eb7db9ccbdcebe0572207d12b187e3ce94ddb76b391b14d4b0b77befa0"
   },
   {
     "path": "evidence/preview-cleanup-setup-failure.log",
-    "sha256": "b04810c6c3e4744074733b633a97d3ce3f185af0062bc1528c96b742c40725ce"
+    "sha256": "80c178595fec38f687625a1ea523deee0e71e4f8a7dfd18bd09d526ccf4ceff2"
   },
   {
     "path": "evidence/preview-fixture-setup-pass.log",
-    "sha256": "6e480a8a2c90b960b40a154a70cfeca6d4f12a0223952fdd2060e70a150a455a"
+    "sha256": "9c5343d3b078173b483994becb6955af307cc5ca2fd976a05d12d4ef5509d17d"
   },
   {
     "path": "evidence/provider-dialects-native-pass.log",
-    "sha256": "57e9a8a53d80d3a2cea1831626c26e76df30eb78f1a939e5e76aac8e795d54ab"
+    "sha256": "3a543b0c451adb6c728d39b325ff6501c038638a4bba8ca19447fa0e5ee0951f"
   },
   {
     "path": "evidence/provider-full-disk-contention-failure.log",
-    "sha256": "a0539f6eb869bbab44b1446866d4961312d3dee37cef40a045e81dc45f02b075"
+    "sha256": "f6c994b1924c4ff9c17a9497b9f8e4fa0f2758f87337d4ce7850c2219a8ee706"
   },
   {
     "path": "evidence/readiness-storage-pass.log",
-    "sha256": "8de3eb2bed96087ae1292ad5f9023bc841a5036e96c8809b9c8873a7da0b556d"
+    "sha256": "af106c558384171514f58c57817ea1ba771800fdaa5383714331c6d3247ef494"
   },
   {
     "path": "evidence/results.json",
@@ -169,7 +169,7 @@
   },
   {
     "path": "evidence/storage-pass-preview-setup-failure.log",
-    "sha256": "46116febd0dc0e9d74a435bed0de8b1b53b1529fb5aeb69064931f43ceea554f"
+    "sha256": "26c99ab1c1f060a2848a1acd0d62d8bd95f6f1a7e04463bc8b37d29fa5117e5e"
   },
   {
     "path": "evidence/verify-bounded-failure.log",
