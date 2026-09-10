@@ -77,6 +77,38 @@ def safe_file(path, immutable=True):
     return path
 
 
+def protected_directory(path, create=False, inspect=None):
+    """Walk every component with lstat; no resolve-then-write symlink window.
+    All writable ancestors are root-only, so unprivileged replacement is denied.
+    inspect is used only by explicit filesystem contract simulations.
+    """
+    path = Path(path)
+    if not path.is_absolute() or '..' in path.parts:
+        raise ValueError('Unsafe directory path')
+    inspect = inspect or (lambda item: item.lstat())
+    for current in [*reversed(path.parents), path]:
+        try:
+            info = inspect(current)
+        except FileNotFoundError:
+            if not create:
+                return False
+            current.mkdir(mode=0o700)  # Parent was checked before exclusive mkdir.
+            info = inspect(current)
+        if not stat.S_ISDIR(info.st_mode) or info.st_uid != 0 or info.st_mode & 0o022:
+            raise ValueError('Unprotected runtime/jail ancestor')
+    return True
+
+
+def checked_jail_parent(record):
+    parent = jail(record).parent
+    protected_directory(JAILS)
+    protected_directory(JAILS / 'firecracker')
+    if protected_directory(parent):
+        if not record.get('jailCreated'):
+            raise ValueError('Refusing unowned preexisting jail')
+    return parent
+
+
 def file_hash(path):
     with open(safe_file(path), 'rb') as f:
         return hashlib.file_digest(f, 'sha256').hexdigest()
@@ -97,7 +129,7 @@ def atomic(path, value):
 
 @contextlib.contextmanager
 def locked():
-    ROOT.mkdir(mode=0o700, parents=True, exist_ok=True)
+    protected_directory(ROOT, create=True)
     if ROOT.resolve() != ROOT or ROOT.stat().st_uid != 0 or ROOT.stat().st_mode & 0o077:
         raise ValueError('Unsafe runtime directory')
     fd = os.open(ROOT / 'owner.lock', os.O_RDWR | os.O_CREAT | os.O_NOFOLLOW, 0o600)
@@ -223,7 +255,13 @@ def stop(record):
 
 def start(record, cfg):
     d = record['descriptor']; a = cfg['image']['assets']; r = d['resources']; root = jail(record)
-    root.mkdir(parents=True, mode=0o700)
+    protected_directory(JAILS, create=True)
+    protected_directory(JAILS / 'firecracker', create=True)
+    root.parent.mkdir(mode=0o700)  # Exclusive attempt; any preexisting entry fails.
+    protected_directory(root.parent)
+    record['jailCreated'] = True
+    atomic(ROOT / (d['operationId'] + '.json'), record)
+    root.mkdir(mode=0o700)
     # Copy pinned bytes, never link shared writable backing files into a jail.
     for name, target in [('guestKernel', 'kernel'), ('guestRootfs', 'rootfs.ext4'), ('seccompFilter', 'seccomp')]:
         shutil.copyfile(a[name]['path'], root / target)
@@ -282,7 +320,7 @@ def dispatch(request):
                 raise ValueError('Attempt already consumed')
             cfg = preflight(d)
             records = [json.loads(p.read_text()) for p in ROOT.glob('*.json')]
-            if any(x['descriptor']['environmentId'] == d['environmentId'] or x['descriptor']['appDatabaseId'] == d['appDatabaseId'] for x in records):
+            if any(x['attempt'] == attempt or x['descriptor']['environmentId'] == d['environmentId'] or x['descriptor']['appDatabaseId'] == d['appDatabaseId'] for x in records):
                 raise ValueError('Identity reused')
             live = [x for x in records if not x.get('cleaned')]
             # Host overhead is reserved separately: rootfs/kernel copies, 4MiB
@@ -292,7 +330,7 @@ def dispatch(request):
             if millis(d['issuedAt']) > now() or millis(d['expiresAt']) <= now():
                 raise ValueError('Expired launch')
             record = {'descriptor': d, 'binding': binding(d), 'attempt': attempt, 'key': secrets.token_hex(32),
-                      'tombstone': False, 'cleaned': False, 'createdAt': now(), 'lastObservedAt': now(), 'uid': 10000 + len(records)}
+                      'tombstone': False, 'cleaned': False, 'jailCreated': False, 'createdAt': now(), 'lastObservedAt': now(), 'uid': 10000 + len(records)}
             if record['uid'] > 60000 or attempt is None:
                 raise ValueError('Identity capacity')
             atomic(path, record)  # Durable intent before any OS side effect.
@@ -324,6 +362,7 @@ def dispatch(request):
                 return {'renewed': True}
             if d['leaseEpoch'] != old['leaseEpoch'] or d['expiresAt'] != old['expiresAt'] or inactive(unit(record)):
                 raise ValueError('Unhealthy binding')
+            checked_jail_parent(record)
             return {'attemptId': record['attempt'], 'key': record['key'], 'socketPath': str(jail(record) / 'rpc.sock')}
         if action in ('revoke', 'stop', 'wipe'):
             record['tombstone'] = True; atomic(path, record)
@@ -335,16 +374,20 @@ def dispatch(request):
         if action == 'wipe':
             if not inactive(unit(record)):
                 raise ValueError('Cannot wipe running VM')
-            root = jail(record).parent
+            root = checked_jail_parent(record)
             if root.exists():
-                shutil.rmtree(root)  # Python fd-based rmtree refuses symlink traversal.
+                parent_fd = os.open(root.parent, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
+                try:
+                    shutil.rmtree(root.name, dir_fd=parent_fd)
+                finally:
+                    os.close(parent_fd)  # Python fd-based rmtree refuses symlink traversal.
             metadata = ROOT / (record['attempt'] + '-metadata')
             if metadata.exists():
                 shutil.rmtree(metadata)
             record['key'] = None; record['cleaned'] = True; atomic(path, record)
             return {'wiped': True}
         if action == 'observe':
-            absent = inactive(unit(record)); volumes = not jail(record).parent.exists() and not (ROOT / (record['attempt'] + '-metadata')).exists()
+            absent = inactive(unit(record)); volumes = not checked_jail_parent(record).exists() and not (ROOT / (record['attempt'] + '-metadata')).exists()
             return {'operationId': d['operationId'], 'launchAttemptId': attempt,
                     'ingressAbsent': record['tombstone'], 'launcherAbsent': absent, 'vmAbsent': absent,
                     'volumesAbsent': volumes, 'appCredentialsAbsent': volumes and record['key'] is None, 'observedAt': now()}

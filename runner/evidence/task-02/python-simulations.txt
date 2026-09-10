@@ -1,6 +1,9 @@
+test_jail_ancestor_symlink_and_group_writable_directory_reject (test_runtime_contract.DirectorySafetySimulation.test_jail_ancestor_symlink_and_group_writable_directory_reject) ... ok
+test_preexisting_attempt_rejects_before_any_image_copy (test_runtime_contract.DirectorySafetySimulation.test_preexisting_attempt_rejects_before_any_image_copy) ... ok
 test_app_unit_has_aggregate_caps_and_no_rpc_family_or_migrator_secret (test_runtime_contract.GuestSimulation.test_app_unit_has_aggregate_caps_and_no_rpc_family_or_migrator_secret) ... ok
 test_canonical_utf16_unicode_vector (test_runtime_contract.GuestSimulation.test_canonical_utf16_unicode_vector) ... ok
 test_credentials_are_random_disjoint_and_absent_from_base_environment (test_runtime_contract.GuestSimulation.test_credentials_are_random_disjoint_and_absent_from_base_environment) ... ok
+test_expired_and_unbounded_rpc_lease_reject_before_handler_or_epoch (test_runtime_contract.GuestSimulation.test_expired_and_unbounded_rpc_lease_reject_before_handler_or_epoch) ... ok
 test_hostile_paths_and_guest_commands_denied (test_runtime_contract.GuestSimulation.test_hostile_paths_and_guest_commands_denied) ... ok
 test_replay_wrong_key_and_wrong_source_reject (test_runtime_contract.GuestSimulation.test_replay_wrong_key_and_wrong_source_reject) ... ok
 test_rpc_mac_and_response_request_digest (test_runtime_contract.GuestSimulation.test_rpc_mac_and_response_request_digest) ... ok
@@ -18,6 +21,6 @@ test_cache_links_and_noncanonical_manifest_are_rejected (test_runtime_contract.P
 test_prepared_cache_matches_archive_bytes_and_rejects_drift (test_runtime_contract.PackagingSimulation.test_prepared_cache_matches_archive_bytes_and_rejects_drift) ... ok
 
 ----------------------------------------------------------------------
-Ran 18 tests in 0.017s
+Ran 21 tests in 0.020s
 
 OK

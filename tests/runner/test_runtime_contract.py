@@ -9,6 +9,8 @@ import tarfile
 from pathlib import Path
 import tempfile
 import unittest
+from types import SimpleNamespace
+import stat
 from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -38,7 +40,7 @@ class HostSimulation(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory(); self.root = Path(self.tmp.name)
         self.patches = [patch.object(host, 'ROOT', self.root), patch.object(host, 'JAILS', self.root / 'jails'),
-                        patch.object(host, 'locked', contextlib.nullcontext), patch.object(host, 'now', return_value=host.millis(descriptor()['issuedAt'])),
+                        patch.object(host, 'locked', contextlib.nullcontext), patch.object(host, 'protected_directory', return_value=True), patch.object(host, 'now', return_value=host.millis(descriptor()['issuedAt'])),
                         patch.object(host, 'preflight', return_value={'capacity': {'guests': 2, 'cpu': 4, 'memoryMiB': 8192, 'diskMiB': 16384}})]
         for p in self.patches:
             p.start()
@@ -95,6 +97,8 @@ class HostSimulation(unittest.TestCase):
             self.call('launch', self.attempt)
         record = json.loads((self.root / (self.d['operationId'] + '.json')).read_text())
         host.jail(record).mkdir(parents=True)
+        record['jailCreated'] = True
+        (self.root / (self.d['operationId'] + '.json')).write_text(json.dumps(record))
         with patch.object(host, 'inactive', return_value=False):
             with self.assertRaises(ValueError):
                 self.call('wipe')
@@ -121,6 +125,7 @@ class HostSimulation(unittest.TestCase):
             assets[name] = {'path': str(path)}
         record = {'descriptor': self.d, 'attempt': self.attempt, 'uid': 10000, 'key': '11' * 32}
         calls = []
+        (host.JAILS / 'firecracker').mkdir(parents=True)
         def run(args):
             calls.append(args)
             if args[0] in ('/usr/bin/fallocate', '/usr/bin/truncate'):
@@ -172,7 +177,7 @@ class HostSimulation(unittest.TestCase):
 
 class GuestSimulation(unittest.TestCase):
     def setUp(self):
-        self.agent = guest.Agent({'descriptor': descriptor(), 'attemptId': 'attempt-fixture', 'key': '11' * 32})
+        self.agent = guest.Agent({'descriptor': descriptor(), 'attemptId': 'attempt-fixture', 'key': '11' * 32}, clock=lambda: host.millis(descriptor()['issuedAt']) / 1000)
 
     def envelope(self, action='unknown'):
         d = descriptor()
@@ -198,6 +203,17 @@ class GuestSimulation(unittest.TestCase):
         body = self.envelope(); body['sourceManifestDigest'] = 'f' * 64
         with self.assertRaises(ValueError):
             self.agent.request(body)
+
+    def test_expired_and_unbounded_rpc_lease_reject_before_handler_or_epoch(self):
+        for expiry in ('2026-09-09T11:59:59.000Z', '2026-09-09T12:01:01.000Z', 'invalid', '2026-09-09T12:00:10'):
+            body = self.envelope(); body.pop('mac'); body['expiresAt'] = expiry; body['leaseEpoch'] = 2
+            envelope = {**body, 'mac': hmac.new(self.agent.key, guest.canonical(body).encode(), hashlib.sha256).hexdigest()}
+            with patch.object(self.agent, 'handle') as handle:
+                with self.assertRaises(ValueError):
+                    self.agent.request(envelope)
+                handle.assert_not_called()
+            self.assertEqual(self.agent.epoch, 1)
+            self.assertEqual(self.agent.seen, set())
 
     def test_credentials_are_random_disjoint_and_absent_from_base_environment(self):
         other = guest.Agent({'descriptor': descriptor(), 'attemptId': 'other', 'key': '22' * 32})
@@ -228,6 +244,30 @@ class GuestSimulation(unittest.TestCase):
         value = {'z': 0, '\U0001f600': 'é', '\ue000': True, 'a': [None, '\n', 2]}
         self.assertEqual(guest.canonical(value), '{"a":[null,"\\n",2],"z":0,"😀":"é","\ue000":true}')
         self.assertEqual(host.canonical(value), guest.canonical(value))
+
+
+class DirectorySafetySimulation(unittest.TestCase):
+    def test_jail_ancestor_symlink_and_group_writable_directory_reject(self):
+        target = Path('/var/lib/forge/jailer')
+        def inspect(path, bad_mode=None, bad_uid=0):
+            return SimpleNamespace(st_mode=bad_mode if path == Path('/var/lib/forge') else stat.S_IFDIR | 0o755, st_uid=bad_uid if path == Path('/var/lib/forge') else 0)
+        for mode, uid in [(stat.S_IFLNK | 0o777, 0), (stat.S_IFDIR | 0o775, 0), (stat.S_IFDIR | 0o755, 1000)]:
+            with self.assertRaisesRegex(ValueError, 'Unprotected'):
+                host.protected_directory(target, inspect=lambda p: inspect(p, mode, uid))
+        self.assertTrue(host.protected_directory(target, inspect=lambda p: inspect(p, stat.S_IFDIR | 0o755)))
+
+    def test_preexisting_attempt_rejects_before_any_image_copy(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            record = {'descriptor': descriptor(), 'attempt': 'fixture-attempt', 'uid': 10000, 'key': '11' * 32}
+            with patch.object(host, 'JAILS', root), patch.object(host, 'protected_directory', return_value=True):
+                host.jail(record).parent.mkdir(parents=True)
+                with patch.object(host.shutil, 'copyfile') as copy:
+                    with self.assertRaises(FileExistsError):
+                        host.start(record, {'image': {'assets': {}}})
+                    copy.assert_not_called()
+                with self.assertRaisesRegex(ValueError, 'unowned'):
+                    host.checked_jail_parent(record)
 
 
 class PackagingSimulation(unittest.TestCase):

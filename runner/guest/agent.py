@@ -4,6 +4,8 @@ App code runs as uid 1000; PostgreSQL as uid 1001. Neither can read RPC/migrator
 credentials or invoke this service through local TCP/Unix sockets.
 """
 import base64
+import datetime
+import math
 import hashlib
 import hmac
 import http.client
@@ -67,7 +69,8 @@ def credential_sql(app_password, migrator_password):
 
 
 class Agent:
-    def __init__(self, launch):
+    def __init__(self, launch, clock=time.time):
+        self.clock = clock
         self.d = launch['descriptor']; self.attempt = launch['attemptId']; self.key = bytes.fromhex(launch['key'])
         self.seen = set(); self.manifest = None; self.uploaded = set(); self.sealed = False
         self.total = 0; self.app_password = secrets.token_hex(32); self.migrator_password = secrets.token_hex(32)
@@ -308,6 +311,10 @@ class Agent:
             raise ValueError('Unauthenticated request')
         if envelope['operationId'] != self.d['operationId'] or envelope['attemptId'] != self.attempt or envelope['sourceManifestDigest'] != self.d['sourceManifestDigest'] or envelope['imageDigest'] != self.d['imageDigest'] or envelope['leaseEpoch'] < self.epoch:
             raise ValueError('Fenced request')
+        expiry = datetime.datetime.fromisoformat(envelope['expiresAt'].replace('Z', '+00:00'))
+        current = self.clock()
+        if expiry.tzinfo is None or not math.isfinite(current) or not 0 < expiry.timestamp() - current <= 60:
+            raise ValueError('Expired or unbounded RPC lease')
         request_id = envelope['requestId']
         if request_id in self.seen or len(self.seen) >= 50000:
             raise ValueError('Replay/cap')
