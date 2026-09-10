@@ -1,5 +1,7 @@
 # Engine decision sheet — D1–D8 OPEN
 
+> Historical RFC/checkpoint document. The current application uses Next.js, Better Auth and `src/server` / `worker`. Old Vite/Neon Auth setup commands and pending architecture decisions below are historical context, not current setup instructions. See [PR #7 reconciliation](pr7-reconciliation.md).
+
 Owner statement: no D1–D8 decision is recorded as closed. NVIDIA planning and Neon staging are documented experiments, not engine authorization or spending approval. Live integrations remain disabled. This sheet proposes choices; it records no approval, purchase, provisioning or DNS action.
 
 ## D2: isolated runtime proposal

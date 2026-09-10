@@ -1,19 +1,46 @@
-import js from '@eslint/js'
-import tseslint from 'typescript-eslint'
-
+import js from "@eslint/js";
+import tseslint from "typescript-eslint";
 export default tseslint.config(
-  { ignores: ['dist', 'dist-cloud', 'dist-engine', 'coverage', 'templates/**/.next/**', 'runner/evidence/**',
-    // Candidate app uses its own pinned Next.js ESLint/toolchain; engine policy files remain checked here.
-    'templates/**/app/**', 'templates/**/components/**', 'templates/**/lib/**', 'templates/**/platform/**',
-    'templates/**/next*.ts', 'templates/**/next*.mjs', 'templates/**/eslint.config.mjs'] },
+  {
+    ignores: [
+      ".next/**",
+      "dist/**",
+      "dist-cloud/**",
+      "dist-engine/**",
+      "runner/evidence/**",
+      "public/monaco/**",
+      "templates/**",
+      "node_modules/**",
+      "coverage/**",
+      "test-results/**",
+      "playwright-report/**",
+      "next-env.d.ts",
+    ],
+  },
   js.configs.recommended,
   { files: ['public/**/*.js'], languageOptions: { globals: { localStorage: 'readonly', document: 'readonly', matchMedia: 'readonly' } } },
-  { files: ['server/**/*.mjs', 'scripts/**/*.mjs', 'tests/engine/**/*.mjs', 'drizzle.config.mjs'], languageOptions: { globals: { URL: 'readonly', fetch: 'readonly', Response: 'readonly', Buffer: 'readonly', AbortController: 'readonly', setTimeout: 'readonly', clearTimeout: 'readonly', setInterval: 'readonly', clearInterval: 'readonly', process: 'readonly', console: 'readonly' } } },
+  { files: ['server/**/*.mjs', 'scripts/**/*.mjs'], languageOptions: { globals: { fetch: 'readonly', Response: 'readonly', Buffer: 'readonly', AbortController: 'readonly', setTimeout: 'readonly', clearTimeout: 'readonly', process: 'readonly', console: 'readonly' } } },
   ...tseslint.configs.recommended,
   {
-    files: ['src/**/*.ts'],
-    rules: {
-      '@typescript-eslint/consistent-type-imports': 'error',
+    files: ["scripts/**/*.mjs", "runtime/**/*.mjs", "server/**/*.mjs", "tests/engine/**/*.mjs", "drizzle.config.mjs"],
+    languageOptions: {
+      globals: {
+        URL: "readonly",
+        fetch: "readonly",
+        Response: "readonly",
+        AbortController: "readonly",
+        setInterval: "readonly",
+        clearInterval: "readonly",
+        process: "readonly",
+        console: "readonly",
+        Buffer: "readonly",
+        setTimeout: "readonly",
+        clearTimeout: "readonly",
+      },
     },
   },
-)
+  {
+    files: ["**/*.ts", "**/*.tsx"],
+    rules: { "@typescript-eslint/consistent-type-imports": "error" },
+  },
+);

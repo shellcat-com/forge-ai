@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS forge_projects (id text PRIMARY KEY, name text NOT NULL, active_revision text, created_at timestamptz NOT NULL DEFAULT now());
+CREATE TABLE IF NOT EXISTS forge_revisions (id text PRIMARY KEY, project_id text NOT NULL REFERENCES forge_projects(id), files jsonb NOT NULL, database_snapshot text, summary text NOT NULL, created_at timestamptz NOT NULL DEFAULT now());
+CREATE TABLE IF NOT EXISTS forge_jobs (id text PRIMARY KEY, project_id text NOT NULL REFERENCES forge_projects(id), kind text NOT NULL CHECK (kind IN ('generate','edit','restore')), prompt text NOT NULL, provider text NOT NULL, model text NOT NULL, payload jsonb NOT NULL DEFAULT '{}', status text NOT NULL DEFAULT 'queued' CHECK (status IN ('queued','running','complete','failed')), error text, created_at timestamptz NOT NULL DEFAULT now());
+CREATE UNIQUE INDEX IF NOT EXISTS forge_one_active_job ON forge_jobs(project_id) WHERE status IN ('queued','running');
+CREATE TABLE IF NOT EXISTS forge_events (id serial PRIMARY KEY, job_id text NOT NULL REFERENCES forge_jobs(id), type text NOT NULL, message text NOT NULL, created_at timestamptz NOT NULL DEFAULT now());
+CREATE INDEX IF NOT EXISTS forge_events_job ON forge_events(job_id,id);
+CREATE TABLE IF NOT EXISTS forge_runtime (id integer PRIMARY KEY CHECK (id=1), heartbeat timestamptz NOT NULL DEFAULT now(), project_id text, revision_id text, handle jsonb, error text);

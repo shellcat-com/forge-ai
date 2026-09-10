@@ -3,9 +3,9 @@ import { canonicalHash } from '../contracts/canonical.ts'
 import { parseEventCursor, jobEventSchema } from '../contracts/events.ts'
 import { validateApproval, approvalSchema, promotionReviewSchema } from '../contracts/review.ts'
 import { isTerminal } from '../workflows/jobs.ts'
-import { ControlDatabase, clock, number, one } from './database.ts'
-import type { Tx, Principal } from './database.ts'
-import { SessionService } from './identity.ts'
+import { clock, number, one } from './database.ts'
+import type { Tx, Principal , ControlDatabase} from './database.ts'
+import type { SessionService } from './identity.ts'
 import {
   ControlError,
   keySchema,

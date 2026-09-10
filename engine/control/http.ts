@@ -13,7 +13,7 @@ import {
   restoreInputSchema,
   deleteInputSchema,
 } from './contracts.ts'
-import { ControlService } from './service.ts'
+import type { ControlService } from './service.ts'
 import { one } from './database.ts'
 const sessionCookie = '__Host-forge-control'
 const bootstrapCookie = '__Host-forge-bootstrap'

@@ -25,6 +25,8 @@
     "tests/engine",
     "runner",
     "templates/next-postgres-v1/policy.ts",
-    "templates/next-postgres-v1/release.ts"
+    "templates/next-postgres-v1/release.ts",
+    "src/engine",
+    "tests/harness"
   ]
 }

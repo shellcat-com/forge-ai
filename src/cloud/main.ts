@@ -1,7 +1,7 @@
 import '@fontsource/ibm-plex-mono/latin-400.css'
 import '@fontsource/ibm-plex-mono/latin-500.css'
 import '@fontsource/ibm-plex-mono/latin-700.css'
-import '../styles.css'
+import './legacy-shell.css'
 import './styles.css'
 import { brand, themes, escapeHTML as e, imageArt, preview } from '../components/ui.ts'
 import { presets } from '../design/presets.ts'

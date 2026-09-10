@@ -2,7 +2,8 @@ import { randomUUID } from 'node:crypto'
 import { z } from 'zod'
 import { brokerDescriptorSchema, type BrokerDescriptorV1 } from '../../engine/contracts/review.ts'
 import { canonicalHash } from '../../engine/contracts/canonical.ts'
-import { HostInventory, type HostRecord } from './inventory.ts'
+import type { HostInventory } from './inventory.ts'
+import { type HostRecord } from './inventory.ts'
 
 /** These are observations from a trusted Linux supervisor, never guest assertions
  * or operator enablement flags. The real OS adapter has not been provided yet. */

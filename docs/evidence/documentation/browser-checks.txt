@@ -1,0 +1,17 @@
+
+Running 10 tests using 1 worker
+
+(node:3757) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/browser/documentation.spec.ts:4:1 › chapters navigate in place and the complete demo copies without changing the composer (635ms)
+  ✓   2 tests/browser/documentation.spec.ts:46:1 › clipboard failure leaves the whole prompt selected for manual copying (343ms)
+  ✓   3 tests/browser/documentation.spec.ts:65:5 › documentation fits 390px in light (450ms)
+  ✓   4 tests/browser/documentation.spec.ts:65:5 › documentation fits 768px in light (435ms)
+  ✓   5 tests/browser/documentation.spec.ts:65:5 › documentation fits 1440px in light (430ms)
+  ✓   6 tests/browser/documentation.spec.ts:65:5 › documentation fits 390px in dark (431ms)
+  ✓   7 tests/browser/documentation.spec.ts:65:5 › documentation fits 768px in dark (391ms)
+  ✓   8 tests/browser/documentation.spec.ts:65:5 › documentation fits 1440px in dark (383ms)
+  ✓   9 tests/browser/documentation.spec.ts:104:1 › keyboard anchors, troubleshooting, and 200 percent reflow work (365ms)
+  ✓  10 tests/browser/foundation.spec.ts:35:1 › legacy links lead to canonical routes (413ms)
+
+  10 passed (5.3s)

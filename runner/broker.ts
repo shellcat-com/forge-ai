@@ -5,7 +5,8 @@ import { checkId, digest } from '../engine/contracts/primitives.ts'
 import { executionReviewSchema, validateDescriptor, type BrokerDescriptorV1, type ExecutionReviewV1 } from '../engine/contracts/review.ts'
 import { assertTemplatePolicy } from '../templates/next-postgres-v1/policy.ts'
 import { authorizePeer, BrokerError, verifyDescriptor, type TrustedPeer } from './auth.ts'
-import { FileJournal, type LeaseRecord } from './journal.ts'
+import type { FileJournal } from './journal.ts'
+import { type LeaseRecord } from './journal.ts'
 
 export const brokerRequestSchema = z.strictObject({ action: z.enum(['create', 'status', 'renew', 'runCheck', 'collect', 'destroy']),
   signedDescriptor: z.unknown(), checkId: checkId.optional(), inputDigest: digest.optional() })

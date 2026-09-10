@@ -1,12 +1,12 @@
 import { zipSync } from 'fflate'
-import { ArtifactStore } from '../artifacts/store.ts'
+import type { ArtifactStore } from '../artifacts/store.ts'
 import type { ArtifactRef, ArtifactScope } from '../artifacts/store.ts'
 import { canonicalHash, sha256 } from '../contracts/canonical.ts'
 import { manifestSchema, planSchema, validateProposal } from '../contracts/source.ts'
 import type { FileBatchV1, ManifestV1, PlanV1 } from '../contracts/source.ts'
 import { commandPolicySchema, executionReviewSchema } from '../contracts/review.ts'
 import type { ExecutionReviewV1 } from '../contracts/review.ts'
-import { TemplateCatalog } from './catalog.ts'
+import type { TemplateCatalog } from './catalog.ts'
 
 export interface StoredSource { manifest: ManifestV1; manifestArtifact: ArtifactRef; blobs: ArtifactRef[] }
 const encoder = new TextEncoder()

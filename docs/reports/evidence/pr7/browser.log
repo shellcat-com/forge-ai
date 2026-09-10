@@ -1,0 +1,51 @@
+
+> forge-ai@0.2.0 test:e2e
+> playwright test
+
+
+Running 39 tests using 1 worker
+
+(node:3335) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/browser/documentation.spec.ts:4:1 › chapters navigate in place and the complete demo copies without changing the composer (1.0s)
+  ✓   2 tests/browser/documentation.spec.ts:46:1 › clipboard failure leaves the whole prompt selected for manual copying (348ms)
+  ✓   3 tests/browser/documentation.spec.ts:65:5 › documentation fits 390px in light (404ms)
+  ✓   4 tests/browser/documentation.spec.ts:65:5 › documentation fits 768px in light (437ms)
+  ✓   5 tests/browser/documentation.spec.ts:65:5 › documentation fits 1440px in light (369ms)
+  ✓   6 tests/browser/documentation.spec.ts:65:5 › documentation fits 390px in dark (403ms)
+  ✓   7 tests/browser/documentation.spec.ts:65:5 › documentation fits 768px in dark (408ms)
+  ✓   8 tests/browser/documentation.spec.ts:65:5 › documentation fits 1440px in dark (405ms)
+  ✓   9 tests/browser/documentation.spec.ts:104:1 › keyboard anchors, troubleshooting, and 200 percent reflow work (325ms)
+  ✓  10 tests/browser/foundation.spec.ts:2:1 › prompt, mode and custom direction survive navigation and reload without generation (541ms)
+  ✓  11 tests/browser/foundation.spec.ts:19:2 › light workspace fits 375px (508ms)
+  ✓  12 tests/browser/foundation.spec.ts:19:2 › light workspace fits 390px (610ms)
+  ✓  13 tests/browser/foundation.spec.ts:19:2 › light workspace fits 768px (595ms)
+  ✓  14 tests/browser/foundation.spec.ts:19:2 › light workspace fits 1440px (558ms)
+  ✓  15 tests/browser/foundation.spec.ts:19:2 › dark workspace fits 375px (492ms)
+  ✓  16 tests/browser/foundation.spec.ts:19:2 › dark workspace fits 390px (447ms)
+  ✓  17 tests/browser/foundation.spec.ts:19:2 › dark workspace fits 768px (543ms)
+  ✓  18 tests/browser/foundation.spec.ts:19:2 › dark workspace fits 1440px (583ms)
+  ✓  19 tests/browser/foundation.spec.ts:32:1 › keyboard skip link reaches workspace (304ms)
+  ✓  20 tests/browser/foundation.spec.ts:35:1 › legacy links lead to canonical routes (461ms)
+  -  21 tests/browser/groq.spec.ts:5:1 › verified Groq project survives reload with its provider and preview
+  -  22 tests/browser/pomodoro.acceptance.spec.ts:5:1 › Start, Pause, Resume and Reset behave under a controlled clock
+  -  23 tests/browser/pomodoro.acceptance.spec.ts:12:1 › custom durations persist through reload
+  -  24 tests/browser/pomodoro.acceptance.spec.ts:16:1 › focus completion counts a session and starts the break automatically
+  ✓  25 tests/browser/providers.spec.ts:3:3 › provider panel reports cloud and local adapters and fits 375px (260ms)
+  ✓  26 tests/browser/providers.spec.ts:3:3 › provider panel reports cloud and local adapters and fits 768px (803ms)
+  ✓  27 tests/browser/providers.spec.ts:3:3 › provider panel reports cloud and local adapters and fits 1440px (519ms)
+  ✓  28 tests/browser/providers.spec.ts:28:1 › provider API blocks foreign origins (69ms)
+  -  29 tests/browser/providers.spec.ts:35:1 › live Ollama streaming through the UI
+  -  30 tests/browser/unified-workbench.spec.ts:4:71 › workbench light at 390px
+  -  31 tests/browser/unified-workbench.spec.ts:4:71 › workbench dark at 390px
+  -  32 tests/browser/unified-workbench.spec.ts:4:71 › workbench light at 768px
+  -  33 tests/browser/unified-workbench.spec.ts:4:71 › workbench dark at 768px
+  -  34 tests/browser/unified-workbench.spec.ts:4:71 › workbench light at 1440px
+  -  35 tests/browser/unified-workbench.spec.ts:4:71 › workbench dark at 1440px
+  -  36 tests/browser/unified-workbench.spec.ts:14:1 › imported engine projects retain their IDs and full revision history
+  -  37 tests/browser/unified-workbench.spec.ts:17:1 › private code buffers survive refresh without overwriting server source
+  -  38 tests/browser/workflow.spec.ts:9:3 › verified local project › preview, keyboard tabs, local Monaco, history and responsive layouts
+  -  39 tests/browser/workflow.spec.ts:73:3 › verified local project › Monaco edit saves a staged revision and rebuilds a real preview
+
+  15 skipped
+  24 passed (16.5s)

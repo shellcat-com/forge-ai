@@ -1,0 +1,232 @@
+{
+  "capturedAt": "2026-09-09T22:34:58.706657+00:00",
+  "sourceRevision": "3ccdcd999ab5c5138e2329c6559d0c86da5e9ee1",
+  "environment": {
+    "app": "http://127.0.0.1:3002",
+    "preview": "http://127.0.0.1:3102",
+    "node": "24.20.0",
+    "database": "isolated local PostgreSQL",
+    "browser": "Playwright Chrome; live behavior also inspected in Brave"
+  },
+  "screenshots": 27,
+  "recording": "No continuous recording; these are actual individual screenshots.",
+  "results": {
+    "unitTestsPassed": 92,
+    "browserTestsPassed": 23,
+    "browserTestsSkipped": 1,
+    "pomodoroPassed": 1,
+    "pomodoroFailed": 2,
+    "hostedReleaseReady": false
+  },
+  "files": [
+    {
+      "file": "auth-database-checks.txt",
+      "bytes": 387,
+      "sha256": "2cacd0d7b0db805d0691d1f1ffff4f8c686fc6695f98ed4fa33c80b1847939d2"
+    },
+    {
+      "file": "browser-tests.txt",
+      "bytes": 2627,
+      "sha256": "c9ea4690edc64bd2a501095f72748cc3e3d201b5cb52562ed10fba7670f0b7fb"
+    },
+    {
+      "file": "home-dark-1440.png",
+      "bytes": 80937,
+      "sha256": "3cf681cd019f8b9f622930e06e963711a960bf7a69ff452db33d729504708d8a",
+      "width": 1440,
+      "height": 1129
+    },
+    {
+      "file": "home-dark-375.png",
+      "bytes": 88873,
+      "sha256": "b9a9e41e9035730d5f4145860e5134b4f4959b3f3be4a9da7ab139dfd18a12ca",
+      "width": 375,
+      "height": 1982
+    },
+    {
+      "file": "home-dark-390.png",
+      "bytes": 56905,
+      "sha256": "dc4c372cd4a723a2fa6d6b84c77ab81549e995e84a4fb487d8bec2950a96ea79",
+      "width": 390,
+      "height": 1263
+    },
+    {
+      "file": "home-dark-768.png",
+      "bytes": 94066,
+      "sha256": "a3384ff1949dd87659145d6d74c96df2da02072a79f4396a79aeb563ed7ff487",
+      "width": 768,
+      "height": 1568
+    },
+    {
+      "file": "home-light-1440.png",
+      "bytes": 82274,
+      "sha256": "ac213707ae8d775ce7a22248af2e8f178632a584576ea60328890e0c6919b352",
+      "width": 1440,
+      "height": 1129
+    },
+    {
+      "file": "home-light-375.png",
+      "bytes": 56059,
+      "sha256": "130938991c2931a9712ea15454f8f2e6ce7ace58f55710be392b429b12eaaa74",
+      "width": 375,
+      "height": 1284
+    },
+    {
+      "file": "home-light-390.png",
+      "bytes": 57951,
+      "sha256": "7dd8784d419c5309b23790b9e90e20061bb497b3bdbc207ef7210172c7dabdc4",
+      "width": 390,
+      "height": 1263
+    },
+    {
+      "file": "home-light-768.png",
+      "bytes": 68178,
+      "sha256": "6479076df834c3d90b9a695cd8fba5636d57c7d22d735a16252bf7c9fe92abc7",
+      "width": 768,
+      "height": 1099
+    },
+    {
+      "file": "pomodoro-acceptance.txt",
+      "bytes": 3784,
+      "sha256": "d00f0af04d7d987e403047f5bcf4fbe1216467ec3a45fe3d44598f187c484763"
+    },
+    {
+      "file": "pomodoro-break-state.png",
+      "bytes": 18745,
+      "sha256": "ac89e94d928f307c5a2e3b42b9d7f0b65cc52af95c876e6c79f836873861adaf",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "file": "pomodoro-controls.png",
+      "bytes": 18239,
+      "sha256": "9d2bab350280dad54e06d5866488bbb2aceef94752285ffe44988229305da151",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "file": "projects-dark-1440.png",
+      "bytes": 58237,
+      "sha256": "4f0e4f45620e5fa3a24096d06585bdaa78a8fc533b498dd4e0276d0d52a0e705",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "projects-dark-375.png",
+      "bytes": 33077,
+      "sha256": "7c3d43b36c2debc802e97d403c2d5d6af9aacb072540373761e54afd7c420857",
+      "width": 375,
+      "height": 1000
+    },
+    {
+      "file": "projects-dark-390.png",
+      "bytes": 31741,
+      "sha256": "432f676d6e3a7468768a46c1e72bae53491fa7e9bcbd1d1dd0654e209a41d7d5",
+      "width": 390,
+      "height": 1000
+    },
+    {
+      "file": "projects-dark-768.png",
+      "bytes": 33334,
+      "sha256": "ae06922742ddc2a67309e726e46f8b944d5e7cdb99eb6ef1f91428f62530e5a7",
+      "width": 768,
+      "height": 1000
+    },
+    {
+      "file": "projects-light-1440.png",
+      "bytes": 59748,
+      "sha256": "776a9f770183325701612b98e9d7a9a728082a95291f9e4906502acf71a1477c",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "projects-light-375.png",
+      "bytes": 34528,
+      "sha256": "6fbe30d9a443e08f44c00c6ad4376ef4e251fccdb51649ed190fd61796291cec",
+      "width": 375,
+      "height": 1000
+    },
+    {
+      "file": "projects-light-390.png",
+      "bytes": 33066,
+      "sha256": "ab5a49fca4c4501e62ad76b0c26e9108fa6df7a1cf08dbe96604406fe8d7dd68",
+      "width": 390,
+      "height": 1000
+    },
+    {
+      "file": "projects-light-768.png",
+      "bytes": 34836,
+      "sha256": "98bc9291561eecad6e8cba3d50a2be660b3b357a05c2121dea90f315d6f8d882",
+      "width": 768,
+      "height": 1000
+    },
+    {
+      "file": "providers-1440.png",
+      "bytes": 98021,
+      "sha256": "2f7d84945fd99f02a05730118cc0733adafb48ea3b0a73c310a7bfad5f431a16",
+      "width": 1440,
+      "height": 1253
+    },
+    {
+      "file": "providers-375.png",
+      "bytes": 92960,
+      "sha256": "54a22e1dca627101c3a692030533f47d734634c1881567a557b1fe101d7de128",
+      "width": 375,
+      "height": 2214
+    },
+    {
+      "file": "providers-768.png",
+      "bytes": 75521,
+      "sha256": "6648098b63ce542facd3670504d6d1964079307a9252a5a13588619243cc4d49",
+      "width": 768,
+      "height": 1261
+    },
+    {
+      "file": "verification-node24.txt",
+      "bytes": 2217,
+      "sha256": "1d38bf495c9c0a6334a55ad7e57d76773db3df46a3afdeedafeeaf2df4358306"
+    },
+    {
+      "file": "workbench-dark-1440.png",
+      "bytes": 127384,
+      "sha256": "c2b8c25492e8ec45c61ae90a42442927a5308401386f59ce394390d920fbfcb1",
+      "width": 1440,
+      "height": 1374
+    },
+    {
+      "file": "workbench-dark-390.png",
+      "bytes": 46404,
+      "sha256": "8bf778bd3879f240318ab3bf6e0ef0031a837706a92f67abc99da870031e1e57",
+      "width": 390,
+      "height": 1191
+    },
+    {
+      "file": "workbench-dark-768.png",
+      "bytes": 48534,
+      "sha256": "d06c3bc693f4d56574d32db5de3293c3c3bf273ca3068c54cda5666cd6c7f96d",
+      "width": 768,
+      "height": 1108
+    },
+    {
+      "file": "workbench-light-1440.png",
+      "bytes": 129779,
+      "sha256": "f77649fe4dee8f3fba3f10555e757e2f2fb8ac258ac084e78890f4d269c6d38b",
+      "width": 1440,
+      "height": 1374
+    },
+    {
+      "file": "workbench-light-390.png",
+      "bytes": 46870,
+      "sha256": "f73f5d7e509153c462f795b8b410e7978aab4c6db54d324fc4bad5a43b1308f3",
+      "width": 390,
+      "height": 1191
+    },
+    {
+      "file": "workbench-light-768.png",
+      "bytes": 48850,
+      "sha256": "3125e1f1c67c865a6a345e14066e36348e1eb4e9ce32c5b3c3b763ab7130c548",
+      "width": 768,
+      "height": 1108
+    }
+  ]
+}

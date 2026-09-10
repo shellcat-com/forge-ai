@@ -1,5 +1,7 @@
 # RFC 0001: First executable app-generation slice
 
+> Historical RFC/checkpoint document. The current application uses Next.js, Better Auth and `src/server` / `worker`. Old Vite/Neon Auth setup commands and pending architecture decisions below are historical context, not current setup instructions. See [PR #7 reconciliation](../reports/pr7-reconciliation.md).
+
 Status: **E0 contracts and vendor-independent E1 fixture control implemented; live integration/release gates remain open**\
 Date: 2026-09-09\
 Scope: private alpha, one generated stack: Next.js App Router + strict TypeScript + PostgreSQL\

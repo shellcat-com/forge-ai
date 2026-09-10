@@ -1,5 +1,6 @@
 import { randomUUID } from 'node:crypto'
-import { ControlDatabase, one, clock, number } from './database.ts'
+import type { ControlDatabase } from './database.ts'
+import { one, clock, number } from './database.ts'
 import { changeState, appendEvent, flushEventSequence, releaseReservation } from './state.ts'
 import type { JobRow } from './state.ts'
 import { destroyFixtureResources, requestCleanup } from './worker.ts'

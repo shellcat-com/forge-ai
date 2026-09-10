@@ -1,5 +1,7 @@
 # Authentication, Neon and onboarding integration
 
+> Historical RFC/checkpoint document. The current application uses Next.js, Better Auth and `src/server` / `worker`. Old Vite/Neon Auth setup commands and pending architecture decisions below are historical context, not current setup instructions. See [PR #7 reconciliation](reports/pr7-reconciliation.md).
+
 ## Status
 
 The opt-in cloud implementation adds Neon client auth, verified JWT authorization, account-owned PostgreSQL briefs, a resumable first-project flow, account export, and local import. The default build remains the local demo. Live authentication and HTTPS staging verification have not been performed. Do not enable public registration based on local tests alone.

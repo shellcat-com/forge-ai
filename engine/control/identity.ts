@@ -7,7 +7,8 @@ import {
 } from 'node:crypto'
 import { generateKeyPair, jwtVerify, SignJWT } from 'jose'
 import { sha256, canonicalHash } from '../contracts/canonical.ts'
-import { ControlDatabase, clock, one } from './database.ts'
+import type { ControlDatabase } from './database.ts'
+import { clock, one } from './database.ts'
 import { ControlError, keySchema, loginSchema, tokenSchema } from './contracts.ts'
 
 export const opaqueToken = () => randomBytes(32).toString('base64url')

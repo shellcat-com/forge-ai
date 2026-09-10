@@ -1,5 +1,7 @@
 # Engine development and restart instructions
 
+> Historical RFC/checkpoint document. The current application uses Next.js, Better Auth and `src/server` / `worker`. Old Vite/Neon Auth setup commands and pending architecture decisions below are historical context, not current setup instructions. See [PR #7 reconciliation](../reports/pr7-reconciliation.md).
+
 The private-alpha release is blocked. D1–D8 remain OPEN; all live generation, execution and preview capabilities stay disabled. Existing NVIDIA planning access and Neon staging credentials are not engine authorization. Follow the current [implementation board](../reports/e2-e5-board.md) and [decision sheet](../reports/engine-decisions.md).
 
 ## Reproduce the independent implementation checks

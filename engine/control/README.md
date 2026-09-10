@@ -1,6 +1,6 @@
 # Fixture control API (E1)
 
-This is a separately configured, **default-off** control service. It stores synthetic projects and durable fixture jobs in `forge_control`. It has no live identity issuer, generation provider, executable runner, object-store connection, preview URL or deployment engine. The existing Vite app and loopback NVIDIA planning API are separate. See [the E1 report](../../docs/reports/e1-control.md) for coverage, gates and the E2 handoff.
+This is a separately configured, **default-off** control service. It stores synthetic projects and durable fixture jobs in `forge_control`. It has no live identity issuer, generation provider, executable runner, object-store connection, preview URL or deployment engine. The production Next.js app, its `src/server` / `worker` workflow, and the loopback NVIDIA planning API are separate. This service is an opt-in fixture laboratory, not a second production engine. Production sessions, project IDs and database migrations are not interchangeable with these fixtures. See [the E1 report](../../docs/reports/e1-control.md) for coverage, gates and the E2 handoff.
 
 ## Local checks
 

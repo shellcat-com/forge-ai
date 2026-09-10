@@ -1,5 +1,7 @@
 # Forge AI market-readiness plan
 
+> Historical RFC/checkpoint document. The current application uses Next.js, Better Auth and `src/server` / `worker`. Old Vite/Neon Auth setup commands and pending architecture decisions below are historical context, not current setup instructions. See [PR #7 reconciliation](../reports/pr7-reconciliation.md).
+
 ## Scope and precedence (E0 review, 2026-09-09)
 
 [RFC 0001](../rfcs/0001-app-generation-vertical-slice.md) is authoritative for the invited vertical slice. The first generated stack is **Next.js App Router + strict TypeScript + PostgreSQL**. Forge itself remains Vite with its existing escaped-rendering architecture; a React rewrite requires a separate owner decision and is not an E0/E1 dependency. Vendor names in the historical research and future market-release sections are candidates, not selected services or purchasing authority. Installed packages or concurrent prototypes do not close an RFC decision.

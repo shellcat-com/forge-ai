@@ -1,5 +1,7 @@
 # Private-alpha operating procedures (not a deployment)
 
+> Historical RFC/checkpoint document. The current application uses Next.js, Better Auth and `src/server` / `worker`. Old Vite/Neon Auth setup commands and pending architecture decisions below are historical context, not current setup instructions. See [PR #7 reconciliation](../reports/pr7-reconciliation.md).
+
 All live capabilities remain disabled. These procedures are a reviewable operator handoff, not evidence that the referenced infrastructure exists. E1 owns actual durable admission, quota accounting, cleanup and kill switches; `engine/operations/` supplies strict telemetry and evidence calculations without a second scheduler or control database.
 
 ## Enablement sequence

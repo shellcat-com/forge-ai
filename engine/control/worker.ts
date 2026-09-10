@@ -8,8 +8,8 @@ import {
   validateDescriptor,
 } from '../contracts/review.ts'
 import { modelPolicySchema, ControlError } from './contracts.ts'
-import { clock, one, number, ControlDatabase } from './database.ts'
-import type { Tx } from './database.ts'
+import { clock, one, number } from './database.ts'
+import type { Tx , ControlDatabase } from './database.ts'
 import { appendEvent, changeState, flushEventSequence, scopeOf } from './state.ts'
 import type { JobRow, StepRow } from './state.ts'
 import { fixturePolicy, fixtureImageDigest } from './catalog.ts'

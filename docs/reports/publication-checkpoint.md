@@ -13,12 +13,12 @@ This branch publishes the completed E0/E1 work and the independently implemented
 
 The native E1 suite runs inside the 408 tests and retains all 45 cases. Optional tests gated by `FORGE_NATIVE_MIGRATION_TEST` / `FORGE_POSTGRES18_CANDIDATE_TEST` were skipped; they are not counted as passes. The ancestor Expo configuration warning and Node localStorage warning did not fail verification. No live provider, generated-code execution, deployment or infrastructure provisioning was enabled. Existing disabled cloud/identity prototypes are not D1/D5 vendor decisions. Historical E2/E3 reports may reference local logs outside their original source snapshot; this publication does not fabricate those missing logs or upgrade their acceptance claims.
 
-CI now installs native PostgreSQL tools before running the repository tests, and also checks the accepted E0 SQL corpus and standalone control build. Hosted CI remains subject to the merge conflict below; local checks are not represented as hosted checks.
+CI now installs native PostgreSQL tools before running the repository tests, and also checks the accepted E0 SQL corpus and standalone control build. Those logs describe the original checkpoint. Current reconciliation checks are recorded separately; local checks are not represented as hosted checks.
 
-## Merge blocker
+## Historical merge blocker
 
 While preparing this publication, `origin/master` advanced from the shared checkout's `e8947bb` baseline to `6a8095e`, through merged PR #4. That branch introduces a Next.js Forge frontend and another `src/server` / `worker` engine. The RFC checkpoint retains its Vite frontend and separately configured `engine/control` service.
 
 A read-only three-way merge assessment reports conflicts in `.env.example`, `.gitignore`, `DESIGN.md`, `README.md`, `docs/architecture.md`, `docs/provider-integration.md`, `eslint.config.js`, `index.html` (modify/delete), `package.json`, `package-lock.json`, and `tsconfig.json`.
 
-Resolving this requires an explicit architecture/identity/workflow reconciliation. Do not overwrite the merged work, silently adopt its rewrite/vendors, or retain two competing control engines merely to obtain a clean merge. The user authorized committing/pushing and merging where possible; this PR remains reviewable until that integration is resolved. It does not change `master` or enable automatic merging.
+This blocker is resolved by preserving the current application and retaining the checkpoint as a separate fixture laboratory. See [the architecture/identity/workflow reconciliation](pr7-reconciliation.md). Historical evidence above remains unchanged; it does not describe the reconciled build.
