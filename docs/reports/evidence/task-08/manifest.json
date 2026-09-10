@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "baseline": "881e9ac2b11f8f168cb7849b77c4ee7439e55458",
+  "rootLockSha256": "849678e40252047ab5ed464cb2541eb2edb77ae2f1da1a7f801f155499353e93",
+  "dependencyMode": "read-only shared canonical node_modules; not clean installation",
+  "liveGeneratedPortfolio": false,
+  "evidence": [
+    {
+      "path": "asset-review.json",
+      "sha256": "5d717d20eba605780fe7250204611cdcb3b5b4e00534331673900b4cc2408c84",
+      "bytes": 2826
+    },
+    {
+      "path": "integration.json",
+      "sha256": "275cd14d5983b7349c184dfdc4113064898c9a0b20f9718282ef42bc5d0612a8",
+      "bytes": 25802
+    },
+    {
+      "path": "local-browser.json",
+      "sha256": "b51a680b03e777d172720a18e2d7dead101f62d909aa05482ab635916505e1de",
+      "bytes": 3146
+    },
+    {
+      "path": "local-dark-1440.png",
+      "sha256": "ad5183732ccfa7c7b44fdf41f85f2ff7bcbcb1d76d2d8428b160da69d3259739",
+      "bytes": 161335
+    },
+    {
+      "path": "local-light-390.png",
+      "sha256": "c1fbfd31a9a85b917bb4681d761401774468c810867a4600fe58e9fc4c0e53ca",
+      "bytes": 174086
+    },
+    {
+      "path": "native-control.txt",
+      "sha256": "2169d90463aafb29c708fa7bdeb5e2f60b3a38b052fa48be9527ba25aa66c0a0",
+      "bytes": 208
+    },
+    {
+      "path": "secret-scan.json",
+      "sha256": "39420c051e4a25a900e89a791e5856109efeceaafda4162568831fc33152db19",
+      "bytes": 182
+    },
+    {
+      "path": "verify-final.txt",
+      "sha256": "ef614793d2a64ce3feb8d12e04de2ec975a35d7246d1e2e7d25a73d17bbb2300",
+      "bytes": 2040
+    },
+    {
+      "path": "verify-initial.txt",
+      "sha256": "c74d6440f12f187585b45473bb2c4666259c720d18bd82236f38d55ebf6d4cb2",
+      "bytes": 2038
+    }
+  ],
+  "logNormalization": "CR progress/trailing whitespace stripped; raw logs retained in /tmp during task"
+}
