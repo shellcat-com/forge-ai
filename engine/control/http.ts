@@ -83,9 +83,14 @@ export function createControlServer(service: ControlService, options: HttpOption
     res.setHeader('Content-Security-Policy', "default-src 'none'; frame-ancestors 'none'")
     try {
       if (!options.enabled) throw new ControlError(503, 'CONTROL_DISABLED')
+      const callbackNavigation =
+        req.method === 'GET' &&
+        new URL(req.url ?? '/', options.origin).pathname === '/api/v1/auth/callback' &&
+        req.headers['sec-fetch-mode'] === 'navigate' &&
+        req.headers['sec-fetch-dest'] === 'document'
       if (
         req.headers.host !== new URL(options.origin).host ||
-        req.headers['sec-fetch-site'] === 'cross-site' ||
+        (req.headers['sec-fetch-site'] === 'cross-site' && !callbackNavigation) ||
         (req.headers.origin && req.headers.origin !== options.origin)
       )
         throw new ControlError(403, 'ORIGIN_REJECTED')
@@ -115,7 +120,11 @@ export function createControlServer(service: ControlService, options: HttpOption
       if (method === 'GET' && path === '/api/v1/auth/bootstrap') {
         const b = service.sessions.bootstrap()
         res.setHeader('Set-Cookie', cookie(bootstrapCookie, b.cookie, 600))
-        json(res, 200, { schemaVersion: 1, origin: 'fixture', bootstrapNonce: b.nonce })
+        json(res, 200, {
+          schemaVersion: 1,
+          origin: service.sessions.adapter.origin,
+          bootstrapNonce: b.nonce,
+        })
         return
       }
       if (method === 'POST' && path === '/api/v1/auth/login') {
@@ -127,6 +136,17 @@ export function createControlServer(service: ControlService, options: HttpOption
         return
       }
       if (method === 'GET' && path === '/api/v1/auth/callback') {
+        if (
+          ['state', 'code', 'iss', 'error'].some(
+            (name) => url.searchParams.getAll(name).length > 1
+          ) ||
+          url.searchParams.has('error') ||
+          [...url.searchParams.keys()].some((name) => !['state', 'code', 'iss'].includes(name))
+        )
+          throw new ControlError(401, 'INVALID_AUTH_TRANSACTION')
+        const issuer = url.searchParams.get('iss')
+        if (issuer !== null && issuer !== service.sessions.adapter.issuer)
+          throw new ControlError(401, 'INVALID_AUTH_TRANSACTION')
         const result = await service.sessions.callback(
           jar.get(bootstrapCookie) ?? '',
           url.searchParams.get('state') ?? '',
