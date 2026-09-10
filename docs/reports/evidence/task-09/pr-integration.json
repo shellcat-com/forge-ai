@@ -1,0 +1,13 @@
+{
+  "baseRefName": "codex/demo-delivery-baseline",
+  "headRefOid": "4fa7dc2ea573564441fc305929ad72a916bdc189",
+  "isDraft": true,
+  "mergeCommit": {
+    "oid": "d3244f7a300bba5d0351b36261b16d24d3474592"
+  },
+  "mergedAt": "2026-09-10T04:34:45Z",
+  "number": 10,
+  "state": "MERGED",
+  "url": "https://github.com/shellcat-com/forge-ai/pull/10",
+  "interpretation": "Task01 authored-history integration into the feature PR base automatically marked PR10 merged. Task09 did not call merge/close; master release remains blocked."
+}
