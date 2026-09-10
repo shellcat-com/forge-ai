@@ -37,6 +37,7 @@ beforeAll(async () => {
     '0002_runtime_version.sql',
     '0003_unified.sql',
     '0005_public_auth.sql',
+    '0007_email_budget.sql',
   ])
     await cluster.admin.query(
       await readFile(new URL(`../../drizzle/${name}`, import.meta.url), 'utf8')
@@ -514,4 +515,23 @@ it('bridges a real Better Auth login into private key CRUD and revokes engine ac
     hostedApi.session(identity.sessionToken, identity.workspaceId, 'owner', async () => true)
   ).rejects.toThrow('UNAUTHENTICATED')
   expect((await listKeys(req('/api/connections', undefined, alice.cookie))).status).toBe(401)
+})
+
+it('reserves at most fifty Gmail attempts per UTC day under concurrency and resets the next day', async () => {
+  const { reserveGmailDelivery } = await import('../../src/server/auth/gmail')
+  const results = await Promise.allSettled(Array.from({ length: 80 }, () => reserveGmailDelivery()))
+  expect(results.filter((r) => r.status === 'fulfilled')).toHaveLength(50)
+  expect(results.filter((r) => r.status === 'rejected')).toHaveLength(30)
+  expect(
+    (await cluster.admin.query("SELECT attempts FROM forge_auth_admission WHERE key='email_daily'"))
+      .rows
+  ).toEqual([{ attempts: 50 }])
+  await cluster.admin.query(
+    "UPDATE forge_auth_admission SET window_start=window_start-interval '1 day' WHERE key='email_daily'"
+  )
+  await reserveGmailDelivery()
+  expect(
+    (await cluster.admin.query("SELECT attempts FROM forge_auth_admission WHERE key='email_daily'"))
+      .rows
+  ).toEqual([{ attempts: 1 }])
 })

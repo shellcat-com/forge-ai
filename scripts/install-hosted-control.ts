@@ -54,6 +54,7 @@ try {
     '0002_runtime_version.sql',
     '0003_unified.sql',
     '0005_public_auth.sql',
+    '0007_email_budget.sql',
   ]) {
     stage = `drizzle/${name}`
     const sql = await readFile(stage, 'utf8'),

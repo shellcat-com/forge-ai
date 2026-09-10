@@ -81,6 +81,7 @@ try {
     '0002_runtime_version.sql',
     '0003_unified.sql',
     '0005_public_auth.sql',
+    '0007_email_budget.sql',
   ])
     await cluster.admin.query(await readFile(join('drizzle', name), 'utf8'))
   await cluster.admin.query(await readFile('docs/examples/public-auth-grants.sql', 'utf8'))
