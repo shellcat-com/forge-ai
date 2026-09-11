@@ -4,9 +4,9 @@ A workspace for turning ideas into editable websites and web applications.
 
 The unified Next.js application combines the approved Forge interface with the existing local generation engine. Generated apps run in restricted Docker workspaces. Examples provide optional inspiration rather than mandatory templates.
 
-## Recorded walkthrough and reusable video skill
 
-[![Watch the 81-second Forge walkthrough](docs/media/forge-workflow-poster.jpg)](docs/media/forge-workflow.mp4)
+
+[![Watch the 81-second Forge walkthrough]](docs/media/forge-workflow.mp4)
 
 [Watch or download the walkthrough (MP4, 1080p, 1:21)](docs/media/forge-workflow.mp4).
 
