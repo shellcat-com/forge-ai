@@ -1,6 +1,6 @@
 /** Real restricted PostgreSQL roles and auth parent checks; synthetic accounts,
  * keys and allowance evidence. No external model, email or sandbox request. */
-import { afterAll, beforeAll, beforeEach, expect, it } from 'vitest'
+import { afterAll, beforeAll, beforeEach, expect, it, vi } from 'vitest'
 import { randomBytes, randomUUID } from 'node:crypto'
 import { readFileSync } from 'node:fs'
 import { startNativePostgres } from './native-postgres.ts'
@@ -12,6 +12,10 @@ import {
   EncryptedObjectBackend,
   EnvironmentObjectKeys,
 } from '../../engine/artifacts/encrypted-backend.ts'
+import { HostedReviews } from '../../engine/control/hosted-reviews.ts'
+import { changeState, scopeOf } from '../../engine/control/state.ts'
+import type { JobRow } from '../../engine/control/state.ts'
+import { clock, one } from '../../engine/control/database.ts'
 import { HostedProducts } from '../../engine/control/hosted-products.ts'
 import type { HostedGenerationContext } from '../../engine/generation/hosted-stage.ts'
 import { plan as syntheticPlan } from './fixtures.ts'
@@ -643,4 +647,217 @@ it('rejects product metadata from another owner and rechecks logout before read'
   await expect(
     f.products.plan({ ...f.scope, stepId: f.context.stepId, leaseEpoch: 1 }, f.ref.id)
   ).rejects.toThrow()
+})
+
+async function reviewFixture() {
+  const f = await productFixture()
+  await f.save()
+  await db.admin.query('UPDATE forge_control.control_settings SET max_job_micros=0')
+  const subject = await worker.scoped(f.scope.workspaceId, async (c) => {
+    const j = await one<JobRow>(c, 'SELECT * FROM jobs WHERE id=$1 FOR UPDATE', [f.scope.jobId])
+    await c.query('UPDATE jobs SET plan_artifact_id=$2 WHERE id=$1', [j.id, f.ref.id])
+    await c.query(
+      "UPDATE job_steps SET status='succeeded',finished_at=now(),lease_owner=NULL,lease_expires_at=NULL WHERE id=$1",
+      [f.context.stepId]
+    )
+    const at = await clock(c)
+    const subject = {
+      schemaVersion: 1,
+      ...scopeOf(j),
+      baseRevision: Number(j.base_revision),
+      baseSnapshotId: j.base_snapshot_id,
+      templateDigest: j.template_digest,
+      policyDigest: j.policy_digest,
+      planDigest: f.ref.sha256,
+      expiresAt: new Date(
+        Math.min(Date.parse(at) + 86400000, j.created_at.getTime() + 7 * 86400000)
+      ).toISOString(),
+    }
+    await changeState(c, j, 'AWAITING_PLAN_APPROVAL', 'stage-complete', subject, undefined, at)
+    return subject
+  })
+  const reviews = new HostedReviews(api, bridge, store)
+  const body = { schemaVersion: 1, stateVersion: 2, subjectDigest: canonicalHash(subject) }
+  const approve = (key = randomUUID(), input = body) =>
+    reviews.approvePlan(
+      f.identity.sessionToken,
+      f.scope.workspaceId,
+      f.identity.csrfToken,
+      f.scope.jobId,
+      key,
+      input
+    )
+  return { ...f, reviews, body, approve }
+}
+it('reads the exact encrypted owner plan and resumes one job/outbox after explicit replayed approval', async () => {
+  const f = await reviewFixture(),
+    key = randomUUID()
+  const plan = await f.reviews.plan(f.identity.sessionToken, f.scope.workspaceId, f.scope.jobId)
+  expect(plan.plan).toEqual(syntheticPlan)
+  expect(plan.reviewDigest).toBe(f.body.subjectDigest)
+  const first = await f.approve(key)
+  expect(first.body).toMatchObject({ origin: 'hosted', state: 'GENERATING', stateVersion: 3 })
+  expect(await f.approve(key)).toEqual(first)
+  expect(
+    (
+      await db.admin.query('SELECT count(*)::int n FROM forge_control.approvals WHERE job_id=$1', [
+        f.scope.jobId,
+      ])
+    ).rows[0].n
+  ).toBe(1)
+  expect(
+    (
+      await db.admin.query(
+        'SELECT count(*)::int n FROM forge_control.scheduler_dispatches WHERE job_id=$1',
+        [f.scope.jobId]
+      )
+    ).rows[0].n
+  ).toBe(1)
+  expect(
+    (
+      await db.admin.query(
+        "SELECT count(*)::int n FROM forge_control.job_steps WHERE job_id=$1 AND stage='GENERATING'",
+        [f.scope.jobId]
+      )
+    ).rows[0].n
+  ).toBe(1)
+  await expect(f.approve()).rejects.toThrow('STALE_APPROVAL')
+})
+it('rejects stale review hashes and revisions before writing any approval', async () => {
+  const f = await reviewFixture()
+  await expect(
+    f.approve(randomUUID(), { ...f.body, subjectDigest: 'f'.repeat(64) })
+  ).rejects.toThrow('STALE_APPROVAL')
+  await expect(f.approve(randomUUID(), { ...f.body, stateVersion: 1 })).rejects.toThrow(
+    'STALE_APPROVAL'
+  )
+  expect(
+    (await db.admin.query('SELECT 1 FROM forge_control.approvals WHERE job_id=$1', [f.scope.jobId]))
+      .rowCount
+  ).toBe(0)
+})
+it.each(['key', 'logout', 'cancel', 'project', 'policy', 'disabled'] as const)(
+  'does not approve or enqueue after %s authority changes',
+  async (kind) => {
+    const f = await reviewFixture()
+    if (kind === 'key')
+      await db.admin.query('DELETE FROM forge_control.provider_choices WHERE workspace_id=$1', [
+        f.scope.workspaceId,
+      ])
+    if (kind === 'logout')
+      await db.admin.query('DELETE FROM public.forge_session WHERE id=$1', [f.sessionId])
+    if (kind === 'cancel')
+      await db.admin.query('UPDATE forge_control.jobs SET cancel_requested_at=now() WHERE id=$1', [
+        f.scope.jobId,
+      ])
+    if (kind === 'project')
+      await db.admin.query('UPDATE forge_control.projects SET revision=revision+1 WHERE id=$1', [
+        f.scope.projectId,
+      ])
+    if (kind === 'policy')
+      await db.admin.query(
+        "INSERT INTO forge_control.revoked_policies(digest,reason) VALUES($1,'Synthetic review revocation') ON CONFLICT DO NOTHING",
+        [canonicalHash(f.policy)]
+      )
+    if (kind === 'disabled')
+      await db.admin.query('UPDATE forge_control.control_settings SET worker_enabled=false')
+    await expect(f.approve()).rejects.toThrow()
+    expect(
+      (
+        await db.admin.query('SELECT 1 FROM forge_control.approvals WHERE job_id=$1', [
+          f.scope.jobId,
+        ])
+      ).rowCount
+    ).toBe(0)
+    expect(
+      (
+        await db.admin.query('SELECT 1 FROM forge_control.scheduler_dispatches WHERE job_id=$1', [
+          f.scope.jobId,
+        ])
+      ).rowCount
+    ).toBe(0)
+  }
+)
+it('requires the owner and valid CSRF for plan approval', async () => {
+  const f = await reviewFixture(),
+    other = await seed()
+  await expect(
+    f.reviews.plan(other.identity.sessionToken, other.identity.workspaceId, f.scope.jobId)
+  ).rejects.toThrow()
+  await expect(
+    f.reviews.approvePlan(
+      f.identity.sessionToken,
+      f.scope.workspaceId,
+      randomBytes(32).toString('base64url'),
+      f.scope.jobId,
+      randomUUID(),
+      f.body
+    )
+  ).rejects.toThrow('CSRF_INVALID')
+})
+it('reauthorizes plan reads after encrypted storage I/O', async () => {
+  const f = await reviewFixture(),
+    original = store.read.bind(store)
+  const spy = vi.spyOn(store, 'read').mockImplementationOnce(async (...args) => {
+    const bytes = await original(...args)
+    await db.admin.query('DELETE FROM public.forge_session WHERE id=$1', [f.sessionId])
+    return bytes
+  })
+  try {
+    await expect(
+      f.reviews.plan(f.identity.sessionToken, f.scope.workspaceId, f.scope.jobId)
+    ).rejects.toThrow()
+  } finally {
+    spy.mockRestore()
+  }
+})
+it('rolls back approval, state and step if resume intent insertion fails', async () => {
+  const f = await reviewFixture()
+  await db.admin.query('REVOKE INSERT ON forge_control.scheduler_dispatches FROM forge_control_api')
+  try {
+    await expect(f.approve()).rejects.toThrow()
+    expect(
+      (await db.admin.query('SELECT state FROM forge_control.jobs WHERE id=$1', [f.scope.jobId]))
+        .rows[0].state
+    ).toBe('AWAITING_PLAN_APPROVAL')
+    expect(
+      (
+        await db.admin.query('SELECT 1 FROM forge_control.approvals WHERE job_id=$1', [
+          f.scope.jobId,
+        ])
+      ).rowCount
+    ).toBe(0)
+    expect(
+      (
+        await db.admin.query(
+          "SELECT 1 FROM forge_control.job_steps WHERE job_id=$1 AND stage='GENERATING'",
+          [f.scope.jobId]
+        )
+      ).rowCount
+    ).toBe(0)
+  } finally {
+    await db.admin.query('GRANT INSERT ON forge_control.scheduler_dispatches TO forge_control_api')
+  }
+})
+it('allows the owner to read from a new login but does not replace the job original session authority', async () => {
+  const f = await reviewFixture(),
+    parent = randomBytes(32).toString('base64url')
+  await db.admin.query(
+    "INSERT INTO public.forge_session(id,user_id,token,expires_at) VALUES($1,$2,$3,now()+interval '12 hours')",
+    [randomUUID(), f.uid, parent]
+  )
+  const fresh = await bridge.connect(parent)
+  expect(
+    (await f.reviews.plan(fresh.sessionToken, fresh.workspaceId, f.scope.jobId)).planDigest
+  ).toBe(f.ref.sha256)
+  await expect(
+    f.reviews.approvePlan(
+      fresh.sessionToken,
+      fresh.workspaceId,
+      fresh.csrfToken,
+      f.scope.jobId,
+      randomUUID(),
+      f.body
+    )
+  ).rejects.toThrow('JOB_SESSION_CHANGED')
 })

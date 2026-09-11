@@ -1,0 +1,113 @@
+▲ [WARNING] Cannot find base config file "expo/tsconfig.base" [tsconfig.json]
+
+    ../../tsconfig.json:3:13:
+      3 │   "extends": "expo/tsconfig.base"
+        ╵              ~~~~~~~~~~~~~~~~~~~~
+
+
+ RUN  v4.1.11 <repository>
+
+ ❯ tests/engine/hosted-generation-gate.native.test.ts (35 tests | 10 failed) 2200ms
+   × reads the exact encrypted owner plan and resumes one job/outbox after explicit replayed approval 31ms
+   × rejects stale review hashes and revisions before writing any approval 26ms
+   × does not approve or enqueue after key authority changes 26ms
+   × does not approve or enqueue after logout authority changes 27ms
+   × does not approve or enqueue after cancel authority changes 23ms
+   × does not approve or enqueue after project authority changes 22ms
+   × does not approve or enqueue after policy authority changes 22ms
+   × does not approve or enqueue after disabled authority changes 23ms
+   × requires the owner and valid CSRF for plan approval 22ms
+   × reauthorizes plan reads after encrypted storage I/O 23ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 10 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/engine/hosted-generation-gate.native.test.ts > reads the exact encrypted owner plan and resumes one job/outbox after explicit replayed approval
+Error: Review expiry must match reducer
+ ❯ changeState engine/control/state.ts:194:11
+    192|   )
+    193|   if (subject && subject.expiresAt !== changed.reviewExpiresAt)
+    194|     throw new Error('Review expiry must match reducer')
+       |           ^
+    195|   if (subject) {
+    196|     await one(
+ ❯ tests/engine/hosted-generation-gate.native.test.ts:673:5
+ ❯ ControlDatabase.tx engine/control/database.ts:76:22
+ ❯ reviewFixture tests/engine/hosted-generation-gate.native.test.ts:656:19
+ ❯ tests/engine/hosted-generation-gate.native.test.ts:690:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/10]⎯
+
+ FAIL  tests/engine/hosted-generation-gate.native.test.ts > rejects stale review hashes and revisions before writing any approval
+Error: Review expiry must match reducer
+ ❯ changeState engine/control/state.ts:194:11
+    192|   )
+    193|   if (subject && subject.expiresAt !== changed.reviewExpiresAt)
+    194|     throw new Error('Review expiry must match reducer')
+       |           ^
+    195|   if (subject) {
+    196|     await one(
+ ❯ tests/engine/hosted-generation-gate.native.test.ts:673:5
+ ❯ ControlDatabase.tx engine/control/database.ts:76:22
+ ❯ reviewFixture tests/engine/hosted-generation-gate.native.test.ts:656:19
+ ❯ tests/engine/hosted-generation-gate.native.test.ts:724:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/10]⎯
+
+ FAIL  tests/engine/hosted-generation-gate.native.test.ts > does not approve or enqueue after key authority changes
+ FAIL  tests/engine/hosted-generation-gate.native.test.ts > does not approve or enqueue after logout authority changes
+ FAIL  tests/engine/hosted-generation-gate.native.test.ts > does not approve or enqueue after cancel authority changes
+ FAIL  tests/engine/hosted-generation-gate.native.test.ts > does not approve or enqueue after project authority changes
+ FAIL  tests/engine/hosted-generation-gate.native.test.ts > does not approve or enqueue after policy authority changes
+ FAIL  tests/engine/hosted-generation-gate.native.test.ts > does not approve or enqueue after disabled authority changes
+Error: Review expiry must match reducer
+ ❯ changeState engine/control/state.ts:194:11
+    192|   )
+    193|   if (subject && subject.expiresAt !== changed.reviewExpiresAt)
+    194|     throw new Error('Review expiry must match reducer')
+       |           ^
+    195|   if (subject) {
+    196|     await one(
+ ❯ tests/engine/hosted-generation-gate.native.test.ts:673:5
+ ❯ ControlDatabase.tx engine/control/database.ts:76:22
+ ❯ reviewFixture tests/engine/hosted-generation-gate.native.test.ts:656:19
+ ❯ tests/engine/hosted-generation-gate.native.test.ts:739:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/10]⎯
+
+ FAIL  tests/engine/hosted-generation-gate.native.test.ts > requires the owner and valid CSRF for plan approval
+Error: Review expiry must match reducer
+ ❯ changeState engine/control/state.ts:194:11
+    192|   )
+    193|   if (subject && subject.expiresAt !== changed.reviewExpiresAt)
+    194|     throw new Error('Review expiry must match reducer')
+       |           ^
+    195|   if (subject) {
+    196|     await one(
+ ❯ tests/engine/hosted-generation-gate.native.test.ts:673:5
+ ❯ ControlDatabase.tx engine/control/database.ts:76:22
+ ❯ reviewFixture tests/engine/hosted-generation-gate.native.test.ts:656:19
+ ❯ tests/engine/hosted-generation-gate.native.test.ts:779:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/10]⎯
+
+ FAIL  tests/engine/hosted-generation-gate.native.test.ts > reauthorizes plan reads after encrypted storage I/O
+Error: Review expiry must match reducer
+ ❯ changeState engine/control/state.ts:194:11
+    192|   )
+    193|   if (subject && subject.expiresAt !== changed.reviewExpiresAt)
+    194|     throw new Error('Review expiry must match reducer')
+       |           ^
+    195|   if (subject) {
+    196|     await one(
+ ❯ tests/engine/hosted-generation-gate.native.test.ts:673:5
+ ❯ ControlDatabase.tx engine/control/database.ts:76:22
+ ❯ reviewFixture tests/engine/hosted-generation-gate.native.test.ts:656:19
+ ❯ tests/engine/hosted-generation-gate.native.test.ts:796:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/10]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  10 failed | 25 passed (35)
+   Start at  23:49:29
+   Duration  2.86s (transform 289ms, setup 0ms, import 491ms, tests 2.20s, environment 0ms)
