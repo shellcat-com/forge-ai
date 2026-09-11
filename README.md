@@ -4,6 +4,18 @@ A workspace for turning ideas into editable websites and web applications.
 
 The unified Next.js application combines the approved Forge interface with the existing local generation engine. Generated apps run in restricted Docker workspaces. Examples provide optional inspiration rather than mandatory templates.
 
+## Recorded walkthrough and reusable video skill
+
+[![Watch the 81-second Forge walkthrough](docs/media/forge-workflow-poster.jpg)](docs/media/forge-workflow.mp4)
+
+[Watch or download the walkthrough (MP4, 1080p, 1:21)](docs/media/forge-workflow.mp4).
+
+This recording shows the earlier local Forge workflow used to create Respawn, a gaming marketplace frontend: enter a brief, choose a design, refine the project, generate with DeepSeek, preview the result, and export HTML. Prompt entry is accelerated from 0:14; generation is condensed to 6.5 seconds, with a 13-second result tour. Original lo-fi music and added keyboard and mouse effects accompany the actual footage; there is no narration.
+
+The recorded version uses a local login preview and HTML export. It does not demonstrate real signup, payments, or public deployment, and its interface predates the unified Next.js application described above.
+
+The reusable [Screenrecord Demo skill](skills/screenrecord-demo/SKILL.md) includes capture and editing guidance, a timeline renderer, an original soundtrack generator, the 81-second timeline, and checks for exports and saved social drafts. Install or update it with `npm run skills:sync`, then ask Codex: `Use $screenrecord-demo to record my app in the 81-second Forge style.` Supply footage and timings for new recordings; raw captures are not bundled with the skill.
+
 ## Development
 
 Use Node 24. Run `npm install`, `npm run setup:local`, `npm run db:migrate`, `npm run runtime:build`, then run `npm run worker` and `npm run dev` in separate terminals. Enter provider credentials only in ignored `.env.local`.
