@@ -1,0 +1,14 @@
+✓ Running next.config.ts took 99ms
+⚠ "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+Error: expect(locator).toBeVisible() failed
+
+Locator: getByRole('status').filter({ hasText: 'Website generation is not connected' })
+Expected: visible
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" getByRole('status').filter({ hasText: 'Website generation is not connected' }) with timeout 5000ms
+  - waiting for getByRole('status').filter({ hasText: 'Website generation is not connected' })
+
+Cleanup: owned browser, application, PostgreSQL, TLS material and verifier lock removed.

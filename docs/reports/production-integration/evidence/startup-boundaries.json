@@ -1,0 +1,36 @@
+[
+  {
+    "name": "control-api-disabled",
+    "command": [
+      "node",
+      "dist-engine/control/index.js",
+      "api"
+    ],
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "output": "Forge control disabled. No listener, database or worker started.\n"
+  },
+  {
+    "name": "control-worker-disabled",
+    "command": [
+      "node",
+      "dist-engine/control/index.js",
+      "worker"
+    ],
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "output": "Forge control disabled. No listener, database or worker started.\n"
+  },
+  {
+    "name": "legacy-worker-hosted-rejected",
+    "command": [
+      "node",
+      "--import",
+      "tsx",
+      "worker/index.ts"
+    ],
+    "exitCode": 1,
+    "expectedExitCode": 1,
+    "output": "The local Docker worker is unavailable in hosted mode. Configure the approved isolated runtime and durable control worker.\n"
+  }
+]

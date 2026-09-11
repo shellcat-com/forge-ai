@@ -1,0 +1,117 @@
+▲ [WARNING] Cannot find base config file "expo/tsconfig.base" [tsconfig.json]
+
+    ../../tsconfig.json:3:13:
+      3 │   "extends": "expo/tsconfig.base"
+        ╵              ~~~~~~~~~~~~~~~~~~~~
+
+
+ RUN  v4.1.11 /Users/biswaskhatiwada/Developer/forge-production-integration
+
+ ❯ tests/auth/public-auth.test.ts (14 tests | 7 failed) 3150ms
+   × rejects wrong host, missing/foreign origin, oversized and compressed requests 32ms
+   × refuses ambiguous deployment modes, invalid origins and local auth activation 20ms
+   × checks narrow auth database authority and refuses accidental project grants 14ms
+   × reports the actual hosted build dependency after login and creates no jobs on retries 3ms
+   × uses the same hosted error for existing-project changes while preserving owner authorization 4ms
+   × does not describe an expired local heartbeat as a connected runtime 2ms
+   × bridges a real Better Auth login into private key CRUD and revokes engine access on logout 8ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/auth/public-auth.test.ts > rejects wrong host, missing/foreign origin, oversized and compressed requests
+error: could not create file "base/14225/17705": No space left on device
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ tests/auth/public-auth.test.ts:102:3
+    100|   mailFailure = false
+    101|   mails.length = 0
+    102|   await cluster.admin.query('TRUNCATE forge_auth_admission, forge_user…
+       |   ^
+    103| })
+    104| afterAll(async () => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯
+
+ FAIL  tests/auth/public-auth.test.ts > refuses ambiguous deployment modes, invalid origins and local auth activation
+error: could not create file "base/14225/17707": No space left on device
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ tests/auth/public-auth.test.ts:102:3
+    100|   mailFailure = false
+    101|   mails.length = 0
+    102|   await cluster.admin.query('TRUNCATE forge_auth_admission, forge_user…
+       |   ^
+    103| })
+    104| afterAll(async () => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/7]⎯
+
+ FAIL  tests/auth/public-auth.test.ts > checks narrow auth database authority and refuses accidental project grants
+error: could not create file "base/14225/17708": No space left on device
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ tests/auth/public-auth.test.ts:102:3
+    100|   mailFailure = false
+    101|   mails.length = 0
+    102|   await cluster.admin.query('TRUNCATE forge_auth_admission, forge_user…
+       |   ^
+    103| })
+    104| afterAll(async () => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/7]⎯
+
+ FAIL  tests/auth/public-auth.test.ts > reports the actual hosted build dependency after login and creates no jobs on retries
+error: could not create file "base/14225/17709": No space left on device
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ tests/auth/public-auth.test.ts:102:3
+    100|   mailFailure = false
+    101|   mails.length = 0
+    102|   await cluster.admin.query('TRUNCATE forge_auth_admission, forge_user…
+       |   ^
+    103| })
+    104| afterAll(async () => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/7]⎯
+
+ FAIL  tests/auth/public-auth.test.ts > uses the same hosted error for existing-project changes while preserving owner authorization
+error: could not create file "base/14225/17710": No space left on device
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ tests/auth/public-auth.test.ts:102:3
+    100|   mailFailure = false
+    101|   mails.length = 0
+    102|   await cluster.admin.query('TRUNCATE forge_auth_admission, forge_user…
+       |   ^
+    103| })
+    104| afterAll(async () => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/7]⎯
+
+ FAIL  tests/auth/public-auth.test.ts > does not describe an expired local heartbeat as a connected runtime
+error: could not create file "base/14225/17711": No space left on device
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ tests/auth/public-auth.test.ts:102:3
+    100|   mailFailure = false
+    101|   mails.length = 0
+    102|   await cluster.admin.query('TRUNCATE forge_auth_admission, forge_user…
+       |   ^
+    103| })
+    104| afterAll(async () => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/7]⎯
+
+ FAIL  tests/auth/public-auth.test.ts > bridges a real Better Auth login into private key CRUD and revokes engine access on logout
+error: could not create file "base/14225/17712": No space left on device
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ tests/auth/public-auth.test.ts:102:3
+    100|   mailFailure = false
+    101|   mails.length = 0
+    102|   await cluster.admin.query('TRUNCATE forge_auth_admission, forge_user…
+       |   ^
+    103| })
+    104| afterAll(async () => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/7]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  7 failed | 7 passed (14)
+   Start at  17:18:41
+   Duration  4.45s (transform 421ms, setup 0ms, import 1.18s, tests 3.15s, environment 0ms)
+

@@ -31,3 +31,7 @@ The earlier Neon Auth browser/API prototype is historical, unrouted source. Its 
 ## Demo-delivery baseline
 
 The [coordination board](docs/operations/demo-delivery-coordination.md) records the canonical worker commit, shared contracts, migrations and Task 02–09 dependencies. [RFC 0001 §0](docs/rfcs/0001-app-generation-vertical-slice.md) includes open-source BYOK, Vercel hosting for Forge and a real public generated portfolio, with no purchased domain. Live BYOK/accounting, isolated runtime, persistent hosted services and private preview acceptance remain open; selecting website hosting does not establish a working hosted builder. See the [tested baseline report](docs/reports/demo-delivery/task-01-baseline.md).
+
+## Public account integration
+
+The production-integration branch adds public Better Auth signup, verification/recovery handling, shared database abuse limits and a separate authentication database login. Read [public account setup and verification](docs/operations/public-accounts.md) and the [scope decision](docs/decisions/0002-public-self-service.md) before enabling it. Local native/Firefox tests use synthetic accounts and a simulated inbox; they are not Neon or real email-delivery evidence. The legacy Docker worker and operator-owned provider keys are rejected in hosted mode. Public BYOK, the RFC control bridge, approved cloud execution and in-product publication remain unfinished, so this is not a production-ready builder release.

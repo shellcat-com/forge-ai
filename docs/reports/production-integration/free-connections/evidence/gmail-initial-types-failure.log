@@ -1,0 +1,11 @@
+
+> forge-ai@0.2.0 typecheck
+> tsc --noEmit && tsc -p tsconfig.engine.json
+
+src/server/auth/gmail.ts(42,16): error TS2769: No overload matches this call.
+  Overload 1 of 3, '(options: ConnectionOptions, secureConnectListener?: (() => void) | undefined): TLSSocket', gave the following error.
+    Object literal may only specify known properties, and 'signal' does not exist in type 'ConnectionOptions'.
+  Overload 2 of 3, '(port: number, host?: string | undefined, options?: ConnectionOptions | undefined, secureConnectListener?: (() => void) | undefined): TLSSocket', gave the following error.
+    Argument of type '{ host: string; port: number; servername: string; rejectUnauthorized: boolean; signal: AbortSignal; }' is not assignable to parameter of type 'number'.
+  Overload 3 of 3, '(port: number, options?: ConnectionOptions | undefined, secureConnectListener?: (() => void) | undefined): TLSSocket', gave the following error.
+    Argument of type '{ host: string; port: number; servername: string; rejectUnauthorized: boolean; signal: AbortSignal; }' is not assignable to parameter of type 'number'.

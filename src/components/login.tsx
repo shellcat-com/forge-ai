@@ -12,6 +12,7 @@ export function Login({ recovery = false }: { recovery?: boolean }) {
     google: boolean
     github: boolean
     email: boolean
+    signup: 'public' | 'invite'
   }>()
   const [status, setStatus] = useState('')
   const [email, setEmail] = useState('')
@@ -124,7 +125,11 @@ export function Login({ recovery = false }: { recovery?: boolean }) {
             </>
           ) : (
             <>
-              <p>Hosted beta requires an invitation.</p>
+              <p>
+                {cap?.signup === 'invite'
+                  ? 'This installation requires an invitation.'
+                  : 'Create an account to save your projects. Verify your email before building.'}
+              </p>
               {(['google', 'github'] as const)
                 .filter((p) => cap?.[p])
                 .map((provider) => (
@@ -182,7 +187,11 @@ export function Login({ recovery = false }: { recovery?: boolean }) {
                     />
                   </label>
                   <button className="primary" disabled={busy}>
-                    {register ? 'Accept invitation →' : 'Sign in →'}
+                    {register
+                      ? cap.signup === 'invite'
+                        ? 'Accept invitation →'
+                        : 'Create account →'
+                      : 'Sign in →'}
                   </button>
                   <button
                     type="button"
@@ -191,8 +200,37 @@ export function Login({ recovery = false }: { recovery?: boolean }) {
                       setStatus('')
                     }}
                   >
-                    {register ? 'I already have an account' : 'Accept an invitation'}
+                    {register
+                      ? 'I already have an account'
+                      : cap.signup === 'invite'
+                        ? 'Accept an invitation'
+                        : 'Create an account'}
                   </button>
+                  {!register && (
+                    <button
+                      type="button"
+                      disabled={busy || !email}
+                      onClick={async () => {
+                        setBusy(true)
+                        try {
+                          const r = await client.sendVerificationEmail({
+                            email,
+                            callbackURL: destination,
+                          })
+                          setStatus(
+                            r.error?.message ||
+                              'If verification is needed, check your email for a new link.'
+                          )
+                        } catch {
+                          setStatus('Could not request verification. Please retry.')
+                        } finally {
+                          setBusy(false)
+                        }
+                      }}
+                    >
+                      Resend verification email
+                    </button>
+                  )}
                   {!register && (
                     <button
                       type="button"

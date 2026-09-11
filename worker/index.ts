@@ -12,6 +12,7 @@ import { generateFiles } from '../src/server/generation/generate'
 import { validateFiles } from '../src/server/generation/files'
 import { ProviderError } from '../src/server/providers/errors'
 import { startPreview } from '../src/server/preview/server'
+import { authMode } from '../src/server/auth/policy'
 const runtime = new DockerWorkspace()
 let active: { handle: WorkspaceHandle; projectId: string; revisionId: string } | undefined
 let retained: { projectId: string; revisionId: string } | undefined
@@ -327,6 +328,11 @@ async function processJob(job: typeof jobs.$inferSelect) {
   }
 }
 async function main() {
+  if (authMode() !== 'local') {
+    console.error('The local Docker worker is unavailable in hosted mode. Configure the approved isolated runtime and durable control worker.')
+    process.exitCode = 1
+    return
+  }
   const lock = await pool().connect()
   lock.on('error', () => {
     console.error('Worker lock connection lost. Restart to recover.')

@@ -1,0 +1,12 @@
+
+> forge-ai@0.2.0 typecheck
+> tsc --noEmit && tsc -p tsconfig.engine.json
+
+engine/control/http.ts(121,36): error TS2339: Property 'bootstrap' does not exist on type 'Pick<SessionService, "checkCsrf">'.
+engine/control/http.ts(125,36): error TS2339: Property 'adapter' does not exist on type 'Pick<SessionService, "checkCsrf">'.
+engine/control/http.ts(134,34): error TS2339: Property 'login' does not exist on type 'Pick<SessionService, "checkCsrf">'.
+engine/control/http.ts(148,60): error TS2339: Property 'adapter' does not exist on type 'Pick<SessionService, "checkCsrf">'.
+engine/control/http.ts(150,47): error TS2339: Property 'callback' does not exist on type 'Pick<SessionService, "checkCsrf">'.
+engine/control/http.ts(165,47): error TS2339: Property 'info' does not exist on type 'Pick<SessionService, "checkCsrf">'.
+engine/control/http.ts(171,32): error TS2339: Property 'logout' does not exist on type 'Pick<SessionService, "checkCsrf">'.
+engine/control/http.ts(178,32): error TS2339: Property 'info' does not exist on type 'Pick<SessionService, "checkCsrf">'.

@@ -1,0 +1,32 @@
+▲ [WARNING] Cannot find base config file "expo/tsconfig.base" [tsconfig.json]
+
+    ../../tsconfig.json:3:13:
+      3 │   "extends": "expo/tsconfig.base"
+        ╵              ~~~~~~~~~~~~~~~~~~~~
+
+
+ RUN  v4.1.11 /Users/biswaskhatiwada/Developer/forge-production-integration
+
+ ❯ tests/engine/preview-control.native.test.ts (23 tests | 1 failed) 59461ms
+   × binds sessions to exact tenant/generation/host and rotates once on concurrent renewal 5259ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/engine/preview-control.native.test.ts > binds sessions to exact tenant/generation/host and rotates once on concurrent renewal
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/engine/preview-control.native.test.ts:54:1
+     52|   await expect(h.preview.consume(fresh.ticket, p.host)).rejects.toThro…
+     53| })
+     54| it('binds sessions to exact tenant/generation/host and rotates once on…
+       | ^
+     55|   const p = await h.ready(),
+     56|     other = await h.ready('p2.vercel.app'),
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 5 passed (6)
+      Tests  1 failed | 74 passed (75)
+   Start at  18:28:31
+   Duration  95.83s (transform 3.63s, setup 0ms, import 6.75s, tests 87.23s, environment 1ms)

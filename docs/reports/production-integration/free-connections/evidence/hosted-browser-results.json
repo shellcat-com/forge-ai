@@ -1,0 +1,46 @@
+{
+  "at": "2026-09-11T00:00:42.618Z",
+  "deploymentId": "dpl_E1xVppBznt6Kb9a8oe1Lvn498zCt",
+  "commit": "2a20197506b7c69d27fc2cb5214a665b1184c206",
+  "scope": "anonymous hosted foundation only; signup and generation disabled",
+  "checks": [
+    {
+      "name": "Firefox login page loads",
+      "passed": true
+    },
+    {
+      "name": "/api/account",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "name": "/api/projects",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "name": "/api/connections",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "name": "/api/status",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "name": "/api/auth/get-session",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "name": "Cross-origin auth mutation rejected",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "name": "No page errors",
+      "passed": true
+    }
+  ]
+}

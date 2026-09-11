@@ -1,0 +1,79 @@
+
+> forge-ai@0.2.0 verify
+> npm run lint && npm run typecheck && npm test && npm run build
+
+
+> forge-ai@0.2.0 lint
+> eslint .
+
+
+> forge-ai@0.2.0 typecheck
+> tsc --noEmit && tsc -p tsconfig.engine.json
+
+
+> forge-ai@0.2.0 test
+> vitest run
+
+▲ [WARNING] Cannot find base config file "expo/tsconfig.base" [tsconfig.json]
+
+    ../../tsconfig.json:3:13:
+      3 │   "extends": "expo/tsconfig.base"
+        ╵              ~~~~~~~~~~~~~~~~~~~~
+
+
+ RUN  v4.1.11 /Users/biswaskhatiwada/Developer/forge-production-integration
+
+ ❯ tests/engine/e2-control-integration.test.ts (19 tests | 2 failed) 33371ms
+   × rejects adoption after lease loss during object validation 5084ms
+   × replays saved candidate references after crash without repeating the stage product 1019ms
+ ❯ tests/engine/preview-control.native.test.ts (23 tests | 1 failed) 35765ms
+   × denies continued access after disabled-user and revokes credentials during cleanup 5092ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/engine/e2-control-integration.test.ts > rejects adoption after lease loss during object validation
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/engine/e2-control-integration.test.ts:199:1
+    197|   expect(() => control.policy(1)).toThrow('zero')
+    198| })
+    199| it('rejects adoption after lease loss during object validation', async…
+       | ^
+    200|   const a = await actor(),
+    201|     j = await job(a)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/engine/e2-control-integration.test.ts > replays saved candidate references after crash without repeating the stage product
+error: deadlock detected
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ Object.reset tests/harness/e2-control.ts:215:7
+    213|
+    214|     async function reset() {
+    215|       await db.admin.query(`DO $$ DECLARE names text; BEGIN
+       |       ^
+    216|       SELECT string_agg(format('forge_control.%I',tablename),',') INTO…
+    217|       EXECUTE 'TRUNCATE TABLE '||names||' CASCADE'; END $$`)
+ ❯ tests/engine/e2-control-integration.test.ts:50:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/engine/preview-control.native.test.ts > denies continued access after disabled-user and revokes credentials during cleanup
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/engine/preview-control.native.test.ts:89:2
+     87|   'revoked-route',
+     88|   'shutdown',
+     89| ])('denies continued access after %s and revokes credentials during cl…
+       |  ^
+     90|   const p = await h.ready(),
+     91|     t = await p.issue(),
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  2 failed | 63 passed | 2 skipped (67)
+      Tests  3 failed | 830 passed | 5 skipped (838)
+   Start at  17:21:32
+   Duration  36.30s (transform 3.93s, setup 0ms, import 13.58s, tests 190.18s, environment 3.02s)
+

@@ -1,0 +1,12 @@
+/Users/biswaskhatiwada/Developer/forge-production-integration/engine/hosting/persistence-config.ts:68
+    throw new Error('Hosted PostgreSQL configuration rejected')
+          ^
+
+Error: Hosted PostgreSQL configuration rejected
+    at hostedPostgresConfig (/Users/biswaskhatiwada/Developer/forge-production-integration/engine/hosting/persistence-config.ts:68:11)
+    at <anonymous> (/Users/biswaskhatiwada/Developer/forge-production-integration/scripts/install-hosted-control.ts:13:16)
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async file:///Users/biswaskhatiwada/Developer/forge-production-integration/[eval1]:7:1
+
+Node.js v24.20.0

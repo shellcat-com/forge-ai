@@ -1,0 +1,31 @@
+▲ [WARNING] Cannot find base config file "expo/tsconfig.base" [tsconfig.json]
+
+    ../../tsconfig.json:3:13:
+      3 │   "extends": "expo/tsconfig.base"
+        ╵              ~~~~~~~~~~~~~~~~~~~~
+
+
+ RUN  v4.1.11 <repository>
+
+ ❯ tests/engine/hosted-generation-gate.native.test.ts (25 tests | 25 skipped) 1321ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/engine/hosted-generation-gate.native.test.ts [ tests/engine/hosted-generation-gate.native.test.ts ]
+Error: Invalid server key reference
+ ❯ new EnvironmentObjectKeys engine/artifacts/encrypted-backend.ts:121:15
+    119|       keyIdSchema.parse(id)
+    120|       if (!/^FORGE_OBJECT_KEY_[A-Z0-9_]+$/.test(name))
+    121|         throw new Error('Invalid server key reference')
+       |               ^
+    122|     }
+    123|   }
+ ❯ tests/engine/hosted-generation-gate.native.test.ts:64:69
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  25 skipped (25)
+   Start at  20:24:03
+   Duration  1.72s (transform 178ms, setup 0ms, import 321ms, tests 1.32s, environment 0ms)

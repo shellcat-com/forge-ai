@@ -9,6 +9,7 @@ export const user = pgTable('forge_user', {
   email: text('email').notNull().unique(),
   emailVerified: boolean('email_verified').default(false).notNull(),
   image: text('image'),
+  disabledAt: timestamp('disabled_at', { withTimezone: true }),
   ...dates(),
 })
 export const session = pgTable('forge_session', {

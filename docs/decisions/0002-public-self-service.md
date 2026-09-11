@@ -1,0 +1,17 @@
+# Public self-service integration decision
+
+Date: 2026-09-10. Direction authorized by the user's production-integration brief. Implementation is staged on `codex/production-integration` from canonical `4afc9cb587df24bfc7c31deee13cbc8af2d7ad42` (PR #8). This task assumes integration ownership for its isolated branch after the earlier coordinator's archived handoff. It does not change another task's branch or merge its review-only PR #17.
+
+The release scope is public self-service accounts, hosted BYOK, prompt-driven Next.js/strict TypeScript/PostgreSQL creation and edits, private previews, conversational and button publication, entirely cloud-hosted operation and reproducible GitHub self-hosting. An availability page, local fixture or generated portfolio alone cannot satisfy it.
+
+Better Auth in `src/server/auth/config.ts` remains the account authority. Public signup replaces mandatory invitations by default in explicitly configured hosted mode. Existing invitations remain an opt-in policy for private self-hosted installations. Verification is required before builder access. Ordinary signup grants no operator role. Keep the existing application and RFC database namespaces distinct until a reviewed identity/control bridge is implemented; do not manufacture fixture identity from an email address.
+
+Public account endpoints must validate deployment mode and exact configured HTTPS host/origin, cap request bodies before parsing, and enforce shared PostgreSQL admission counters. Password sessions have a twelve-hour absolute lifetime with no cookie cache, a fifteen-minute fresh-session interval and revocation after password recovery. Mail delivery must be awaited, bounded and reject redirects. Authentication, provider and deployment secrets stay server-side.
+
+Application migration 0004 stays reserved for the identity bridge. Additive application migration 0005 is assigned to public-auth abuse counters and account suspension. Engine migrations 0001–0003 and the reserved engine 0004–0007 proposals remain unchanged. Public registration does not authorize execution or resolve those proposals.
+
+Vercel remains the selected application host; the verified existing target is team `biswas07`, project `forge-ai-demo`, ID `prj_5NmNEwVtJcH2BhGcPPpe5OTzo1GL`. It currently has no environment variables and serves a static availability artifact. Neon stores authentication/control data; it is not a worker host. Least-change runtime direction remains the existing separately hosted Linux/KVM broker, remote durable worker and encrypted private-object adapter. Concrete cloud host, region, image release, network, retention and budgets still require verified configuration. No AWS, Supabase, alternative identity service or second queue is introduced.
+
+The current task has no approved new billable spending. An unanswered budget question grants none. Generated code must not run on the Mac, ordinary Docker, Vercel build service or trusted control process as an expedient substitute for the approved sandbox. Preserve existing quotas, transactional admission, leases, approvals, accounting and cleanup. Publication requires its own source/account/exposure approval and deployment authority. Model keys cannot authorize hosting.
+
+Deploy the connected release only after its acceptance checks pass. Keep existing production unchanged while dependent acceptance is unavailable. This decision records implementation direction, not live-release acceptance or infrastructure provisioning.

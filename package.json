@@ -35,6 +35,7 @@
     "node": "24.x"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "^0.5.8",
     "@eslint/js": "^9.35.0",
     "@playwright/test": "^1.63.0",
     "@tailwindcss/postcss": "^4.3.3",
@@ -42,18 +43,17 @@
     "@types/pg": "^8.23.1",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.7",
+    "drizzle-kit": "^0.31.10",
     "esbuild": "0.28.2",
     "eslint": "^9.35.0",
+    "jsdom": "^29.1.1",
     "prettier": "^3.9.6",
     "sharp": "^0.35.4",
     "tailwindcss": "^4.3.3",
     "tsx": "^4.23.13",
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.42.0",
-    "vitest": "^4.1.11",
-    "@electric-sql/pglite": "^0.5.8",
-    "drizzle-kit": "^0.31.10",
-    "jsdom": "^29.1.1"
+    "vitest": "^4.1.11"
   },
   "packageManager": "npm@11.11.0",
   "dependencies": {
@@ -64,18 +64,19 @@
     "@fontsource/inter": "^5.3.0",
     "@fontsource/press-start-2p": "^5.3.0",
     "@monaco-editor/react": "^4.7.0",
+    "@neondatabase/auth": "0.5.0-beta",
     "better-auth": "1.7.3",
     "drizzle-orm": "^0.45.2",
     "fflate": "^0.8.3",
+    "jose": "^6.2.12",
     "monaco-editor": "^0.56.0",
     "next": "^16.3.4",
+    "nodemailer": "10.0.3",
     "pg": "^8.23.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "server-only": "^0.0.1",
-    "zod": "^4.6.1",
-    "@neondatabase/auth": "0.5.0-beta",
-    "jose": "^6.2.12"
+    "zod": "^4.6.1"
   },
   "overrides": {
     "dompurify": "3.4.15",

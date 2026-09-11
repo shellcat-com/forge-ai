@@ -3,6 +3,9 @@ import { auth, invited } from './config'
 import { assertLocalRequest } from '../http/local'
 import { db } from '../db'
 import { projects, memberships } from '../db/schema'
+import { user } from './schema'
+import { authMode, signupPolicy } from './policy'
+import { authDb, assertAuthDatabase } from './database'
 export class AccessError extends Error {
   constructor(
     public status: number,
@@ -23,20 +26,24 @@ export async function actor(request: Request, mutation = false): Promise<Actor> 
   } catch {
     throw new AccessError(403, 'Forbidden origin.')
   }
-  if (process.env.FORGE_AUTH_MODE !== 'hosted')
+  if (authMode() !== 'hosted')
     return {
       id: process.env.FORGE_LOCAL_OWNER_ID || 'local-owner',
       email: '',
       local: true,
       canBuild: true,
     }
+  await assertAuthDatabase()
   const current = await auth().api.getSession({ headers: request.headers })
   if (!current) throw new AccessError(401, 'Sign in to continue.')
+  const record = await authDb().query.user.findFirst({ where: eq(user.id, current.user.id) })
+  if (!record || record.disabledAt) throw new AccessError(401, 'Account unavailable.')
   return {
     id: current.user.id,
     email: current.user.email,
     local: false,
-    canBuild: await invited(current.user.email),
+    canBuild:
+      record.emailVerified && (signupPolicy() === 'public' || (await invited(record.email))),
   }
 }
 export async function projectAccess(
@@ -56,7 +63,8 @@ export async function projectAccess(
   return project
 }
 export function requireBuilder(who: Actor) {
-  if (!who.canBuild) throw new AccessError(403, 'An active beta invitation is required to build.')
+  if (!who.canBuild)
+    throw new AccessError(403, 'Verify your email and confirm account access before building.')
 }
 export function apiError(error: unknown) {
   return Response.json(

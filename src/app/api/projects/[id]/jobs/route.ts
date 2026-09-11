@@ -8,7 +8,7 @@ import {
   AccessError,
 } from '../../../../../server/auth/access'
 import { smallJson } from '../../../../../server/http/local'
-import { queueJob, readiness } from '../../../../../server/projects/service'
+import { queueJob, requireGenerationAvailable } from '../../../../../server/projects/service'
 const input = z
   .object({
     kind: z.enum(['generate', 'edit', 'restore', 'idea', 'brainstorm', 'plan']),
@@ -38,9 +38,9 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
     requireBuilder(who)
     const { id } = await context.params
     await projectAccess(who, id, 'owner')
+    await requireGenerationAvailable()
     const parsed = input.safeParse(await smallJson(request, 350000))
     if (!parsed.success) throw new AccessError(400, 'Invalid change request.')
-    if (!(await readiness()).worker) throw new AccessError(503, 'Start the Forge worker first.')
     return Response.json(await queueJob(id, parsed.data, who.id), { status: 202 })
   } catch (e) {
     return apiError(e)

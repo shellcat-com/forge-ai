@@ -181,6 +181,14 @@ small {
   grid-template-columns: 220px minmax(0, 1fr);
   min-height: 100dvh;
 }
+body:has(.forge-app) {
+  min-width: 0;
+}
+.forge-app input,
+.forge-app textarea,
+.forge-app select {
+  min-width: 0;
+}
 .app-sidebar {
   position: sticky;
   top: 0;
@@ -241,6 +249,8 @@ small {
   display: none;
 }
 .workspace-page {
+  min-width: 0;
+  overflow-wrap: anywhere;
   max-width: 1120px;
   padding: 64px 48px;
   margin: auto;
@@ -303,6 +313,7 @@ small {
 }
 .composer-bottom {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 16px;
   padding: 16px;
@@ -311,7 +322,7 @@ small {
 .composer-bottom > span {
   font-size: 12px;
   color: var(--muted);
-  flex: 1;
+  flex: 1 1 120px;
 }
 .runtime-status {
   margin: 16px 0 32px;
@@ -566,8 +577,16 @@ small {
 }
 .login-page {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   min-height: 100dvh;
+}
+body:has(> .login-page) {
+  min-width: 0;
+}
+.login-form,
+.login-form input {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 .login-form {
   padding: 48px 64px;

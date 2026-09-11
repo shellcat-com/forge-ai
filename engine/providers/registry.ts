@@ -3,12 +3,14 @@ import type { GenerationRequest, ModelDescriptor } from '../contracts/provider.t
 import { canonicalHash } from '../contracts/canonical.ts'
 import { ChatCompletionsAdapter } from './chat-completions.ts'
 import { providerDestination } from './destination.ts'
+import { hostedProviderId } from './hosted-catalog.ts'
+import { assertHostedRequestProfile } from './hosted-request.ts'
 
 export const providerPolicySchema = z.strictObject({
   id: z.string().regex(/^[a-z0-9-]{1,60}$/),
   protocol: z.literal('chat-completions-json-v1'),
   endpoint: z.string(),
-  model: z.string().regex(/^[a-zA-Z0-9._/-]{1,120}$/),
+  model: z.string().regex(/^[a-zA-Z0-9._/:-]{1,120}$/),
   contextWindow: z.number().int().positive().max(2_000_000),
   maxOutputTokens: z.number().int().positive().max(200_000),
   // Bytes + framing upper bound is supported only for reviewed byte-fallback text tokenizers.
@@ -18,11 +20,20 @@ export const providerPolicySchema = z.strictObject({
   price: z.strictObject({
     version: z.string().regex(/^[a-zA-Z0-9._-]{1,120}$/),
     currency: z.literal('USD'),
-    inputMicrosPerMillion: z.number().int().positive().max(1_000_000_000),
-    outputMicrosPerMillion: z.number().int().positive().max(1_000_000_000),
+    inputMicrosPerMillion: z.number().int().nonnegative().max(1_000_000_000),
+    outputMicrosPerMillion: z.number().int().nonnegative().max(1_000_000_000),
     validFrom: z.iso.datetime(),
     expiresAt: z.iso.datetime(),
-  }),
+    freeOnly: z.literal(true).optional(),
+    entitlementDigest: z.string().regex(/^[a-f0-9]{64}$/).optional(),
+  }).refine((p) => {
+    const zero = p.inputMicrosPerMillion === 0 && p.outputMicrosPerMillion === 0
+    if (zero) return p.freeOnly === true && !!p.entitlementDigest
+      && Date.parse(p.expiresAt) > Date.parse(p.validFrom)
+      && Date.parse(p.expiresAt) - Date.parse(p.validFrom) <= 86400000
+    return p.inputMicrosPerMillion > 0 && p.outputMicrosPerMillion > 0
+      && p.freeOnly === undefined && p.entitlementDigest === undefined
+  }, 'Free policies require bounded entitlement evidence; mixed or implicit pricing is rejected'),
   acceptance: z.enum(['contract-tested', 'live-verified']),
   evidenceDigest: z.string().regex(/^[a-f0-9]{64}$/),
 })
@@ -52,6 +63,9 @@ export class ProviderRegistry {
     for (const input of policies) {
       const p = providerPolicySchema.parse(input)
       providerDestination(p.endpoint, approvedEndpoints)
+      const hosted = hostedProviderId.safeParse(p.id)
+      if (p.price.freeOnly && !hosted.success) throw new Error('PROVIDER_FREE_POLICY_UNSUPPORTED')
+      if (hosted.success) assertHostedRequestProfile(hosted.data, p.endpoint, p.model)
       if (this.policies.has(p.id) || Date.parse(p.price.expiresAt) <= Date.parse(p.price.validFrom))
         throw new Error('PROVIDER_POLICY_INVALID')
       if (
@@ -94,6 +108,7 @@ export class ProviderRegistry {
       maxOutputTokens: p.maxOutputTokens,
       capabilities: { streaming: false, structuredOutput: true, toolCalls: false },
     }
+    const hosted = hostedProviderId.safeParse(id)
     return new ChatCompletionsAdapter({
       id,
       endpoint: p.endpoint,
@@ -101,6 +116,7 @@ export class ProviderRegistry {
       model,
       getCredential,
       policy: p,
+      ...(hosted.success ? { hostedProfile: hosted.data } : {}),
       ...(fixtureFetch ? { fetch: fixtureFetch, evidenceOrigin: 'fixture' as const } : {}),
     })
   }

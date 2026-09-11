@@ -5,6 +5,7 @@ import type { ArtifactRef } from './store.ts'
 import { objectEnvelopeSchema, parseObjectKey } from './encrypted-backend.ts'
 import type { ObjectEnvelope, VersionedCiphertextTransport } from './encrypted-backend.ts'
 import { uuid } from '../contracts/primitives.ts'
+import { ObjectCapacityError } from './capacity.ts'
 
 type ObjectRole = 'forge_object_reader' | 'forge_object_writer' | 'forge_object_maintenance'
 
@@ -83,12 +84,14 @@ export class PostgresCiphertextTransport implements VersionedCiphertextTransport
       const result = await fn(c)
       await c.query('COMMIT')
       return result
-    } catch {
+    } catch (error) {
       try {
         await c.query('ROLLBACK')
       } catch {
         broken = true
       }
+      if (error instanceof pg.DatabaseError && error.code === 'P0001' && error.message === 'OBJECT_CAPACITY_UNAVAILABLE')
+        throw new ObjectCapacityError()
       throw new Error('Object operation unavailable')
     } finally {
       c.release(broken)

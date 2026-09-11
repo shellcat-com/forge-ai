@@ -1,0 +1,15 @@
+▲ [WARNING] Cannot find base config file "expo/tsconfig.base" [tsconfig.json]
+
+    ../../tsconfig.json:3:13:
+      3 │   "extends": "expo/tsconfig.base"
+        ╵              ~~~~~~~~~~~~~~~~~~~~
+
+
+ RUN  v4.1.11 /Users/biswaskhatiwada/Developer/forge-production-integration
+
+
+ Test Files  4 passed (4)
+      Tests  84 passed (84)
+   Start at  17:16:09
+   Duration  2.50s (transform 401ms, setup 0ms, import 731ms, tests 2.31s, environment 0ms)
+

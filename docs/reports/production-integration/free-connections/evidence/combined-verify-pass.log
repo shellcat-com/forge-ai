@@ -1,0 +1,98 @@
+
+> forge-ai@0.2.0 verify
+> npm run lint && npm run typecheck && npm test && npm run build
+
+
+> forge-ai@0.2.0 lint
+> eslint .
+
+
+> forge-ai@0.2.0 typecheck
+> tsc --noEmit && tsc -p tsconfig.engine.json
+
+
+> forge-ai@0.2.0 test
+> vitest run
+
+▲ [WARNING] Cannot find base config file "expo/tsconfig.base" [tsconfig.json]
+
+    ../../tsconfig.json:3:13:
+      3 │   "extends": "expo/tsconfig.base"
+        ╵              ~~~~~~~~~~~~~~~~~~~~
+
+
+ RUN  v4.1.11 /Users/biswaskhatiwada/Developer/forge-production-integration
+
+
+ Test Files  68 passed | 2 skipped (70)
+      Tests  911 passed | 5 skipped (916)
+   Start at  18:00:02
+   Duration  113.49s (transform 2.24s, setup 0ms, import 7.87s, tests 95.90s, environment 1.98s)
+
+
+> forge-ai@0.2.0 prebuild
+> node scripts/copy-editor.mjs
+
+
+> forge-ai@0.2.0 build
+> next build --webpack
+
+▲ Next.js 16.3.4 (webpack)
+✓ Running next.config.ts took 209ms
+- Experiments (use with caution):
+  · cpus: 2
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 6.4s
+  Running TypeScript ...
+  Finished TypeScript in 5.1s ...
+  Collecting page data using 2 workers ...
+  Generating static pages using 2 workers (0/19) ...
+  Generating static pages using 2 workers (4/19) 
+  Generating static pages using 2 workers (9/19) 
+  Generating static pages using 2 workers (14/19) 
+✓ Generating static pages using 2 workers (19/19) in 2.2s
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+┌ ƒ /
+├ ○ /_not-found
+├ ƒ /api/account
+├ ƒ /api/auth/[...all]
+├ ƒ /api/connections
+├ ƒ /api/connections/[id]
+├ ƒ /api/connections/[id]/validate
+├ ƒ /api/control/session
+├ ƒ /api/jobs/[id]/cancel
+├ ƒ /api/jobs/[id]/events
+├ ƒ /api/projects
+├ ƒ /api/projects/[id]
+├ ƒ /api/projects/[id]/comments
+├ ƒ /api/projects/[id]/export
+├ ƒ /api/projects/[id]/jobs
+├ ƒ /api/projects/[id]/remix
+├ ƒ /api/projects/[id]/sharing
+├ ƒ /api/projects/import
+├ ƒ /api/providers
+├ ƒ /api/providers/test
+├ ƒ /api/status
+├ ƒ /api/usage
+├ ○ /app
+├ ○ /app/connections
+├ ○ /app/projects
+├ ƒ /app/projects/[id]
+├ ○ /app/settings
+├ ○ /components
+├ ○ /docs
+├ ○ /examples
+├ ƒ /examples/[id]
+├ ○ /hosting
+├ ○ /login
+├ ○ /reset-password
+└ ○ /sample
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

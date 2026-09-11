@@ -1,0 +1,93 @@
+
+> forge-ai@0.2.0 verify
+> npm run lint && npm run typecheck && npm test && npm run build
+
+
+> forge-ai@0.2.0 lint
+> eslint .
+
+
+> forge-ai@0.2.0 typecheck
+> tsc --noEmit && tsc -p tsconfig.engine.json
+
+
+> forge-ai@0.2.0 test
+> vitest run
+
+▲ [WARNING] Cannot find base config file "expo/tsconfig.base" [tsconfig.json]
+
+    ../../tsconfig.json:3:13:
+      3 │   "extends": "expo/tsconfig.base"
+        ╵              ~~~~~~~~~~~~~~~~~~~~
+
+
+ RUN  v4.1.11 [clean-checkout]
+
+
+ Test Files  63 passed | 2 skipped (65)
+      Tests  807 passed | 5 skipped (812)
+   Start at  04:59:01
+   Duration  26.22s (transform 3.74s, setup 0ms, import 8.58s, tests 129.94s, environment 1.93s)
+
+
+> forge-ai@0.2.0 prebuild
+> node scripts/copy-editor.mjs
+
+
+> forge-ai@0.2.0 build
+> next build --webpack
+
+▲ Next.js 16.3.4 (webpack)
+✓ Running next.config.ts took 130ms
+- Experiments (use with caution):
+  · cpus: 2
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 1835ms
+  Running TypeScript ...
+  Finished TypeScript in 2.4s ...
+  Collecting page data using 2 workers ...
+  Generating static pages using 2 workers (0/17) ...
+  Generating static pages using 2 workers (4/17)
+  Generating static pages using 2 workers (8/17)
+  Generating static pages using 2 workers (12/17)
+✓ Generating static pages using 2 workers (17/17) in 139ms
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+┌ ƒ /
+├ ○ /_not-found
+├ ƒ /api/account
+├ ƒ /api/auth/[...all]
+├ ƒ /api/jobs/[id]/cancel
+├ ƒ /api/jobs/[id]/events
+├ ƒ /api/projects
+├ ƒ /api/projects/[id]
+├ ƒ /api/projects/[id]/comments
+├ ƒ /api/projects/[id]/export
+├ ƒ /api/projects/[id]/jobs
+├ ƒ /api/projects/[id]/remix
+├ ƒ /api/projects/[id]/sharing
+├ ƒ /api/projects/import
+├ ƒ /api/providers
+├ ƒ /api/providers/test
+├ ƒ /api/status
+├ ƒ /api/usage
+├ ○ /app
+├ ○ /app/connections
+├ ○ /app/projects
+├ ƒ /app/projects/[id]
+├ ○ /app/settings
+├ ○ /components
+├ ○ /docs
+├ ○ /examples
+├ ƒ /examples/[id]
+├ ○ /hosting
+├ ○ /login
+├ ○ /reset-password
+└ ○ /sample
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand

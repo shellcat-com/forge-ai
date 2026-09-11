@@ -1,0 +1,14 @@
+✓ Running next.config.ts took 100ms
+⚠ "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+Error: expect(locator).toBeVisible() failed
+
+Locator: getByText('Hosted generation requires a configured and verified isolated runtime.', { exact: true })
+Expected: visible
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" getByText('Hosted generation requires a configured and verified isolated runtime.', { exact: true }) with timeout 5000ms
+  - waiting for getByText('Hosted generation requires a configured and verified isolated runtime.', { exact: true })
+
+Cleanup: owned browser, application, PostgreSQL, TLS material and verifier lock removed.

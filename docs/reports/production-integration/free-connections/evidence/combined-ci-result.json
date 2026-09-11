@@ -1,0 +1,22 @@
+{
+  "commit": "2a20197506b7c69d27fc2cb5214a665b1184c206",
+  "url": "https://github.com/shellcat-com/forge-ai/actions/runs/34543481205",
+  "conclusion": "success",
+  "tests": {
+    "passed": 961,
+    "skipped": 5
+  },
+  "files": {
+    "passed": 71,
+    "skipped": 2
+  },
+  "checks": [
+    "lint",
+    "typecheck",
+    "test",
+    "production build",
+    "native control database: 45 assertions",
+    "standalone control build"
+  ],
+  "scope": "code and native test verification; no live generation/publication acceptance"
+}

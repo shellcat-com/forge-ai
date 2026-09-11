@@ -28,7 +28,7 @@ export const callTermsSchema = z
     priceDigest: z.string().regex(/^[a-f0-9]{64}$/),
     inputTokenBound: safe.positive(),
     outputTokenBound: safe.positive(),
-    maximumMicros: safe.positive(),
+    maximumMicros: safe,
     repairNumber: safe.max(2),
     stage: z.enum(['plan', 'files', 'repair']),
     deadlineAt: z.iso.datetime(),

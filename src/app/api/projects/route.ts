@@ -4,7 +4,7 @@ import { db } from '../../../server/db'
 import { projects } from '../../../server/db/schema'
 import { smallJson } from '../../../server/http/local'
 import { actor, apiError, requireBuilder, AccessError } from '../../../server/auth/access'
-import { createProject, readiness } from '../../../server/projects/service'
+import { createProject, requireGenerationAvailable } from '../../../server/projects/service'
 import { creationSchema } from '../../../shared/creation'
 export const dynamic = 'force-dynamic'
 export async function GET(request: Request) {
@@ -50,6 +50,7 @@ export async function POST(request: Request) {
   try {
     const who = await actor(request, true)
     requireBuilder(who)
+    await requireGenerationAvailable()
     const raw = await smallJson(request, 50000)
     const parsed = creationSchema.safeParse(raw)
     if (!parsed.success)
@@ -57,8 +58,6 @@ export async function POST(request: Request) {
         400,
         'Provide a prompt of 20–12,000 characters, a valid mode and model.'
       )
-    if (!(await readiness()).worker)
-      throw new AccessError(503, 'Start the Forge worker before submitting a request.')
     return Response.json(await createProject(parsed.data, who.id), { status: 201 })
   } catch (e) {
     return apiError(e)

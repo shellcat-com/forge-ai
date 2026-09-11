@@ -40,6 +40,16 @@ export function isPublicProviderAddress(address: string): boolean {
 export type ResolveProviderHost = (
   host: string
 ) => Promise<readonly { address: string; family: number }[]>
+// Exact reviewed endpoints; an administrator allowlist is still required.
+export const hostedProviderEndpoints = [
+  'https://api.groq.com/openai/v1/chat/completions',
+  'https://api.groq.com/openai/v1/models',
+  'https://openrouter.ai/api/v1/chat/completions',
+  'https://openrouter.ai/api/v1/models',
+  'https://openrouter.ai/api/v1/key',
+  'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions',
+  'https://generativelanguage.googleapis.com/v1beta/openai/models',
+] as const
 export function providerDestination(endpoint: string, approved: readonly string[]): URL {
   let url: URL
   try {
@@ -58,7 +68,8 @@ export function providerDestination(endpoint: string, approved: readonly string[
     !approved.includes(endpoint) ||
     isIP(url.hostname.replace(/^\[|\]$/g, '')) ||
     !/^[a-z0-9]+(?:[.-][a-z0-9]+)*\.[a-z]{2,}$/.test(url.hostname) ||
-    url.pathname !== '/v1/chat/completions'
+    (url.pathname !== '/v1/chat/completions' &&
+      !hostedProviderEndpoints.some((value) => value === endpoint))
   )
     throw new Error('PROVIDER_DESTINATION_DENIED')
   return url
@@ -85,14 +96,17 @@ export async function resolveProviderDestination(
 }
 /** Dedicated server transport: no proxy env, connection reuse, alternate DNS lookup,
  * redirects, caller headers or URL overrides. TLS checks the original hostname. */
-export function pinnedProviderFetch(approved: readonly string[]): typeof globalThis.fetch {
+export function pinnedProviderFetch(
+  approved: readonly string[],
+  method: 'POST' | 'GET' = 'POST'
+): typeof globalThis.fetch {
   const endpoints = [...approved]
   return async (input, init) => {
     if (
       typeof input !== 'string' ||
-      init?.method !== 'POST' ||
+      init?.method !== method ||
       init.redirect !== 'error' ||
-      typeof init.body !== 'string' ||
+      (method === 'POST' ? typeof init.body !== 'string' : init.body !== undefined) ||
       !init.signal
     )
       throw new Error('PROVIDER_TRANSPORT_DENIED')
@@ -109,7 +123,7 @@ export function pinnedProviderFetch(approved: readonly string[]): typeof globalT
       const req = httpsRequest(
         target.url,
         {
-          method: 'POST',
+          method,
           agent: false,
           signal,
           servername: target.url.hostname,
@@ -123,7 +137,9 @@ export function pinnedProviderFetch(approved: readonly string[]): typeof globalT
             Authorization: authorization,
             'Content-Type': 'application/json',
             Accept: 'application/json',
-            'Content-Length': Buffer.byteLength(init.body as string),
+            ...(method === 'POST'
+              ? { 'Content-Length': Buffer.byteLength(init.body as string) }
+              : {}),
           },
         },
         (res) => {

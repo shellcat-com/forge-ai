@@ -1,0 +1,33 @@
+{
+  "requestedImage": "vercel/sandbox/node:24",
+  "routes": [],
+  "deletedSandbox": {
+    "name": "forge-foundation-probe-20260910",
+    "currentSessionId": "sbx_CXKUgZUfmUOQndP76D2GdEg4wIVt",
+    "status": "stopped",
+    "statusUpdatedAt": 1789081544604,
+    "persistent": false,
+    "region": "iad1",
+    "failoverRegions": [],
+    "vcpus": 1,
+    "memory": 2048,
+    "runtime": "node22",
+    "image": "vercel/sandbox/node@sha256:07bbba46c01fc02c9cd7e2e1962fda825ff733c099212ade7f893966df949b78",
+    "timeout": 60000,
+    "networkPolicy": {
+      "mode": "deny-all"
+    },
+    "totalEgressBytes": 0,
+    "totalIngressBytes": 796,
+    "totalActiveCpuDurationMs": 1841,
+    "totalDurationMs": 60428,
+    "cwd": "/vercel",
+    "tags": {
+      "purpose": "infrastructure-probe"
+    },
+    "createdAt": 1789081482713,
+    "updatedAt": 1789081482713
+  },
+  "postDeleteStatus": 404,
+  "commandsExecuted": 0
+}

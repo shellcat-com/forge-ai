@@ -1,0 +1,4 @@
+✓ Running next.config.ts took 127ms
+⚠ "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+Error: Workspace CSS zoom overflow at home 390 light
+Cleanup: owned browser, application, PostgreSQL, TLS material and verifier lock removed.

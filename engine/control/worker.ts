@@ -43,10 +43,13 @@ export class ControlWorker {
       throw new Error('Source catalog mismatch')
     if (catalog.name === 'e2-candidate-fixture' && !sources)
       throw new Error('Source repository required')
+    if (db.environment !== 'synthetic') throw new Error('Fixture worker cannot run hosted jobs')
     if (adapter.origin !== 'fixture') throw new Error('Live adapters blocked pending E2/D3/D5')
   }
   async claim(): Promise<StepRow | null> {
     return this.db.tx(async (c) => {
+      const settings = await one<{ environment: string }>(c, 'SELECT environment FROM control_settings WHERE singleton FOR UPDATE')
+      if (settings.environment !== 'synthetic') throw new Error('Fixture worker cannot run hosted jobs')
       const s = (await c.query<StepRow>('SELECT * FROM claim_step($1)', [this.id])).rows[0]
       if (!s) return null
       const j = await one<JobRow>(c, 'SELECT * FROM jobs WHERE id=$1', [s.job_id])

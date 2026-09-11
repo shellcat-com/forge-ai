@@ -1,0 +1,15 @@
+# Private Gmail delivery for the personal installation
+
+The existing auth delivery adapter supports `FORGE_EMAIL_TRANSPORT=gmail` in addition to its configured HTTPS delivery service. Gmail uses Nodemailer 10.0.3 with verified TLS to the fixed `smtp.gmail.com:465` endpoint. It does not use the browser session or the normal Google account password.
+
+Privately configure `FORGE_GMAIL_USER` and a dedicated `FORGE_GMAIL_APP_PASSWORD` in server secret storage. For this installation the sender is `khatiwadabiswas281@gmail.com`. Google app passwords require the account's supported app-password setup; never paste the password into a task message, terminal command, source file, log or recording. See [Google's app-password instructions](https://support.google.com/accounts/answer/185833). The ignored `.private/gmail-delivery.json` file is an optional local handoff for this installation, with mode 0600; it is not a client-readable configuration file. Move the value into Vercel's protected environment settings without printing it.
+
+Apply additive application migration `0007_email_budget.sql` before enabling Gmail. Application 0004 remains reserved and 0006 belongs to the separately maintained future multi-model draft. Existing account/session migrations and data are preserved. The explicit hosted installer includes migration 0007; a schema-only rerun verifies its hash without replacing credentials.
+
+Forge atomically reserves at most fifty delivery attempts per UTC day using one existing auth-counter row. Failed or uncertain attempts consume allowance too; there is no automatic retry or alternate sender. Exhaustion returns 429 with a Retry-After header and a next-day message before opening SMTP. This is a conservative Forge cap, not a claim about the account's total remaining Gmail quota; other mail can still exhaust Google's limits first. Invalid credentials, recipient rejection and SMTP errors return a sanitized delivery failure through the existing request-local failure boundary.
+
+The transport accepts one validated recipient and plain text only. It rejects header injection and links outside the exact configured Better Auth HTTPS origin. File/URL attachment access and SMTP logging are disabled. An absolute ten-second timer destroys the socket; the connection/greeting also have shorter limits. SMTP acceptance is not proof of mailbox delivery, and a timeout near acceptance can be uncertain. Verify the actual inbox and recovery flow before release.
+
+Local tests use explicit SMTP/TLS fixtures and disposable PostgreSQL; they send no mail. The existing browser harness uses its declared synthetic HTTPS sender. Neither closes the real verification/recovery acceptance gate. A missing app password leaves real delivery unverified and is not a reason to enable a fake success response or promote production.
+
+Rollback: unset the Gmail transport or restore a previously verified delivery adapter configuration. Preserve accounts and the additive quota migration. Revoke the dedicated app password in Google if retiring the connection; never rotate the normal account password as part of Forge rollback.

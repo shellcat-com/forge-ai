@@ -1,0 +1,236 @@
+
+> forge-ai@0.2.0 verify
+> npm run lint && npm run typecheck && npm test && npm run build
+
+
+> forge-ai@0.2.0 lint
+> eslint .
+
+
+> forge-ai@0.2.0 typecheck
+> tsc --noEmit && tsc -p tsconfig.engine.json
+
+
+> forge-ai@0.2.0 test
+> vitest run
+
+▲ [WARNING] Cannot find base config file "expo/tsconfig.base" [tsconfig.json]
+
+    ../../tsconfig.json:3:13:
+      3 │   "extends": "expo/tsconfig.base"
+        ╵              ~~~~~~~~~~~~~~~~~~~~
+
+
+ RUN  v4.1.11 $FORGE_CHECKOUT
+
+ ✓ tests/engine/identity.native.test.ts (11 tests | 1 skipped) 4258ms
+   ✓ exhausted operator retries return safe busy with no partial membership, session or audit changes  845ms
+ ✓ tests/auth/public-auth.test.ts (10 tests) 4621ms
+   ✓ delivers recovery through the configured adapter and revokes existing sessions after reset  344ms
+   ✓ rejects foreign project access for two real Better Auth sessions over synthetic local data  411ms
+ ✓ tests/engine/e4-control-http.test.ts (2 tests) 5698ms
+   ✓ connects browser transport to displayed reviews, source, promotion, history and export over the existing control service  1601ms
+   ✓ enforces source tenant boundaries, CSRF and exact file queries without exposing object locations  1116ms
+ ✓ tests/engine/byok.native.test.ts (5 tests) 2495ms
+ ✓ tests/engine/validation-migrations.test.ts (64 tests) 2638ms
+     ✓ runs reviewed canonical migrations on fresh and seeded prior schemas in embedded PostgreSQL  2624ms
+ ✓ tests/engine/persistence.native.test.ts (4 tests) 5066ms
+   ✓ stores encrypted bytes across actual process exits; rejects versions, tenants and excessive DB authority  960ms
+   ✓ restores control jobs and every available encrypted version into a separate target with measured synthetic loss  1195ms
+ ✓ tests/engine/e4-repair-integration.test.ts (4 tests) 9684ms
+     ✓ requires changed repair bytes, a new diff and fresh execution approval before fixture success  1574ms
+     ✓ stops at two repairs and four total reserved provider fixture operations despite repeated failures  1634ms
+     ✓ fences an unadopted repair result after cancel changes during commit  1623ms
+     ✓ fences an unadopted repair result after epoch changes during commit  1412ms
+ ✓ tests/engine/e3-host.test.ts (20 tests) 2236ms
+     ✓ expired launch is bounded and cannot release its reservation before settling  657ms
+ ✓ tests/engine/validation-integration.test.ts (4 tests) 1250ms
+     ✓ binds generated candidate review to authenticated broker operations and refuses fixture verification as live  1050ms
+ ✓ src/engine/workspace.test.ts (24 tests) 1847ms
+ ✓ tests/engine/e3-runtime.test.ts (11 tests) 1993ms
+     ✓ collects once only after every required check and persists its immutable digest  823ms
+ ✓ tests/engine/e3-transport.test.ts (12 tests) 1148ms
+ ✓ tests/engine/database.test.ts (1 test) 2196ms
+   ✓ applies the control migration and checks SQL constraints/RLS in embedded PostgreSQL (not native deployment evidence)  2195ms
+ ✓ tests/engine/task02-runtime.test.ts (16 tests) 454ms
+     ✓ runs Python OS/guest fault simulations without executing candidate code  342ms
+ ✓ server/cloud/store.test.mjs (6 tests) 2311ms
+ ✓ src/cloud/main.test.ts (1 test) 868ms
+   ✓ guides a new user through persisted stages, creates the first brief and clears private UI at logout  867ms
+ ✓ src/engine/flow.test.ts (26 tests) 163ms
+ ✓ tests/engine/preview-host.test.ts (8 tests) 344ms
+ ✓ tests/engine/e3-candidate-export.test.ts (3 tests | 1 skipped) 456ms
+     ✓ roundtrips pinned platform source through reopened immutable artifacts and concrete scanner  399ms
+ ✓ tests/providers/providers.test.ts (28 tests) 423ms
+     ✓ retries transient server failures before a stream starts  388ms
+ ✓ tests/engine/byok.test.ts (56 tests) 137ms
+ ✓ tests/engine/provider-evaluation.test.ts (16 tests) 163ms
+ ✓ tests/engine/acceptance-ledger.test.ts (14 tests) 85ms
+ ✓ tests/engine/oidc-identity.test.ts (26 tests) 174ms
+ ✓ tests/engine/e2-generation.test.ts (40 tests) 98ms
+ ✓ tests/engine/e2-local-artifacts.test.ts (3 tests) 80ms
+ ✓ src/engine/source-client.test.ts (28 tests) 62ms
+ ✓ tests/engine/publishing.test.ts (28 tests) 72ms
+ ✓ tests/preview.test.ts (4 tests) 38ms
+ ✓ tests/engine/contracts.test.ts (61 tests) 97ms
+ ✓ server/app.test.mjs (7 tests) 95ms
+ ✓ server/cloud/app.test.mjs (4 tests) 127ms
+ ✓ tests/engine/e3-release.test.ts (16 tests) 60ms
+ ✓ src/engine/client.test.ts (13 tests) 35ms
+ ✓ tests/generation.test.ts (6 tests) 59ms
+ ✓ src/export.test.ts (2 tests) 30ms
+ ✓ server/cloud/auth.test.mjs (4 tests) 37ms
+ ✓ tests/engine/byok-transport.test.ts (3 tests) 27ms
+ ✓ tests/engine/jobs.test.ts (9 tests) 61ms
+ ✓ tests/engine/delivery-evidence.test.ts (13 tests) 55ms
+ ✓ server/provider.test.mjs (12 tests) 21ms
+ ✓ tests/engine/e5-candidate-recovery.test.ts (2 tests | 1 skipped) 26ms
+ ✓ tests/engine/template-toolchain.test.ts (3 tests) 26ms
+ ✓ tests/creation.test.ts (5 tests) 21ms
+ ✓ server/cloud/planning.test.mjs (3 tests) 27ms
+ ✓ tests/engine/validation-dependencies.test.ts (2 tests) 8ms
+ ✓ tests/engine/operations.test.ts (8 tests) 12ms
+ ✓ tests/engine/persistence-config.test.ts (3 tests) 9ms
+ ✓ tests/engine/e3-collector.test.ts (16 tests) 10ms
+ ✓ tests/engine/validation-secrets.test.ts (5 tests) 10ms
+ ✓ tests/engine/preview-policy.test.ts (6 tests) 11ms
+ ✓ tests/engine/encrypted-objects.test.ts (2 tests) 9ms
+ ✓ src/storage.test.ts (5 tests) 14ms
+ ✓ tests/workspace.test.ts (15 tests) 47ms
+ ✓ tests/engine/validation-acceptance.test.ts (6 tests) 22ms
+ ✓ tests/engine/validation-harness.test.ts (5 tests) 6ms
+ ✓ tests/engine/preview-hostnames.test.ts (1 test) 2ms
+ ✓ src/design.test.ts (5 tests) 3ms
+ ✓ src/project.test.ts (2 tests) 2ms
+ ✓ tests/normalization.test.ts (1 test) 2ms
+ ↓ tests/engine/e3-postgres-candidate.test.ts (1 test | 1 skipped)
+ ↓ tests/engine/validation-native.test.ts (1 test | 1 skipped)
+ ✓ tests/engine/control.native.test.ts (45 tests) 20538ms
+   ✓ persists projects, completes only fixture stages and atomically promotes source  603ms
+   ✓ deduplicates concurrent requests, rejects different content and allows exactly one active project job  458ms
+   ✓ serializes concurrent quota admission across projects without overspending  325ms
+   ✓ recovers saved provider output after worker restart without a second call or charge  483ms
+   ✓ keeps an ambiguous provider charge reserved after actual worker process death; resolves it once  503ms
+   ✓ does not repeat a committed stage when the worker dies before acknowledgment  327ms
+   ✓ serializes promotion and cancellation; no cancelled job changes the source head  1005ms
+   ✓ expires active work through cleanup and never revives it on worker restart  588ms
+   ✓ requires reset acknowledgment and restores source into a new reviewed history record  1020ms
+   ✓ replays SSE after disconnect without cancelling the job and closes on membership revocation  521ms
+   ✓ rejects foreign/future SSE cursors and closes terminal replay after flushing facts  340ms
+   ✓ starts default-off without database access and rejects live or unsafe fixture settings  555ms
+   ✓ replays identical explicit promotion requests after success without a second approval  519ms
+   ✓ tombstones a deleted project, fences its active job and retains source/audit history  303ms
+   ✓ bounds global queue, pending reviews and simulated preview capacity  348ms
+   ✓ cancels GENERATING without promoting source or allowing further dispatch  423ms
+   ✓ cancels PROVISIONING without promoting source or allowing further dispatch  364ms
+ ✓ tests/engine/e2-control-integration.test.ts (19 tests) 20770ms
+   ✓ connects actual 20-file candidate bytes through reviews, promotion, history, immutable export and source restoration (all execution is fixture)  2401ms
+   ✓ rejects wrong immutable reference scope before adoption  1140ms
+   ✓ rejects wrong immutable reference hash before adoption  973ms
+   ✓ rejects wrong immutable reference version before adoption  905ms
+   ✓ rejects wrong immutable reference key before adoption  803ms
+   ✓ rejects an invented plan resource grant and keeps plan metadata unadopted  880ms
+   ✓ refuses tenant-crossed source reads and nonzero candidate admission  742ms
+   ✓ rejects adoption after lease loss during object validation  1498ms
+   ✓ replays saved candidate references after crash without repeating the stage product  1137ms
+   ✓ coalesces concurrent export retries into one adopted immutable attachment  1062ms
+   ✓ blocks export replay after verification revocation/expiry  1148ms
+   ✓ blocks export replay after policy revocation/expiry  1099ms
+   ✓ blocks export replay after session revocation/expiry  514ms
+   ✓ refuses cached reference tampering during crash replay  398ms
+   ✓ rejects a secret-bearing immutable candidate before reference adoption  485ms
+   ✓ uses the guarded artifact locator for available bytes without revealing foreign/missing metadata  526ms
+   ✓ reauthorizes a source read after object I/O and refuses revoked sessions  508ms
+   ✓ refuses exported attachment bytes after role downgrade to viewer  637ms
+   ✓ revalidates stored candidates with identical diff bytes and zero object writes  404ms
+ ✓ tests/engine/preview-control.native.test.ts (23 tests) 22612ms
+   ✓ consumes one ticket atomically under 16 concurrent requests; stores only hashes  1095ms
+   ✓ rolls consumption back when session insertion fails, then permits exactly one retry  1127ms
+   ✓ rejects foreign tenant, wrong CSRF, wrong hostname, expired and replayed tickets  1273ms
+   ✓ binds sessions to exact tenant/generation/host and rotates once on concurrent renewal  2667ms
+   ✓ denies continued access after membership and revokes credentials during cleanup  790ms
+   ✓ denies continued access after logout and revokes credentials during cleanup  817ms
+   ✓ denies continued access after disabled-user and revokes credentials during cleanup  2136ms
+   ✓ denies continued access after disabled-workspace and revokes credentials during cleanup  1183ms
+   ✓ denies continued access after deletion and revokes credentials during cleanup  1131ms
+   ✓ denies continued access after unhealthy and revokes credentials during cleanup  1022ms
+   ✓ denies continued access after idle and revokes credentials during cleanup  768ms
+   ✓ denies continued access after environment-expiry and revokes credentials during cleanup  504ms
+   ✓ denies continued access after session-expiry and revokes credentials during cleanup  514ms
+   ✓ denies continued access after revoked-route and revokes credentials during cleanup  497ms
+   ✓ denies continued access after shutdown and revokes credentials during cleanup  477ms
+   ✓ prevents API/worker cross-authority grants and permanent hostname reuse  564ms
+   ✓ serializes logout against consume and renew without deadlocks or usable orphan sessions  532ms
+   ✓ serializes revoke against consume and renew without deadlocks or usable orphan sessions  545ms
+   ✓ serializes cancel against consume and renew without deadlocks or usable orphan sessions  620ms
+   ✓ renews different viewer sessions concurrently and returns the updated idle expiry  350ms
+   ✓ rejects legacy unbound tickets, generation mismatch, foreign worker registration and PUBLIC privileges  335ms
+   ✓ late worker registration racing revocation never resurrects a revoked preview  341ms
+
+ Test Files  63 passed | 2 skipped (65)
+      Tests  804 passed | 5 skipped (809)
+   Start at  03:40:09
+   Duration  23.13s (transform 2.37s, setup 0ms, import 7.38s, tests 115.95s, environment 1.72s)
+
+
+> forge-ai@0.2.0 prebuild
+> node scripts/copy-editor.mjs
+
+
+> forge-ai@0.2.0 build
+> next build --webpack
+
+▲ Next.js 16.3.4 (webpack)
+✓ Running next.config.ts took 89ms
+- Experiments (use with caution):
+  · cpus: 2
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 1602ms
+  Running TypeScript ...
+  Finished TypeScript in 1715ms ...
+  Collecting page data using 2 workers ...
+  Generating static pages using 2 workers (0/17) ...
+  Generating static pages using 2 workers (4/17)
+  Generating static pages using 2 workers (8/17)
+  Generating static pages using 2 workers (12/17)
+✓ Generating static pages using 2 workers (17/17) in 145ms
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+┌ ƒ /
+├ ○ /_not-found
+├ ƒ /api/account
+├ ƒ /api/auth/[...all]
+├ ƒ /api/jobs/[id]/cancel
+├ ƒ /api/jobs/[id]/events
+├ ƒ /api/projects
+├ ƒ /api/projects/[id]
+├ ƒ /api/projects/[id]/comments
+├ ƒ /api/projects/[id]/export
+├ ƒ /api/projects/[id]/jobs
+├ ƒ /api/projects/[id]/remix
+├ ƒ /api/projects/[id]/sharing
+├ ƒ /api/projects/import
+├ ƒ /api/providers
+├ ƒ /api/providers/test
+├ ƒ /api/status
+├ ƒ /api/usage
+├ ○ /app
+├ ○ /app/connections
+├ ○ /app/projects
+├ ƒ /app/projects/[id]
+├ ○ /app/settings
+├ ○ /components
+├ ○ /docs
+├ ○ /examples
+├ ƒ /examples/[id]
+├ ○ /hosting
+├ ○ /login
+├ ○ /reset-password
+└ ○ /sample
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
