@@ -112,6 +112,9 @@ try {
     'engine/migrations/0005_hosted_byok.sql',
     'engine/migrations/0006_encrypted_objects.sql',
     'docs/examples/hosted-object-version-receipt.sql',
+    'engine/migrations/0007_preview.sql',
+    'engine/migrations/0008_scheduler_outbox.sql',
+    'engine/migrations/0009_hosted_source_jobs.sql',
     'docs/examples/hosted-object-database-grants.sql',
     'docs/examples/hosted-control-database-grants.sql',
   ]) {

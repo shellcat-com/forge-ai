@@ -4,13 +4,14 @@ This package does **not** install an engine route, create a second job authority
 run generated code, or enable hosted generation. It implements the metadata-only
 transport between a future E1 transactional outbox, Cloudflare Workflows and an
 explicitly composed trusted Node control step. PostgreSQL remains authoritative.
-The existing fixture-only worker is unchanged and is not a valid live composition.
+The existing fixture-only worker rejects hosted databases and is not a valid live composition.
 
 The allocated **0008** companion now implements durable PostgreSQL intent/delivery
 receipts, exact-job leases and step-outcome deduplication in `outbox.ts` and
 `outbox-delivery.ts`. See [the outbox report](../../docs/reports/durable-scheduler-outbox.md).
-It remains unwired and unapplied live; canonical 0007, actual allowance admission,
-stage-specific authority, recovery and hosted qualification are still required.
+It remains unwired and unapplied live. Canonical 0007 and hosted source admission/
+stage authority are implemented in the integration checkout; actual scheduler
+allowance admission, complete worker recovery and hosted qualification remain required.
 The integration checklist below is not a claim that these live gates have passed.
 
 ## Boundaries and contracts

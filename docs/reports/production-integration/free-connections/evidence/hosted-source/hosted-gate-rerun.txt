@@ -1,0 +1,93 @@
+▲ [WARNING] Cannot find base config file "expo/tsconfig.base" [tsconfig.json]
+
+    ../../tsconfig.json:3:13:
+      3 │   "extends": "expo/tsconfig.base"
+        ╵              ~~~~~~~~~~~~~~~~~~~~
+
+
+ RUN  v4.1.11 <repository>
+
+ ❯ tests/engine/hosted-generation-gate.native.test.ts (14 tests | 4 failed) 1455ms
+   × reserves one durable free call and never recharges duplicate reservation/dispatch 35ms
+   × enforces shared daily capacity across different owner workspaces atomically 28ms
+   × rejects key removal between reservation and actual dispatch 5ms
+   × rejects another operation identity on the same job step 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/engine/hosted-generation-gate.native.test.ts > reserves one durable free call and never recharges duplicate reservation/dispatch
+error: permission denied for table provider_credentials
+ ❯ node_modules/pg/lib/client.js:694:17
+ ❯ one engine/control/database.ts:154:20
+    152|   values: unknown[] = []
+    153| ): Promise<T> {
+    154|   const { rows } = await c.query<T>(sql, values)
+       |                    ^
+    155|   if (!rows[0]) throw new ControlError(404, 'NOT_FOUND')
+    156|   return rows[0]
+ ❯ HostedGenerationGate.lock engine/control/hosted-generation-gate.ts:68:24
+ ❯ HostedGenerationGate.lockAndAuthorize engine/control/hosted-generation-gate.ts:80:21
+ ❯ engine/providers/accounting-postgres.ts:48:7
+ ❯ ControlDatabase.tx engine/control/database.ts:76:22
+ ❯ tests/engine/hosted-generation-gate.native.test.ts:70:32
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/engine/hosted-generation-gate.native.test.ts > enforces shared daily capacity across different owner workspaces atomically
+AssertionError: expected [] to have a length of 1 but got +0
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/engine/hosted-generation-gate.native.test.ts:80:47
+     78|   const a=await seed(),b=await seed();await db.admin.query('UPDATE for…
+     79|   const r=await Promise.allSettled([accounting.reserve(a.terms),accoun…
+     80|   expect(r.filter(x=>x.status==='fulfilled')).toHaveLength(1);expect(a…
+       |                                               ^
+     81| })
+     82| it.each(['logout','suspension','verification','membership'] as const)(…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/engine/hosted-generation-gate.native.test.ts > rejects key removal between reservation and actual dispatch
+error: permission denied for table provider_credentials
+ ❯ node_modules/pg/lib/client.js:694:17
+ ❯ one engine/control/database.ts:154:20
+    152|   values: unknown[] = []
+    153| ): Promise<T> {
+    154|   const { rows } = await c.query<T>(sql, values)
+       |                    ^
+    155|   if (!rows[0]) throw new ControlError(404, 'NOT_FOUND')
+    156|   return rows[0]
+ ❯ HostedGenerationGate.lock engine/control/hosted-generation-gate.ts:68:24
+ ❯ HostedGenerationGate.lockAndAuthorize engine/control/hosted-generation-gate.ts:80:21
+ ❯ engine/providers/accounting-postgres.ts:48:7
+ ❯ ControlDatabase.tx engine/control/database.ts:76:22
+ ❯ tests/engine/hosted-generation-gate.native.test.ts:91:32
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/engine/hosted-generation-gate.native.test.ts > rejects another operation identity on the same job step
+AssertionError: expected [Function] to throw error including 'HOSTED_PROVIDER_BINDING' but got 'permission denied for table provider_…'
+
+Expected: "HOSTED_PROVIDER_BINDING"
+Received: "permission denied for table provider_credentials"
+
+ ❯ tests/engine/hosted-generation-gate.native.test.ts:104:92
+    102| })
+    103| it('rejects another operation identity on the same job step',async()=>{
+    104|   const f=await seed();await expect(accounting.reserve({...f.terms,req…
+       |                                                                                            ^
+    105| })
+    106| it('keeps fixture workers out of a hosted control database',async()=>{
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 10 passed (14)
+   Start at  20:09:53
+   Duration  1.86s (transform 169ms, setup 0ms, import 302ms, tests 1.45s, environment 0ms)

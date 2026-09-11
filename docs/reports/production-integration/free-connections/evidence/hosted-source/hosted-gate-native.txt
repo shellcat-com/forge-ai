@@ -1,0 +1,90 @@
+▲ [WARNING] Cannot find base config file "expo/tsconfig.base" [tsconfig.json]
+
+    ../../tsconfig.json:3:13:
+      3 │   "extends": "expo/tsconfig.base"
+        ╵              ~~~~~~~~~~~~~~~~~~~~
+
+
+ RUN  v4.1.11 <repository>
+
+ ❯ tests/engine/hosted-generation-gate.native.test.ts (14 tests | 12 failed) 1308ms
+   × reserves one durable free call and never recharges duplicate reservation/dispatch 15ms
+   × enforces shared daily capacity across different owner workspaces atomically 6ms
+   × fences exact parent logout before consuming allowance 6ms
+   × fences exact parent suspension before consuming allowance 6ms
+   × fences exact parent verification before consuming allowance 7ms
+   × fences exact parent membership before consuming allowance 6ms
+   × rejects key removal between reservation and actual dispatch 5ms
+   × fences cancel without advancing the provider counter 7ms
+   × fences lease without advancing the provider counter 6ms
+   × fences revision without advancing the provider counter 6ms
+   × fences disabled without advancing the provider counter 6ms
+   × rejects another operation identity on the same job step 5ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 12 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/engine/hosted-generation-gate.native.test.ts > reserves one durable free call and never recharges duplicate reservation/dispatch
+error: relation "provider_credentials" does not exist
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ seed tests/engine/hosted-generation-gate.native.test.ts:50:3
+
+ ❯ tests/engine/hosted-generation-gate.native.test.ts:69:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/12]⎯
+
+ FAIL  tests/engine/hosted-generation-gate.native.test.ts > enforces shared daily capacity across different owner workspaces atomically
+error: relation "provider_credentials" does not exist
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ seed tests/engine/hosted-generation-gate.native.test.ts:50:3
+
+ ❯ tests/engine/hosted-generation-gate.native.test.ts:77:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/12]⎯
+
+ FAIL  tests/engine/hosted-generation-gate.native.test.ts > fences exact parent logout before consuming allowance
+ FAIL  tests/engine/hosted-generation-gate.native.test.ts > fences exact parent suspension before consuming allowance
+ FAIL  tests/engine/hosted-generation-gate.native.test.ts > fences exact parent verification before consuming allowance
+ FAIL  tests/engine/hosted-generation-gate.native.test.ts > fences exact parent membership before consuming allowance
+error: relation "provider_credentials" does not exist
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ seed tests/engine/hosted-generation-gate.native.test.ts:50:3
+
+ ❯ tests/engine/hosted-generation-gate.native.test.ts:82:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/12]⎯
+
+ FAIL  tests/engine/hosted-generation-gate.native.test.ts > rejects key removal between reservation and actual dispatch
+error: relation "provider_credentials" does not exist
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ seed tests/engine/hosted-generation-gate.native.test.ts:50:3
+
+ ❯ tests/engine/hosted-generation-gate.native.test.ts:90:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/12]⎯
+
+ FAIL  tests/engine/hosted-generation-gate.native.test.ts > fences cancel without advancing the provider counter
+ FAIL  tests/engine/hosted-generation-gate.native.test.ts > fences lease without advancing the provider counter
+ FAIL  tests/engine/hosted-generation-gate.native.test.ts > fences revision without advancing the provider counter
+ FAIL  tests/engine/hosted-generation-gate.native.test.ts > fences disabled without advancing the provider counter
+error: relation "provider_credentials" does not exist
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ seed tests/engine/hosted-generation-gate.native.test.ts:50:3
+
+ ❯ tests/engine/hosted-generation-gate.native.test.ts:95:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/12]⎯
+
+ FAIL  tests/engine/hosted-generation-gate.native.test.ts > rejects another operation identity on the same job step
+error: relation "provider_credentials" does not exist
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ seed tests/engine/hosted-generation-gate.native.test.ts:50:3
+
+ ❯ tests/engine/hosted-generation-gate.native.test.ts:103:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/12]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  12 failed | 2 passed (14)
+   Start at  20:09:04
+   Duration  1.81s (transform 220ms, setup 0ms, import 411ms, tests 1.31s, environment 0ms)

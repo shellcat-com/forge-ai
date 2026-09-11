@@ -1,0 +1,398 @@
+▲ [WARNING] Cannot find base config file "expo/tsconfig.base" [tsconfig.json]
+
+    ../../tsconfig.json:3:13:
+      3 │   "extends": "expo/tsconfig.base"
+        ╵              ~~~~~~~~~~~~~~~~~~~~
+
+
+ RUN  v4.1.11 <repository>
+
+ ❯ tests/engine/resumable-generation.test.ts (16 tests | 16 failed) 27ms
+     × saves one partial batch, resumes with one further call, and builds real source bytes 13ms
+     × recovers after the final product is saved but candidate adoption fails without another provider call 2ms
+     × rejects resumed credentialRevision drift before provider dispatch 1ms
+     × rejects resumed model drift before provider dispatch 1ms
+     × rejects resumed providerPolicyDigest drift before provider dispatch 1ms
+     × rejects resumed repairNumber drift before provider dispatch 1ms
+     × rejects resumed promptVersion drift before provider dispatch 1ms
+     × rejects foreign job and project artifacts 1ms
+     × rejects duplicate refs, wrong immutable versions and changed hashes 1ms
+     × rejects a false final marker before persisting a partial product 1ms
+     × rejects changed batch ordering before storage 1ms
+     × rejects protected source edits before storage 1ms
+     × does not dispatch when accounting refuses a duplicate or exhausted call 1ms
+     × blocks cancellation after output but before product adoption 1ms
+     × rejects fixture storage/catalog for a production call before accounting 1ms
+     × does not adopt a candidate when its source scan fails 1ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 16 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/engine/resumable-generation.test.ts > durable one-call source steps > saves one partial batch, resumes with one further call, and builds real source bytes
+ZodError: [
+  {
+    "code": "unrecognized_keys",
+    "keys": [
+      "credentialId",
+      "credentialRevision",
+      "provider",
+      "model",
+      "providerPolicyDigest",
+      "promptVersion",
+      "repairNumber"
+    ],
+    "path": [],
+    "message": "Unrecognized keys: \"credentialId\", \"credentialRevision\", \"provider\", \"model\", \"providerPolicyDigest\", \"promptVersion\", \"repairNumber\""
+  }
+]
+ ❯ ArtifactStore.put engine/artifacts/store.ts:48:35
+     46|   /** Caller validates product before writing. Availability confers no…
+     47|   async put(scopeInput: ArtifactScope, kind: ArtifactKind, input: Uint…
+     48|     const s = artifactScopeSchema.parse(scopeInput)
+       |                                   ^
+     49|     const bytes = input.slice()
+     50|     if (bytes.byteLength > caps[kind]) throw new Error('Artifact byte …
+ ❯ createTemplateSource engine/generation/source.ts:42:30
+ ❯ setup tests/engine/resumable-generation.test.ts:29:22
+ ❯ tests/engine/resumable-generation.test.ts:54:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/16]⎯
+
+ FAIL  tests/engine/resumable-generation.test.ts > durable one-call source steps > recovers after the final product is saved but candidate adoption fails without another provider call
+ZodError: [
+  {
+    "code": "unrecognized_keys",
+    "keys": [
+      "credentialId",
+      "credentialRevision",
+      "provider",
+      "model",
+      "providerPolicyDigest",
+      "promptVersion",
+      "repairNumber"
+    ],
+    "path": [],
+    "message": "Unrecognized keys: \"credentialId\", \"credentialRevision\", \"provider\", \"model\", \"providerPolicyDigest\", \"promptVersion\", \"repairNumber\""
+  }
+]
+ ❯ ArtifactStore.put engine/artifacts/store.ts:48:35
+     46|   /** Caller validates product before writing. Availability confers no…
+     47|   async put(scopeInput: ArtifactScope, kind: ArtifactKind, input: Uint…
+     48|     const s = artifactScopeSchema.parse(scopeInput)
+       |                                   ^
+     49|     const bytes = input.slice()
+     50|     if (bytes.byteLength > caps[kind]) throw new Error('Artifact byte …
+ ❯ createTemplateSource engine/generation/source.ts:42:30
+ ❯ setup tests/engine/resumable-generation.test.ts:29:22
+ ❯ tests/engine/resumable-generation.test.ts:70:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/16]⎯
+
+ FAIL  tests/engine/resumable-generation.test.ts > durable one-call source steps > rejects resumed credentialRevision drift before provider dispatch
+ FAIL  tests/engine/resumable-generation.test.ts > durable one-call source steps > rejects resumed model drift before provider dispatch
+ FAIL  tests/engine/resumable-generation.test.ts > durable one-call source steps > rejects resumed providerPolicyDigest drift before provider dispatch
+ FAIL  tests/engine/resumable-generation.test.ts > durable one-call source steps > rejects resumed repairNumber drift before provider dispatch
+ FAIL  tests/engine/resumable-generation.test.ts > durable one-call source steps > rejects resumed promptVersion drift before provider dispatch
+ZodError: [
+  {
+    "code": "unrecognized_keys",
+    "keys": [
+      "credentialId",
+      "credentialRevision",
+      "provider",
+      "model",
+      "providerPolicyDigest",
+      "promptVersion",
+      "repairNumber"
+    ],
+    "path": [],
+    "message": "Unrecognized keys: \"credentialId\", \"credentialRevision\", \"provider\", \"model\", \"providerPolicyDigest\", \"promptVersion\", \"repairNumber\""
+  }
+]
+ ❯ ArtifactStore.put engine/artifacts/store.ts:48:35
+     46|   /** Caller validates product before writing. Availability confers no…
+     47|   async put(scopeInput: ArtifactScope, kind: ArtifactKind, input: Uint…
+     48|     const s = artifactScopeSchema.parse(scopeInput)
+       |                                   ^
+     49|     const bytes = input.slice()
+     50|     if (bytes.byteLength > caps[kind]) throw new Error('Artifact byte …
+ ❯ createTemplateSource engine/generation/source.ts:42:30
+ ❯ setup tests/engine/resumable-generation.test.ts:29:22
+ ❯ tests/engine/resumable-generation.test.ts:81:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/16]⎯
+
+ FAIL  tests/engine/resumable-generation.test.ts > durable one-call source steps > rejects foreign job and project artifacts
+ZodError: [
+  {
+    "code": "unrecognized_keys",
+    "keys": [
+      "credentialId",
+      "credentialRevision",
+      "provider",
+      "model",
+      "providerPolicyDigest",
+      "promptVersion",
+      "repairNumber"
+    ],
+    "path": [],
+    "message": "Unrecognized keys: \"credentialId\", \"credentialRevision\", \"provider\", \"model\", \"providerPolicyDigest\", \"promptVersion\", \"repairNumber\""
+  }
+]
+ ❯ ArtifactStore.put engine/artifacts/store.ts:48:35
+     46|   /** Caller validates product before writing. Availability confers no…
+     47|   async put(scopeInput: ArtifactScope, kind: ArtifactKind, input: Uint…
+     48|     const s = artifactScopeSchema.parse(scopeInput)
+       |                                   ^
+     49|     const bytes = input.slice()
+     50|     if (bytes.byteLength > caps[kind]) throw new Error('Artifact byte …
+ ❯ createTemplateSource engine/generation/source.ts:42:30
+ ❯ setup tests/engine/resumable-generation.test.ts:29:22
+ ❯ tests/engine/resumable-generation.test.ts:87:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/16]⎯
+
+ FAIL  tests/engine/resumable-generation.test.ts > durable one-call source steps > rejects duplicate refs, wrong immutable versions and changed hashes
+ZodError: [
+  {
+    "code": "unrecognized_keys",
+    "keys": [
+      "credentialId",
+      "credentialRevision",
+      "provider",
+      "model",
+      "providerPolicyDigest",
+      "promptVersion",
+      "repairNumber"
+    ],
+    "path": [],
+    "message": "Unrecognized keys: \"credentialId\", \"credentialRevision\", \"provider\", \"model\", \"providerPolicyDigest\", \"promptVersion\", \"repairNumber\""
+  }
+]
+ ❯ ArtifactStore.put engine/artifacts/store.ts:48:35
+     46|   /** Caller validates product before writing. Availability confers no…
+     47|   async put(scopeInput: ArtifactScope, kind: ArtifactKind, input: Uint…
+     48|     const s = artifactScopeSchema.parse(scopeInput)
+       |                                   ^
+     49|     const bytes = input.slice()
+     50|     if (bytes.byteLength > caps[kind]) throw new Error('Artifact byte …
+ ❯ createTemplateSource engine/generation/source.ts:42:30
+ ❯ setup tests/engine/resumable-generation.test.ts:29:22
+ ❯ tests/engine/resumable-generation.test.ts:94:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/16]⎯
+
+ FAIL  tests/engine/resumable-generation.test.ts > durable one-call source steps > rejects a false final marker before persisting a partial product
+ZodError: [
+  {
+    "code": "unrecognized_keys",
+    "keys": [
+      "credentialId",
+      "credentialRevision",
+      "provider",
+      "model",
+      "providerPolicyDigest",
+      "promptVersion",
+      "repairNumber"
+    ],
+    "path": [],
+    "message": "Unrecognized keys: \"credentialId\", \"credentialRevision\", \"provider\", \"model\", \"providerPolicyDigest\", \"promptVersion\", \"repairNumber\""
+  }
+]
+ ❯ ArtifactStore.put engine/artifacts/store.ts:48:35
+     46|   /** Caller validates product before writing. Availability confers no…
+     47|   async put(scopeInput: ArtifactScope, kind: ArtifactKind, input: Uint…
+     48|     const s = artifactScopeSchema.parse(scopeInput)
+       |                                   ^
+     49|     const bytes = input.slice()
+     50|     if (bytes.byteLength > caps[kind]) throw new Error('Artifact byte …
+ ❯ createTemplateSource engine/generation/source.ts:42:30
+ ❯ setup tests/engine/resumable-generation.test.ts:29:22
+ ❯ tests/engine/resumable-generation.test.ts:100:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/16]⎯
+
+ FAIL  tests/engine/resumable-generation.test.ts > durable one-call source steps > rejects changed batch ordering before storage
+ZodError: [
+  {
+    "code": "unrecognized_keys",
+    "keys": [
+      "credentialId",
+      "credentialRevision",
+      "provider",
+      "model",
+      "providerPolicyDigest",
+      "promptVersion",
+      "repairNumber"
+    ],
+    "path": [],
+    "message": "Unrecognized keys: \"credentialId\", \"credentialRevision\", \"provider\", \"model\", \"providerPolicyDigest\", \"promptVersion\", \"repairNumber\""
+  }
+]
+ ❯ ArtifactStore.put engine/artifacts/store.ts:48:35
+     46|   /** Caller validates product before writing. Availability confers no…
+     47|   async put(scopeInput: ArtifactScope, kind: ArtifactKind, input: Uint…
+     48|     const s = artifactScopeSchema.parse(scopeInput)
+       |                                   ^
+     49|     const bytes = input.slice()
+     50|     if (bytes.byteLength > caps[kind]) throw new Error('Artifact byte …
+ ❯ createTemplateSource engine/generation/source.ts:42:30
+ ❯ setup tests/engine/resumable-generation.test.ts:29:22
+ ❯ tests/engine/resumable-generation.test.ts:105:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/16]⎯
+
+ FAIL  tests/engine/resumable-generation.test.ts > durable one-call source steps > rejects protected source edits before storage
+ZodError: [
+  {
+    "code": "unrecognized_keys",
+    "keys": [
+      "credentialId",
+      "credentialRevision",
+      "provider",
+      "model",
+      "providerPolicyDigest",
+      "promptVersion",
+      "repairNumber"
+    ],
+    "path": [],
+    "message": "Unrecognized keys: \"credentialId\", \"credentialRevision\", \"provider\", \"model\", \"providerPolicyDigest\", \"promptVersion\", \"repairNumber\""
+  }
+]
+ ❯ ArtifactStore.put engine/artifacts/store.ts:48:35
+     46|   /** Caller validates product before writing. Availability confers no…
+     47|   async put(scopeInput: ArtifactScope, kind: ArtifactKind, input: Uint…
+     48|     const s = artifactScopeSchema.parse(scopeInput)
+       |                                   ^
+     49|     const bytes = input.slice()
+     50|     if (bytes.byteLength > caps[kind]) throw new Error('Artifact byte …
+ ❯ createTemplateSource engine/generation/source.ts:42:30
+ ❯ setup tests/engine/resumable-generation.test.ts:29:22
+ ❯ tests/engine/resumable-generation.test.ts:110:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/16]⎯
+
+ FAIL  tests/engine/resumable-generation.test.ts > durable one-call source steps > does not dispatch when accounting refuses a duplicate or exhausted call
+ZodError: [
+  {
+    "code": "unrecognized_keys",
+    "keys": [
+      "credentialId",
+      "credentialRevision",
+      "provider",
+      "model",
+      "providerPolicyDigest",
+      "promptVersion",
+      "repairNumber"
+    ],
+    "path": [],
+    "message": "Unrecognized keys: \"credentialId\", \"credentialRevision\", \"provider\", \"model\", \"providerPolicyDigest\", \"promptVersion\", \"repairNumber\""
+  }
+]
+ ❯ ArtifactStore.put engine/artifacts/store.ts:48:35
+     46|   /** Caller validates product before writing. Availability confers no…
+     47|   async put(scopeInput: ArtifactScope, kind: ArtifactKind, input: Uint…
+     48|     const s = artifactScopeSchema.parse(scopeInput)
+       |                                   ^
+     49|     const bytes = input.slice()
+     50|     if (bytes.byteLength > caps[kind]) throw new Error('Artifact byte …
+ ❯ createTemplateSource engine/generation/source.ts:42:30
+ ❯ setup tests/engine/resumable-generation.test.ts:29:22
+ ❯ tests/engine/resumable-generation.test.ts:115:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/16]⎯
+
+ FAIL  tests/engine/resumable-generation.test.ts > durable one-call source steps > blocks cancellation after output but before product adoption
+ZodError: [
+  {
+    "code": "unrecognized_keys",
+    "keys": [
+      "credentialId",
+      "credentialRevision",
+      "provider",
+      "model",
+      "providerPolicyDigest",
+      "promptVersion",
+      "repairNumber"
+    ],
+    "path": [],
+    "message": "Unrecognized keys: \"credentialId\", \"credentialRevision\", \"provider\", \"model\", \"providerPolicyDigest\", \"promptVersion\", \"repairNumber\""
+  }
+]
+ ❯ ArtifactStore.put engine/artifacts/store.ts:48:35
+     46|   /** Caller validates product before writing. Availability confers no…
+     47|   async put(scopeInput: ArtifactScope, kind: ArtifactKind, input: Uint…
+     48|     const s = artifactScopeSchema.parse(scopeInput)
+       |                                   ^
+     49|     const bytes = input.slice()
+     50|     if (bytes.byteLength > caps[kind]) throw new Error('Artifact byte …
+ ❯ createTemplateSource engine/generation/source.ts:42:30
+ ❯ setup tests/engine/resumable-generation.test.ts:29:22
+ ❯ tests/engine/resumable-generation.test.ts:120:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/16]⎯
+
+ FAIL  tests/engine/resumable-generation.test.ts > durable one-call source steps > rejects fixture storage/catalog for a production call before accounting
+ZodError: [
+  {
+    "code": "unrecognized_keys",
+    "keys": [
+      "credentialId",
+      "credentialRevision",
+      "provider",
+      "model",
+      "providerPolicyDigest",
+      "promptVersion",
+      "repairNumber"
+    ],
+    "path": [],
+    "message": "Unrecognized keys: \"credentialId\", \"credentialRevision\", \"provider\", \"model\", \"providerPolicyDigest\", \"promptVersion\", \"repairNumber\""
+  }
+]
+ ❯ ArtifactStore.put engine/artifacts/store.ts:48:35
+     46|   /** Caller validates product before writing. Availability confers no…
+     47|   async put(scopeInput: ArtifactScope, kind: ArtifactKind, input: Uint…
+     48|     const s = artifactScopeSchema.parse(scopeInput)
+       |                                   ^
+     49|     const bytes = input.slice()
+     50|     if (bytes.byteLength > caps[kind]) throw new Error('Artifact byte …
+ ❯ createTemplateSource engine/generation/source.ts:42:30
+ ❯ setup tests/engine/resumable-generation.test.ts:29:22
+ ❯ tests/engine/resumable-generation.test.ts:126:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/16]⎯
+
+ FAIL  tests/engine/resumable-generation.test.ts > durable one-call source steps > does not adopt a candidate when its source scan fails
+ZodError: [
+  {
+    "code": "unrecognized_keys",
+    "keys": [
+      "credentialId",
+      "credentialRevision",
+      "provider",
+      "model",
+      "providerPolicyDigest",
+      "promptVersion",
+      "repairNumber"
+    ],
+    "path": [],
+    "message": "Unrecognized keys: \"credentialId\", \"credentialRevision\", \"provider\", \"model\", \"providerPolicyDigest\", \"promptVersion\", \"repairNumber\""
+  }
+]
+ ❯ ArtifactStore.put engine/artifacts/store.ts:48:35
+     46|   /** Caller validates product before writing. Availability confers no…
+     47|   async put(scopeInput: ArtifactScope, kind: ArtifactKind, input: Uint…
+     48|     const s = artifactScopeSchema.parse(scopeInput)
+       |                                   ^
+     49|     const bytes = input.slice()
+     50|     if (bytes.byteLength > caps[kind]) throw new Error('Artifact byte …
+ ❯ createTemplateSource engine/generation/source.ts:42:30
+ ❯ setup tests/engine/resumable-generation.test.ts:29:22
+ ❯ tests/engine/resumable-generation.test.ts:131:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/16]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  16 failed (16)
+   Start at  19:57:01
+   Duration  531ms (transform 150ms, setup 0ms, import 304ms, tests 27ms, environment 0ms)

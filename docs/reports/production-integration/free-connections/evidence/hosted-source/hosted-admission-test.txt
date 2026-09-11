@@ -1,0 +1,78 @@
+▲ [WARNING] Cannot find base config file "expo/tsconfig.base" [tsconfig.json]
+
+    ../../tsconfig.json:3:13:
+      3 │   "extends": "expo/tsconfig.base"
+        ╵              ~~~~~~~~~~~~~~~~~~~~
+
+
+ RUN  v4.1.11 <repository>
+
+ ❯ tests/engine/hosted-generation-gate.native.test.ts (19 tests | 4 failed) 1439ms
+   × saves drafts without a key and rolls failed admission back without losing the prompt 5ms
+   × commits one job, key binding, allowance and outbox intent for a replayed admission 12ms
+   × does not let another account or invalid CSRF admit an owner project 11ms
+   × enforces revision, project capacity, model freshness and global job capacity before dispatch 10ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/engine/hosted-generation-gate.native.test.ts > saves drafts without a key and rolls failed admission back without losing the prompt
+error: forbidden job transition
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ admissionFixture tests/engine/hosted-generation-gate.native.test.ts:292:3
+    290| async function admissionFixture() {
+    291|   const f = await seed()
+    292|   await db.admin.query("UPDATE forge_control.jobs SET state='FAILED',f…
+       |   ^
+    293|   await db.admin.query("UPDATE forge_control.control_settings SET max_…
+    294|   const catalog = { evidence:'release', manifest:{template:{digest:'a'…
+ ❯ tests/engine/hosted-generation-gate.native.test.ts:303:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/engine/hosted-generation-gate.native.test.ts > commits one job, key binding, allowance and outbox intent for a replayed admission
+error: forbidden job transition
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ admissionFixture tests/engine/hosted-generation-gate.native.test.ts:292:3
+    290| async function admissionFixture() {
+    291|   const f = await seed()
+    292|   await db.admin.query("UPDATE forge_control.jobs SET state='FAILED',f…
+       |   ^
+    293|   await db.admin.query("UPDATE forge_control.control_settings SET max_…
+    294|   const catalog = { evidence:'release', manifest:{template:{digest:'a'…
+ ❯ tests/engine/hosted-generation-gate.native.test.ts:311:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/engine/hosted-generation-gate.native.test.ts > does not let another account or invalid CSRF admit an owner project
+error: forbidden job transition
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ admissionFixture tests/engine/hosted-generation-gate.native.test.ts:292:3
+    290| async function admissionFixture() {
+    291|   const f = await seed()
+    292|   await db.admin.query("UPDATE forge_control.jobs SET state='FAILED',f…
+       |   ^
+    293|   await db.admin.query("UPDATE forge_control.control_settings SET max_…
+    294|   const catalog = { evidence:'release', manifest:{template:{digest:'a'…
+ ❯ tests/engine/hosted-generation-gate.native.test.ts:322:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/engine/hosted-generation-gate.native.test.ts > enforces revision, project capacity, model freshness and global job capacity before dispatch
+error: forbidden job transition
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ admissionFixture tests/engine/hosted-generation-gate.native.test.ts:292:3
+    290| async function admissionFixture() {
+    291|   const f = await seed()
+    292|   await db.admin.query("UPDATE forge_control.jobs SET state='FAILED',f…
+       |   ^
+    293|   await db.admin.query("UPDATE forge_control.control_settings SET max_…
+    294|   const catalog = { evidence:'release', manifest:{template:{digest:'a'…
+ ❯ tests/engine/hosted-generation-gate.native.test.ts:327:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 15 passed (19)
+   Start at  20:20:32
+   Duration  1.94s (transform 228ms, setup 0ms, import 402ms, tests 1.44s, environment 0ms)

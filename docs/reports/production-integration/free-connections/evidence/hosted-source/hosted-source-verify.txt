@@ -1,0 +1,65 @@
+> forge-ai@0.2.0 verify
+> npm run lint && npm run typecheck && npm test && npm run build
+
+
+> forge-ai@0.2.0 lint
+> eslint .
+
+
+> forge-ai@0.2.0 typecheck
+> tsc --noEmit && tsc -p tsconfig.engine.json
+
+
+> forge-ai@0.2.0 test
+> vitest run
+
+▲ [WARNING] Cannot find base config file "expo/tsconfig.base" [tsconfig.json]
+
+    ../../tsconfig.json:3:13:
+      3 │   "extends": "expo/tsconfig.base"
+        ╵              ~~~~~~~~~~~~~~~~~~~~
+
+
+ RUN  v4.1.11 <repository>
+
+
+ Test Files  74 passed | 2 skipped (76)
+      Tests  1042 passed | 5 skipped (1047)
+   Start at  20:25:28
+   Duration  208.19s (transform 5.67s, setup 0ms, import 21.90s, tests 164.41s, environment 3.69s)
+
+
+> forge-ai@0.2.0 prebuild
+> node scripts/copy-editor.mjs
+
+
+> forge-ai@0.2.0 build
+> next build --webpack
+
+▲ Next.js 16.3.4 (webpack)
+✓ Running next.config.ts took 168ms
+- Experiments (use with caution):
+  · cpus: 2
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 27.4s
+  Running TypeScript ...
+  Finished TypeScript in 10.6s ...
+  Collecting page data using 2 workers ...
+  Generating static pages using 2 workers (0/19) ...
+  Generating static pages using 2 workers (4/19)
+  Generating static pages using 2 workers (9/19)
+  Generating static pages using 2 workers (14/19)
+✓ Generating static pages using 2 workers (19/19) in 401ms
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+> Build error occurred
+Error: ENOSPC: no space left on device, copyfile '<repository>/node_modules/caniuse-lite/data/features/colr.js' -> '<repository>/.next/standalone/node_modules/caniuse-lite/data/features/colr.js'
+    at ignore-listed frames {
+  errno: -28,
+  code: 'ENOSPC',
+  syscall: 'copyfile',
+  path: '<repository>/node_modules/caniuse-lite/data/features/colr.js',
+  dest: '<repository>/.next/standalone/node_modules/caniuse-lite/data/features/colr.js'
+}

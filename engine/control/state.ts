@@ -44,7 +44,7 @@ export interface JobRow {
   model_policy_json: unknown
   cost_limit_micros: string
   provider_calls: number
-  origin: 'fixture'
+  origin: 'fixture' | 'hosted'
 }
 export interface StepRow {
   id: string

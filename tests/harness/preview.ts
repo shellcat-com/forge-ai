@@ -7,7 +7,7 @@ export async function createPreviewHarness() {
   try {
     await h.db.admin.query(
       await readFile(
-        new URL('../../engine/preview/proposals/0007_preview.sql', import.meta.url),
+        new URL('../../engine/migrations/0007_preview.sql', import.meta.url),
         'utf8'
       )
     )

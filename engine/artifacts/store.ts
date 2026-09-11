@@ -6,7 +6,7 @@ import { digest, limits, scope, uint, uuid } from '../contracts/primitives.ts'
 export const artifactScopeSchema = z.strictObject(scope)
 export type ArtifactScope = z.infer<typeof artifactScopeSchema>
 export const artifactRefSchema = z.strictObject({ schemaVersion: z.literal(1), ...scope, id: uuid,
-  kind: z.enum(['plan', 'source-manifest', 'source-blob', 'diff', 'source-export']), sha256: digest,
+  kind: z.enum(['plan', 'provider-product', 'source-manifest', 'source-blob', 'diff', 'source-export']), sha256: digest,
   bytes: uint.max(32 * 1024 * 1024), storageKey: z.string().max(240), storageVersion: z.string().min(1).max(200),
   state: z.literal('available'), backendEvidence: z.enum(['fixture', 'durable']) })
 export type ArtifactRef = z.infer<typeof artifactRefSchema>
@@ -36,12 +36,13 @@ export class MemoryObjectBackend implements ImmutableObjectBackend {
     return item.bytes.slice()
   }
 }
-const caps: Record<ArtifactKind, number> = { plan: limits.planBytes, 'source-manifest': 256 * 1024,
+const caps: Record<ArtifactKind, number> = { plan: limits.planBytes, 'provider-product': limits.batchBytes + 8192, 'source-manifest': 256 * 1024,
   'source-blob': limits.assetBytes, diff: 24 * 1024 * 1024, 'source-export': 32 * 1024 * 1024 }
 const keyFor = (s: ArtifactScope, id: string) => `quarantine/${s.workspaceId}/${s.projectId}/${s.jobId}/${id}`
 
 export class ArtifactStore {
   constructor(private readonly backend: ImmutableObjectBackend) {}
+  get evidence() { return this.backend.evidence }
   /** Caller validates product before writing. Availability confers no authority. */
   async put(scopeInput: ArtifactScope, kind: ArtifactKind, input: Uint8Array): Promise<ArtifactRef> {
     const s = artifactScopeSchema.parse(scopeInput)
@@ -64,7 +65,7 @@ export class ArtifactStore {
   async read(scopeInput: ArtifactScope, refInput: ArtifactRef): Promise<Uint8Array> {
     const s = artifactScopeSchema.parse(scopeInput)
     const ref = artifactRefSchema.parse(refInput)
-    if (s.workspaceId !== ref.workspaceId || s.projectId !== ref.projectId || ref.storageKey !== keyFor(ref, ref.id)
+    if (s.workspaceId !== ref.workspaceId || s.projectId !== ref.projectId || ref.backendEvidence !== this.backend.evidence || ref.storageKey !== keyFor(ref, ref.id)
       || ref.bytes > caps[ref.kind]) throw new Error('Artifact unavailable')
     const bytes = await this.backend.readVersion(ref.storageKey, ref.storageVersion)
     if (bytes.length !== ref.bytes || sha256(bytes) !== ref.sha256) throw new Error('Artifact integrity mismatch')

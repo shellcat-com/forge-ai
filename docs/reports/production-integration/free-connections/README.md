@@ -51,3 +51,5 @@ Neon organization Free entitlement and Vercel Hobby were verified. The dedicated
 Remaining: verify Cloudflare free entitlement and remaining resource capacity; supply private installation/email configuration and a user model connection; compose actual generation, durable dispatch/accounting/outbox, encrypted source adoption, managed isolated builds, authenticated previews, application databases and migrations, full publication management and creator-only app authentication. Then pass the original hosted A–P and clean self-host acceptance, record the successful real flow and update the draft PR. Do not merge or replace production before that evidence exists.
 
 See the [hosted verification deployment](hosted-verification.md) for the new separate Vercel project, actual Neon preflight, anonymous Firefox checks and current live acceptance ledger. The existing public availability deployment is unchanged.
+
+The next [hosted source and recovery implementation](hosted-source.md) adds canonical admission, per-step actual-provider composition and encrypted recovery references. It remains disabled pending complete worker/runtime and live acceptance.
