@@ -6,6 +6,13 @@ transport between a future E1 transactional outbox, Cloudflare Workflows and an
 explicitly composed trusted Node control step. PostgreSQL remains authoritative.
 The existing fixture-only worker is unchanged and is not a valid live composition.
 
+The allocated **0008** companion now implements durable PostgreSQL intent/delivery
+receipts, exact-job leases and step-outcome deduplication in `outbox.ts` and
+`outbox-delivery.ts`. See [the outbox report](../../docs/reports/durable-scheduler-outbox.md).
+It remains unwired and unapplied live; canonical 0007, actual allowance admission,
+stage-specific authority, recovery and hosted qualification are still required.
+The integration checklist below is not a claim that these live gates have passed.
+
 ## Boundaries and contracts
 
 | File                                   | Responsibility                                                                                                     |
