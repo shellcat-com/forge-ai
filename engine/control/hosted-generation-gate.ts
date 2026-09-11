@@ -203,39 +203,46 @@ export class HostedGenerationGate implements CallDispatchGate {
   }
   async withCurrent<T>(context: Readonly<HostedGenerationContext>, fn: (c: Tx) => Promise<T>) {
     return this.db.scoped(context.binding.workspaceId, async (c) => {
-      const b = batchBindingSchema.parse(context.binding)
-      const current = await this.lock(c, {
-        workspaceId: b.workspaceId,
-        projectId: b.projectId,
-        jobId: b.jobId,
-        stepId: context.stepId,
-        leaseEpoch: context.leaseEpoch,
-      })
-      if (
-        context.operationId !==
-          operationId(b.jobId, context.stepId, Number(current.step.attempt)) ||
-        b.credentialId !== current.binding.credential_id ||
-        b.credentialRevision !== number(current.binding.credential_revision as string) ||
-        b.providerPolicyDigest !== current.binding.provider_policy_digest ||
-        b.model !== current.binding.model ||
-        b.provider !== current.binding.provider ||
-        b.repairNumber !== current.job.repair_count ||
-        b.promptVersion !== current.job.prompt_version ||
-        sha256(context.instruction) !== current.binding.instruction_digest ||
-        canonicalHash(context.preset) !== canonicalHash(current.binding.preset_json) ||
-        Date.parse(context.deadlineAt) <= current.now ||
-        Date.parse(context.deadlineAt) > new Date(current.step.lease_expires_at as Date).getTime()
-      )
-        throw new ControlError(409, 'HOSTED_SOURCE_BINDING')
-      const source = await one<{ base_manifest_artifact_id: string }>(
-        c,
-        'SELECT base_manifest_artifact_id FROM job_source_contexts WHERE job_id=$1',
-        [b.jobId]
-      )
-      if (source.base_manifest_artifact_id !== context.base.manifestArtifact.id)
-        throw new ControlError(409, 'HOSTED_SOURCE_BINDING')
+      await this.assertCurrentInTransaction(c, context)
       return fn(c)
     })
+  }
+  /** For fenced outbox settlement only, in the caller's existing scoped E1
+   * transaction. The same authorization checks and locks as withCurrent apply. */
+  async assertCurrentInTransaction(
+    c: Tx,
+    context: Readonly<HostedGenerationContext>
+  ): Promise<void> {
+    const b = batchBindingSchema.parse(context.binding)
+    const current = await this.lock(c, {
+      workspaceId: b.workspaceId,
+      projectId: b.projectId,
+      jobId: b.jobId,
+      stepId: context.stepId,
+      leaseEpoch: context.leaseEpoch,
+    })
+    if (
+      context.operationId !== operationId(b.jobId, context.stepId, Number(current.step.attempt)) ||
+      b.credentialId !== current.binding.credential_id ||
+      b.credentialRevision !== number(current.binding.credential_revision as string) ||
+      b.providerPolicyDigest !== current.binding.provider_policy_digest ||
+      b.model !== current.binding.model ||
+      b.provider !== current.binding.provider ||
+      b.repairNumber !== current.job.repair_count ||
+      b.promptVersion !== current.job.prompt_version ||
+      sha256(context.instruction) !== current.binding.instruction_digest ||
+      canonicalHash(context.preset) !== canonicalHash(current.binding.preset_json) ||
+      Date.parse(context.deadlineAt) <= current.now ||
+      Date.parse(context.deadlineAt) > new Date(current.step.lease_expires_at as Date).getTime()
+    )
+      throw new ControlError(409, 'HOSTED_SOURCE_BINDING')
+    const source = await one<{ base_manifest_artifact_id: string }>(
+      c,
+      'SELECT base_manifest_artifact_id FROM job_source_contexts WHERE job_id=$1',
+      [b.jobId]
+    )
+    if (source.base_manifest_artifact_id !== context.base.manifestArtifact.id)
+      throw new ControlError(409, 'HOSTED_SOURCE_BINDING')
   }
   async withClaim<T>(scope: DispatchScope, fn: (c: Tx) => Promise<T>) {
     return this.db.scoped(scope.workspaceId, async (c) => {
