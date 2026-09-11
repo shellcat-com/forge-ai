@@ -101,3 +101,7 @@ source and encryption data and additive migrations. Keep enrollment/admission/
 worker disabled. Never drop application databases or reverse migrations as part
 of a code rollback. Re-enabling signup/keys requires the documented private
 configuration and live verification, not changing flags to make checks green.
+
+## Subsequent configuration handoff
+
+The [Better Auth Infrastructure handoff](better-auth-infra-handoff.md) records a later configuration-only redeployment of this separate verification project and the private `BETTER_AUTH_API_KEY` setting to preserve. It does not deploy the newer source/admission code or close live acceptance gates.
