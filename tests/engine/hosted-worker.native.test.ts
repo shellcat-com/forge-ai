@@ -7,6 +7,7 @@ import { readFileSync } from 'node:fs'
 import { startNativePostgres } from './native-postgres.ts'
 import { HostedIdentityBridge } from '../../engine/control/hosted-identity.ts'
 import { ControlDatabase, clock, one, number } from '../../engine/control/database.ts'
+import { HostedReviews } from '../../engine/control/hosted-reviews.ts'
 import { HostedProjects } from '../../engine/control/hosted-projects.ts'
 import { HostedSourceWorker } from '../../engine/control/hosted-worker.ts'
 import type { HostedSourceWorkerConfig } from '../../engine/control/hosted-worker.ts'
@@ -315,7 +316,37 @@ async function planning(f: Seed) {
   return f.worker.execute(f.command, signal())
 }
 async function approve(f: Seed, record = true) {
-  // Synthetic approval via the canonical reducer, not an HTTP/auth acceptance test.
+  if (record) {
+    // Real owner approval service over native SQL/encrypted source. Accounts and
+    // provider transport remain synthetic; this is not live HTTP acceptance.
+    const reviews = new HostedReviews(api, bridge, store)
+    const current = await reviews.plan(f.identity.sessionToken, f.identity.workspaceId, f.jobId)
+    await reviews.approvePlan(
+      f.identity.sessionToken,
+      f.identity.workspaceId,
+      f.identity.csrfToken,
+      f.jobId,
+      randomUUID(),
+      { schemaVersion: 1, stateVersion: current.stateVersion, subjectDigest: current.reviewDigest }
+    )
+    const dispatch = (
+      await pg.admin.query(
+        'SELECT * FROM forge_control.scheduler_dispatches WHERE job_id=$1 AND closed_at IS NULL',
+        [f.jobId]
+      )
+    ).rows[0]
+    f.command = {
+      schemaVersion: 1,
+      dispatchId: dispatch.id,
+      workspaceId: f.identity.workspaceId,
+      jobId: f.jobId,
+      expiresAt: dispatch.expires_at.toISOString(),
+      sequence: 0,
+    }
+    return
+  }
+  // Deliberately forge a state transition WITHOUT an approval row for the
+  // negative worker authorization test. Production never uses this path.
   return api.session(f.identity.sessionToken, f.identity.workspaceId, 'owner', async (c, actor) => {
     const j = await one<JobRow>(c, 'SELECT * FROM jobs WHERE id=$1 FOR UPDATE', [f.jobId]),
       at = await clock(c)
@@ -348,22 +379,6 @@ async function approve(f: Seed, record = true) {
       templateDigest: j.template_digest,
       policyDigest: j.policy_digest,
     }
-    if (record)
-      await c.query(
-        `INSERT INTO approvals(id,workspace_id,project_id,job_id,actor_id,kind,subject_digest,state_version,decision,expires_at,created_at)
-      VALUES($1,$2,$3,$4,$5,'plan',$6,$7,'approve',$8,$9)`,
-        [
-          approval.id,
-          j.workspace_id,
-          j.project_id,
-          j.id,
-          actor.user_id,
-          j.review_digest,
-          j.state_version,
-          approval.expiresAt,
-          at,
-        ]
-      )
     await changeState(
       c,
       j,

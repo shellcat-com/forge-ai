@@ -1,0 +1,1 @@
+PASS: Firefox GET/POST disabled review route, no-store headers, safe response; no live generation claim.

@@ -1,6 +1,12 @@
 {
   "hosted-review-route-tests.txt": "cf031565e961c3372cd04f86801cc5f596be33ab6deea8e2ebb5030938a0e70e",
+  "hosted-reviews-control-final.txt": "8e8262a11afa14681f56b79c9a85f8d61c45967ac7da5f8a04e91c13e58aabdd",
+  "hosted-reviews-db-final.txt": "2d4780c99e3281fa964ec194e69766a37680ae0af55b025e82136bffbe285f8b",
   "hosted-reviews-native-final.txt": "7c74ea73312a6a42b81f4b6f2dfa0572f9385f1ea9d2d167de3ebd733d26e4eb",
   "hosted-reviews-native-rerun.txt": "6934fa8e5a39f75d37cb222db1e8384340cbf88b428556477c0c7ec62280714c",
-  "hosted-reviews-native.txt": "73e29ec8c5025de4644e820b4f2406c39131f183155ec520e99cec726dc961ee"
+  "hosted-reviews-native.txt": "73e29ec8c5025de4644e820b4f2406c39131f183155ec520e99cec726dc961ee",
+  "hosted-worker-review-verify.txt": "301ae06b5b736834d152c34952a05b06381c6a646e66dd7105d5dfc396539973",
+  "hosted-worker-reviews-combined.txt": "ee772f6c383c02e9b9a2a4c129738951fe9eaf9b27c152bff668afe8fed25295",
+  "review-browser.txt": "8a2c0ae34bda858e6e6e1041125906b3f6abefe9790d3bc26e31adfbcc787cad",
+  "review-route-browser-result.json": "44f3b91ca79b92950b78e588260ed01a56a6fe394ee4bbc2fc2a33ab3be02ae8"
 }

@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "evidence": "local production Forge build; actual Firefox; default-off review route only",
+  "checks": {
+    "getStatus": 503,
+    "postStatus": 503,
+    "noStore": true,
+    "disabledMessage": true
+  },
+  "externalProviderCalls": 0,
+  "generatedExecution": false,
+  "liveAcceptance": false
+}
