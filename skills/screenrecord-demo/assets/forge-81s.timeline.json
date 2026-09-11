@@ -1,0 +1,121 @@
+{
+  "version": 1,
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "clips": [
+    {
+      "name": "opening",
+      "source": "raw-forge-process.webm",
+      "start": 0.7,
+      "end": 14.62,
+      "duration": 14
+    },
+    {
+      "name": "prompt-timelapse",
+      "source": "raw-forge-process.webm",
+      "start": 14.62,
+      "end": 120.751,
+      "duration": 18
+    },
+    {
+      "name": "design-and-create",
+      "source": "raw-forge-process.webm",
+      "start": 120.751,
+      "end": 131.119,
+      "duration": 9
+    },
+    {
+      "name": "open-brief",
+      "source": "raw-forge-process.webm",
+      "start": 131.119,
+      "end": 133,
+      "duration": 1.8
+    },
+    {
+      "name": "refine-timelapse",
+      "source": "raw-forge-process.webm",
+      "start": 133,
+      "end": 142.2,
+      "duration": 3.2
+    },
+    {
+      "name": "save-and-generate",
+      "source": "raw-forge-process.webm",
+      "start": 142.2,
+      "end": 149.841,
+      "duration": 6.5
+    },
+    {
+      "name": "generation-timelapse",
+      "source": "raw-forge-process.webm",
+      "start": 149.841,
+      "end": 280.245,
+      "duration": 6.5
+    },
+    {
+      "name": "preview-and-export",
+      "source": "raw-forge-process.webm",
+      "start": 280.245,
+      "end": 289.329,
+      "duration": 9
+    },
+    {
+      "name": "website-tour",
+      "source": "raw-website-tour.webm",
+      "start": 0.25,
+      "end": 11.934,
+      "duration": 13
+    }
+  ],
+  "sound": {
+    "music": true,
+    "bpm": 78,
+    "seed": 20260911,
+    "typing": [
+      {
+        "start": 13.1,
+        "end": 14,
+        "spacing": 0.105
+      },
+      {
+        "start": 14,
+        "end": 31.65,
+        "spacing": 0.105
+      },
+      {
+        "start": 42.3,
+        "end": 45.7,
+        "spacing": 0.1
+      }
+    ],
+    "clicks": [
+      2.9619,
+      5.9269,
+      8.4744,
+      10.0474,
+      11.8608,
+      14.3697,
+      33.4314,
+      34.7769,
+      36.4696,
+      37.8151,
+      39.1606,
+      41.001,
+      46.0425,
+      47.1484,
+      48.5946,
+      49.8706,
+      52.1249,
+      62.8194,
+      64.573,
+      65.7916,
+      71.75,
+      73,
+      73.2,
+      74.1,
+      76,
+      77
+    ]
+  }
+}
