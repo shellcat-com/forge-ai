@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "scope": "hosted-foundation-only",
+  "foundationPassed": true,
+  "releaseReady": false,
+  "liveAcceptance": "not-evaluated",
+  "checks": [
+    {
+      "name": "AUTH_RUNTIME",
+      "passed": true
+    },
+    {
+      "name": "API_RUNTIME",
+      "passed": true
+    },
+    {
+      "name": "WORKER_RUNTIME",
+      "passed": true
+    },
+    {
+      "name": "MAINTENANCE_RUNTIME",
+      "passed": true
+    },
+    {
+      "name": "AUTH_SCHEMA",
+      "passed": true
+    },
+    {
+      "name": "CONTROL_SCHEMA",
+      "passed": true
+    },
+    {
+      "name": "CONTROL_SETTINGS",
+      "passed": true
+    },
+    {
+      "name": "HOSTED_ENROLLMENT",
+      "passed": true
+    }
+  ],
+  "blockers": [
+    "LIVE_BETA_ACCEPTANCE_NOT_EVALUATED",
+    "HOSTED_CONNECTIONS_DISABLED",
+    "PUBLIC_SIGNUP_DISABLED",
+    "SOCIAL_OAUTH_CONFIGURATION_INCOMPLETE",
+    "ADMISSION_DISABLED",
+    "WORKER_DISABLED",
+    "HOSTED_ENROLLMENT_DISABLED"
+  ],
+  "gates": {
+    "enrollment": false,
+    "admission": false,
+    "worker": false,
+    "freeAllowances": "unverified",
+    "keyRecovery": "unverified",
+    "restoreDrill": "unverified",
+    "providerGeneration": "unverified",
+    "sandboxIsolation": "unverified",
+    "privatePreview": "unverified",
+    "publication": "unverified",
+    "selfHosting": "unverified",
+    "socialCallbacks": "unverified",
+    "migrationHashReceipts": "unverified",
+    "hostedConnections": false,
+    "publicSignup": false,
+    "googleConfigured": false,
+    "githubConfigured": false
+  }
+}

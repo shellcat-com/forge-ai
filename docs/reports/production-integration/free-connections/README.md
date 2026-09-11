@@ -14,7 +14,7 @@
 
 | Check | Result |
 | --- | --- |
-| `npm run verify` | Lint/types/build passed; 911 tests passed, 5 existing optional tests skipped on the combined scheduler/Neon/Gmail milestone (the first account/key milestone passed 833). |
+| `npm run verify` | Lint/types/build passed; 961 tests passed, 5 existing optional tests skipped on exact code commit `2a20197`; [full CI](https://github.com/shellcat-com/forge-ai/actions/runs/34543481205) also passed native control and standalone build checks. The first account/key milestone passed 833. |
 | Account-to-key native API regression | 14 tests passed using real Better Auth and disposable PostgreSQL, including real signup/verification/login, engine bridge, encrypted key CRUD, foreign-account denial and logout revocation. Delivery is synthetic. |
 | Identity/catalog/BYOK suites | 84 tests passed across four suites; authoritative identity lifecycle, enrollment races, tenant boundaries, encrypted rotation and bounded provider metadata contracts. |
 | Firefox browser regression | 24 checks passed; signup, synthetic verification/recovery, key save/reload/replace/remove, unavailable build preservation, light/dark 390/768/1440 layouts, focus, CSS 200% zoom and reduced-motion emulation. |
@@ -49,3 +49,5 @@ Vercel team `biswas07` was verified as Hobby. Cloudflare Wrangler authenticated 
 Neon organization Free entitlement and Vercel Hobby were verified. The dedicated Neon control database and restricted runtime roles have been installed and verified over TLS; see [installation evidence](neon-installation.md). The combined milestone adds the disabled scheduler transport and bounded Gmail adapter; see [combined results](combined-foundation.md).
 
 Remaining: verify Cloudflare free entitlement and remaining resource capacity; supply private installation/email configuration and a user model connection; compose actual generation, durable dispatch/accounting/outbox, encrypted source adoption, managed isolated builds, authenticated previews, application databases and migrations, full publication management and creator-only app authentication. Then pass the original hosted A–P and clean self-host acceptance, record the successful real flow and update the draft PR. Do not merge or replace production before that evidence exists.
+
+See the [hosted verification deployment](hosted-verification.md) for the new separate Vercel project, actual Neon preflight, anonymous Firefox checks and current live acceptance ledger. The existing public availability deployment is unchanged.

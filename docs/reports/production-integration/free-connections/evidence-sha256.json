@@ -20,6 +20,10 @@
     "sha256": "e6d1e2aa159444a668fe12754ef710a67aa2134ec6c663f53a6080fd2367132e"
   },
   {
+    "path": "evidence/combined-ci-result.json",
+    "sha256": "d5650c75e5b33b5fb1a4dbaa4a46e6d0730ea976b5aedcd6b6df942f82a1a7a7"
+  },
+  {
     "path": "evidence/combined-types-disk-failure.log",
     "sha256": "2dbeb4c64e8586e17c057d19cc007236a15a49464cf6ed3e1bae057c69d95665"
   },
@@ -68,8 +72,20 @@
     "sha256": "14e65e73b13e3fd50d2d5aee1b0eb62104f57714f20c4fda71bac7606e7963e8"
   },
   {
+    "path": "evidence/hosted-browser-results.json",
+    "sha256": "215d94be4aaab8c37efce4b3782d0a2b3a7a6c57e8c76b8e049775a4fe776966"
+  },
+  {
     "path": "evidence/hosted-connections.png",
     "sha256": "f1df96a09182365634c1c8cb9044180b42d78ccf0dc2a75d2689907dd932ba25"
+  },
+  {
+    "path": "evidence/hosted-deployment.json",
+    "sha256": "e24449ee64292d410dd80e5ee68300f49cdca12fe689f8257934003c79b5ba5a"
+  },
+  {
+    "path": "evidence/hosted-login.png",
+    "sha256": "d62128ff87ef4753afd2258b5cfa5b6cf312d4af31b774221d97ddedc5371b89"
   },
   {
     "path": "evidence/identity-initial.log",
@@ -82,6 +98,10 @@
   {
     "path": "evidence/lint-final.log",
     "sha256": "e0865fe59c4a0182a650ce3a0b837453d730b50f8a10f3f232bc5f974dc8634a"
+  },
+  {
+    "path": "evidence/live-hosted-readiness.json",
+    "sha256": "56177ac5589267a939be8426f3d557fc300c5df2f0ed61ab63fd4867683be5cc"
   },
   {
     "path": "evidence/local-account-connections.webm",

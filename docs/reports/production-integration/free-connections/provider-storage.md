@@ -16,7 +16,7 @@ The first combined rerun had 905 passing tests and 26 failures while the Mac's d
 
 One Neon schema replay attempted an unnecessary `SET LOCAL ROLE forge_object_guard`; Neon denied that switch with SQLSTATE 42501. A diagnostic showed the migration owner has BYPASSRLS and membership is not equivalent to permission to switch roles. Healthy replay now preserves the existing capacity row without switching roles; missing-row recovery derives counts from actual retained objects using appropriate migration authority. The corrected live replay passed. The initial schema and working runtime roles were preserved throughout.
 
-A subsequent local `npm run verify` passed lint but stopped at TypeScript with explicit ENOSPC while writing `tsconfig.tsbuildinfo`. This is retained as a failed run. Further full verification moves to the existing GitHub CI runner rather than repeatedly exhausting the shared Mac. CI results must be attached to the exact final commit; the previous d85eeca foundation CI passed, but is not evidence for later changes.
+A subsequent local `npm run verify` passed lint but stopped at TypeScript with explicit ENOSPC while writing `tsconfig.tsbuildinfo`. This is retained as a failed run. Further full verification moves to the existing GitHub CI runner rather than repeatedly exhausting the shared Mac. The exact code commit `2a20197506b7c69d27fc2cb5214a665b1184c206` subsequently passed [full CI](https://github.com/shellcat-com/forge-ai/actions/runs/34543481205): lint, types, 961 tests (5 existing optional skips), production build, 45 native control assertions and standalone control build. This closes that code verification failure; it does not close live release acceptance.
 
 ## Delivery and limits
 

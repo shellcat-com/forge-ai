@@ -1,0 +1,14 @@
+{
+  "id": "dpl_E1xVppBznt6Kb9a8oe1Lvn498zCt",
+  "readyState": "READY",
+  "url": "forge-personal-biswas07-ggvxpabob-biswas07.vercel.app",
+  "alias": [
+    "forge-personal-biswas07.vercel.app",
+    "forge-personal-biswas07-biswas07.vercel.app"
+  ],
+  "projectId": "prj_YoTRCJ2MEHuuXx1iKMRXQHMP0bf7",
+  "projectName": "forge-personal-biswas07",
+  "sourceCommit": "2a20197506b7c69d27fc2cb5214a665b1184c206",
+  "scope": "isolated foundation verification deployment; generation disabled",
+  "originalProductionUnchanged": "dpl_HQkCUrvZnLVXx4LjGfo64qUu1jh3"
+}

@@ -1,5 +1,6 @@
 # Production integration report — release incomplete
 
+> Historical first account milestone. The current $0 architecture, implementation and live acceptance status are in [free-connections/hosted-verification.md](free-connections/hosted-verification.md). Earlier paid-budget and merge directions below are superseded: PR18 remains draft and must not merge.
 Latest implementation: [free-service account/key integration](free-connections/README.md). That milestone supersedes the historical account-bridge/BYOK gaps below, records the new $0 managed-Sandbox direction, and preserves all remaining live release gates.
 
 2026-09-10. The requested hosted generation-to-publication product is **not complete**. This task implements and verifies a public-account milestone and fixes concrete hosted-boundary/onboarding failures. No real generated application, working published application URL, live mailbox-delivery result or complete product recording is claimed. Further implementation is required in addition to external configuration.
