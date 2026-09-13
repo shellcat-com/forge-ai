@@ -1,0 +1,18 @@
+{
+  "url": "https://parable-three.vercel.app/r/ai-input.json",
+  "sha256": "d8814cf44c3423b76a98c58e3a6068b07fa6310d1bc50d56bdcdccce7e6dde5e",
+  "bytes": 16399,
+  "name": "ai-input",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/parable/ui/ai-input.tsx",
+      "target": "components/parable/ai-input.tsx",
+      "type": "registry:ui",
+      "bytes": 14741
+    }
+  ]
+}

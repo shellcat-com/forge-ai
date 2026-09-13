@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "origin": "platform-authored-candidate-host",
+  "version": "postgres (PostgreSQL) 18.6",
+  "bootstrapSha256": "3a6cfcdb8219b652481f578c19f3b052fae111f8241c71f0ef56e9b9c56eca0e",
+  "initialMigrationSha256": "3b584bb76017fd598454ffaaa670f51c7a9f2c7e409f8ffb6387e09f67769ecf",
+  "additiveMigrationSha256": "eee06cb828aa1f5e2dae525486a54b441674b32df1aef91fc93b3db2b82dabc1",
+  "fresh": true,
+  "priorSeeded": true,
+  "defaultPrivileges": true,
+  "restrictedRoles": true,
+  "databaseRestart": true,
+  "cleanup": true,
+  "guestExecution": false,
+  "providerGeneration": false,
+  "isolationAcceptance": false,
+  "sourceEvidence": "postgres18-source.json",
+  "buildConfiguration": [
+    "--without-readline",
+    "--without-icu"
+  ],
+  "host": "macOS arm64",
+  "limitations": [
+    "Not Linux guest execution",
+    "No app-process restart or app UI/database binding tested",
+    "No real credential provisioner; trusted harness uses SET ROLE in a fresh socket-only cluster",
+    "Compiled locally with optional ICU/readline disabled; not a release image"
+  ],
+  "checkedAt": "2026-09-10T01:26:42.692649+00:00"
+}

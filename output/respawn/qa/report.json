@@ -1,0 +1,49 @@
+[
+  {
+    "flow": "search, filters, sorting, wishlist, login/signout, quantity/remove, checkout, empty cart, themes, collection",
+    "passed": true
+  },
+  {
+    "width": 390,
+    "theme": "dark",
+    "overflow": false,
+    "missingImages": 0
+  },
+  {
+    "width": 390,
+    "theme": "light",
+    "overflow": false,
+    "missingImages": 0
+  },
+  {
+    "width": 768,
+    "theme": "dark",
+    "overflow": false,
+    "missingImages": 0
+  },
+  {
+    "width": 768,
+    "theme": "light",
+    "overflow": false,
+    "missingImages": 0
+  },
+  {
+    "width": 1440,
+    "theme": "dark",
+    "overflow": false,
+    "missingImages": 0
+  },
+  {
+    "width": 1440,
+    "theme": "light",
+    "overflow": false,
+    "missingImages": 0
+  },
+  {
+    "keyboardModalFocus": true,
+    "escapeReturnFocus": true,
+    "reducedMotion": true,
+    "zoom200": true,
+    "consoleErrors": []
+  }
+]

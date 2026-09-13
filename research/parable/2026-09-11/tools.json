@@ -1,0 +1,93 @@
+{
+  "checkedAt": "2026-09-11T07:35:13.771627+00:00",
+  "httpStatus": 200,
+  "request": {
+    "jsonrpc": "2.0",
+    "id": "tools",
+    "method": "tools/list"
+  },
+  "response": {
+    "jsonrpc": "2.0",
+    "id": "tools",
+    "result": {
+      "tools": [
+        {
+          "name": "list_components",
+          "description": "List all Parable UI components (name, category, description). Optional filter by category. Everything is free.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "category": {
+                "type": "string",
+                "enum": [
+                  "text",
+                  "interactive",
+                  "hero",
+                  "effect",
+                  "loader",
+                  "block"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "name": "get_component",
+          "description": "Get one component by slug: metadata, dependencies, and the shadcn install command.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "slug": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "slug"
+            ]
+          }
+        },
+        {
+          "name": "list_templates",
+          "description": "List all Parable & Formwork website templates (name, stack, family, live URL). Optional filter by family or stack.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "family": {
+                "type": "string",
+                "enum": [
+                  "parable",
+                  "formwork"
+                ]
+              },
+              "stack": {
+                "type": "string",
+                "enum": [
+                  "static",
+                  "astro",
+                  "next",
+                  "svelte",
+                  "vite"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "name": "get_template",
+          "description": "Get one template by slug: metadata, live URL, repo, and the degit clone command.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "slug": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "slug"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

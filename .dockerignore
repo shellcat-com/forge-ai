@@ -4,6 +4,11 @@ node_modules
 dist
 coverage
 .env
+.env.*
+!.env.example
+dist-cloud
+dist-engine
+output
 *.log
 *.tsbuildinfo
 docs/reports

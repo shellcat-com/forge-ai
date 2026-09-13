@@ -1,0 +1,1 @@
+Search filters the catalog as you type. An unmatched search gets a clear empty state and a reset action. Heart controls save individual products, and the saved items view brings those choices together. These interactions are working browser behavior, with no loading screens added for effect.

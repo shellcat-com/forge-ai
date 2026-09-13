@@ -1,0 +1,54 @@
+[
+  {
+    "name": "hero",
+    "seconds": 0.103
+  },
+  {
+    "name": "login-complete",
+    "seconds": 11.379
+  },
+  {
+    "name": "browse",
+    "seconds": 15.074
+  },
+  {
+    "name": "sorted",
+    "seconds": 22.421
+  },
+  {
+    "name": "search-complete",
+    "seconds": 29.438
+  },
+  {
+    "name": "wishlist",
+    "seconds": 34.102
+  },
+  {
+    "name": "cart",
+    "seconds": 41.078
+  },
+  {
+    "name": "quantities",
+    "seconds": 47.372
+  },
+  {
+    "name": "checkout-complete",
+    "seconds": 56.674
+  },
+  {
+    "name": "signed-out",
+    "seconds": 60.821
+  },
+  {
+    "name": "light-theme",
+    "seconds": 63.863
+  },
+  {
+    "name": "collection",
+    "seconds": 67.188
+  },
+  {
+    "name": "end",
+    "seconds": 73.583
+  }
+]

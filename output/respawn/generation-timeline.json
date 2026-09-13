@@ -1,0 +1,26 @@
+[
+  {
+    "name": "landing",
+    "seconds": 1.859
+  },
+  {
+    "name": "demo-login",
+    "seconds": 4.065
+  },
+  {
+    "name": "brief",
+    "seconds": 6.161
+  },
+  {
+    "name": "generation-start",
+    "seconds": 9.294
+  },
+  {
+    "name": "generation-end",
+    "seconds": 107.22
+  },
+  {
+    "name": "exported",
+    "seconds": 111.71
+  }
+]

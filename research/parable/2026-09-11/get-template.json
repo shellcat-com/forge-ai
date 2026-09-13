@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-09-11T07:35:14.959518+00:00",
+  "httpStatus": 200,
+  "request": {
+    "jsonrpc": "2.0",
+    "id": "get-template",
+    "method": "tools/call",
+    "params": {
+      "name": "get_template",
+      "arguments": {
+        "slug": "fieldnote-research"
+      }
+    }
+  },
+  "response": {
+    "jsonrpc": "2.0",
+    "id": "get-template",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"slug\": \"fieldnote-research\",\n  \"name\": \"Fieldnote\",\n  \"pitch\": \"Research notes with citations \u2014 a working \u2318K palette + hover-cards.\",\n  \"family\": \"parable\",\n  \"stack\": \"next\",\n  \"tags\": [\n    \"next\",\n    \"devtool\",\n    \"dark\"\n  ],\n  \"liveUrl\": \"https://shellcat-com.github.io/fieldnote-research/\",\n  \"repo\": \"https://github.com/shellcat-com/fieldnote-research\",\n  \"degit\": \"shellcat-com/fieldnote-research\",\n  \"thumb\": \"/templates/fieldnote-research.jpg\",\n  \"clone\": \"npx degit shellcat-com/fieldnote-research fieldnote-research\"\n}"
+        }
+      ]
+    }
+  }
+}

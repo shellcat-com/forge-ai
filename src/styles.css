@@ -2835,3 +2835,8 @@ dialog p {
 .docs-page p {
   font-size: 14px;
 }
+
+/* Provider output remains in an opaque-origin sandbox, separate from Forge. */
+.generated-website { width: 100%; min-height: 740px; border: 1px solid var(--border); background: var(--surface); }
+.provider-panel > button { margin: 8px 8px 8px 0; }
+@media (max-width: 760px) { .generated-website { min-height: 680px; } }

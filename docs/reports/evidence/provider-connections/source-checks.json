@@ -1,0 +1,77 @@
+[
+  {
+    "path": "src/cloud/main.ts",
+    "sha256": "a3befcfc42927f9576ec25b1e1762711db5174ecce232d9defffc11a2e7fdd02",
+    "matchesTestedCopy": true
+  },
+  {
+    "path": "src/cloud/client.ts",
+    "sha256": "556857c0e17ff99289cebddb1408c0a703f9ac8169185b49834aed200e7acd53",
+    "matchesTestedCopy": true
+  },
+  {
+    "path": "src/cloud/providers.ts",
+    "sha256": "d558e553d11f842d790b1d99519cfb3615f8c3df0a3a2760339e8e57f957f18c",
+    "matchesTestedCopy": true
+  },
+  {
+    "path": "src/cloud/styles.css",
+    "sha256": "4cc2fed29dcbce1f1a16a74f925c3c6223a88386e71fe598a34a0ea594ddcf34",
+    "matchesTestedCopy": true
+  },
+  {
+    "path": "server/cloud/app.mjs",
+    "sha256": "5a2c69c39ec9291dd0d583838ae4e2168e52926a127e8ee717bb843e303754e6",
+    "matchesTestedCopy": true
+  },
+  {
+    "path": "server/cloud/connections.mjs",
+    "sha256": "a0fcc5ebf056c93a0e9292145be53fc403a554db2d6f15ed6f1bf61fca9c8bf8",
+    "matchesTestedCopy": true
+  },
+  {
+    "path": "server/cloud/connections.test.mjs",
+    "sha256": "3e0057db736d605883a8967e9e23c5d095fb15d4b5d627228c591519ec086a77",
+    "matchesTestedCopy": true
+  },
+  {
+    "path": "server/cloud/connections-http.test.mjs",
+    "sha256": "d1aae64eb913cc4942fb1967461765a774d03ebcb56786d37110fbf6268a4caf",
+    "matchesTestedCopy": true
+  },
+  {
+    "path": "server/cloud/vercel.mjs",
+    "sha256": "d3f0506e39212eee91f3e5ff70f3eb4552186aace49c06fa46a5b3ce41481196",
+    "matchesTestedCopy": true
+  },
+  {
+    "path": "server/cloud/index.mjs",
+    "sha256": "b077b524f61b2e6ad725f8d89734a4c1a7fdc507b368d9f4bf7165bcf31ac01b",
+    "matchesTestedCopy": true
+  },
+  {
+    "path": "server/cloud/schema.mjs",
+    "sha256": "2fd93949b842776046321ca30f26604cd04f58640cdc2bcfbee00b9a146ccb2c",
+    "matchesTestedCopy": true
+  },
+  {
+    "path": "server/cloud/migrations/0003_provider_connections.sql",
+    "sha256": "b233e0afe8e19a10e8237cd6acac18385432115633ab3e86bb4eeb1986084e8b",
+    "matchesTestedCopy": true
+  },
+  {
+    "path": "server/provider.mjs",
+    "sha256": "bc67cf7ca99ff1aceefe67af0202262b229178018ff60a4adf627a1e18f0aa5b",
+    "matchesTestedCopy": true
+  },
+  {
+    "path": "scripts/migrate-cloud.mjs",
+    "sha256": "fda3735b85d781ec13f511528d4797962b68f26b40854d6a0d24f7e5d8e04b1c",
+    "matchesTestedCopy": true
+  },
+  {
+    "path": "scripts/package-cloud-vercel.mjs",
+    "sha256": "5e9785e2a9e06104dc6e1b0fed05751db1b4f6bd0b053c1984cb11227d71c4ff",
+    "matchesTestedCopy": true
+  }
+]

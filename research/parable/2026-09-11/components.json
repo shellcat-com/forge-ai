@@ -1,0 +1,1408 @@
+[
+  {
+    "slug": "shimmer-button",
+    "title": "Shimmer Button",
+    "category": "interactive",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": null,
+    "files": [
+      "registry/parable/ui/shimmer-button.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/shimmer-button.json"
+  },
+  {
+    "slug": "velocity-marquee",
+    "title": "Velocity Marquee",
+    "category": "text",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Componentry \u2014 Velocity Scroll",
+      "url": "https://componentry.dev/docs"
+    },
+    "files": [
+      "registry/parable/ui/velocity-marquee.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/velocity-marquee.json"
+  },
+  {
+    "slug": "kinetic-text",
+    "title": "Kinetic Text",
+    "category": "text",
+    "dependencies": [
+      "motion"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": null,
+    "files": [
+      "registry/parable/ui/kinetic-text.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/kinetic-text.json"
+  },
+  {
+    "slug": "magnetic-dock",
+    "title": "Magnetic Dock",
+    "category": "interactive",
+    "dependencies": [
+      "motion"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Componentry \u2014 Magnetic Dock (and the macOS Dock)",
+      "url": "https://componentry.dev/docs"
+    },
+    "files": [
+      "registry/parable/ui/magnetic-dock.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/magnetic-dock.json"
+  },
+  {
+    "slug": "aurora-background",
+    "title": "Aurora Background",
+    "category": "hero",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Componentry \u2014 Silk Aurora",
+      "url": "https://componentry.dev/docs"
+    },
+    "files": [
+      "registry/parable/ui/aurora-background.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/aurora-background.json"
+  },
+  {
+    "slug": "dot-matrix-loader",
+    "title": "Dot Matrix Loader",
+    "category": "loader",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "dot-matrix by Shawn (@zzzzshawn)",
+      "url": "https://dotmatrix.zzzzshawn.cloud"
+    },
+    "files": [
+      "registry/parable/ui/dot-matrix-loader.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/dot-matrix-loader.json"
+  },
+  {
+    "slug": "magnet-lines",
+    "title": "Magnet Lines",
+    "category": "effect",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "React Bits \u2014 Magnet Lines",
+      "url": "https://reactbits.dev"
+    },
+    "files": [
+      "registry/parable/ui/magnet-lines.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/magnet-lines.json"
+  },
+  {
+    "slug": "dither-aurora",
+    "title": "Dither Aurora",
+    "category": "hero",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Paper Design shaders (category)",
+      "url": "https://shaders.paper.design"
+    },
+    "files": [
+      "registry/parable/ui/dither-aurora.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/dither-aurora.json"
+  },
+  {
+    "slug": "liquid-metal-button",
+    "title": "Liquid Metal Button",
+    "category": "interactive",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "metal-fx by Jakub Antalik",
+      "url": "https://github.com/Jakubantalik/metal-fx"
+    },
+    "files": [
+      "registry/parable/ui/liquid-metal-button.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/liquid-metal-button.json"
+  },
+  {
+    "slug": "dynamic-island",
+    "title": "Dynamic Island",
+    "category": "interactive",
+    "dependencies": [
+      "motion"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Cult UI \u2014 Dynamic Island (free, MIT)",
+      "url": "https://cult-ui.com/docs"
+    },
+    "files": [
+      "registry/parable/ui/dynamic-island.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/dynamic-island.json"
+  },
+  {
+    "slug": "expandable-card",
+    "title": "Expandable Card",
+    "category": "interactive",
+    "dependencies": [
+      "motion"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Cult UI \u2014 Expandable Card (free, MIT)",
+      "url": "https://cult-ui.com/docs"
+    },
+    "files": [
+      "registry/parable/ui/expandable-card.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/expandable-card.json"
+  },
+  {
+    "slug": "logo-carousel",
+    "title": "Logo Carousel",
+    "category": "effect",
+    "dependencies": [
+      "motion"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Cult UI \u2014 Logo Carousel (free, MIT)",
+      "url": "https://cult-ui.com/docs"
+    },
+    "files": [
+      "registry/parable/ui/logo-carousel.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/logo-carousel.json"
+  },
+  {
+    "slug": "gravity-dots",
+    "title": "Gravity Dots",
+    "category": "effect",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Ali Imam \u2014 Attraction (aliimam.in/docs, historical)",
+      "url": "https://aliimam.in"
+    },
+    "files": [
+      "registry/parable/ui/gravity-dots.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/gravity-dots.json"
+  },
+  {
+    "slug": "gradient-heading",
+    "title": "Gradient Heading",
+    "category": "text",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Cult UI \u2014 Gradient Heading (free, MIT)",
+      "url": "https://cult-ui.com/docs"
+    },
+    "files": [
+      "registry/parable/ui/gradient-heading.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/gradient-heading.json"
+  },
+  {
+    "slug": "revenue-chart",
+    "title": "Revenue Chart",
+    "category": "block",
+    "dependencies": [
+      "lucide-react"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Watermelon UI \u2014 dashboard charts",
+      "url": "https://ui.watermelon.sh"
+    },
+    "files": [
+      "registry/parable/ui/revenue-chart.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/revenue-chart.json"
+  },
+  {
+    "slug": "transaction-list",
+    "title": "Transaction List",
+    "category": "block",
+    "dependencies": [
+      "motion"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Watermelon UI \u2014 Transaction List",
+      "url": "https://ui.watermelon.sh"
+    },
+    "files": [
+      "registry/parable/ui/transaction-list.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/transaction-list.json"
+  },
+  {
+    "slug": "device-frame",
+    "title": "Device Frame",
+    "category": "block",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Ali Imam \u2014 Device (aliimam.in/docs, historical)",
+      "url": "https://aliimam.in"
+    },
+    "files": [
+      "registry/parable/ui/device-frame.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/device-frame.json"
+  },
+  {
+    "slug": "sign-in-slice",
+    "title": "Sign-In Slice",
+    "category": "block",
+    "dependencies": [
+      "motion"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Skiper UI \u2014 product slices (approach)",
+      "url": "https://skiper-ui.com"
+    },
+    "files": [
+      "registry/parable/ui/sign-in-slice.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/sign-in-slice.json"
+  },
+  {
+    "slug": "sticky-scroll-cards",
+    "title": "Sticky Scroll Cards",
+    "category": "interactive",
+    "dependencies": [
+      "motion"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Componentry \u2014 Sticky Scroll Cards",
+      "url": "https://componentry.dev/docs"
+    },
+    "files": [
+      "registry/parable/ui/sticky-scroll-cards.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/sticky-scroll-cards.json"
+  },
+  {
+    "slug": "split-flap",
+    "title": "Split Flap",
+    "category": "text",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Componentry \u2014 Split Flap Display (and Solari boards)",
+      "url": "https://componentry.dev/docs"
+    },
+    "files": [
+      "registry/parable/ui/split-flap.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/split-flap.json"
+  },
+  {
+    "slug": "eye-tracking",
+    "title": "Eye Tracking",
+    "category": "effect",
+    "dependencies": [
+      "motion"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Componentry \u2014 Eye Tracking",
+      "url": "https://componentry.dev/docs"
+    },
+    "files": [
+      "registry/parable/ui/eye-tracking.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/eye-tracking.json"
+  },
+  {
+    "slug": "shift-card",
+    "title": "Shift Card",
+    "category": "interactive",
+    "dependencies": [
+      "motion"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Cult Pro \u2014 Shift Cards (pattern)",
+      "url": "https://cult-ui.com"
+    },
+    "files": [
+      "registry/parable/ui/shift-card.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/shift-card.json"
+  },
+  {
+    "slug": "notification-stack",
+    "title": "Notification Stack",
+    "category": "interactive",
+    "dependencies": [
+      "motion"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Cult Pro \u2014 notification system (pattern)",
+      "url": "https://cult-ui.com"
+    },
+    "files": [
+      "registry/parable/ui/notification-stack.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/notification-stack.json"
+  },
+  {
+    "slug": "animated-grid",
+    "title": "Animated Grid",
+    "category": "hero",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Cult Pro \u2014 animated grid background (pattern)",
+      "url": "https://cult-ui.com"
+    },
+    "files": [
+      "registry/parable/ui/animated-grid.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/animated-grid.json"
+  },
+  {
+    "slug": "text-scramble",
+    "title": "Text Scramble",
+    "category": "text",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Cult Pro \u2014 text effects (pattern)",
+      "url": "https://cult-ui.com"
+    },
+    "files": [
+      "registry/parable/ui/text-scramble.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/text-scramble.json"
+  },
+  {
+    "slug": "text-highlighter",
+    "title": "Text Highlighter",
+    "category": "text",
+    "dependencies": [
+      "motion"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Cult Pro / Componentry \u2014 text highlight (pattern)",
+      "url": "https://cult-ui.com"
+    },
+    "files": [
+      "registry/parable/ui/text-highlighter.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/text-highlighter.json"
+  },
+  {
+    "slug": "animated-input",
+    "title": "Animated Input",
+    "category": "interactive",
+    "dependencies": [
+      "motion"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Cult Pro \u2014 animated inputs (pattern)",
+      "url": "https://cult-ui.com"
+    },
+    "files": [
+      "registry/parable/ui/animated-input.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/animated-input.json"
+  },
+  {
+    "slug": "pricing-table",
+    "title": "Pricing Table",
+    "category": "block",
+    "dependencies": [
+      "motion",
+      "lucide-react"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Cult Pro \u2014 pricing blocks (pattern)",
+      "url": "https://cult-ui.com"
+    },
+    "files": [
+      "registry/parable/ui/pricing-table.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/pricing-table.json"
+  },
+  {
+    "slug": "image-reveal",
+    "title": "Image Reveal",
+    "category": "effect",
+    "dependencies": [
+      "motion"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Skiper UI \u2014 image reveal (pattern); upstream interaction genre",
+      "url": "https://skiper-ui.com"
+    },
+    "files": [
+      "registry/parable/ui/image-reveal.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/image-reveal.json"
+  },
+  {
+    "slug": "cursor-image-trail",
+    "title": "Cursor Image Trail",
+    "category": "effect",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Skiper UI \u2014 image cursor trail (pattern)",
+      "url": "https://skiper-ui.com"
+    },
+    "files": [
+      "registry/parable/ui/cursor-image-trail.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/cursor-image-trail.json"
+  },
+  {
+    "slug": "drag-scroll-gallery",
+    "title": "Drag Scroll Gallery",
+    "category": "interactive",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Skiper UI \u2014 things drag and scroll (pattern)",
+      "url": "https://skiper-ui.com"
+    },
+    "files": [
+      "registry/parable/ui/drag-scroll-gallery.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/drag-scroll-gallery.json"
+  },
+  {
+    "slug": "rich-tooltip",
+    "title": "Rich Tooltip",
+    "category": "interactive",
+    "dependencies": [
+      "motion"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Skiper UI \u2014 Vercel-style tooltip (pattern)",
+      "url": "https://skiper-ui.com"
+    },
+    "files": [
+      "registry/parable/ui/rich-tooltip.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/rich-tooltip.json"
+  },
+  {
+    "slug": "token-swap-card",
+    "title": "Token Swap Card",
+    "category": "block",
+    "dependencies": [
+      "motion"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Skiper UI \u2014 Aave token swap (pattern)",
+      "url": "https://skiper-ui.com"
+    },
+    "files": [
+      "registry/parable/ui/token-swap-card.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/token-swap-card.json"
+  },
+  {
+    "slug": "hover-member-row",
+    "title": "Hover Member Row",
+    "category": "interactive",
+    "dependencies": [
+      "motion"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Skiper UI \u2014 hover members (pattern)",
+      "url": "https://skiper-ui.com"
+    },
+    "files": [
+      "registry/parable/ui/hover-member-row.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/hover-member-row.json"
+  },
+  {
+    "slug": "family-drawer",
+    "title": "Family Drawer",
+    "category": "interactive",
+    "dependencies": [
+      "motion"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Emil Kowalski / Vaul-style drawer (upstream of Skiper); pattern",
+      "url": "https://emilkowal.ski"
+    },
+    "files": [
+      "registry/parable/ui/family-drawer.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/family-drawer.json"
+  },
+  {
+    "slug": "progress-ring",
+    "title": "Progress Ring",
+    "category": "block",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Watermelon UI \u2014 progress ring",
+      "url": "https://ui.watermelon.sh"
+    },
+    "files": [
+      "registry/parable/ui/progress-ring.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/progress-ring.json"
+  },
+  {
+    "slug": "stat-card",
+    "title": "Stat Card",
+    "category": "block",
+    "dependencies": [
+      "lucide-react"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Watermelon UI \u2014 dashboard stat cards",
+      "url": "https://ui.watermelon.sh"
+    },
+    "files": [
+      "registry/parable/ui/stat-card.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/stat-card.json"
+  },
+  {
+    "slug": "animated-counter",
+    "title": "Animated Counter",
+    "category": "text",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Watermelon UI \u2014 animated number",
+      "url": "https://ui.watermelon.sh"
+    },
+    "files": [
+      "registry/parable/ui/animated-counter.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/animated-counter.json"
+  },
+  {
+    "slug": "avatar-stack",
+    "title": "Avatar Stack",
+    "category": "interactive",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Watermelon UI \u2014 avatar group",
+      "url": "https://ui.watermelon.sh"
+    },
+    "files": [
+      "registry/parable/ui/avatar-stack.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/avatar-stack.json"
+  },
+  {
+    "slug": "texture-button",
+    "title": "Texture Button",
+    "category": "interactive",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Cult UI \u2014 Texture / Border-Beam buttons (free, MIT)",
+      "url": "https://cult-ui.com/docs"
+    },
+    "files": [
+      "registry/parable/ui/texture-button.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/texture-button.json"
+  },
+  {
+    "slug": "border-beam",
+    "title": "Border Beam",
+    "category": "effect",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Cult UI \u2014 Border Beam (free, MIT)",
+      "url": "https://cult-ui.com/docs"
+    },
+    "files": [
+      "registry/parable/ui/border-beam.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/border-beam.json"
+  },
+  {
+    "slug": "intro-disclosure",
+    "title": "Intro Disclosure",
+    "category": "interactive",
+    "dependencies": [
+      "motion"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Cult UI \u2014 Intro Disclosure / Onboarding (free, MIT)",
+      "url": "https://cult-ui.com/docs"
+    },
+    "files": [
+      "registry/parable/ui/intro-disclosure.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/intro-disclosure.json"
+  },
+  {
+    "slug": "tweet-grid",
+    "title": "Tweet Grid",
+    "category": "block",
+    "dependencies": [
+      "motion"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Cult UI \u2014 Tweet Grid (free, MIT)",
+      "url": "https://cult-ui.com/docs"
+    },
+    "files": [
+      "registry/parable/ui/tweet-grid.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/tweet-grid.json"
+  },
+  {
+    "slug": "ai-input",
+    "title": "AI Input",
+    "category": "block",
+    "dependencies": [
+      "motion"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Skiper UI \u2014 AI Input (pattern); Vercel AI SDK chat genre",
+      "url": "https://skiper-ui.com"
+    },
+    "files": [
+      "registry/parable/ui/ai-input.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/ai-input.json"
+  },
+  {
+    "slug": "peek-carousel",
+    "title": "Peek Carousel",
+    "category": "interactive",
+    "dependencies": [
+      "motion",
+      "lucide-react"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Skiper UI \u2014 Apple / Dia carousel (pattern)",
+      "url": "https://skiper-ui.com"
+    },
+    "files": [
+      "registry/parable/ui/peek-carousel.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/peek-carousel.json"
+  },
+  {
+    "slug": "parallax-hero",
+    "title": "Parallax Hero",
+    "category": "hero",
+    "dependencies": [
+      "motion"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Skiper UI \u2014 Interactive 3D Hero (pattern)",
+      "url": "https://skiper-ui.com"
+    },
+    "files": [
+      "registry/parable/ui/parallax-hero.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/parallax-hero.json"
+  },
+  {
+    "slug": "ascii-render",
+    "title": "ASCII Render",
+    "category": "effect",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Skiper UI \u2014 ASCII simulation (pattern)",
+      "url": "https://skiper-ui.com"
+    },
+    "files": [
+      "registry/parable/ui/ascii-render.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/ascii-render.json"
+  },
+  {
+    "slug": "mega-navbar",
+    "title": "Mega Navbar",
+    "category": "block",
+    "dependencies": [
+      "motion",
+      "lucide-react"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Skiper UI \u2014 Apple Navbar V002 (pattern)",
+      "url": "https://skiper-ui.com"
+    },
+    "files": [
+      "registry/parable/ui/mega-navbar.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/mega-navbar.json"
+  },
+  {
+    "slug": "scroll-text-reveal",
+    "title": "Scroll Text Reveal",
+    "category": "text",
+    "dependencies": [
+      "motion"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Skiper UI \u2014 Horizontal / word text reveal (pattern)",
+      "url": "https://skiper-ui.com"
+    },
+    "files": [
+      "registry/parable/ui/scroll-text-reveal.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/scroll-text-reveal.json"
+  },
+  {
+    "slug": "command-palette",
+    "title": "Command Palette",
+    "category": "interactive",
+    "dependencies": [
+      "motion"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "cmdk by Paco Coursey (\u2318K palette genre)",
+      "url": "https://cmdk.paco.me"
+    },
+    "files": [
+      "registry/parable/ui/command-palette.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/command-palette.json"
+  },
+  {
+    "slug": "activity-feed",
+    "title": "Activity Feed",
+    "category": "block",
+    "dependencies": [
+      "motion"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Watermelon UI \u2014 activity timeline (pattern)",
+      "url": "https://ui.watermelon.sh"
+    },
+    "files": [
+      "registry/parable/ui/activity-feed.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/activity-feed.json"
+  },
+  {
+    "slug": "file-drop",
+    "title": "File Drop",
+    "category": "interactive",
+    "dependencies": [
+      "motion",
+      "lucide-react"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Cult UI \u2014 file upload dropzone (pattern)",
+      "url": "https://cult-ui.com/docs"
+    },
+    "files": [
+      "registry/parable/ui/file-drop.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/file-drop.json"
+  },
+  {
+    "slug": "liquid-blobs",
+    "title": "Liquid Blobs",
+    "category": "hero",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Cult UI \u2014 Hero gradient / metaball backgrounds (pattern)",
+      "url": "https://cult-ui.com/docs"
+    },
+    "files": [
+      "registry/parable/ui/liquid-blobs.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/liquid-blobs.json"
+  },
+  {
+    "slug": "hero-section",
+    "title": "Hero Section",
+    "category": "block",
+    "dependencies": [
+      "motion",
+      "lucide-react"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Cult Pro \u2014 marketing hero blocks (pattern)",
+      "url": "https://cult-ui.com"
+    },
+    "files": [
+      "registry/parable/ui/hero-section.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/hero-section.json"
+  },
+  {
+    "slug": "feature-bento",
+    "title": "Feature Bento",
+    "category": "block",
+    "dependencies": [
+      "motion"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Cult Pro \u2014 bento feature sections (pattern)",
+      "url": "https://cult-ui.com"
+    },
+    "files": [
+      "registry/parable/ui/feature-bento.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/feature-bento.json"
+  },
+  {
+    "slug": "testimonial-marquee",
+    "title": "Testimonial Marquee",
+    "category": "block",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Cult Pro \u2014 testimonial walls (pattern)",
+      "url": "https://cult-ui.com"
+    },
+    "files": [
+      "registry/parable/ui/testimonial-marquee.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/testimonial-marquee.json"
+  },
+  {
+    "slug": "cta-banner",
+    "title": "CTA Banner",
+    "category": "block",
+    "dependencies": [
+      "lucide-react"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Cult Pro \u2014 CTA sections (pattern)",
+      "url": "https://cult-ui.com"
+    },
+    "files": [
+      "registry/parable/ui/cta-banner.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/cta-banner.json"
+  },
+  {
+    "slug": "faq-accordion",
+    "title": "FAQ Accordion",
+    "category": "block",
+    "dependencies": [
+      "motion"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Cult Pro \u2014 FAQ sections (pattern)",
+      "url": "https://cult-ui.com"
+    },
+    "files": [
+      "registry/parable/ui/faq-accordion.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/faq-accordion.json"
+  },
+  {
+    "slug": "stats-band",
+    "title": "Stats Band",
+    "category": "block",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Cult Pro \u2014 stats strips (pattern)",
+      "url": "https://cult-ui.com"
+    },
+    "files": [
+      "registry/parable/ui/stats-band.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/stats-band.json"
+  },
+  {
+    "slug": "section-dots",
+    "title": "Section Dots",
+    "category": "interactive",
+    "dependencies": [
+      "motion"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Skiper UI \u2014 Side Scroll Navigation (pattern)",
+      "url": "https://skiper-ui.com"
+    },
+    "files": [
+      "registry/parable/ui/section-dots.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/section-dots.json"
+  },
+  {
+    "slug": "squircle",
+    "title": "Squircle",
+    "category": "effect",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Skiper UI \u2014 Apple squircle (free tier)",
+      "url": "https://skiper-ui.com"
+    },
+    "files": [
+      "registry/parable/ui/squircle.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/squircle.json"
+  },
+  {
+    "slug": "gooey-toggle",
+    "title": "Gooey Toggle",
+    "category": "interactive",
+    "dependencies": [
+      "motion",
+      "lucide-react"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Skiper UI \u2014 Gooey Effect (free tier)",
+      "url": "https://skiper-ui.com"
+    },
+    "files": [
+      "registry/parable/ui/gooey-toggle.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/gooey-toggle.json"
+  },
+  {
+    "slug": "wallet-stack",
+    "title": "Wallet Stack",
+    "category": "interactive",
+    "dependencies": [
+      "motion"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Family wallet (Benji Taylor) \u2014 via Skiper UI recreation",
+      "url": "https://family.co"
+    },
+    "files": [
+      "registry/parable/ui/wallet-stack.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/wallet-stack.json"
+  },
+  {
+    "slug": "theme-toggle",
+    "title": "Theme Toggle",
+    "category": "interactive",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Skiper UI \u2014 theme toggles (free tier)",
+      "url": "https://skiper-ui.com"
+    },
+    "files": [
+      "registry/parable/ui/theme-toggle.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/theme-toggle.json"
+  },
+  {
+    "slug": "spotlight-card",
+    "title": "Spotlight Card",
+    "category": "interactive",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Componentry \u2014 Spotlight Card (free, MIT)",
+      "url": "https://componentry.dev/docs"
+    },
+    "files": [
+      "registry/parable/ui/spotlight-card.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/spotlight-card.json"
+  },
+  {
+    "slug": "compare-slider",
+    "title": "Compare Slider",
+    "category": "interactive",
+    "dependencies": [
+      "lucide-react"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": null,
+    "files": [
+      "registry/parable/ui/compare-slider.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/compare-slider.json"
+  },
+  {
+    "slug": "morph-tabs",
+    "title": "Morph Tabs",
+    "category": "interactive",
+    "dependencies": [
+      "motion",
+      "lucide-react"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": null,
+    "files": [
+      "registry/parable/ui/morph-tabs.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/morph-tabs.json"
+  },
+  {
+    "slug": "orbit-icons",
+    "title": "Orbit Icons",
+    "category": "effect",
+    "dependencies": [
+      "lucide-react"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": null,
+    "files": [
+      "registry/parable/ui/orbit-icons.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/orbit-icons.json"
+  },
+  {
+    "slug": "balloon-burst",
+    "title": "Balloon Burst",
+    "category": "effect",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "balloons-js by Artur Bie\u0144 (MIT)",
+      "url": "https://github.com/arturbien/balloons-js"
+    },
+    "files": [
+      "registry/parable/ui/balloon-burst.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/balloon-burst.json"
+  },
+  {
+    "slug": "matrix-rain",
+    "title": "Matrix Rain",
+    "category": "effect",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Componentry \u2014 Matrix Rain (free, MIT)",
+      "url": "https://componentry.dev/docs"
+    },
+    "files": [
+      "registry/parable/ui/matrix-rain.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/matrix-rain.json"
+  },
+  {
+    "slug": "pixel-canvas",
+    "title": "Pixel Canvas",
+    "category": "effect",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Componentry \u2014 Pixel Canvas (free, MIT)",
+      "url": "https://componentry.dev/docs"
+    },
+    "files": [
+      "registry/parable/ui/pixel-canvas.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/pixel-canvas.json"
+  },
+  {
+    "slug": "orbit-card-stack",
+    "title": "Orbit Card Stack",
+    "category": "interactive",
+    "dependencies": [
+      "motion",
+      "lucide-react"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Componentry \u2014 Orbit Card Stack (free, MIT)",
+      "url": "https://componentry.dev/docs"
+    },
+    "files": [
+      "registry/parable/ui/orbit-card-stack.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/orbit-card-stack.json"
+  },
+  {
+    "slug": "family-button",
+    "title": "Family Button",
+    "category": "interactive",
+    "dependencies": [
+      "motion",
+      "lucide-react"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Cult UI \u2014 Family Button (free, MIT)",
+      "url": "https://cult-ui.com/docs"
+    },
+    "files": [
+      "registry/parable/ui/family-button.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/family-button.json"
+  },
+  {
+    "slug": "morph-surface",
+    "title": "Morph Surface",
+    "category": "interactive",
+    "dependencies": [
+      "motion",
+      "lucide-react"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Cult UI \u2014 Morph / Dock Surface (free, MIT)",
+      "url": "https://cult-ui.com/docs"
+    },
+    "files": [
+      "registry/parable/ui/morph-surface.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/morph-surface.json"
+  },
+  {
+    "slug": "ai-chat",
+    "title": "AI Chat",
+    "category": "block",
+    "dependencies": [
+      "motion",
+      "lucide-react"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Cult Pro \u2014 AI chat interfaces (pattern, UI only)",
+      "url": "https://cult-ui.com"
+    },
+    "files": [
+      "registry/parable/ui/ai-chat.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/ai-chat.json"
+  },
+  {
+    "slug": "multi-step-form",
+    "title": "Multi-Step Form",
+    "category": "block",
+    "dependencies": [
+      "motion",
+      "lucide-react"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": null,
+    "files": [
+      "registry/parable/ui/multi-step-form.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/multi-step-form.json"
+  },
+  {
+    "slug": "bar-chart",
+    "title": "Bar Chart",
+    "category": "block",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Watermelon UI \u2014 dashboard charts",
+      "url": "https://ui.watermelon.sh"
+    },
+    "files": [
+      "registry/parable/ui/bar-chart.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/bar-chart.json"
+  },
+  {
+    "slug": "donut-chart",
+    "title": "Donut Chart",
+    "category": "block",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Watermelon UI \u2014 dashboard charts",
+      "url": "https://ui.watermelon.sh"
+    },
+    "files": [
+      "registry/parable/ui/donut-chart.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/donut-chart.json"
+  },
+  {
+    "slug": "calendar-heatmap",
+    "title": "Calendar Heatmap",
+    "category": "block",
+    "dependencies": [
+      "lucide-react"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Watermelon UI \u2014 activity heatmap",
+      "url": "https://ui.watermelon.sh"
+    },
+    "files": [
+      "registry/parable/ui/calendar-heatmap.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/calendar-heatmap.json"
+  },
+  {
+    "slug": "kanban-board",
+    "title": "Kanban Board",
+    "category": "block",
+    "dependencies": [
+      "motion"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Watermelon UI \u2014 task board",
+      "url": "https://ui.watermelon.sh"
+    },
+    "files": [
+      "registry/parable/ui/kanban-board.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/kanban-board.json"
+  },
+  {
+    "slug": "image-zoom",
+    "title": "Image Zoom",
+    "category": "interactive",
+    "dependencies": [
+      "motion",
+      "lucide-react"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": null,
+    "files": [
+      "registry/parable/ui/image-zoom.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/image-zoom.json"
+  },
+  {
+    "slug": "stepper",
+    "title": "Stepper",
+    "category": "interactive",
+    "dependencies": [
+      "lucide-react"
+    ],
+    "registryDependencies": [],
+    "inspiredBy": null,
+    "files": [
+      "registry/parable/ui/stepper.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/stepper.json"
+  },
+  {
+    "slug": "skeleton",
+    "title": "Skeleton",
+    "category": "loader",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": null,
+    "files": [
+      "registry/parable/ui/skeleton.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/skeleton.json"
+  },
+  {
+    "slug": "waveform-scrubber",
+    "title": "Waveform Scrubber",
+    "category": "interactive",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Extracted from the Earshot template",
+      "url": "https://shellcat-com.github.io/earshot/"
+    },
+    "files": [
+      "registry/parable/ui/waveform-scrubber.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/waveform-scrubber.json"
+  },
+  {
+    "slug": "caustics-background",
+    "title": "Caustics Background",
+    "category": "hero",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Extracted from the Fathom template",
+      "url": "https://shellcat-com.github.io/fathom/"
+    },
+    "files": [
+      "registry/parable/ui/caustics-background.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/caustics-background.json"
+  },
+  {
+    "slug": "combination-dial",
+    "title": "Combination Dial",
+    "category": "interactive",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Extracted from the Oubliette template",
+      "url": "https://shellcat-com.github.io/oubliette/"
+    },
+    "files": [
+      "registry/parable/ui/combination-dial.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/combination-dial.json"
+  },
+  {
+    "slug": "axis-specimen",
+    "title": "Axis Specimen",
+    "category": "text",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Extracted from the Glyphica template",
+      "url": "https://shellcat-com.github.io/glyphica/"
+    },
+    "files": [
+      "registry/parable/ui/axis-specimen.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/axis-specimen.json"
+  },
+  {
+    "slug": "force-graph",
+    "title": "Force Graph",
+    "category": "effect",
+    "dependencies": [],
+    "registryDependencies": [],
+    "inspiredBy": {
+      "name": "Extracted from the Redoubt template",
+      "url": "https://shellcat-com.github.io/redoubt/"
+    },
+    "files": [
+      "registry/parable/ui/force-graph.tsx"
+    ],
+    "registryUrl": "https://parable-three.vercel.app/r/force-graph.json"
+  }
+]

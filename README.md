@@ -12,7 +12,21 @@
 
 Forge AI is a pre-alpha, self-hostable workspace for turning an app idea into a structured brief, design direction, and review plan.
 
-It is intentionally narrow today: a polished Vite + strict TypeScript frontend, browser-local project storage, reusable design presets, deterministic sample walkthroughs, and an optional loopback NVIDIA text-planning API. Forge does not yet authenticate users, generate application files, execute code, run previews, or deploy projects.
+It is intentionally narrow today: a polished Vite + strict TypeScript frontend, browser-local project storage, reusable design presets, deterministic sample walkthroughs, and an optional loopback NVIDIA/DeepSeek API. Direct DeepSeek can generate a standalone frontend with an isolated preview and HTML download. This local flow does not create a backend, authenticate users, process payments, execute server code or deploy projects. See [DeepSeek frontend setup](docs/deepseek-frontend.md).
+
+An opt-in [Neon authentication and cloud workspace integration](docs/auth-neon.md) is now implemented for staging development. It remains disabled by default and is **not live-authentication verified or production-ready**. The guide records configuration requirements, tests and remaining release blockers; the local demo never represents a real authenticated session.
+
+## Watch Forge in Action
+
+[![Watch the 81-second Forge build workflow](docs/media/forge-workflow-poster.jpg)](docs/media/forge-workflow.mp4)
+
+[Watch or download the walkthrough (MP4, 1080p, 1:21)](docs/media/forge-workflow.mp4).
+
+The reusable [Screenrecord Demo skill](skills/screenrecord-demo/SKILL.md) documents this recording style and includes a timeline renderer, an original lo-fi/keyboard/mouse sound generator, and the 81-second edit template. Install or update it with `npm run skills:sync`, then ask Codex: `Use $screenrecord-demo to record my app in the 81-second Forge style.` Supply new footage and timings for other apps; the template does not bundle raw recordings.
+
+An actual screen recording of creating the Respawn gaming marketplace in Forge: enter a brief, choose a design, refine the project, generate a standalone frontend with DeepSeek, preview it, and export the HTML. Prompt entry becomes an 18-second timelapse starting at 0:14; generation is condensed to 6.5 seconds, followed by preview/export and a 13-second website tour. Original lo-fi music and added keyboard and mouse effects accompany the recording, with no narration.
+
+The recording shows the local login preview and HTML export. It does not demonstrate real signup, payment processing, or public deployment; the generated website is a frontend prototype.
 
 ## Product Screens
 

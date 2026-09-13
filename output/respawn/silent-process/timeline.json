@@ -1,0 +1,42 @@
+[
+  {
+    "name": "landing",
+    "seconds": 3.645
+  },
+  {
+    "name": "login",
+    "seconds": 6.593
+  },
+  {
+    "name": "onboarding",
+    "seconds": 9.126
+  },
+  {
+    "name": "projects",
+    "seconds": 12.493
+  },
+  {
+    "name": "brief-typed",
+    "seconds": 122.351
+  },
+  {
+    "name": "design-selected",
+    "seconds": 128.98
+  },
+  {
+    "name": "project-created",
+    "seconds": 131.119
+  },
+  {
+    "name": "generation-start",
+    "seconds": 149.241
+  },
+  {
+    "name": "generation-end",
+    "seconds": 280.245
+  },
+  {
+    "name": "end",
+    "seconds": 289.329
+  }
+]

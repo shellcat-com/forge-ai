@@ -1,0 +1,18 @@
+{
+  "url": "https://parable-three.vercel.app/r/command-palette.json",
+  "sha256": "283ae6ad221dbc1d1b2bd21fbb1b928958d44602de03e78e4170e42d17b886b1",
+  "bytes": 23462,
+  "name": "command-palette",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/parable/ui/command-palette.tsx",
+      "target": "components/parable/command-palette.tsx",
+      "type": "registry:ui",
+      "bytes": 21675
+    }
+  ]
+}

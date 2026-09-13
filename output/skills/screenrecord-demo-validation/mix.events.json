@@ -1,0 +1,81 @@
+{
+  "duration": 4,
+  "sample_rate": 48000,
+  "events": [
+    {
+      "type": "key",
+      "at": 0.1
+    },
+    {
+      "type": "key",
+      "at": 0.219
+    },
+    {
+      "type": "key",
+      "at": 0.335
+    },
+    {
+      "type": "key",
+      "at": 0.464
+    },
+    {
+      "type": "key",
+      "at": 0.541
+    },
+    {
+      "type": "key",
+      "at": 0.617
+    },
+    {
+      "type": "key",
+      "at": 0.725
+    },
+    {
+      "type": "key",
+      "at": 0.861
+    },
+    {
+      "type": "key",
+      "at": 0.931
+    },
+    {
+      "type": "key",
+      "at": 1.053
+    },
+    {
+      "type": "key",
+      "at": 1.125
+    },
+    {
+      "type": "key",
+      "at": 1.212
+    },
+    {
+      "type": "key",
+      "at": 1.291
+    },
+    {
+      "type": "key",
+      "at": 1.559
+    },
+    {
+      "type": "mouse",
+      "at": 2.2
+    }
+  ],
+  "audio": "Original synthesized instrumental and designed UI effects; not recorded live sound.",
+  "peak": 0.16156944632530212,
+  "sound": {
+    "music": true,
+    "typing": [
+      {
+        "start": 0.1,
+        "end": 1.8,
+        "spacing": 0.105
+      }
+    ],
+    "clicks": [
+      2.2
+    ]
+  }
+}

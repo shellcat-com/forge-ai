@@ -1,0 +1,1 @@
+The process starts inside Forge. I enter the local demo workspace, create a project, and describe the store: its audience, visual direction, products, and interactions. The DeepSeek key stays on the local server. In the project workspace, I select DeepSeek V4 Pro and generate the website.

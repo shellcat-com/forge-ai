@@ -1,0 +1,101 @@
+[
+  {
+    "id": "intro",
+    "duration": 10,
+    "title": "RESPAWN",
+    "caption": "A gaming marketplace, built through Forge.",
+    "narration": "Meet Respawn: a gaming marketplace concept built through Forge, using a live DeepSeek request and original GPT generated artwork. Here is the complete flow.",
+    "at": 0,
+    "voiceSeconds": 9.802948
+  },
+  {
+    "id": "forge",
+    "duration": 22,
+    "title": "01 / START IN FORGE",
+    "caption": "Demo workspace → project brief → DeepSeek V4 Pro",
+    "narration": "The process starts inside Forge. I enter the local demo workspace, create a project, and describe the store: its audience, visual direction, products, and interactions. The DeepSeek key stays on the local server. In the project workspace, I select DeepSeek V4 Pro and generate the website.",
+    "at": 10,
+    "voiceSeconds": 18.762177
+  },
+  {
+    "id": "generation",
+    "duration": 12,
+    "title": "02 / LIVE GENERATION",
+    "caption": "98-second generation wait removed from this edit.",
+    "narration": "This is the actual provider response, previewed inside Forge and exported as HTML. The ninety eight second generation wait has been removed. The result is a standalone frontend.",
+    "at": 32,
+    "voiceSeconds": 10.714195
+  },
+  {
+    "id": "art",
+    "duration": 12,
+    "title": "03 / ORIGINAL ARTWORK",
+    "caption": "GPT artwork · five WebP assets · about 161 KB total",
+    "narration": "The visual direction starts with original GPT artwork: a translucent controller, matching keyboard, headset, and mouse. Five compressed WebP assets keep the complete image set around one hundred sixty one kilobytes.",
+    "at": 44,
+    "voiceSeconds": 13.549297
+  },
+  {
+    "id": "login",
+    "duration": 14,
+    "title": "04 / ENTER THE STOREFRONT",
+    "caption": "Demo login uses a display name. No password needed.",
+    "narration": "Now the exported store runs locally. A demo login accepts a display name and updates the header. This is an in memory identity for the walkthrough, with a working sign out action.",
+    "at": 56,
+    "voiceSeconds": 9.967982
+  },
+  {
+    "id": "browse",
+    "duration": 20,
+    "title": "05 / FIND YOUR NEXT UPGRADE",
+    "caption": "Browse categories and sort the product catalog.",
+    "narration": "The marketplace pairs a cinematic hero with a focused product catalog. Each item has its own artwork, description, and price. Category controls narrow the selection to keyboards, audio, controllers, or mice. Sorting makes it easy to compare options by price before adding anything to the cart.",
+    "at": 70,
+    "voiceSeconds": 18.204898
+  },
+  {
+    "id": "search",
+    "duration": 20,
+    "title": "06 / SEARCH & SAVE",
+    "caption": "Live search, empty states, and saved products.",
+    "narration": "Search filters the catalog as you type. An unmatched search gets a clear empty state and a reset action. Heart controls save individual products, and the saved items view brings those choices together. These interactions are working browser behavior, with no loading screens added for effect.",
+    "at": 90,
+    "voiceSeconds": 16.581905
+  },
+  {
+    "id": "cart",
+    "duration": 20,
+    "title": "07 / BUILD YOUR LOADOUT",
+    "caption": "Add products, adjust quantities, and remove items.",
+    "narration": "Add a controller and keyboard, then open the cart. The subtotal reflects both products. Increase a quantity, decrease it again, or remove an item; the total updates immediately. During review, I fixed the generated cart handlers and improved dialog focus so these controls work reliably.",
+    "at": 110,
+    "voiceSeconds": 17.50449
+  },
+  {
+    "id": "checkout",
+    "duration": 18,
+    "title": "08 / COMPLETE A DEMO ORDER",
+    "caption": "Order confirmed. No payment taken.",
+    "narration": "Checkout shows the order summary and carries over the display name. A required checkbox makes the demo boundary clear. Placing the order produces a confirmation and clears the cart. No payment details are requested, no money is charged, and no real order is submitted.",
+    "at": 130,
+    "voiceSeconds": 15.706349
+  },
+  {
+    "id": "responsive",
+    "duration": 20,
+    "title": "09 / POLISH & VERIFY",
+    "caption": "Light + dark · mobile + desktop · keyboard checks",
+    "narration": "The storefront also has a light theme and a responsive layout. I checked it at mobile, tablet, and desktop widths, along with keyboard focus, reduced motion, and zoom. Forge's verification suite passed too. The original provider output is preserved separately from the reviewed and refined website.",
+    "at": 148,
+    "voiceSeconds": 17.705669
+  },
+  {
+    "id": "outro",
+    "duration": 12,
+    "title": "FROM A BRIEF TO A BROWSER",
+    "caption": "Forge + DeepSeek + GPT artwork · Respawn frontend demo",
+    "narration": "The finished package includes the local website, portable HTML, original artwork, and this three minute walkthrough. Respawn is a working frontend concept, ready for the next stage: connecting real services.",
+    "at": 168,
+    "voiceSeconds": 12.887528
+  }
+]

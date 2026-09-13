@@ -1,0 +1,1 @@
+Checkout shows the order summary and carries over the display name. A required checkbox makes the demo boundary clear. Placing the order produces a confirmation and clears the cart. No payment details are requested, no money is charged, and no real order is submitted.

@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-09-11T07:35:15.131057+00:00",
+  "httpStatus": 200,
+  "request": {
+    "jsonrpc": "2.0",
+    "id": "missing-component",
+    "method": "tools/call",
+    "params": {
+      "name": "get_component",
+      "arguments": {
+        "slug": "forge-research-nonexistent"
+      }
+    }
+  },
+  "response": {
+    "jsonrpc": "2.0",
+    "id": "missing-component",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"error\": \"No component \\\"forge-research-nonexistent\\\"\"\n}"
+        }
+      ]
+    }
+  }
+}

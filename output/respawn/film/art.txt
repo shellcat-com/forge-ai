@@ -1,0 +1,1 @@
+The visual direction starts with original GPT artwork: a translucent controller, matching keyboard, headset, and mouse. Five compressed WebP assets keep the complete image set around one hundred sixty one kilobytes.

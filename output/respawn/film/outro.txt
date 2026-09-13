@@ -1,0 +1,1 @@
+The finished package includes the local website, portable HTML, original artwork, and this three minute walkthrough. Respawn is a working frontend concept, ready for the next stage: connecting real services.

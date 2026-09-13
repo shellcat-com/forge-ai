@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-09-11T07:34:48.905Z",
+  "checks": [
+    {
+      "provider": "deepseek",
+      "model": "deepseek-flash",
+      "authenticatedCompletion": true,
+      "truncated": false
+    },
+    {
+      "provider": "nvidia",
+      "model": "deepseek-ai/deepseek-v4-flash-0731",
+      "authenticatedCompletion": true,
+      "truncated": false
+    }
+  ],
+  "scope": "Small authenticated completions using existing server-configured keys. Not proof of live account key-upload or deployed cloud generation."
+}

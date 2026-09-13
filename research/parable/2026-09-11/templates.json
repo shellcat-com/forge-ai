@@ -1,0 +1,626 @@
+[
+  {
+    "slug": "quench",
+    "name": "Quench",
+    "family": "parable",
+    "stack": "static",
+    "pitch": "Heritage bladesmith \u2014 a raw-WebGL domain-warp Damascus shader on a clipped blade + a colour-coded five-heat forge.",
+    "liveUrl": "https://shellcat-com.github.io/quench/"
+  },
+  {
+    "slug": "peony",
+    "name": "Peony",
+    "family": "parable",
+    "stack": "static",
+    "pitch": "Pyrotechnics studio \u2014 a live canvas fireworks engine you fire by clicking the sky + generated shell diagrams.",
+    "liveUrl": "https://shellcat-com.github.io/peony/"
+  },
+  {
+    "slug": "beaufort",
+    "name": "Beaufort",
+    "family": "parable",
+    "stack": "static",
+    "pitch": "Classic-yacht charter \u2014 an animated inline-SVG sea chart whose compass rose tracks your scroll heading.",
+    "liveUrl": "https://shellcat-com.github.io/beaufort/"
+  },
+  {
+    "slug": "cornice",
+    "name": "Cornice",
+    "family": "parable",
+    "stack": "static",
+    "pitch": "Alpine ski resort \u2014 a live lift-status board + an interactive SVG piste map with difficulty filter.",
+    "liveUrl": "https://shellcat-com.github.io/cornice/"
+  },
+  {
+    "slug": "lather",
+    "name": "Lather",
+    "family": "parable",
+    "stack": "static",
+    "pitch": "Barbershop \u2014 a CSS barber-pole + an interactive book-a-chair scheduler grid.",
+    "liveUrl": "https://shellcat-com.github.io/lather/"
+  },
+  {
+    "slug": "longbox",
+    "name": "Longbox",
+    "family": "parable",
+    "stack": "static",
+    "pitch": "Indie comics press \u2014 a pure-CSS halftone + hard-ink comic-panel scroll strip you read left to right.",
+    "liveUrl": "https://shellcat-com.github.io/longbox/"
+  },
+  {
+    "slug": "oubliette",
+    "name": "Oubliette",
+    "family": "parable",
+    "stack": "static",
+    "pitch": "Immersive escape rooms \u2014 four combination-lock dials you drag (or arrow-key) into a hidden alignment that springs the latch.",
+    "liveUrl": "https://shellcat-com.github.io/oubliette/"
+  },
+  {
+    "slug": "dovetail",
+    "name": "Dovetail",
+    "family": "parable",
+    "stack": "static",
+    "pitch": "Furniture design studio \u2014 an orthographic blueprint chair that turns through its elevations, with live material swaps.",
+    "liveUrl": "https://shellcat-com.github.io/dovetail/"
+  },
+  {
+    "slug": "fathom",
+    "name": "Fathom",
+    "family": "parable",
+    "stack": "static",
+    "pitch": "Public aquarium \u2014 a WebGL caustics hero over a descent through four stacked ocean zones with a live depth gauge.",
+    "liveUrl": "https://shellcat-com.github.io/fathom/"
+  },
+  {
+    "slug": "selvedge",
+    "name": "Selvedge",
+    "family": "parable",
+    "stack": "static",
+    "pitch": "Bespoke tailoring house \u2014 an annotated SVG measurement mannequin and a fabric bolt that unrolls to its weave.",
+    "liveUrl": "https://shellcat-com.github.io/selvedge/"
+  },
+  {
+    "slug": "conche",
+    "name": "Conche",
+    "family": "parable",
+    "stack": "astro",
+    "pitch": "Bean-to-bar chocolate maker \u2014 a radial origin flavor-wheel and a tempering curve that draws itself to temper.",
+    "liveUrl": "https://shellcat-com.github.io/conche/"
+  },
+  {
+    "slug": "yugen",
+    "name": "Yugen",
+    "family": "parable",
+    "stack": "astro",
+    "pitch": "Izakaya at the end of the alley \u2014 indigo noren curtains part in parallax over a build-your-own-bowl.",
+    "liveUrl": "https://shellcat-com.github.io/yugen/"
+  },
+  {
+    "slug": "nightcap",
+    "name": "Nightcap",
+    "family": "parable",
+    "stack": "astro",
+    "pitch": "Speakeasy cocktail bar \u2014 pour spirit, modifier and bitters into a glass of stacking SVG liquid layers.",
+    "liveUrl": "https://shellcat-com.github.io/nightcap/"
+  },
+  {
+    "slug": "vitrine",
+    "name": "Vitrine",
+    "family": "parable",
+    "stack": "astro",
+    "pitch": "Museum exhibition microsite \u2014 works hung at parallax depth, navigated by a clickable floor plan.",
+    "liveUrl": "https://shellcat-com.github.io/vitrine/"
+  },
+  {
+    "slug": "deckle",
+    "name": "Deckle",
+    "family": "parable",
+    "stack": "astro",
+    "pitch": "Stationery brand \u2014 a paper-mode toggle that re-rules the page substrate, plus a pressure-sensitive doodle canvas.",
+    "liveUrl": "https://shellcat-com.github.io/deckle/"
+  },
+  {
+    "slug": "rennet",
+    "name": "Rennet",
+    "family": "parable",
+    "stack": "astro",
+    "pitch": "Farmhouse creamery \u2014 drag a time slider and watch a wheel's rind mature across a humidity-by-weeks cave chart.",
+    "liveUrl": "https://shellcat-com.github.io/rennet/"
+  },
+  {
+    "slug": "halfstep",
+    "name": "Halfstep",
+    "family": "parable",
+    "stack": "vite",
+    "pitch": "Urban e-bike brand \u2014 the bike flies apart into a labelled exploded diagram on scroll, with a spec configurator.",
+    "liveUrl": "https://shellcat-com.github.io/halfstep/"
+  },
+  {
+    "slug": "crux",
+    "name": "Crux",
+    "family": "parable",
+    "stack": "vite",
+    "pitch": "Bouldering gym \u2014 pick a problem and watch its holds light the line up an SVG wall, filtered by grade.",
+    "liveUrl": "https://shellcat-com.github.io/crux/"
+  },
+  {
+    "slug": "splits",
+    "name": "Splits",
+    "family": "parable",
+    "stack": "vite",
+    "pitch": "City marathon \u2014 a course elevation profile that draws itself, plus a pace calculator that splits your goal time.",
+    "liveUrl": "https://shellcat-com.github.io/splits/"
+  },
+  {
+    "slug": "patchbay",
+    "name": "Patchbay",
+    "family": "parable",
+    "stack": "vite",
+    "pitch": "Eurorack synth maker \u2014 drag patch cables between jacks on a module rack, with opt-in Web-Audio tones.",
+    "liveUrl": "https://shellcat-com.github.io/patchbay/"
+  },
+  {
+    "slug": "endgame",
+    "name": "Endgame",
+    "family": "parable",
+    "stack": "svelte",
+    "pitch": "Online chess club \u2014 a board replays a classic miniature as you scroll, notation ticker keeping pace.",
+    "liveUrl": "https://shellcat-com.github.io/endgame/"
+  },
+  {
+    "slug": "meeplewood",
+    "name": "Meeplewood",
+    "family": "parable",
+    "stack": "svelte",
+    "pitch": "Tabletop publisher \u2014 click a tumbling 3D-CSS d20 to pick game night, then learn the rules in a page-flip book.",
+    "liveUrl": "https://shellcat-com.github.io/meeplewood/"
+  },
+  {
+    "slug": "mise",
+    "name": "Mise",
+    "family": "parable",
+    "stack": "svelte",
+    "pitch": "Meal-kit service \u2014 a step-by-step recipe choreography with a servings slider that rescales every ingredient.",
+    "liveUrl": "https://shellcat-com.github.io/mise/"
+  },
+  {
+    "slug": "glyphica",
+    "name": "Glyphica",
+    "family": "parable",
+    "stack": "next",
+    "pitch": "Digital type foundry \u2014 drag weight, width and optical axes and watch a giant variable-font specimen morph live.",
+    "liveUrl": "https://shellcat-com.github.io/glyphica/"
+  },
+  {
+    "slug": "redoubt",
+    "name": "Redoubt",
+    "family": "parable",
+    "stack": "next",
+    "pitch": "Cybersecurity SOC \u2014 a force-directed canvas threat graph beside a terminal streaming live incident logs.",
+    "liveUrl": "https://shellcat-com.github.io/redoubt/"
+  },
+  {
+    "slug": "earshot",
+    "name": "Earshot",
+    "family": "parable",
+    "stack": "next",
+    "pitch": "Podcast network \u2014 scrub a rendered canvas waveform with a live playhead, then browse the episode timeline.",
+    "liveUrl": "https://shellcat-com.github.io/earshot/"
+  },
+  {
+    "slug": "aperture-lab",
+    "name": "Aperture Lab",
+    "family": "parable",
+    "stack": "static",
+    "pitch": "Computational-photography RAW editor \u2014 cinematic darkroom, WebGL film grain.",
+    "liveUrl": "https://shellcat-com.github.io/aperture-lab/"
+  },
+  {
+    "slug": "northbound-ev",
+    "name": "Northbound",
+    "family": "parable",
+    "stack": "static",
+    "pitch": "EV road-trip planner \u2014 three.js topographic terrain + kinetic route.",
+    "liveUrl": "https://shellcat-com.github.io/northbound-ev/"
+  },
+  {
+    "slug": "perigee-astro",
+    "name": "Perigee",
+    "family": "parable",
+    "stack": "static",
+    "pitch": "Citizen-astronomy network \u2014 a 72k-star shader field + live sky console.",
+    "liveUrl": "https://shellcat-com.github.io/perigee-astro/"
+  },
+  {
+    "slug": "kiln-collective",
+    "name": "Kiln Collective",
+    "family": "parable",
+    "stack": "astro",
+    "pitch": "Ceramics studio & marketplace \u2014 paper grain + hand-drawn SVG draw-on.",
+    "liveUrl": "https://shellcat-com.github.io/kiln-collective/"
+  },
+  {
+    "slug": "meridian-advisor",
+    "name": "Meridian",
+    "family": "parable",
+    "stack": "next",
+    "pitch": "Robo-advisor for freelancers \u2014 live projection fan + allocation donut.",
+    "liveUrl": "https://shellcat-com.github.io/meridian-advisor/"
+  },
+  {
+    "slug": "undertow-festival",
+    "name": "Undertow",
+    "family": "parable",
+    "stack": "static",
+    "pitch": "Independent film festival \u2014 brutalist kinetic type + marquee tickers.",
+    "liveUrl": "https://shellcat-com.github.io/undertow-festival/"
+  },
+  {
+    "slug": "fernweh-cabins",
+    "name": "Fernweh",
+    "family": "parable",
+    "stack": "astro",
+    "pitch": "Off-grid cabin booking \u2014 long lazy parallax ridgelines.",
+    "liveUrl": "https://shellcat-com.github.io/fernweh-cabins/"
+  },
+  {
+    "slug": "loop-and-larder",
+    "name": "Loop & Larder",
+    "family": "parable",
+    "stack": "astro",
+    "pitch": "Coffee roastery subscription \u2014 hand-lettered accents + a builder.",
+    "liveUrl": "https://shellcat-com.github.io/loop-and-larder/"
+  },
+  {
+    "slug": "halcyon-ring",
+    "name": "Halcyon Ring",
+    "family": "parable",
+    "stack": "static",
+    "pitch": "Sleep-science wearable \u2014 breathing ring + flowing dusk gradients.",
+    "liveUrl": "https://shellcat-com.github.io/halcyon-ring/"
+  },
+  {
+    "slug": "vantage-point-studio",
+    "name": "Vantage Point",
+    "family": "parable",
+    "stack": "static",
+    "pitch": "Architecture portfolio \u2014 morphing three.js massing models.",
+    "liveUrl": "https://shellcat-com.github.io/vantage-point-studio/"
+  },
+  {
+    "slug": "static-and-noise",
+    "name": "Static & Noise",
+    "family": "parable",
+    "stack": "static",
+    "pitch": "Independent label \u2014 a synthesized loop + audio-reactive canvas.",
+    "liveUrl": "https://shellcat-com.github.io/static-and-noise/"
+  },
+  {
+    "slug": "driftline-ocean",
+    "name": "Driftline",
+    "family": "parable",
+    "stack": "static",
+    "pitch": "Ocean-conservation nonprofit \u2014 wave-fields + scroll-depth descent.",
+    "liveUrl": "https://shellcat-com.github.io/driftline-ocean/"
+  },
+  {
+    "slug": "fieldnote-research",
+    "name": "Fieldnote",
+    "family": "parable",
+    "stack": "next",
+    "pitch": "Research notes with citations \u2014 a working \u2318K palette + hover-cards.",
+    "liveUrl": "https://shellcat-com.github.io/fieldnote-research/"
+  },
+  {
+    "slug": "threadbare-resale",
+    "name": "Threadbare",
+    "family": "parable",
+    "stack": "next",
+    "pitch": "Circular-fashion resale \u2014 FLIP filter grid + story-tag flips.",
+    "liveUrl": "https://shellcat-com.github.io/threadbare-resale/"
+  },
+  {
+    "slug": "recess-learn",
+    "name": "Recess",
+    "family": "parable",
+    "stack": "svelte",
+    "pitch": "Kids' learning app \u2014 spring-physics mascot + a playable lesson.",
+    "liveUrl": "https://shellcat-com.github.io/recess-learn/"
+  },
+  {
+    "slug": "continuum-health",
+    "name": "Continuum Health",
+    "family": "parable",
+    "stack": "static",
+    "pitch": "Longevity biotech \u2014 an instanced three.js molecular model.",
+    "liveUrl": "https://shellcat-com.github.io/continuum-health/"
+  },
+  {
+    "slug": "backstage-pass",
+    "name": "Backstage Pass",
+    "family": "parable",
+    "stack": "static",
+    "pitch": "Music-festival platform \u2014 kinetic lineup + gradient washes + countdown.",
+    "liveUrl": "https://shellcat-com.github.io/backstage-pass/"
+  },
+  {
+    "slug": "longwave-climate",
+    "name": "Longwave",
+    "family": "parable",
+    "stack": "static",
+    "pitch": "Climate analytics \u2014 a procedural three.js data globe + warming stripes.",
+    "liveUrl": "https://shellcat-com.github.io/longwave-climate/"
+  },
+  {
+    "slug": "the-marginalia",
+    "name": "The Marginalia",
+    "family": "parable",
+    "stack": "astro",
+    "pitch": "Literary magazine \u2014 scroll-synced margin notes + drop caps.",
+    "liveUrl": "https://shellcat-com.github.io/the-marginalia/"
+  },
+  {
+    "slug": "hangar-12",
+    "name": "Hangar 12",
+    "family": "parable",
+    "stack": "static",
+    "pitch": "eVTOL air mobility \u2014 a procedural three.js wireframe aircraft.",
+    "liveUrl": "https://shellcat-com.github.io/hangar-12/"
+  },
+  {
+    "slug": "bramble-home",
+    "name": "Bramble",
+    "family": "parable",
+    "stack": "astro",
+    "pitch": "Plant-care DTC \u2014 morphing blobs + botanical draw-on + a quiz.",
+    "liveUrl": "https://shellcat-com.github.io/bramble-home/"
+  },
+  {
+    "slug": "ledger-and-vine",
+    "name": "Ledger & Vine",
+    "family": "parable",
+    "stack": "static",
+    "pitch": "Boutique winery club \u2014 layered vineyard parallax + pour animations.",
+    "liveUrl": "https://shellcat-com.github.io/ledger-and-vine/"
+  },
+  {
+    "slug": "overclock-games",
+    "name": "Overclock",
+    "family": "parable",
+    "stack": "static",
+    "pitch": "Indie roguelike studio \u2014 procedural canvas pixel art + CRT pipeline.",
+    "liveUrl": "https://shellcat-com.github.io/overclock-games/"
+  },
+  {
+    "slug": "farebox-transit",
+    "name": "Farebox",
+    "family": "parable",
+    "stack": "vite",
+    "pitch": "Civic transit app \u2014 an octilinear SVG network map + arrivals board.",
+    "liveUrl": "https://shellcat-com.github.io/farebox-transit/"
+  },
+  {
+    "slug": "ninth-wave-surf",
+    "name": "Ninth Wave",
+    "family": "parable",
+    "stack": "static",
+    "pitch": "Surf & outdoor apparel \u2014 sun-bleached poster hero + scroll-drift shelf.",
+    "liveUrl": "https://shellcat-com.github.io/ninth-wave-surf/"
+  },
+  {
+    "slug": "formwork-neon",
+    "name": "Neon",
+    "family": "formwork",
+    "stack": "static",
+    "pitch": "Synthwave page with an infinite neon three.js terrain.",
+    "liveUrl": "https://shellcat-com.github.io/formwork-neon/"
+  },
+  {
+    "slug": "formwork-aether",
+    "name": "Aether",
+    "family": "formwork",
+    "stack": "static",
+    "pitch": "Dark SaaS / AI landing \u2014 aurora glass + bento grid.",
+    "liveUrl": "https://shellcat-com.github.io/formwork-aether/"
+  },
+  {
+    "slug": "formwork-algorithm",
+    "name": "Algorithm",
+    "family": "formwork",
+    "stack": "static",
+    "pitch": "Generative-art gallery with a seeded flow field.",
+    "liveUrl": "https://shellcat-com.github.io/formwork-algorithm/"
+  },
+  {
+    "slug": "formwork-atelier",
+    "name": "Atelier",
+    "family": "formwork",
+    "stack": "static",
+    "pitch": "Editorial magazine with a horizontal drag gallery.",
+    "liveUrl": "https://shellcat-com.github.io/formwork-atelier/"
+  },
+  {
+    "slug": "formwork-aurelis",
+    "name": "Aurelis",
+    "family": "formwork",
+    "stack": "static",
+    "pitch": "Fragrance / beauty brand with a live WebGL aurora hero.",
+    "liveUrl": "https://shellcat-com.github.io/formwork-aurelis/"
+  },
+  {
+    "slug": "formwork-aurum",
+    "name": "Aurum",
+    "family": "formwork",
+    "stack": "static",
+    "pitch": "Luxury maison \u2014 gold particles + a rendered watch dial.",
+    "liveUrl": "https://shellcat-com.github.io/formwork-aurum/"
+  },
+  {
+    "slug": "formwork-award",
+    "name": "Award",
+    "family": "formwork",
+    "stack": "static",
+    "pitch": "Cinematic manifesto with pinned horizontal scroll.",
+    "liveUrl": "https://shellcat-com.github.io/formwork-award/"
+  },
+  {
+    "slug": "formwork-chroma",
+    "name": "Chroma",
+    "family": "formwork",
+    "stack": "static",
+    "pitch": "Creative-studio hero of raymarched liquid chrome.",
+    "liveUrl": "https://shellcat-com.github.io/formwork-chroma/"
+  },
+  {
+    "slug": "formwork-clay",
+    "name": "Clay",
+    "family": "formwork",
+    "stack": "static",
+    "pitch": "Playful claymorphism app landing (pure CSS).",
+    "liveUrl": "https://shellcat-com.github.io/formwork-clay/"
+  },
+  {
+    "slug": "formwork-contour",
+    "name": "Contour",
+    "family": "formwork",
+    "stack": "static",
+    "pitch": "Outdoor / trail atlas with animated topographic contours.",
+    "liveUrl": "https://shellcat-com.github.io/formwork-contour/"
+  },
+  {
+    "slug": "formwork-driftwear",
+    "name": "Driftwear",
+    "family": "formwork",
+    "stack": "static",
+    "pitch": "Fashion label with a cursor-follow lookbook.",
+    "liveUrl": "https://shellcat-com.github.io/formwork-driftwear/"
+  },
+  {
+    "slug": "formwork-farside",
+    "name": "Farside",
+    "family": "formwork",
+    "stack": "static",
+    "pitch": "Outdoor gear \u2014 terrain-reactive weather engine + tent morph.",
+    "liveUrl": "https://shellcat-com.github.io/formwork-farside/"
+  },
+  {
+    "slug": "formwork-grid",
+    "name": "Grid",
+    "family": "formwork",
+    "stack": "static",
+    "pitch": "Swiss-style studio with a toggleable modular grid (press G).",
+    "liveUrl": "https://shellcat-com.github.io/formwork-grid/"
+  },
+  {
+    "slug": "formwork-halo",
+    "name": "Halo",
+    "family": "formwork",
+    "stack": "static",
+    "pitch": "Sci-fi mission-control HUD dashboard.",
+    "liveUrl": "https://shellcat-com.github.io/formwork-halo/"
+  },
+  {
+    "slug": "formwork-heliodon",
+    "name": "Heliodon",
+    "family": "formwork",
+    "stack": "static",
+    "pitch": "3D product showcase \u2014 three.js metal with studio reflections.",
+    "liveUrl": "https://shellcat-com.github.io/formwork-heliodon/"
+  },
+  {
+    "slug": "formwork-isometria",
+    "name": "Isometria",
+    "family": "formwork",
+    "stack": "static",
+    "pitch": "Interactive isometric three.js island with day/night.",
+    "liveUrl": "https://shellcat-com.github.io/formwork-isometria/"
+  },
+  {
+    "slug": "formwork-meridian",
+    "name": "Meridian",
+    "family": "formwork",
+    "stack": "static",
+    "pitch": "Espresso equipment \u2014 live pressure-gauge hero + odometers.",
+    "liveUrl": "https://shellcat-com.github.io/formwork-meridian/"
+  },
+  {
+    "slug": "formwork-monolith",
+    "name": "Monolith",
+    "family": "formwork",
+    "stack": "static",
+    "pitch": "Design-studio site driven by kinetic typography.",
+    "liveUrl": "https://shellcat-com.github.io/formwork-monolith/"
+  },
+  {
+    "slug": "formwork-nebula",
+    "name": "Nebula",
+    "family": "formwork",
+    "stack": "static",
+    "pitch": "Space / astronomy \u2014 a 95k-particle three.js galaxy.",
+    "liveUrl": "https://shellcat-com.github.io/formwork-nebula/"
+  },
+  {
+    "slug": "formwork-phosphor",
+    "name": "Phosphor",
+    "family": "formwork",
+    "stack": "static",
+    "pitch": "Retro CRT terminal with a real command line.",
+    "liveUrl": "https://shellcat-com.github.io/formwork-phosphor/"
+  },
+  {
+    "slug": "formwork-resonance",
+    "name": "Resonance",
+    "family": "formwork",
+    "stack": "static",
+    "pitch": "Audio-reactive sound-studio page (Web Audio).",
+    "liveUrl": "https://shellcat-com.github.io/formwork-resonance/"
+  },
+  {
+    "slug": "formwork-revolver",
+    "name": "Revolver",
+    "family": "formwork",
+    "stack": "static",
+    "pitch": "Record-shop page with an audio-reactive spinning vinyl.",
+    "liveUrl": "https://shellcat-com.github.io/formwork-revolver/"
+  },
+  {
+    "slug": "formwork-roastery",
+    "name": "Roastery",
+    "family": "formwork",
+    "stack": "static",
+    "pitch": "Coffee brand with rising steam particles.",
+    "liveUrl": "https://shellcat-com.github.io/formwork-roastery/"
+  },
+  {
+    "slug": "formwork-soma",
+    "name": "Soma",
+    "family": "formwork",
+    "stack": "static",
+    "pitch": "Wellness / meditation \u2014 gooey blobs + a breathing guide.",
+    "liveUrl": "https://shellcat-com.github.io/formwork-soma/"
+  },
+  {
+    "slug": "formwork-sumi",
+    "name": "Sumi",
+    "family": "formwork",
+    "stack": "static",
+    "pitch": "Japanese ink-art \u2014 WebGL ink on washi paper.",
+    "liveUrl": "https://shellcat-com.github.io/formwork-sumi/"
+  },
+  {
+    "slug": "formwork-velocity",
+    "name": "Velocity",
+    "family": "formwork",
+    "stack": "static",
+    "pitch": "Dev-tool landing with an animated live code review.",
+    "liveUrl": "https://shellcat-com.github.io/formwork-velocity/"
+  },
+  {
+    "slug": "formwork-zodiac",
+    "name": "Zodiac",
+    "family": "formwork",
+    "stack": "static",
+    "pitch": "Celestial star map with interactive constellations.",
+    "liveUrl": "https://shellcat-com.github.io/formwork-zodiac/"
+  }
+]

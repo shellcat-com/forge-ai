@@ -1,0 +1,120 @@
+{
+  "method": "Static import scan; excludes React and local aliases; not a build test",
+  "findings": [
+    {
+      "slug": "dynamic-island",
+      "undeclaredImports": [
+        "lucide-react"
+      ],
+      "declared": [
+        "motion"
+      ]
+    },
+    {
+      "slug": "expandable-card",
+      "undeclaredImports": [
+        "lucide-react"
+      ],
+      "declared": [
+        "motion"
+      ]
+    },
+    {
+      "slug": "device-frame",
+      "undeclaredImports": [
+        "lucide-react"
+      ],
+      "declared": []
+    },
+    {
+      "slug": "sign-in-slice",
+      "undeclaredImports": [
+        "lucide-react"
+      ],
+      "declared": [
+        "motion"
+      ]
+    },
+    {
+      "slug": "shift-card",
+      "undeclaredImports": [
+        "lucide-react"
+      ],
+      "declared": [
+        "motion"
+      ]
+    },
+    {
+      "slug": "notification-stack",
+      "undeclaredImports": [
+        "lucide-react"
+      ],
+      "declared": [
+        "motion"
+      ]
+    },
+    {
+      "slug": "token-swap-card",
+      "undeclaredImports": [
+        "lucide-react"
+      ],
+      "declared": [
+        "motion"
+      ]
+    },
+    {
+      "slug": "hover-member-row",
+      "undeclaredImports": [
+        "lucide-react"
+      ],
+      "declared": [
+        "motion"
+      ]
+    },
+    {
+      "slug": "intro-disclosure",
+      "undeclaredImports": [
+        "lucide-react"
+      ],
+      "declared": [
+        "motion"
+      ]
+    },
+    {
+      "slug": "tweet-grid",
+      "undeclaredImports": [
+        "lucide-react"
+      ],
+      "declared": [
+        "motion"
+      ]
+    },
+    {
+      "slug": "ai-input",
+      "undeclaredImports": [
+        "lucide-react"
+      ],
+      "declared": [
+        "motion"
+      ]
+    },
+    {
+      "slug": "command-palette",
+      "undeclaredImports": [
+        "lucide-react"
+      ],
+      "declared": [
+        "motion"
+      ]
+    },
+    {
+      "slug": "faq-accordion",
+      "undeclaredImports": [
+        "lucide-react"
+      ],
+      "declared": [
+        "motion"
+      ]
+    }
+  ]
+}

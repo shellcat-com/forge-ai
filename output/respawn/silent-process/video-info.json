@@ -1,0 +1,39 @@
+{
+  "duration": "180.000000",
+  "bytes": "9063670",
+  "streams": [
+    {
+      "type": "video",
+      "codec": "h264",
+      "width": 1920,
+      "height": 1080
+    }
+  ],
+  "edit": [
+    {
+      "name": "01-process",
+      "sourceFrom": 0.7,
+      "sourceTo": 149.841,
+      "duration": 150
+    },
+    {
+      "name": "02-generation",
+      "sourceFrom": 149.841,
+      "sourceTo": 280.245,
+      "duration": 7
+    },
+    {
+      "name": "03-preview-export",
+      "sourceFrom": 280.245,
+      "sourceTo": 289.329,
+      "duration": 10
+    },
+    {
+      "name": "04-website",
+      "sourceFrom": 0.25,
+      "sourceTo": 11.934,
+      "duration": 13
+    }
+  ],
+  "provenance": "Fresh actual Forge UI capture and direct DeepSeek response. No mocked provider or simulated completion. No audio, title cards, captions, or generated showcase graphics. Login screen is the existing preview; final delivery is local HTML export, not public publishing."
+}

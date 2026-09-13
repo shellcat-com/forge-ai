@@ -1,0 +1,143 @@
+1
+00:00:00,000 --> 00:00:08,000
+Meet Respawn: a gaming marketplace concept built through Forge, using a live DeepSeek request and original GPT generated artwork.
+
+2
+00:00:08,000 --> 00:00:10,000
+Here is the complete flow.
+
+3
+00:00:10,000 --> 00:00:12,000
+The process starts inside Forge.
+
+4
+00:00:12,000 --> 00:00:22,000
+I enter the local demo workspace, create a project, and describe the store: its audience, visual direction, products, and interactions.
+
+5
+00:00:22,000 --> 00:00:26,000
+The DeepSeek key stays on the local server.
+
+6
+00:00:26,000 --> 00:00:32,000
+In the project workspace, I select DeepSeek V4 Pro and generate the website.
+
+7
+00:00:32,000 --> 00:00:37,000
+This is the actual provider response, previewed inside Forge and exported as HTML.
+
+8
+00:00:37,000 --> 00:00:41,000
+The ninety eight second generation wait has been removed.
+
+9
+00:00:41,000 --> 00:00:44,000
+The result is a standalone frontend.
+
+10
+00:00:44,000 --> 00:00:50,000
+The visual direction starts with original GPT artwork: a translucent controller, matching keyboard, headset, and mouse.
+
+11
+00:00:50,000 --> 00:00:56,000
+Five compressed WebP assets keep the complete image set around one hundred sixty one kilobytes.
+
+12
+00:00:56,000 --> 00:00:58,000
+Now the exported store runs locally.
+
+13
+00:00:58,000 --> 00:01:03,000
+A demo login accepts a display name and updates the header.
+
+14
+00:01:03,000 --> 00:01:10,000
+This is an in memory identity for the walkthrough, with a working sign out action.
+
+15
+00:01:10,000 --> 00:01:14,000
+The marketplace pairs a cinematic hero with a focused product catalog.
+
+16
+00:01:14,000 --> 00:01:18,000
+Each item has its own artwork, description, and price.
+
+17
+00:01:18,000 --> 00:01:24,000
+Category controls narrow the selection to keyboards, audio, controllers, or mice.
+
+18
+00:01:24,000 --> 00:01:30,000
+Sorting makes it easy to compare options by price before adding anything to the cart.
+
+19
+00:01:30,000 --> 00:01:32,000
+Search filters the catalog as you type.
+
+20
+00:01:32,000 --> 00:01:37,000
+An unmatched search gets a clear empty state and a reset action.
+
+21
+00:01:37,000 --> 00:01:43,000
+Heart controls save individual products, and the saved items view brings those choices together.
+
+22
+00:01:43,000 --> 00:01:49,000
+These interactions are working browser behavior, with no loading screens added for effect.
+
+23
+00:01:50,000 --> 00:01:53,000
+Add a controller and keyboard, then open the cart.
+
+24
+00:01:53,000 --> 00:01:56,000
+The subtotal reflects both products.
+
+25
+00:01:56,000 --> 00:02:02,000
+Increase a quantity, decrease it again, or remove an item; the total updates immediately.
+
+26
+00:02:02,000 --> 00:02:10,000
+During review, I fixed the generated cart handlers and improved dialog focus so these controls work reliably.
+
+27
+00:02:10,000 --> 00:02:14,000
+Checkout shows the order summary and carries over the display name.
+
+28
+00:02:14,000 --> 00:02:17,000
+A required checkbox makes the demo boundary clear.
+
+29
+00:02:17,000 --> 00:02:22,000
+Placing the order produces a confirmation and clears the cart.
+
+30
+00:02:22,000 --> 00:02:28,000
+No payment details are requested, no money is charged, and no real order is submitted.
+
+31
+00:02:28,000 --> 00:02:32,000
+The storefront also has a light theme and a responsive layout.
+
+32
+00:02:32,000 --> 00:02:39,000
+I checked it at mobile, tablet, and desktop widths, along with keyboard focus, reduced motion, and zoom.
+
+33
+00:02:39,000 --> 00:02:41,000
+Forge's verification suite passed too.
+
+34
+00:02:41,000 --> 00:02:48,000
+The original provider output is preserved separately from the reviewed and refined website.
+
+35
+00:02:48,000 --> 00:02:54,000
+The finished package includes the local website, portable HTML, original artwork, and this three minute walkthrough.
+
+36
+00:02:54,000 --> 00:03:00,000
+Respawn is a working frontend concept, ready for the next stage: connecting real services.

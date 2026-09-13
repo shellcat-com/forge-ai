@@ -1,0 +1,9 @@
+Create Respawn, a beautiful marketplace for gamers who care about their setup. Make it feel like a premium gaming brand: midnight black, lavender, a small coral accent, bold typography, generous spacing, and a cinematic controller hero. Headline: Good games. Great gear.
+
+Build a real interactive standalone frontend. The top navigation should have Discover, Gear, Collections, live search, saved items, a theme toggle, and a cart. Show a responsive product grid with category filters and price sorting. Include a keyboard collection feature below the products.
+
+Products: Phantom Wireless controller ($89), Nova 75 Mechanical keyboard ($129), Eclipse Spatial headset ($109), and Drift Ultralight mouse ($59). Use these original GPT artwork files from the local asset server: http://127.0.0.1:5173/marketplace/hero.webp for the hero, plus controller.webp, keyboard.webp, headset.webp and mouse.webp in that same directory for the product cards.
+
+Make search, category buttons, saved items and cart controls work. Add quantity controls, remove buttons, an accurate subtotal and an empty cart state. Use native modal dialogs with keyboard focus handling. Demo checkout must require confirmation and say no payment taken. Demo login asks for a display name only, with sign out. Do not collect passwords or payment details.
+
+Keep everything responsive at mobile, tablet and desktop widths, with matching light and dark themes and reduced motion support. Use system fonts, inline CSS and JavaScript, no external dependencies, and in-memory state. Return one complete HTML document that can be previewed and downloaded.

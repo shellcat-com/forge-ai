@@ -1,0 +1,8 @@
+# REVIEW CANDIDATE ONLY. Apply ONLY inside one newly created, dedicated guest
+# network namespace, never the operator's host/root namespace. No installer exists.
+# No preview ingress is enabled until D6 supplies the reviewed gateway path.
+table inet forge_guest {
+  chain input { type filter hook input priority 0; policy drop; }
+  chain forward { type filter hook forward priority 0; policy drop; }
+  chain output { type filter hook output priority 0; policy drop; }
+}

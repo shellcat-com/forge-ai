@@ -1,0 +1,1 @@
+This is the actual provider response, previewed inside Forge and exported as HTML. The ninety eight second generation wait has been removed. The result is a standalone frontend.

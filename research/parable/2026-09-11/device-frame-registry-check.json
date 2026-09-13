@@ -1,0 +1,16 @@
+{
+  "url": "https://parable-three.vercel.app/r/device-frame.json",
+  "sha256": "4eed0bb459cc1c1eac60566c0a68923ede99055385d1575df13f69d3cf1f0372",
+  "bytes": 10400,
+  "name": "device-frame",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/parable/ui/device-frame.tsx",
+      "target": "components/parable/device-frame.tsx",
+      "type": "registry:ui",
+      "bytes": 9019
+    }
+  ]
+}

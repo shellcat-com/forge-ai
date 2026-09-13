@@ -1,0 +1,33 @@
+import { chromium } from '/Users/biswaskhatiwada/.npm/_npx/e41f203b7505f1fb/node_modules/playwright/index.mjs'
+import { fileURLToPath } from 'node:url'
+import { readFile, writeFile, mkdir } from 'node:fs/promises'
+const out = fileURLToPath(new URL('../output/respawn/', import.meta.url))
+await mkdir(out+'raw', {recursive:true})
+const browser=await chromium.launch({headless:true})
+const context=await browser.newContext({viewport:{width:1440,height:900},recordVideo:{dir:out+'raw',size:{width:1440,height:900}},colorScheme:'dark',acceptDownloads:true})
+const page=await context.newPage(); const errors=[]; page.on('pageerror',e=>errors.push(e.message))
+const start=Date.now(); const marks=[]
+const mark=async(name)=>{marks.push({name,seconds:(Date.now()-start)/1000});await writeFile(out+'generation-timeline.json',JSON.stringify(marks,null,2));console.log(name)}
+await page.goto('http://127.0.0.1:5173'); await page.waitForTimeout(1800); await mark('landing')
+await page.goto('http://127.0.0.1:5173/#/login'); await page.waitForTimeout(2200); await mark('demo-login')
+await page.getByRole('link',{name:'Explore demo workspace'}).click(); await page.waitForTimeout(2000)
+await page.getByRole('button',{name:'Create my first project'}).click(); await mark('brief')
+await page.getByRole('textbox',{name:'Project name'}).fill('Respawn — Gaming Marketplace')
+await page.getByRole('textbox',{name:'What would you like to build?'}).fill(await readFile(out+'brief.txt','utf8'))
+await page.getByLabel('Starting stack').selectOption('React + Express')
+await page.locator('input[value="technical-mono"]').check()
+await page.getByRole('button',{name:'Create project',exact:false}).click(); await page.waitForTimeout(1200)
+await page.locator('#provider-model').selectOption('deepseek-v4-pro'); await page.getByRole('button',{name:'Generate website'}).scrollIntoViewIfNeeded(); await page.waitForTimeout(1800)
+await mark('generation-start')
+const resultPromise=page.waitForResponse(r=>r.url().endsWith('/api/website'),{timeout:250000})
+await page.getByRole('button',{name:'Generate website'}).click()
+const result=await resultPromise; const payload=await result.json(); await writeFile(out+'provider-result.json',JSON.stringify(payload,null,2)); await mark('generation-end')
+if(!result.ok()) throw new Error(JSON.stringify(payload))
+await writeFile(out+'provider-original.html',payload.html)
+await page.locator('iframe.generated-website').waitFor(); await page.waitForTimeout(2500)
+await page.screenshot({path:out+'forge-preview.png'})
+await page.getByRole('tab',{name:'Files',exact:true}).click(); await page.waitForTimeout(1800)
+const downloadPromise=page.waitForEvent('download'); await page.getByRole('button',{name:'Download website'}).click(); const download=await downloadPromise; await download.saveAs(out+'index.html'); await mark('exported')
+await writeFile(out+'forge-storage.json',JSON.stringify(await context.storageState(),null,2))
+await page.getByRole('tab',{name:'Preview',exact:true}).click();await page.waitForTimeout(1200)
+await context.close();await browser.close();await writeFile(out+'generation-errors.json',JSON.stringify(errors,null,2));console.log('Generation and recording complete')

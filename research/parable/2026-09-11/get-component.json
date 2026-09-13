@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-09-11T07:35:14.648748+00:00",
+  "httpStatus": 200,
+  "request": {
+    "jsonrpc": "2.0",
+    "id": "get-component",
+    "method": "tools/call",
+    "params": {
+      "name": "get_component",
+      "arguments": {
+        "slug": "ai-input"
+      }
+    }
+  },
+  "response": {
+    "jsonrpc": "2.0",
+    "id": "get-component",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"slug\": \"ai-input\",\n  \"name\": \"ai-input\",\n  \"title\": \"AI Input\",\n  \"description\": \"A polished AI chat composer: an auto-growing textarea, a leading model/attach control row, an empty-disabled send button that swaps to a brief pending spinner on submit, a soft focus glow, and empty-state suggestion chips that fill the field on click (Enter sends, Shift+Enter newlines). Under prefers-reduced-motion the glow pulse, spinner rotation, and chip/icon transitions resolve to instant, legible static states.\",\n  \"category\": \"block\",\n  \"family\": \"component\",\n  \"dependencies\": [\n    \"motion\"\n  ],\n  \"registryDependencies\": [],\n  \"inspiredBy\": {\n    \"name\": \"Skiper UI \u2014 AI Input (pattern); Vercel AI SDK chat genre\",\n    \"url\": \"https://skiper-ui.com\"\n  },\n  \"install\": \"npx shadcn@latest add https://parable-three.vercel.app/r/ai-input.json\",\n  \"registryUrl\": \"https://parable-three.vercel.app/r/ai-input.json\",\n  \"props\": [\n    {\n      \"name\": \"placeholder\",\n      \"type\": \"string\",\n      \"required\": false,\n      \"default\": \"\\\"Ask anything\u2026\\\"\",\n      \"description\": \"Placeholder shown while the composer is empty.\"\n    },\n    {\n      \"name\": \"suggestions\",\n      \"type\": \"string[]\",\n      \"required\": false,\n      \"default\": \"[]\",\n      \"description\": \"Optional prompt chips shown above the input while it is empty; clicking one fills the field.\"\n    },\n    {\n      \"name\": \"onSubmit\",\n      \"type\": \"(text: string) => void | Promise<void>\",\n      \"required\": false,\n      \"default\": null,\n      \"description\": \"Called with the trimmed text on submit. If it returns a promise, the spinner holds until it settles.\"\n    },\n    {\n      \"name\": \"model\",\n      \"type\": \"string\",\n      \"required\": false,\n      \"default\": \"\\\"Auto\\\"\",\n      \"description\": \"Label shown on the leading model pill (decorative in this demo composer).\"\n    },\n    {\n      \"name\": \"className\",\n      \"type\": \"string\",\n      \"required\": false,\n      \"default\": null,\n      \"description\": \"Extra classes on the outer `<form>`.\"\n    }\n  ]\n}"
+        }
+      ]
+    }
+  }
+}

@@ -17,8 +17,10 @@ import {
   type ProjectRecord,
 } from './storage.ts'
 import { createProjectDraft, type Template } from './project.ts'
+import { customDirection, directionFromForm, writeDirection } from './design/direction.ts'
+import { directionPreview, updateDirectionForm } from './design/direction-ui.ts'
 import { getPreset, isPresetId } from './design/presets.ts'
-import { escapeHTML, preview, topbar, footer, recovery } from './components/ui.ts'
+import { escapeHTML, topbar, footer, recovery } from './components/ui.ts'
 import { landing } from './pages/landing.ts'
 import {
   login,
@@ -30,7 +32,14 @@ import {
   type BuilderState,
 } from './pages/workspace.ts'
 import { designs, docs, components } from './pages/designs.ts'
+import { downloadWebsite } from './website.ts'
 import { downloadFile, exportPreset } from './export.ts'
+import type { EngineWorkspace } from './engine/workspace.ts'
+import { IntegrationsWorkspace } from './integrations/workspace.ts'
+let engineWorkspace: EngineWorkspace | undefined
+let engineLoading = false
+let engineLoadFailed = false
+const engineUiEnabled = import.meta.env.VITE_FORGE_ENGINE_UI === 'true'
 const app = document.querySelector<HTMLDivElement>('#app')!
 const initial = (() => {
   try {
@@ -63,8 +72,21 @@ const state: BuilderState = {
   providerVerified: false,
 }
 const plans = new Map<string, string>()
+const websites = new Map<string, string>()
 let generatingFor: string | null = null
 let apiController: AbortController | undefined
+const integrations = new IntegrationsWorkspace(async <T>(path: string, method = 'GET', body?: unknown): Promise<T> => {
+  const response = await fetch('/api' + path, { method, headers: body ? { 'Content-Type': 'application/json' } : {}, body: body ? JSON.stringify(body) : undefined, signal: AbortSignal.timeout(25000) })
+  if (!response.headers.get('content-type')?.includes('application/json')) throw new Error('Start the Forge API with npm run api to use integrations.')
+  const result = await response.json()
+  if (!response.ok) throw new Error(result.error || 'The integration service is unavailable.')
+  return result as T
+}, () => { if (['integrations', 'design-library'].includes(route()[0])) render() }, async (item, prompt) => {
+  if (readBlocked) throw new Error('Resolve the browser storage error in Settings before creating a brief.')
+  const project = newProject(createProjectDraft({ name: (item.name + ' inspired website').slice(0, 100), prompt: writeDirection(prompt, customDirection()), template: 'Next.js + Postgres' }), 'technical-mono')
+  data.projects.unshift(project); persist(); location.hash = '#/project/' + project.id
+  toast(storageError ? 'Design brief created in this tab; browser save needs attention.' : 'Design reference saved in your new brief.')
+})
 applyTheme()
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
   if (readTheme() === 'system') applyTheme()
@@ -107,9 +129,11 @@ function render(): void {
   const [page, id] = route()
   const key = location.hash
   if (key !== currentRoute) {
+    if (page !== 'engine') engineWorkspace?.leave()
     state.tab = 'Plan'
     state.error = ''
     state.generated = id ? plans.get(id) || '' : ''
+    state.website = id ? websites.get(id) || '' : ''
     currentRoute = key
     window.scrollTo(0, 0)
   }
@@ -130,7 +154,7 @@ function render(): void {
     html = projectList(data)
     title = 'Your projects — Forge'
   } else if (page === 'new') {
-    html = projectForm(data.projects, isPresetId(id) ? id : 'technical-mono')
+    html = projectForm(data.projects, isPresetId(id) ? id : 'custom')
     title = 'New project — Forge'
   } else if (page === 'edit') {
     const p = data.projects.find((p) => p.id === id)
@@ -148,6 +172,27 @@ function render(): void {
   } else if (page === 'sample') {
     html = builder(data, state, undefined, true)
     title = 'Sample walkthrough — Forge'
+  } else if (page === 'engine') {
+    title = 'Engine integration — Forge'
+    if (!engineUiEnabled) html = `<div class="marketing">${topbar()}${recovery('The engine is not enabled.', 'Private-alpha setup is still pending. Your local briefs and sample walkthrough remain available.')}${footer()}</div>`
+    else if (engineWorkspace) {
+      html = engineWorkspace.render()
+      queueMicrotask(() => { if (route()[0] === 'engine') engineWorkspace?.enter(route().slice(1)) })
+    } else {
+      html = `<div class="marketing">${topbar()}${recovery(engineLoadFailed ? 'The engine workspace could not load.' : 'Opening the engine workspace…', 'Your local briefs remain available.')}${footer()}</div>`
+      if (!engineLoading && !engineLoadFailed) {
+        engineLoading = true
+        void Promise.all([import('./engine/workspace.ts'), import('./engine/client.ts'), import('./engine/source-client.ts')]).then(([{ EngineWorkspace }, { EngineClient }, { EngineSourceReader }]) => {
+          const client = new EngineClient()
+          engineWorkspace = new EngineWorkspace(() => { if (route()[0] === 'engine') render() }, path => { location.hash = path }, new EngineSourceReader(client), client)
+          if (route()[0] === 'engine') render()
+        }).catch(() => { engineLoadFailed = true; if (route()[0] === 'engine') render() }).finally(() => { engineLoading = false })
+      }
+    }
+  } else if (page === 'integrations' || page === 'design-library') {
+    html = `<div class="marketing">${topbar()}<main>${integrations.render(page === 'design-library')}</main>${footer()}</div>`
+    title = page === 'design-library' ? 'Design library — Forge' : 'Connectors & MCP — Forge'
+    queueMicrotask(() => { void integrations.enter() })
   } else if (page === 'settings') {
     html = settings(data)
     title = 'Settings — Forge'
@@ -188,6 +233,15 @@ window.addEventListener('hashchange', () => {
   h?.focus({ preventScroll: true })
 })
 document.addEventListener('click', async (event) => {
+  const integrationAction = (event.target as HTMLElement).closest<HTMLElement>('[data-integration]')
+  if (integrationAction) { event.preventDefault(); await integrations.action(integrationAction.dataset.integration!, integrationAction.dataset.id); return }
+  const engineAction = (event.target as HTMLElement).closest<HTMLElement>('[data-engine-action]')
+  if (route()[0] === 'engine' && engineAction && engineWorkspace) {
+    event.preventDefault()
+    try { await engineWorkspace.action(engineAction.dataset.engineAction!, engineAction.dataset.id) }
+    catch { toast('This engine action is unavailable. Refresh the current review.') }
+    return
+  }
   if (
     (event.target as HTMLElement).closest('a[href]') &&
     document.querySelector('.app-sidebar.open')
@@ -268,10 +322,8 @@ document.addEventListener('click', async (event) => {
     previewTheme = previewTheme === 'light' ? 'dark' : 'light'
     if (page === 'new' || page === 'edit') {
       const checked = document.querySelector<HTMLInputElement>('input[name="preset"]:checked')
-      document.querySelector('#live-preview')!.innerHTML = preview(
-        checked?.value || 'technical-mono',
-        previewTheme
-      )
+      const form = checked?.form
+      document.querySelector('#live-preview')!.innerHTML = directionPreview(form ? writeDirection('', directionFromForm(new FormData(form))) : '', checked?.value || 'technical-mono', previewTheme)
     } else render()
   }
   if (action === 'tab') {
@@ -354,7 +406,11 @@ document.addEventListener('click', async (event) => {
   }
   if (action === 'close-dialog') closeDialog()
   if (action === 'specimen-feedback') toast('Action completed. This is a component example.')
-  if (action === 'generate-plan' && id) {
+  if (action === 'download-website' && state.website) {
+    try { await downloadWebsite(state.website) } catch { toast('Download failed. Check the local asset server and try again.') }
+  }
+  if ((action === 'generate-plan' || action === 'generate-website') && id) {
+    const websiteMode = action === 'generate-website'
     const p = data.projects.find((p) => p.id === id)
     const model = document.querySelector<HTMLSelectElement>('#provider-model')?.value
     if (!p || !model || generatingFor) return
@@ -362,10 +418,10 @@ document.addEventListener('click', async (event) => {
     state.selectedModel = model
     state.error = ''
     apiController = new AbortController()
-    const timeout = setTimeout(() => apiController?.abort(), 125000)
+    const timeout = setTimeout(() => apiController?.abort(), 245000)
     render()
     try {
-      const response = await fetch('/api/generate', {
+      const response = await fetch(websiteMode ? '/api/website' : '/api/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: p.name, prompt: p.prompt, template: p.template, model }),
@@ -374,12 +430,16 @@ document.addEventListener('click', async (event) => {
       const result = await response.json()
       if (!response.ok) throw new Error(result.error || 'The plan could not be prepared.')
       state.providerVerified = true
-      plans.set(id, result.text)
+      if (websiteMode) {
+        if (typeof result.html !== 'string') throw new Error('No complete website returned.')
+        websites.set(id, result.html)
+        if (route()[1] === id) { state.website = result.html; state.tab = 'Preview' }
+      } else plans.set(id, result.text)
       if (route()[1] === id) {
-        state.generated = result.text
+        if (!websiteMode) state.generated = result.text
         state.error = result.truncated ? 'The provider returned a partial plan.' : ''
       }
-      toast('Text plan prepared. No files were created.')
+      toast(websiteMode ? 'Frontend ready. Download before closing this tab.' : 'Text plan prepared. No files were created.')
     } catch (error) {
       if (route()[1] === id)
         state.error =
@@ -398,9 +458,13 @@ document.addEventListener('click', async (event) => {
 document.addEventListener('change', (event) => {
   const input = event.target as HTMLInputElement
   if (input.id === 'provider-model') state.selectedModel = input.value
-  if (input.name === 'preset') {
-    document.querySelector('#live-preview')!.innerHTML = preview(input.value, previewTheme)
-    document.querySelector('#preset-description')!.textContent = getPreset(input.value).guidance
+  if (['preset', 'designMode', 'designStyle', 'designReferences'].includes(input.name) && input.form) {
+    updateDirectionForm(input.form)
+    const values = new FormData(input.form)
+    const direction = directionFromForm(values)
+    const selected = String(values.get('preset') || 'technical-mono')
+    document.querySelector('#live-preview')!.innerHTML = directionPreview(writeDirection('', direction), selected, previewTheme)
+    document.querySelector('#preset-description')!.textContent = direction.mode === 'custom' ? 'Your brief defines the design. No preset required.' : getPreset(selected).guidance
   }
 })
 document.addEventListener('input', (event) => {
@@ -417,6 +481,12 @@ document.addEventListener('input', (event) => {
 })
 document.addEventListener('submit', (event) => {
   const form = event.target as HTMLFormElement
+  if (form.dataset.integrationForm) { event.preventDefault(); integrations.submit(form.dataset.integrationForm, new FormData(form)); return }
+  if (route()[0] === 'engine' && form.dataset.engineForm && engineWorkspace) {
+    event.preventDefault()
+    void engineWorkspace.submit(form.dataset.engineForm, new FormData(form)).catch(() => toast('The engine action could not finish. Your local briefs are unchanged.'))
+    return
+  }
   if (form.id !== 'project-form' && form.id !== 'rename-form') return
   event.preventDefault()
   const values = new FormData(form)
@@ -444,9 +514,15 @@ document.addEventListener('submit', (event) => {
       'Write at least 20 characters to give the brief a useful starting point.'
     return
   }
-  const preset = String(values.get('preset'))
+  const direction = directionFromForm(values)
+  const preset = direction.mode === 'custom' ? 'technical-mono' : String(values.get('preset'))
   if (!isPresetId(preset)) return
-  const draft = createProjectDraft({ name, prompt, template: values.get('template') as Template })
+  let fullPrompt: string
+  try { fullPrompt = writeDirection(prompt, direction) } catch (error) {
+    document.querySelector('#form-error')!.textContent = (error as Error).message
+    return
+  }
+  const draft = createProjectDraft({ name, prompt: fullPrompt, template: values.get('template') as Template })
   let p = data.projects.find((p) => p.id === form.dataset.id)
   if (p) {
     Object.assign(p, draft, { presetId: preset, updatedAt: new Date().toISOString() })

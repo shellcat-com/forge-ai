@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "origin": "existing-forge-browser",
+  "checkedAt": "2026-09-10T01:19:00Z",
+  "baseUrl": "http://127.0.0.1:5173",
+  "browser": "Codex in-app browser",
+  "theme": "dark (existing preference preserved)",
+  "checks": [
+    {
+      "name": "local brief creation",
+      "status": "passed",
+      "evidence": "Created and opened a clearly synthetic verification brief; UI said saved in this browser and no application files generated."
+    },
+    {
+      "name": "planning availability boundary",
+      "status": "passed",
+      "evidence": "No planning provider connected; model selector and Generate plan disabled. No provider call made."
+    },
+    {
+      "name": "sample walkthrough",
+      "status": "passed",
+      "evidence": "Advanced four explicit steps; sample source viewer retained FIXED SAMPLE FILE and deterministic/no-code-execution labels."
+    },
+    {
+      "name": "design package export",
+      "status": "passed",
+      "evidence": "Clicked Download package; UI confirmed Design package downloaded. Archive contents are covered by repository tests; downloaded bytes not independently inspected in this browser check."
+    },
+    {
+      "name": "brief export",
+      "status": "passed",
+      "evidence": "Clicked Download briefs without UI failure. Downloaded bytes not independently inspected in this browser check."
+    },
+    {
+      "name": "cleanup",
+      "status": "passed",
+      "evidence": "Deleted only newly created synthetic brief; original two local projects remained. No reset or unrelated edits."
+    }
+  ],
+  "limitations": [
+    "No engine UI route connected yet",
+    "Not A19 generated-app evidence",
+    "No visual changes made to existing Forge screens",
+    "A21 awaits successful final repository verification"
+  ],
+  "listenerCleanup": "Coordinator-owned Vite listener stopped after browser check"
+}

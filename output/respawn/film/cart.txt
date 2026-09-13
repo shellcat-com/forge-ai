@@ -1,0 +1,1 @@
+Add a controller and keyboard, then open the cart. The subtotal reflects both products. Increase a quantity, decrease it again, or remove an item; the total updates immediately. During review, I fixed the generated cart handlers and improved dialog focus so these controls work reliably.

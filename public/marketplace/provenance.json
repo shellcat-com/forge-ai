@@ -1,0 +1,32 @@
+{
+  "created": "2026-09-10",
+  "generator": "Built-in GPT image generation tool (tool does not expose an exact model ID)",
+  "brand": "Respawn original concept; no brand assets supplied",
+  "prompts": {
+    "hero": "Cinematic premium 3D product render of a translucent smoky violet game controller floating above an obsidian pedestal; lavender and coral reflections; midnight studio; subject right, negative space left; no text or marks.",
+    "products": "Square two-by-two studio contact sheet: translucent purple controller, lavender mechanical keyboard, black headset, white mouse with coral accents; charcoal backgrounds; no text or logos."
+  },
+  "processing": "Sharp WebP quality 82; hero resized to 1600px; product quadrants extracted and resized to 640px.",
+  "assets": [
+    {
+      "file": "hero.webp",
+      "bytes": 97026
+    },
+    {
+      "file": "controller.webp",
+      "bytes": 19744
+    },
+    {
+      "file": "keyboard.webp",
+      "bytes": 16016
+    },
+    {
+      "file": "headset.webp",
+      "bytes": 15010
+    },
+    {
+      "file": "mouse.webp",
+      "bytes": 12848
+    }
+  ]
+}

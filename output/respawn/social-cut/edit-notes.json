@@ -1,0 +1,61 @@
+{
+  "duration": 81.0,
+  "clips": [
+    {
+      "name": "opening",
+      "sourceFrom": 0.7,
+      "sourceTo": 14.62,
+      "duration": 14
+    },
+    {
+      "name": "prompt-timelapse",
+      "sourceFrom": 14.62,
+      "sourceTo": 120.751,
+      "duration": 18
+    },
+    {
+      "name": "design-and-create",
+      "sourceFrom": 120.751,
+      "sourceTo": 131.119,
+      "duration": 9
+    },
+    {
+      "name": "open-brief",
+      "sourceFrom": 131.119,
+      "sourceTo": 133,
+      "duration": 1.8
+    },
+    {
+      "name": "refine-timelapse",
+      "sourceFrom": 133,
+      "sourceTo": 142.2,
+      "duration": 3.2
+    },
+    {
+      "name": "save-and-generate",
+      "sourceFrom": 142.2,
+      "sourceTo": 149.841,
+      "duration": 6.5
+    },
+    {
+      "name": "generation-timelapse",
+      "sourceFrom": 149.841,
+      "sourceTo": 280.245,
+      "duration": 6.5
+    },
+    {
+      "name": "preview-and-export",
+      "sourceFrom": 280.245,
+      "sourceTo": 289.329,
+      "duration": 9
+    },
+    {
+      "name": "website-tour",
+      "sourceFrom": 0.25,
+      "sourceTo": 11.934,
+      "duration": 13
+    }
+  ],
+  "audio": "Original procedurally composed instrumental and synthesized mechanical keyboard/mouse foley; no external samples, voice, or recorded live sound.",
+  "video": "Existing actual Forge viewport capture, re-timed. No fabricated generation or new workflow steps."
+}

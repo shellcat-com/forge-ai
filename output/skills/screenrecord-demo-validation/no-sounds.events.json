@@ -1,0 +1,12 @@
+{
+  "duration": 4,
+  "sample_rate": 48000,
+  "events": [],
+  "audio": "Original synthesized instrumental and designed UI effects; not recorded live sound.",
+  "peak": 0.0,
+  "sound": {
+    "music": false,
+    "typing": [],
+    "clicks": []
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "synthetic": true,
+  "reports": [
+    {
+      "screen": "settings",
+      "theme": "light",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "screen": "settings",
+      "theme": "dark",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "screen": "settings",
+      "theme": "light",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "screen": "settings",
+      "theme": "dark",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "screen": "settings",
+      "theme": "light",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "screen": "settings",
+      "theme": "dark",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "screen": "generation",
+      "theme": "light",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "screen": "generation",
+      "theme": "dark",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "screen": "generation",
+      "theme": "light",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "screen": "generation",
+      "theme": "dark",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "screen": "generation",
+      "theme": "light",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "screen": "generation",
+      "theme": "dark",
+      "width": 1440,
+      "overflow": false
+    }
+  ],
+  "keyboard": "passed",
+  "reducedMotion": "emulated",
+  "zoom": "CSS 200%; native browser zoom not checked",
+  "flow": "login, rejected key, checked key, text, frontend interaction and download, remove, logout",
+  "failures": []
+}

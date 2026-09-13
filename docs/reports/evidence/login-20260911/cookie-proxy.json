@@ -1,0 +1,47 @@
+{
+  "checkedAt": "2026-09-11T08:38:39.094112+00:00",
+  "productionDeployment": "https://forge-ai-demo-ol681boyz-biswas07.vercel.app",
+  "previewDeployment": "https://forge-ai-demo-f7xgzwnqw-biswas07.vercel.app",
+  "safari": {
+    "crossSiteTrackingPreventionEnabled": true,
+    "hideIPFromTrackersEnabled": true,
+    "regularSignupVerificationCreationReloadSignoutBeforeProxy": true,
+    "privateLoginProjectReloadBeforeProxy": true,
+    "privateProxyLoginAndSettingsOnStaging": true
+  },
+  "firefox": {
+    "blockAllCrossSiteCookiesDirectAuthFailed": true,
+    "privateBlockedCookiesProxyLoginProjectReloadStaging": true,
+    "revokedStagingSessionRejectedOnReload": true,
+    "privateBlockedCookiesProxyLoginProjectReloadProduction": true,
+    "originalCookieIsolationPreferenceRestored": true
+  },
+  "productionGoogleLoginOriginalProjectReopened": true,
+  "productionDisposableEmailLoginFreshReauthDeletion": true,
+  "cleanup": {
+    "test_accounts_remaining": 0,
+    "test_projects_remaining": 0,
+    "original_projects_retained": 1,
+    "original_accounts_retained": 1,
+    "checkedAt": "2026-09-11T08:36:30.701Z"
+  },
+  "httpAndAssetChecks": {
+    "checkedAt": "2026-09-11T08:37:25.920Z",
+    "configStatus": 200,
+    "authUrl": "https://forge-ai-demo-omega.vercel.app/api/auth",
+    "anonymousStatus": 401,
+    "foreignOriginStatus": 403,
+    "missingOriginStatus": 403,
+    "adminRouteStatus": 404,
+    "clientFilesScanned": 6,
+    "credentialMatches": 0
+  },
+  "verification": {
+    "passedTests": 582,
+    "skippedTests": 4,
+    "lint": true,
+    "strictTypes": true,
+    "defaultBuild": true,
+    "cloudBuild": true
+  }
+}

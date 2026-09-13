@@ -1,0 +1,9 @@
+.project-root { overflow-wrap: anywhere; --canvas: #fdfcfc; --ink: #201d1d; --muted: #646262; --border: #d8d3d3; --focus: #2563eb; color-scheme: light dark; background: var(--canvas); color: var(--ink); min-height: 100dvh; font: 16px/1.85 ui-monospace, monospace; }
+body { margin: 0; }
+.project-root main { box-sizing: border-box; max-width: 768px; margin: auto; padding: 64px 24px; }
+.project-root h1 { font-size: clamp(28px, 5vw, 38px); line-height: 1.5; }
+.project-root .status { color: var(--muted); font-size: 14px; }
+.project-root a { display: inline-block; color: inherit; min-height: 44px; padding: 8px; border: 1px solid var(--border); }
+.project-root :focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
+@media (prefers-color-scheme: dark) { .project-root { --canvas: #141111; --ink: #f1eeee; --muted: #aaa4a4; --border: #3a3434; --focus: #8ab4ff; } }
+@media (prefers-reduced-motion: reduce) { .project-root *, .project-root *::before, .project-root *::after { animation: none !important; transition: none !important; } }

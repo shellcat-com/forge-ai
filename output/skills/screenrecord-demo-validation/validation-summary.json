@@ -1,0 +1,22 @@
+{
+  "skill": "screenrecord-demo",
+  "skill_schema": "passed",
+  "installed_copy": "matches repository source",
+  "script_checks": [
+    "accelerated and slowed clips",
+    "sound and silent MP4 exports",
+    "no-sound audio synthesis",
+    "overwrite refusal",
+    "source bounds",
+    "frame-grid validation",
+    "sound-event bounds"
+  ],
+  "full_reference_render": {
+    "duration_seconds": 81,
+    "resolution": "1920x1080",
+    "full_decode": "passed",
+    "contact_sheet": "visually inspected",
+    "full_playback_and_listening": "not performed in this skill-validation run"
+  },
+  "repository_verify": "passed"
+}
