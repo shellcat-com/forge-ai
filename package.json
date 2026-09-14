@@ -57,7 +57,7 @@
   },
   "packageManager": "npm@11.11.0",
   "dependencies": {
-    "@better-auth/drizzle-adapter": "1.7.3",
+    "@better-auth/drizzle-adapter": "1.7.4",
     "@better-auth/infra": "0.4.8",
     "@fontsource/ibm-plex-mono": "^5.3.0",
     "@fontsource/instrument-serif": "^5.3.0",
