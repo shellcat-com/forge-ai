@@ -53,7 +53,7 @@
     "vitest": "^4.1.11",
     "@electric-sql/pglite": "^0.5.8",
     "drizzle-kit": "^0.31.10",
-    "jsdom": "^29.1.1"
+    "jsdom": "^30.0.1"
   },
   "packageManager": "npm@11.11.0",
   "dependencies": {
