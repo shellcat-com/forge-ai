@@ -14,19 +14,24 @@ export class RunnerClient {
     return verifyResult(await this.transport.send(body, signal), body, this.brokerKeys, this.now())
   }
 }
-export function createMtlsTransport(config: { endpoint: string; ca: string; cert: string; key: string; serverCertificateSha256: string }): RunnerTransport {
+export function createMtlsTransport(config: { endpoint: string; ca: string; cert: string; key: string; serverCertificateSha256: string; absoluteTimeoutMs?: number }): RunnerTransport {
   const endpoint = new URL(config.endpoint)
+  const absoluteTimeoutMs = config.absoluteTimeoutMs ?? 250_000
   if (endpoint.protocol !== 'https:' || endpoint.username || endpoint.password || endpoint.search || endpoint.hash || endpoint.pathname !== '/v1/broker'
-    || !/^[a-f0-9]{64}$/.test(config.serverCertificateSha256) || !config.ca || !config.cert || !config.key) throw new Error('Invalid fixed broker mTLS configuration')
+    || !/^[a-f0-9]{64}$/.test(config.serverCertificateSha256) || !config.ca || !config.cert || !config.key
+    || !Number.isSafeInteger(absoluteTimeoutMs) || absoluteTimeoutMs < 1 || absoluteTimeoutMs > 250_000) throw new Error('Invalid fixed broker mTLS configuration')
+  const { ca, cert, key, serverCertificateSha256 } = config
   return { send: (body, signal) => new Promise((resolve, reject) => {
     const bytes = Buffer.from(JSON.stringify(body))
     if (bytes.length > 16 * 1024) { reject(new Error('Broker request too large')); return }
-    const request = httpsRequest(endpoint, { method: 'POST', ca: config.ca, cert: config.cert, key: config.key,
-      rejectUnauthorized: true, minVersion: 'TLSv1.3', signal: AbortSignal.any([signal, AbortSignal.timeout(250_000)]), timeout: 250_000,
+    // A shared HTTPS agent can reuse a socket/TLS session without re-running this
+    // client's pin check. One-shot agents keep every request in its own trust scope.
+    const request = httpsRequest(endpoint, { method: 'POST', ca, cert, key, agent: false,
+      rejectUnauthorized: true, minVersion: 'TLSv1.3', signal: AbortSignal.any([signal, AbortSignal.timeout(absoluteTimeoutMs)]), timeout: absoluteTimeoutMs,
       checkServerIdentity: (host, cert) => {
         const error = checkServerIdentity(host, cert)
         if (error) return error
-        if (createHash('sha256').update(cert.raw).digest('hex') !== config.serverCertificateSha256) return new Error('Broker certificate mismatch')
+        if (createHash('sha256').update(cert.raw).digest('hex') !== serverCertificateSha256) return new Error('Broker certificate mismatch')
       }, headers: { 'content-type': 'application/json', 'content-length': String(bytes.length), 'x-forge-request-digest': canonicalHash(body) } }, response => {
       if (response.statusCode !== 200 || !(response.socket as TLSSocket).authorized) { response.destroy(); reject(new Error('Broker request rejected')); return }
       const chunks: Buffer[] = []; let size = 0

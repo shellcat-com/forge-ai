@@ -4,6 +4,11 @@ import { templateManifestSchema } from '../../engine/contracts/source.ts'
 import { digest } from '../../engine/contracts/primitives.ts'
 
 export const candidateToolchain = { next: '16.3.4', node: '24.20.0', postgres: '18.6' } as const
+export const protectedTemplatePaths = ['package.json', 'package-lock.json', 'tsconfig.json', 'next.config.mjs',
+  'next-env.d.ts', 'eslint.config.mjs', 'vitest.config.mjs', 'platform/environment.ts', 'platform/environment.test.ts',
+  'platform/reference-migrate.mjs', 'app-database.sql', 'postgresql.conf', 'pg_hba.conf', 'lib/database.ts',
+  'reference/migrations/0001_tasks.sql', 'reference/migrations/0002_priority.sql', 'reference/portfolio.json',
+  'README.md', '.env.example', '.gitignore'] as const
 const releaseEvidence = z.strictObject({ offlineMaterializationDigest: digest, dependencyLicenseReviewDigest: digest,
   isolationSuiteDigest: digest, cleanExportDigest: digest, referenceBenchmarkDigest: digest,
   approvedBy: z.string().min(1), approvedAt: z.iso.datetime({ offset: true }) })
@@ -15,13 +20,16 @@ export async function validateTemplateRelease(manifestInput: unknown, lockfile: 
   digest.parse(expectedCorpusDigest)
   const manifest = templateManifestSchema.parse(manifestInput)
   const evidence = releaseEvidence.parse(evidenceInput)
+  if (Object.entries(candidateToolchain).some(([name, version]) => manifest.releases[name as keyof typeof candidateToolchain] !== version)
+    || protectedTemplatePaths.some(path => !manifest.protectedPaths.includes(path))) throw new Error('Unapproved template release configuration')
+  if (Date.parse(evidence.approvedAt) > now || now - Date.parse(evidence.approvedAt) > 86400000) throw new Error('Stale release approval')
   if (manifest.lockfileDigest !== sha256(lockfile)) throw new Error('Template lockfile digest mismatch')
   const lock = JSON.parse(lockfile) as { lockfileVersion?: unknown; packages?: Record<string, { version?: string; resolved?: string; integrity?: string; link?: boolean; dependencies?: Record<string, string>; devDependencies?: Record<string, string>; engines?: { node?: string } }> }
   if (lock.lockfileVersion !== 3 || !lock.packages?.[''] || !lock.packages['node_modules/next']) throw new Error('Invalid template lockfile')
   if (lock.packages['node_modules/next'].version !== manifest.releases.next || lock.packages[''].engines?.node !== manifest.releases.node) throw new Error('Release version mismatch')
   const root = lock.packages['']
-  for (const version of Object.values({ ...root.dependencies, ...root.devDependencies }))
-    if (!/^\d+\.\d+\.\d+$/.test(version)) throw new Error('Unpinned direct dependency')
+  for (const [name, version] of Object.entries({ ...root.dependencies, ...root.devDependencies }))
+    if (!/^\d+\.\d+\.\d+$/.test(version) || lock.packages[`node_modules/${name}`]?.version !== version) throw new Error('Unpinned or mismatched direct dependency')
   for (const [path, pkg] of Object.entries(lock.packages)) {
     if (path === '') continue
     if (pkg.link || !pkg.version || !pkg.resolved?.startsWith('https://registry.npmjs.org/') || !/^sha512-[A-Za-z0-9+/=]+$/.test(pkg.integrity ?? '')) throw new Error('Unverified dependency entry')

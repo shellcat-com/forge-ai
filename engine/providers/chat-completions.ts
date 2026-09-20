@@ -3,11 +3,14 @@ import { generationRequestSchema, modelDescriptorSchema } from '../contracts/pro
 import type { CredentialStatus, GenerationEvent, GenerationRequest, ModelDescriptor, ProviderAdapter } from '../contracts/provider.ts'
 import { fileBatchSchema, planSchema } from '../contracts/source.ts'
 import { limits } from '../contracts/primitives.ts'
+import { pinnedProviderFetch, providerDestination } from './destination.ts'
+import { assertModelBounds, inputTokenUpperBound } from './registry.ts'
+import type { ProviderPolicy } from './registry.ts'
 
-const envelope = z.object({ id: z.string().min(1).max(120).optional(),
+const envelope = z.object({ service_tier: z.string().optional(), model: z.string().optional(), id: z.string().min(1).max(120).optional(),
   choices: z.array(z.object({ finish_reason: z.string(), message: z.object({ content: z.string().nullable().optional(),
     refusal: z.string().nullable().optional(), tool_calls: z.array(z.unknown()).optional(), function_call: z.unknown().optional() }) })).length(1),
-  usage: z.object({ prompt_tokens: z.number().int().nonnegative().max(Number.MAX_SAFE_INTEGER),
+  usage: z.object({ prompt_tokens_details: z.object({ cached_tokens: z.number().int().nonnegative().max(Number.MAX_SAFE_INTEGER) }).optional(), prompt_tokens: z.number().int().nonnegative().max(Number.MAX_SAFE_INTEGER),
     completion_tokens: z.number().int().nonnegative().max(Number.MAX_SAFE_INTEGER) }).optional() })
 type ErrorCode = Extract<GenerationEvent, { type: 'error' }>['code']
 class TransportFailure extends Error {
@@ -19,6 +22,7 @@ export interface ChatCompletionsOptions {
   endpoint: string
   approvedEndpoints: readonly string[]
   model: ModelDescriptor
+  policy?: ProviderPolicy
   getCredential: (signal: AbortSignal) => Promise<string | null>
   /** Injected HTTP transport is for explicitly labelled transport tests only. */
   fetch?: typeof globalThis.fetch
@@ -37,15 +41,13 @@ export class ChatCompletionsAdapter implements ProviderAdapter {
   private readonly now: () => number
   constructor(private readonly options: ChatCompletionsOptions) {
     this.id = z.string().min(1).max(120).parse(options.id)
-    const url = new URL(options.endpoint)
-    if (url.protocol !== 'https:' || url.username || url.password || url.hash || url.search
-      || !options.approvedEndpoints.includes(url.href)) throw new Error('Unapproved provider destination')
+    const url = providerDestination(options.endpoint, options.approvedEndpoints)
     this.endpoint = url.href
     this.model = modelDescriptorSchema.parse(options.model)
     if (this.model.capabilities.streaming || !this.model.capabilities.structuredOutput || this.model.capabilities.toolCalls)
       throw new Error('Adapter requires nonstreaming structured-only model policy')
     if (options.fetch && options.evidenceOrigin !== 'fixture') throw new Error('Injected transport must use fixture provenance')
-    this.transport = options.fetch ?? globalThis.fetch
+    this.transport = options.fetch ?? pinnedProviderFetch(options.approvedEndpoints)
     this.origin = options.evidenceOrigin ?? 'provider'
     this.now = options.now ?? Date.now
   }
@@ -91,16 +93,17 @@ export class ChatCompletionsAdapter implements ProviderAdapter {
       if (request.model !== this.model.id || request.maxOutputTokens > this.model.maxOutputTokens)
         throw new TransportFailure('INVALID_OUTPUT')
       // UTF-8 bytes conservatively bound tokens; admission must price this same bound.
-      const inputBound = Buffer.byteLength(JSON.stringify(request.context), 'utf8')
+      const inputBound = this.options.policy ? assertModelBounds(request, this.options.policy) : inputTokenUpperBound(request)
       if (inputBound > this.model.maxInputTokens) throw new TransportFailure('INVALID_OUTPUT')
       const credential = await abortable(this.options.getCredential(controller.signal), controller.signal)
       if (controller.signal.aborted) throw new TransportFailure(signal.aborted ? 'CANCELLED' : 'TIMEOUT')
       if (!credential || /[\r\n]/.test(credential)) throw new TransportFailure('AUTH')
+      if (containsCredential(request.context, credential)) throw new TransportFailure('INVALID_OUTPUT')
       dispatched = true
       const response = await abortable(this.transport(this.endpoint, { method: 'POST', redirect: 'error', signal: controller.signal,
         headers: { Authorization: `Bearer ${credential}`, 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({ model: request.model, messages: request.context, stream: false,
-          max_tokens: request.maxOutputTokens, response_format: { type: 'json_object' } }) }), controller.signal)
+          max_completion_tokens: request.maxOutputTokens, ...(this.options.policy ? { service_tier: 'default', store: false } : {}), response_format: { type: 'json_object' } }) }), controller.signal)
       received = true
       if (!response.ok) {
         await response.body?.cancel()
@@ -114,10 +117,18 @@ export class ChatCompletionsAdapter implements ProviderAdapter {
       }
       const cap = (request.stage === 'plan' ? limits.planBytes : limits.batchBytes) * 6 + 8192
       const raw = await readBounded(response, cap, controller.signal)
+      if (raw.includes(credential)) throw new TransportFailure('INVALID_OUTPUT')
       const parsed = envelope.parse(JSON.parse(raw))
+      if (containsCredential(parsed, credential) || (this.options.policy && parsed.model !== request.model)) throw new TransportFailure('INVALID_OUTPUT')
+      if (parsed.usage && (parsed.usage.prompt_tokens > inputBound || parsed.usage.completion_tokens > request.maxOutputTokens))
+        throw new TransportFailure('INVALID_OUTPUT')
       if (parsed.usage) {
+        // V1 usage contracts cannot express cached-tier pricing. Retain the full
+        // reservation for absent/cache-discounted/non-default-tier observations.
+        const exactRate = !this.options.policy || (parsed.usage.prompt_tokens_details?.cached_tokens === 0
+          && (parsed.service_tier === undefined || parsed.service_tier === 'default'))
         yield { schemaVersion: 1, type: 'usage', usage: { inputTokens: parsed.usage.prompt_tokens,
-          outputTokens: parsed.usage.completion_tokens, classification: 'measured', ...(parsed.id ? { requestId: parsed.id } : {}) } }
+          outputTokens: parsed.usage.completion_tokens, classification: exactRate ? 'measured' : 'estimated', ...(parsed.id ? { requestId: parsed.id } : {}) } }
         usageReported = true
       }
       const choice = parsed.choices[0]
@@ -129,6 +140,7 @@ export class ChatCompletionsAdapter implements ProviderAdapter {
       if (Buffer.byteLength(content, 'utf8') > (request.stage === 'plan' ? limits.planBytes : limits.batchBytes))
         throw new TransportFailure('INVALID_OUTPUT')
       const payload = (request.outputSchemaId === 'PlanV1' ? planSchema : fileBatchSchema).parse(JSON.parse(content))
+      if (containsCredential(payload, credential)) throw new TransportFailure('INVALID_OUTPUT')
       if (!usageReported) yield { schemaVersion: 1, type: 'usage', usage: { classification: 'uncertain' } }
       yield { schemaVersion: 1, type: 'completed', finish: 'stop', origin: this.origin, payload,
         ...(parsed.id ? { requestId: parsed.id } : {}) }
@@ -185,4 +197,10 @@ function abortable<T>(promise: Promise<T>, signal: AbortSignal): Promise<T> {
     signal.addEventListener('abort', abort, { once: true })
     promise.then(resolve, reject)
   }).finally(() => signal.removeEventListener('abort', abort))
+}
+
+function containsCredential(value: unknown, credential: string): boolean {
+  if (typeof value === 'string') return [credential, Buffer.from(credential).toString('base64'), encodeURIComponent(credential)].some(secret => value.includes(secret))
+  if (Array.isArray(value)) return value.some(v => containsCredential(v,credential))
+  return value !== null && typeof value === 'object' && Object.values(value).some(v => containsCredential(v,credential))
 }

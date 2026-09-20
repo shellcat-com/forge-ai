@@ -13,7 +13,7 @@ export const hardenedHostSchema = z.strictObject({ schemaVersion: z.literal(1), 
   runtimeUid: z.number().int().min(10000), runtimeGid: z.number().int().min(10000) })
 
 /** Configuration compiler only. Attestation booleans cannot enable execution:
- * D2's reviewed Linux executor has deliberately not been supplied yet. */
+ * D2's Linux executor implementation is not installed or live-validated. */
 export function compileGuestConfiguration(input: unknown, descriptor: BrokerDescriptorV1) {
   const host = hardenedHostSchema.parse(input)
   if (host.immutableImageDigest !== descriptor.imageDigest || host.templateDigest !== descriptor.templateDigest) throw new BrokerError('INVALID')

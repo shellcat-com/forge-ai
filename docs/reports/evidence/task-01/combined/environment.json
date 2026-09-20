@@ -1,0 +1,15 @@
+{
+  "sourceCommit": "4dacd0255e4a04648424eb0b0044c6658b46a014",
+  "clone": "fresh GitHub clone /tmp/forge-task01-final-reproduction",
+  "node": "24.20.0",
+  "npm": "11.11.0",
+  "postgres": "14.18 Homebrew",
+  "browser": "Google Chrome 153.0.8010.36",
+  "install": "npm ci, own real node_modules, unchanged root lock",
+  "nativeSerialization": "exclusive /tmp/forge-native-verification.lock acquired and released by Task01",
+  "environment": "allowlisted PATH/HOME/TMPDIR; PYTHONDONTWRITEBYTECODE=1 NEXT_TELEMETRY_DISABLED=1; no .env files",
+  "origin": "local native synthetic services plus separately labeled public availability website observations",
+  "canonicalHostingInitial": "CSS zoom2 simulation at390 failed inherited body min-width320; scoped fix requested",
+  "liveGeneratedPortfolio": false,
+  "paidApiCalls": 0
+}

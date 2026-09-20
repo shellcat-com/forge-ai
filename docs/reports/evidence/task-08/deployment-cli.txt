@@ -1,0 +1,16 @@
+Retrieving project…
+Deploying biswas07/forge-ai-demo
+Uploading [--------------------] (0.0B/11.7KB)
+Uploading [============--------] (7.5KB/11.7KB)
+Uploading [=============-------] (7.9KB/11.7KB)
+Uploading [====================] (11.7KB/11.7KB)
+Inspect: https://vercel.com/biswas07/forge-ai-demo/HQkCUrvZnLVXx4LjGfo64qUu1jh3 [3s]
+Production: https://forge-ai-demo-kcmp4ynqr-biswas07.vercel.app [3s]
+https://forge-ai-demo-kcmp4ynqr-biswas07.vercel.appBuilding...
+Production: https://forge-ai-demo-kcmp4ynqr-biswas07.vercel.app [4s]
+Completing...
+Aliased: https://forge-ai-demo-omega.vercel.app [4s]
+
+Common next commands:
+- `vercel inspect forge-ai-demo-kcmp4ynqr-biswas07.vercel.app --logs`
+- `vercel redeploy forge-ai-demo-kcmp4ynqr-biswas07.vercel.app`

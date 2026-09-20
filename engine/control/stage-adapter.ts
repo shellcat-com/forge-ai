@@ -1,4 +1,7 @@
 import { z } from 'zod'
+import { storedSourceSchema, storedCandidateSchema } from '../integration/contracts.ts'
+import { artifactRefSchema } from '../artifacts/store.ts'
+import type { StoredSource } from '../generation/source.ts'
 import type { JobState } from '../workflows/jobs.ts'
 import { planSchema, manifestSchema } from '../contracts/source.ts'
 import type { PlanV1, ManifestV1 } from '../contracts/source.ts'
@@ -19,11 +22,22 @@ export interface StageInput {
   readonly instruction: string
   readonly maxCostMicros: number
   readonly baseSnapshotId: string | null
+  readonly baseSource?: StoredSource
+  readonly selectedSource?: StoredSource
   readonly plan?: PlanV1
   readonly manifest?: ManifestV1
   readonly verification?: VerificationV1
 }
 export const stageResultSchema = z.discriminatedUnion('kind', [
+  z.strictObject({
+    schemaVersion: version,
+    origin: z.literal('fixture'),
+    kind: z.literal('stored-plan'),
+    plan: planSchema,
+    planArtifact: artifactRefSchema,
+    base: storedSourceSchema,
+  }),
+  storedCandidateSchema,
   z.strictObject({
     schemaVersion: version,
     origin: z.literal('fixture'),

@@ -1,0 +1,4 @@
+postgres (PostgreSQL) 14.18 (Homebrew)
+PASS: native SCRAM provisioning, app CRUD grants, denied DDL/superuser/wrong password, additive prior-row migration, PostgreSQL restart persistence.
+NOT RUN: Linux guest provisioning, application process restart, containment, provider or deployment.
+PASS: temporary native cluster stopped and removed.

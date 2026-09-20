@@ -1,0 +1,19 @@
+{
+  "codeCommit": "1b7dc8cdbc1c63d3bada6da5c107cb0140f92907",
+  "pr": "https://github.com/shellcat-com/forge-ai/pull/14",
+  "base": "codex/demo-delivery-baseline",
+  "isDraft": true,
+  "run": "https://github.com/shellcat-com/forge-ai/actions/runs/34438023995",
+  "result": "success",
+  "environment": "GitHub ubuntu-latest; clean npm ci; Node24.20.0; native PostgreSQL installed by existing workflow",
+  "passedSteps": [
+    "clean install",
+    "lint",
+    "strict typecheck",
+    "test",
+    "production build",
+    "45 native schema assertions",
+    "standalone control build"
+  ],
+  "localBrowserEvidence": "separate; not run by CI"
+}

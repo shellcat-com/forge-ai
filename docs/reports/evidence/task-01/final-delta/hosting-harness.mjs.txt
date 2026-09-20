@@ -1,0 +1,32 @@
+import { chromium } from '/tmp/forge-task01-final-reproduction/node_modules/@playwright/test/index.mjs';
+import { spawn } from 'node:child_process';
+import { writeFile, mkdir } from 'node:fs/promises';
+import assert from 'node:assert/strict';
+const root='/tmp/forge-task01-final-reproduction';
+const out='/tmp/forge-task01-final-delta-evidence/hosting-canonical';
+await mkdir(out,{recursive:true});
+const server=spawn('/tmp/forge-task01-final-toolchain/node',['scripts/start.mjs','--port','55449'],{cwd:root,env:{PATH:process.env.PATH,HOME:process.env.HOME,NEXT_TELEMETRY_DISABLED:'1',FORGE_AUTH_MODE:'local',FORGE_LOCAL_OWNER_ID:'combined-synthetic-owner'},detached:true,stdio:'ignore'});
+let browser;
+const cases=[];
+try {
+ let ready=false;
+ for(let n=0;n<120;n++){try{const r=await fetch('http://127.0.0.1:55449/hosting');if(r.ok){ready=true;break}}catch{} await new Promise(r=>setTimeout(r,250));}
+ assert(ready,'local server readiness');
+ browser=await chromium.launch({channel:'chrome',headless:true});
+ for(const theme of ['light','dark'])for(const width of [390,768,1440]){
+  const ctx=await browser.newContext({colorScheme:theme,viewport:{width,height:1000}});const page=await ctx.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
+  assert.equal((await page.goto('http://127.0.0.1:55449/hosting',{waitUntil:'networkidle'})).status(),200);
+  await page.getByRole('heading',{name:'The hosted builder is unavailable.'}).waitFor();
+  assert.equal(await page.locator('form,input,iframe').count(),0);
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
+  await page.keyboard.press('Tab');assert.equal(await page.evaluate(()=>document.activeElement.textContent),'Skip to content');await page.keyboard.press('Enter');assert.equal(await page.evaluate(()=>document.activeElement.id),'main');
+  await page.getByRole('link',{name:'Workflow',exact:true}).click();assert.equal(new URL(page.url()).hash,'#workflow');
+  await page.getByRole('link',{name:'Back to top'}).click();
+  await page.screenshot({path:out+'/'+theme+'-'+width+'.png',fullPage:true});
+  assert.equal(await page.evaluate(()=>{document.documentElement.style.zoom='2';const fits=document.documentElement.scrollWidth<=innerWidth;document.documentElement.style.zoom='';return fits}),true);
+  await page.emulateMedia({reducedMotion:'reduce'});assert.equal(await page.evaluate(()=>matchMedia('(prefers-reduced-motion: reduce)').matches),true);
+  assert.deepEqual(errors,[]);cases.push({theme,width,keyboard:true,reflow:true,cssZoomSimulation:true,reducedMotionMediaEmulation:true,nativeBrowserZoom:false,nativeOsMotion:false,pageErrors:errors});await ctx.close();
+ }
+ await writeFile(out+'/results.json',JSON.stringify({source:'88a5a39',origin:'local-production-Next-route',cases},null,2)+'\n');
+ console.log('PASS six canonical Next hosting browser cases; CSS zoom and media emulation only');
+}finally{await browser?.close();try{process.kill(-server.pid,'SIGTERM')}catch{}}

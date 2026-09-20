@@ -1,0 +1,16 @@
+node:internal/fs/promises:1450
+      (await PromisePrototypeThen(
+       ^
+
+Error: ENOSPC: no space left on device, write
+    at async write (node:internal/fs/promises:1450:8)
+    at async writeFileHandle (node:internal/fs/promises:1153:7)
+    at async write (/private/tmp/forge-e3-node24.UZHrx7/node-v24.20.0-darwin-arm64/lib/node_modules/npm/node_modules/cacache/lib/content/write.js:37:7)
+    at async Object.putData [as put] (/private/tmp/forge-e3-node24.UZHrx7/node-v24.20.0-darwin-arm64/lib/node_modules/npm/node_modules/cacache/lib/put.js:20:15)
+    at async file:///private/tmp/forge-task03-template/templates/next-postgres-v1/toolchain/materialize.mjs:42:3 {
+  errno: -28,
+  code: 'ENOSPC',
+  syscall: 'write'
+}
+
+Node.js v24.20.0

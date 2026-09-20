@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "kind": "platform-authored-unavailable-frontend",
+  "liveBuilder": false,
+  "generatedPortfolio": false,
+  "deploymentId": "dpl_HQkCUrvZnLVXx4LjGfo64qUu1jh3",
+  "sourceCommit": "339fb8e44234cca9ec5cfe3590e62709458e40a4",
+  "target": {
+    "teamId": "team_redhKy5rKgFelsT5oaWR7nYv",
+    "projectId": "prj_5NmNEwVtJcH2BhGcPPpe5OTzo1GL",
+    "projectName": "forge-ai-demo"
+  },
+  "productionUrl": "https://forge-ai-demo-omega.vercel.app",
+  "immutableUrl": "https://forge-ai-demo-kcmp4ynqr-biswas07.vercel.app",
+  "accountPlan": "active Hobby",
+  "gitLinked": false,
+  "environmentVariableCount": 0,
+  "framework": null,
+  "functionsDeployed": false,
+  "customDomainPurchased": false,
+  "priorDeploymentId": null,
+  "buildLog": "Vercel inspect logs reports Ready, no command logs; prebuilt build duration0ms",
+  "configurationDigest": "c185d26f4e190b0f2052edbb3617b5e2034bb2e76336db2da12c1a49c1a6ecc7",
+  "staticFilesDigest": "9c32175e25d487270efc35b55864fc85e52cef2d47896c53b35f863d604d9098",
+  "observedSecretScan": "passed: known deployment credential representations and staged heuristic scan",
+  "nativeBrowserZoom": "not-run: CUA Chrome provider unavailable",
+  "nativeOSReducedMotion": "not-run"
+}

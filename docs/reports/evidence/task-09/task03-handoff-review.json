@@ -1,0 +1,28 @@
+{
+  "origin": "independent-committed-byte-review-not-runtime-reproduction",
+  "sourceCommit": "b3fb6f6771c482a09fc0a431240e7d3c250172d6",
+  "pr": "https://github.com/shellcat-com/forge-ai/pull/13",
+  "manifestSha256": "075cfbf425b06593808b4e67acd4690534dc71d43d9179eb9e11a174db7df8f7",
+  "verifiedEvidenceFiles": 26,
+  "verifiedOwnedSourceFiles": 24,
+  "portfolioSpecificationSha256": "6bbce92a1a970fbf37fc789858a839efbf99c8198b13eb62e99a7d7fe9be1020",
+  "originalProviderCorpusEvaluatorUnchanged": true,
+  "referenceAppsDiff": "diff --git a/tests/harness/reference-apps.ts b/tests/harness/reference-apps.ts\nindex dbbacf4..a1e117d 100644\n--- a/tests/harness/reference-apps.ts\n+++ b/tests/harness/reference-apps.ts\n@@ -15,6 +15,13 @@ export const referenceCorpus = {\n     brief: 'Pomodoro timer with start/pause/reset, separate work and break durations, and PostgreSQL session history surviving app-process restart.',\n     uiContract: ['Start', 'Pause', 'Reset', 'Work duration', 'Break duration', 'Session history'],\n   },\n+  portfolio: {\n+    \"brief\": \"Generate a public professional portfolio in Next.js App Router and strict TypeScript. Use only owner-reviewed public name, biography, skills, project descriptions and links. Provide introduction, selected projects, about and contact sections, accessible navigation, responsive layouts, semantic headings, visible focus and reduced-motion support. Do not fabricate credentials, employers, testimonials, contact details or project outcomes. No database or contact-form backend is required for these read-only requirements.\",\n+    \"specificationPath\": \"templates/next-postgres-v1/reference/portfolio.json\",\n+    \"specificationSha256\": \"6bbce92a1a970fbf37fc789858a839efbf99c8198b13eb62e99a7d7fe9be1020\",\n+    \"databaseRequired\": false,\n+    \"engineDatabaseAcceptanceStillRequired\": true,\n+  },\n   viewports: [390, 768, 1440], themes: ['light', 'dark'], zoomPercent: 200, reducedMotion: true,\n } as const\n export const referenceCorpusDigest = canonicalHash(referenceCorpus)\n",
+  "ci": {
+    "conclusion": "success",
+    "headSha": "b3fb6f6771c482a09fc0a431240e7d3c250172d6",
+    "status": "completed",
+    "url": "https://github.com/shellcat-com/forge-ai/actions/runs/34437962419"
+  },
+  "releaseStatus": "candidate",
+  "realLinuxExecution": false,
+  "providerGeneration": false,
+  "independentExecutionRerun": false,
+  "d7Closed": false,
+  "limits": [
+    "Hash review binds committed records and source; it does not independently replay toolchain acquisition, export or native database execution.",
+    "Task03 candidate license/provenance limitations remain open.",
+    "Task09 baseline implementation inventory remains unchanged; Task03 implementation was not imported.",
+    "Final combined integration and live release gates remain open."
+  ]
+}

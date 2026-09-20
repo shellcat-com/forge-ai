@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "metadataOnly": true,
+  "sanitizedFieldCount": 30,
+  "privateVideoReferencesRemoved": 3,
+  "assetBytes": [
+    {
+      "path": "public/art/login-1280.webp",
+      "sha256": "01490ca043c14e1b0863f891b8ba7b29df63faae63a4dbb59002b25f7fdb5b2d",
+      "unchanged": true
+    },
+    {
+      "path": "public/art/particles-2048.webp",
+      "sha256": "f2c5c48aaa5adba3d5694603d873298a5984f66d313692f87e6141d35927d184",
+      "unchanged": true
+    },
+    {
+      "path": "public/art/login-2048.webp",
+      "sha256": "72a3ef46b8f9dcc85f13891b54c7fa690a4e7b27d47377077353d37ab149ef0f",
+      "unchanged": true
+    },
+    {
+      "path": "public/art/particles-1280.webp",
+      "sha256": "f69e89cbaab8406e42d895a752b3fea23499578e808688fda6600f14a7236a63",
+      "unchanged": true
+    },
+    {
+      "path": "public/art/atmosphere-2048.webp",
+      "sha256": "ea122114ead87082bb45c6cc57081250f17c268e3e49f15f9533c4a57dbb9363",
+      "unchanged": true
+    },
+    {
+      "path": "public/art/illustration-2048.webp",
+      "sha256": "2b3e1ba0da1e87fe7e4f32883cdc96a826e5ce85c5eec1996ca4e17867d102c5",
+      "unchanged": true
+    },
+    {
+      "path": "public/art/illustration-1280.webp",
+      "sha256": "8235cedd366a57b76289fe6fa53f3b5d6648b5c2e8ce1213f6a001623569e1a6",
+      "unchanged": true
+    },
+    {
+      "path": "public/art/atmosphere-1280.webp",
+      "sha256": "75afbc997d79d54ed6afbab40ac43825644b61cd132ab7c834fd9a5ab4b6db2e",
+      "unchanged": true
+    },
+    {
+      "path": "public/art/particles-640.webp",
+      "sha256": "8b14534582e8fba806bd40367262a058e7d38a3b3eb7a54b8fd39a79c0ab66b0",
+      "unchanged": true
+    },
+    {
+      "path": "public/art/landscape-640.webp",
+      "sha256": "a43e7c5853ad10dcc1e84a9fabb6fad4a991e06bc5b4618b9ab3d8643ed8ca6e",
+      "unchanged": true
+    },
+    {
+      "path": "public/art/illustration-640.webp",
+      "sha256": "bf283907e1de4efdfce293499b5299f31903aa0abc7b3e6c8064a0ef4704f52f",
+      "unchanged": true
+    },
+    {
+      "path": "public/art/landscape-1280.webp",
+      "sha256": "a264e855ca954db8ddb59cfe07b560b2e52fedb7d88dff47fbd97d6b449c4508",
+      "unchanged": true
+    },
+    {
+      "path": "public/art/landscape-2048.webp",
+      "sha256": "628d90039ce221e77567a650b1ab978c4648e59149d0b55c0887e9f09d4e9b2a",
+      "unchanged": true
+    },
+    {
+      "path": "public/art/login-640.webp",
+      "sha256": "0dbef6fa977110937273d01426409612f40459e841bd12e5e82275ff7fad2a92",
+      "unchanged": true
+    },
+    {
+      "path": "public/art/atmosphere-640.webp",
+      "sha256": "8d2ad62f0182b3dbcbef3f1a685ef6b31ebf96166383574ba6256f6863d5af94",
+      "unchanged": true
+    }
+  ],
+  "redistributionRights": "not-verified",
+  "historicalCommitsRewritten": false,
+  "privateReferencesInNewCatalogs": false,
+  "guardBeforeNetwork": "passed"
+}

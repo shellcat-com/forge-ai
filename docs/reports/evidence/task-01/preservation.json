@@ -1,0 +1,25 @@
+{
+  "a71519b": {
+    "paths": [
+      "src/app",
+      "src/components",
+      "src/server",
+      "src/shared",
+      "worker",
+      "runtime",
+      "drizzle",
+      "package.json",
+      "package-lock.json",
+      "DESIGN.md"
+    ],
+    "changed": []
+  },
+  "2c98c4f": {
+    "paths": [
+      "engine/contracts",
+      "engine/migrations",
+      "templates/next-postgres-v1"
+    ],
+    "changed": []
+  }
+}

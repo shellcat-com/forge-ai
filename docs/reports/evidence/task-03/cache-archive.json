@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "origin": "macOS-offline-content-packaging",
+  "target": "linux-x64",
+  "sha256": "e6beda8f3532eccd3c961d9c51000edf3a1dce442275a8095fa1509c4cea9afd",
+  "bytes": 180377600,
+  "repeatByteIdentical": true,
+  "contentOnly": true,
+  "hooksExecuted": [],
+  "LinuxExecution": false,
+  "imageRelease": false,
+  "format": "Python PAX tar, sorted paths, mtime/uid/gid zero, mode 0444; npm cache content-v2/sha512 only"
+}

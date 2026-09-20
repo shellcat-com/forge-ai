@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "88a5a39daeabe088a119f871166333975588c1b1",
+  "files": {
+    "baseline-browser.log": "dcc9daf6c46998033b4c75c65168d74202bbda7ef148a8d0eecb2c97cc8dca16",
+    "environment.json": "b5bf63368c452ed3d19dace774ca1b8703de915f30a7d88e14312fad851b16ac",
+    "hosting-canonical/dark-1440.png": "fda0c509b16196b8c676719becca56185ec1f669e818215f57b3d80192a03819",
+    "hosting-canonical/dark-390.png": "80aed49b843dea548c789630d42287e96801dcd987befb4851593b979dc7d11d",
+    "hosting-canonical/dark-768.png": "5429fd4695fa7c34727b45d85989edcc5428115a6f5c1e91bf6d090b042e6e13",
+    "hosting-canonical/light-1440.png": "b70a2dc00902981fe31b7f4305d58afc8571b68596c0fe3dcc319d5148cfe9b9",
+    "hosting-canonical/light-390.png": "732de711e8c38344da74f2eb67c9f96210ab4366c68595e65e9dc1a07e2621e2",
+    "hosting-canonical/light-768.png": "67d6f9a8ce3a42f86a3886da7853c7dbe069bb443542707daba7a1053c3b5100",
+    "hosting-canonical/results.json": "b0739f4b22fc66840a5179db58f3ea4c3f4be9b66d843c191b3486e4650540be",
+    "hosting-canonical.log": "c892fd97fa0784a379888559b923d7e781017ea4ff061ebe2ee39af9f7d044ed",
+    "hosting-harness.mjs.txt": "b8644aa4f8e6451fa24049b26e3a1710376d9360cee42653e898bd4d89775b84",
+    "results.json": "b187523634838e7dfcef0df943a91cc4c520a3a1f6318720cf9e9b91f7a90888",
+    "task08-reflow-negative-controls.json": "34945f74f3719614e2110420265d6acae274d5c01dd7ff9a39eebb56feffbd73",
+    "verify.log": "0b9759d8b0680736bdf62a73d5c285e502f22f9e1555d9af9c3468b258398d41"
+  }
+}

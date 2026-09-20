@@ -1,0 +1,7 @@
+▲ [WARNING] Cannot find base config file "expo/tsconfig.base" [tsconfig.json]
+
+    ../../../../tsconfig.json:3:13:
+      3 │   "extends": "expo/tsconfig.base"
+        ╵              ~~~~~~~~~~~~~~~~~~~~
+
+JSON report written to /Users/biswaskhatiwada/Documents/ChatGPT/forge-e2-e5-worktrees/validation/tests/harness/evidence/validation-integrated-tests.json

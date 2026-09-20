@@ -1,0 +1,22 @@
+Fetching deployment "forge-ai-demo-kcmp4ynqr-biswas07.vercel.app" in biswas07
+> Fetched deployment "forge-ai-demo-kcmp4ynqr-biswas07.vercel.app" in biswas07 [330ms]
+
+  General
+
+    id		dpl_HQkCUrvZnLVXx4LjGfo64qUu1jh3
+    name	forge-ai-demo
+    target	production
+    status	● Ready
+    url		https://forge-ai-demo-kcmp4ynqr-biswas07.vercel.app
+    created	Wed Sep 09 2026 23:30:50 GMT-0500 (Central Daylight Time) [44s ago]
+
+
+  Aliases
+
+    ╶ https://forge-ai-demo-omega.vercel.app
+    ╶ https://forge-ai-demo-biswas07.vercel.app
+
+
+  Builds
+
+    ╶ .        [0ms]

@@ -34,11 +34,14 @@ const jobSchema = z.strictObject({ schemaVersion: version, origin, id: uuid, wor
     ctx.addIssue({ code: 'custom', message: 'Review scope mismatch' })
 })
 const projectEnvelope = z.strictObject({ schemaVersion: version, origin, project: projectSchema })
-const jobEnvelope = z.strictObject({ schemaVersion: version, origin, job: jobSchema, eventsUrl: z.string().optional() })
+const jobEnvelope = z.strictObject({ schemaVersion: version, origin, job: jobSchema, eventsUrl: z.string().optional(), project: projectSchema.optional() })
+  .refine(({ job, project }) => !project || job.state === 'SUCCEEDED' && project.id === job.projectId
+    && project.workspaceId === job.workspaceId && project.headSnapshotId === job.candidateSnapshotId && project.revision === job.baseRevision + 1,
+  'Promotion project binding mismatch')
 const projectPage = z.strictObject({ schemaVersion: version, origin, items: z.array(projectSchema), nextCursor: uuid.nullable() })
 const snapshotSchema = z.strictObject({ id: uuid, parent_id: uuid.nullable(), manifest_digest: hash, status: z.enum(['candidate', 'verified', 'rejected']),
   origin, created_at: z.iso.datetime({ offset: true }) })
-const historyEnvelope = z.strictObject({ schemaVersion: version, origin, items: z.array(snapshotSchema).max(100) })
+const historyEnvelope = z.strictObject({ schemaVersion: version, origin, items: z.array(snapshotSchema).max(100), nextCursor: uuid.nullable() })
 export type FlowProject = z.infer<typeof projectSchema>
 export type FlowJob = z.infer<typeof jobSchema>
 export type FlowSession = Omit<z.infer<typeof sessionSchema>, 'csrfToken'>
@@ -77,10 +80,16 @@ export class EngineFlow {
   get state(): FlowState {
     return structuredClone({ ...this.value, pendingActions: [...this.actions].map(([actionId, action]) => ({ actionId, status: action.status })) })
   }
+  clearSelection() {
+    this.selection++; this.jobRead++; this.streamAbort?.abort(); this.streamAbort = null
+    this.value.project = null; this.value.job = null; this.value.history = []; this.value.lastEventSeq = 0; this.value.stream = 'idle'
+  }
   private resetSession() {
     this.authEpoch++; this.selection++; this.streamAbort?.abort(); this.streamAbort = null
     this.client.setCsrf(null); this.actions.clear(); this.value = initial()
   }
+  /** Scoped source transport shares this session; a 401 invalidates its UI too. */
+  invalidateSession() { this.resetSession() }
   private fail(error: unknown, epoch: number): never {
     if (epoch === this.authEpoch && error instanceof EngineApiError && error.status === 401) this.resetSession()
     throw error
@@ -154,9 +163,25 @@ export class EngineFlow {
   async loadHistory(signal?: AbortSignal): Promise<FlowSnapshot[]> {
     const project = this.currentProject(), epoch = this.authEpoch, selection = this.selection, read = ++this.historyRead
     try {
-      const result = await this.client.read(`/projects/${project.id}/snapshots`, decode(historyEnvelope), signal)
-      if (epoch !== this.authEpoch || selection !== this.selection || read !== this.historyRead) throw new Error('STALE_FLOW_READ')
-      this.value.history = result.items; return structuredClone(result.items)
+      // Fetch at most 10 pages / 1,000 snapshots. Publish only a complete,
+      // validated collection; stale, looping, aborted or capped reads keep the
+      // prior history and cannot offer partial history as authoritative.
+      const items: FlowSnapshot[] = [], ids = new Set<string>(), cursors = new Set<string>()
+      let cursor: string | null = null
+      for (let page = 0; page < 10; page++) {
+        signal?.throwIfAborted()
+        const result: z.infer<typeof historyEnvelope> = await this.client.read(`/projects/${project.id}/snapshots?limit=100${cursor ? '&cursor=' + cursor : ''}`, decode(historyEnvelope), signal)
+        if (epoch !== this.authEpoch || selection !== this.selection || read !== this.historyRead) throw new Error('STALE_FLOW_READ')
+        signal?.throwIfAborted()
+        for (const snapshot of result.items) {
+          if (ids.has(snapshot.id)) throw new Error('INVALID_HISTORY_PAGINATION')
+          ids.add(snapshot.id); items.push(snapshot)
+        }
+        if (result.nextCursor === null) { this.value.history = items; return structuredClone(items) }
+        if (!result.items.length || result.nextCursor !== result.items.at(-1)!.id || cursors.has(result.nextCursor)) throw new Error('INVALID_HISTORY_PAGINATION')
+        cursors.add(result.nextCursor); cursor = result.nextCursor
+      }
+      throw new Error('HISTORY_PAGE_CAP')
     } catch (error) { return this.fail(error, epoch) }
   }
   async reload(projectId: string, jobId?: string, signal?: AbortSignal) {

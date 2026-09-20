@@ -1,0 +1,38 @@
+▲ [WARNING] Cannot find base config file "expo/tsconfig.base" [tsconfig.json]
+
+    ../../../tsconfig.json:3:13:
+      3 │   "extends": "expo/tsconfig.base"
+        ╵              ~~~~~~~~~~~~~~~~~~~~
+
+
+ RUN  v4.1.11 /Users/biswaskhatiwada/Documents/ChatGPT/Forge AI _ Full-Stack App Generator
+
+(node:91010) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ tests/engine/e4-control-http.test.ts (2 tests | 1 failed) 2054ms
+   × connects browser transport to displayed reviews, source, promotion, history and export over the existing control service 393ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/engine/e4-control-http.test.ts > connects browser transport to displayed reviews, source, promotion, history and export over the existing control service
+Error: INVALID_FLOW_RESPONSE
+ ❯ src/engine/flow.ts:63:137
+     61| const identity = (value: unknown): string => JSON.stringify(value, (_k…
+     62|   ? Object.fromEntries(Object.entries(item).sort(([a], [b]) => a.local…
+     63| const decode = <T>(schema: z.ZodType<T>) => (value: unknown): T => { c…
+       |                                                                                                                                         ^
+     64|
+     65| /** Headless fixture-control client. No rendering, browser storage, au…
+ ❯ EngineClient.read src/engine/client.ts:105:12
+ ❯ EngineFlow.loadHistory src/engine/flow.ts:161:22
+ ❯ EngineFlow.reload src/engine/flow.ts:168:5
+ ❯ tests/engine/e4-control-http.test.ts:50:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  1 failed | 46 passed (47)
+   Start at  21:01:07
+   Duration  2.64s (transform 358ms, setup 0ms, import 694ms, tests 3.32s, environment 704ms)
+

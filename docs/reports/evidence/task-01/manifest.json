@@ -1,0 +1,29 @@
+{
+  "testedCodeCommit": "591f87c7a2e9e8f8f18b356852e922f2d3c1bf19",
+  "workerBaseline": "881e9ac2b11f8f168cb7849b77c4ee7439e55458",
+  "evidenceMode": "repository-native-synthetic-and-existing-app-browser",
+  "liveGeneration": false,
+  "sha256": {
+    "browser.log": "534445bceba1253892de9446fc6a863259e3bed656bd7dc26fdfd2273efd90e0",
+    "ci-source.json": "8ca19fbc40e40f8589a3ed3a2bb1228bb212af2932674c6868fac5a086d0f76e",
+    "clean-control.log": "623299b6458a7661c18844aae08d655e8919622a31059edb6c4a50578761af56",
+    "documentation-css-zoom-200.png": "d434141a73413c0fbd61b1f442b9dd7596761916e22f9b85797e7db31395f1c9",
+    "native-migrations.log": "7401b31f1a185df1fc4ccb3f961ee1a178f5b2f9c88e9e134e85ed43115ade51",
+    "secret-review.json": "20185fad42d50efafbb2fcdcde7effcd73fe6d24c06dde3247a2082d2e8ced75",
+    "disabled.log": "6639988e5753d2d0bf08d66204b12fa1282db5548b98d08d265dc3664ef91c83",
+    "home-light-1440.png": "30a37f1ef5f16ee397a0804e37f9b286cd6a3166e0226dca16ff72b5d3f5acdd",
+    "integration-native.log": "2169d90463aafb29c708fa7bdeb5e2f60b3a38b052fa48be9527ba25aa66c0a0",
+    "historical-ledger-validation.json": "0fdae867cb61578fe3eaa11a70ae992fccde838ffaf67b6807dbf133047c8462",
+    "clean-verify.log": "9afa65d084722d08f03cf8748aba6a4a42ae4c875ecfeaafa3712c401d2cdd81",
+    "preservation.json": "3ce372852f4213cc625667396d6fa809c2dcc4e0495367c64c53fd432a2371bc",
+    "integration-control.log": "623299b6458a7661c18844aae08d655e8919622a31059edb6c4a50578761af56",
+    "contract-signatures.json": "c84d7d88df60c9ba9ae7c35e28ee14f37090c2bebaaaf775589b6aa8638445e0",
+    "home-dark-1440.png": "2ad5d98687f9eaefab7d6e212e7994648d22f1d68375551a16d937a4935d0ad6",
+    "home-light-768.png": "258d04ab0165ae1a4a4c68b8cd0dc137121da4ba07c7baabfa3de02c77652900",
+    "home-light-390.png": "07483b80e991e4967f51b3ea0f69f32b2a23f9cdbc44d5f692d9e894e6736b17",
+    "home-dark-390.png": "9fcf8401382c0b528b297bbe9c067501e5535d22ae06de658ed05043e088daeb",
+    "home-dark-768.png": "0728fa28e2a5f1b8dabd043ff866806d9d94c7d81c92ad7fe870ce18d042a57f",
+    "integration-verify.log": "a78ca2386b3d4ca352395b8300b9c0f769672e44db9f6b416ae9eee0e82a6c3c",
+    "clean-native.log": "2169d90463aafb29c708fa7bdeb5e2f60b3a38b052fa48be9527ba25aa66c0a0"
+  }
+}

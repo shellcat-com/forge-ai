@@ -1,0 +1,15 @@
+
+ RUN  v4.1.11 /private/tmp/forge-task05-identity
+
+ ✓ tests/engine/control.native.test.ts (45 tests) 7138ms
+ ✓ tests/engine/identity.native.test.ts (11 tests) 3117ms
+   ✓ browser: Secure bootstrap survives external top-level OIDC return, then logout removes control access  1106ms
+   ✓ exhausted operator retries return safe busy with no partial membership, session or audit changes  798ms
+ ✓ tests/engine/oidc-identity.test.ts (25 tests) 153ms
+
+ Test Files  3 passed (3)
+      Tests  81 passed (81)
+   Start at  23:31:20
+   Duration  11.15s (transform 142ms, setup 0ms, import 409ms, tests 10.41s, environment 0ms)
+
+JSON report written to /private/tmp/forge-task05-identity/docs/reports/evidence/task-05/identity-tests.json

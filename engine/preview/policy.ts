@@ -73,7 +73,7 @@ export function guestRequestHeaders(raw: Record<string, string>): Record<string,
   for (const [name, value] of Object.entries(raw)) {
     const lower = name.toLowerCase()
     if (!/^[a-z0-9-]+$/.test(lower) || /[\r\n\0]/.test(value)) throw new Error('INVALID_HEADER')
-    if (nominated.has(lower) || blockedRequestHeaders.has(lower) || lower.startsWith('x-forge-') || lower.startsWith('sec-websocket-')) continue
+    if (!['accept', 'accept-language', 'content-type', 'origin', 'range', 'if-none-match', 'if-modified-since', 'user-agent'].includes(lower) || nominated.has(lower) || blockedRequestHeaders.has(lower) || lower.startsWith('x-forge-') || lower.startsWith('sec-websocket-')) continue
     output[lower] = value
   }
   // All cookies are withheld in v1: generated application authentication is deferred.

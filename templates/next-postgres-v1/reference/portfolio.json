@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "portfolio-v1",
+  "origin": "platform-authored-acceptance-brief",
+  "brief": "Generate a public professional portfolio in Next.js App Router and strict TypeScript. Use only owner-reviewed public name, biography, skills, project descriptions and links. Provide introduction, selected projects, about and contact sections, accessible navigation, responsive layouts, semantic headings, visible focus and reduced-motion support. Do not fabricate credentials, employers, testimonials, contact details or project outcomes. No database or contact-form backend is required for these read-only requirements.",
+  "requiredEvidence": [
+    "real-provider-source-and-usage-bound-to-approved-budget",
+    "reviewed-source-and-template-content-hashes",
+    "strict-typecheck-lint-protected-tests-production-build-in-approved-runtime",
+    "keyboard-light-dark-390-768-1440-native-zoom-reduced-motion",
+    "clean-source-export-build-outside-Forge",
+    "Vercel-deployment-bound-to-reviewed-source",
+    "unauthenticated-default-platform-HTTPS-URL-browser-verification",
+    "reviewed-public-content-and-links-no-secrets"
+  ],
+  "databaseRequiredForPortfolio": false,
+  "engineDatabaseAcceptanceStillRequired": ["task-board-crud-app-process-restart", "fresh-and-prior-seeded-additive-priority-migration"],
+  "hosting": { "provider": "Vercel", "purchasedDomain": false },
+  "notEvidence": ["hand-authored-scaffold", "fixture-provider-output", "local-macOS-build", "simulated-browser-settings"]
+}

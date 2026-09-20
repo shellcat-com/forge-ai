@@ -1,0 +1,1 @@
+ALTER TABLE app.tasks ADD COLUMN priority varchar(10) NOT NULL DEFAULT 'medium' CHECK (priority IN ('low', 'medium', 'high'));

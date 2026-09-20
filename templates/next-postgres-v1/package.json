@@ -28,5 +28,6 @@
     "build": "next build --webpack",
     "start": "next start --hostname 127.0.0.1 --port 3000",
     "lint": "eslint app components lib platform"
-  }
+  },
+  "packageManager": "npm@11.19.0"
 }

@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "status": "candidate-policy-review",
+  "distribution": "open-source-source-export-and-separately-built-Linux-image",
+  "permittedWithPreservedNotices": ["0BSD", "Apache-2.0", "BSD-2-Clause", "BSD-3-Clause", "BlueOak-1.0.0", "CC0-1.0", "ISC", "MIT", "Python-2.0"],
+  "requiresDistributionReview": ["CC-BY-4.0", "MPL-2.0", "LGPL-3.0-or-later", "Apache-2.0 AND LGPL-3.0-or-later", "Apache-2.0 AND LGPL-3.0-or-later AND MIT"],
+  "rules": [
+    "Compare actual archive package metadata to lockfile license declarations and hash included LICENSE/COPYING/NOTICE files.",
+    "Missing/unknown expressions or absent expected notices block release review; no implicit allowlist expansion.",
+    "Keep all upstream copyright/license/NOTICE texts when redistributing package bytes or derived image artifacts.",
+    "Review attribution for CC-BY assets/documents and determine whether distributed output includes them.",
+    "Before distributing MPL-covered libraries or modified files, provide the corresponding covered source and required notices.",
+    "Before distributing LGPL native libraries, satisfy applicable corresponding-source/relinking/notices obligations for the actual image and linking mode.",
+    "Source-only exports omit node_modules and proprietary assets; downstream installs retain upstream licenses. This does not approve redistribution of the dependency bundle or image.",
+    "The maintainer must separately choose a license for Forge/template original code; dependency declarations cannot supply that permission."
+  ],
+  "releaseApproved": false
+}

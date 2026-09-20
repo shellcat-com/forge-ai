@@ -1,12 +1,35 @@
 # RFC 0001: First executable app-generation slice
 
-> Historical RFC/checkpoint document. The current application uses Next.js, Better Auth and `src/server` / `worker`. Old Vite/Neon Auth setup commands and pending architecture decisions below are historical context, not current setup instructions. See [PR #7 reconciliation](../reports/pr7-reconciliation.md).
-
-Status: **E0 contracts and vendor-independent E1 fixture control implemented; live integration/release gates remain open**\
-Date: 2026-09-09\
-Scope: private alpha, one generated stack: Next.js App Router + strict TypeScript + PostgreSQL\
-Decision owner: Forge maintainer\
+Status: **E0 contracts and vendor-independent E1 fixture control implemented; live integration/release gates remain open**  
+Date: 2026-09-09  
+Scope: private alpha, one generated stack: Next.js App Router + strict TypeScript + PostgreSQL  
+Decision owner: Forge maintainer  
 Implementation gate: E0 review is recorded in [the E0 report](../reports/e0-contracts.md); E1 implementation and its fixture-only evidence are recorded in [the E1 report](../reports/e1-control.md). Resolve §16 decisions at the named integration stages; no vendor or frontend rewrite is implicitly approved.
+
+## 0. Demo-delivery amendment — 2026-09-10 UTC
+
+This amendment supersedes conflicting scope/vendor/frontend statements in the historical E0–E5 reports and the original observations below. It records the user's direction, not successful acceptance. Task 01 owns the [canonical composition and contracts](../operations/demo-delivery-coordination.md); the [baseline report](../reports/demo-delivery/task-01-baseline.md) records reproduction evidence.
+
+- **Included:** open-source BYOK, using explicit tested provider adapters. Self-hosted keys use server environment/secret references. Hosted credential connections require authenticated TLS submission, tenant authorization, encryption at rest, rotation/deletion and redacted read status. Keys never enter localStorage, public environment variables, model context, generated source, exports, previews or telemetry. Administrator-approved destinations and DNS/IP/redirect controls are required; arbitrary provider compatibility is not promised. No key or configured adapter authorizes spending.
+- **Selected:** Vercel hosts the Forge frontend and the real generated portfolio demonstration. Use default platform HTTPS URLs; **no domain purchase**. Task 08 owns deployment writes and verifies the actual public URL and source/deployment hashes. No new subscription, infrastructure purchase or billable model run is authorized without an applicable explicit budget.
+- **Included acceptance:** an authenticated owner generates and reviews actual portfolio source through the engine, verifies it using the approved runtime, and publishes the reviewed artifact. The public portfolio is viewable without a Forge account. A hand-authored scaffold or fixture is supporting evidence only. Portfolio requirements may omit an application database; the engine still requires **Next.js App Router + strict TypeScript + PostgreSQL**, including the task-board CRUD/restart and additive priority migration acceptance.
+- **Canonical frontend:** preserve the Next.js application already merged in PR #4, its design and source/data workflow. Preserve the E0/E1/E2 source contracts and broker implementation in the same repository. The RFC engine remains a separately configured, default-off laboratory until Tasks 02–07 supply real adapters and Task 01 integrates them. Existing local Docker execution does not close the RFC microVM isolation gate. No automatic mapping of application accounts/jobs to fixture accounts/jobs is allowed.
+- **Separate unresolved infrastructure:** public website hosting does not select sandbox execution, durable worker hosting/workflow service, control PostgreSQL configuration, versioned object storage/KMS/backups, private preview authorization/routing, or public multi-user generation. A Vercel Function is not an assumed durable worker or sandbox. Vercel Sandbox is a separately evaluated option requiring a documented contract amendment, access and cost feasibility. Keep missing runtime/worker/storage configuration unavailable.
+- **Private preview:** no purchase is permitted to satisfy D6. Task 07 must prove a default-hostname or other no-purchase arrangement's site/origin/cookie, TLS, ticket/revocation and exact environment boundaries. The separate-site invariant remains until equivalent evidence supports an amendment. Public portfolio deployment is distinct from private previews; publishing it grants no anonymous control, generation, key or private-preview access. Public multi-user generation is not required for the owner demonstration and remains unapproved.
+
+Better Auth and Neon are existing application choices documented by the reconciled working agreement; reuse that work rather than creating another account authority. Their existence does not prove RFC identity/membership mapping, deployed database authorization or restore acceptance. D1/D5 integration gates remain open. All D1–D8 live acceptance gates remain open even where a scope direction is selected. See the coordination decision table for each distinction.
+
+Official hosting references checked 2026-09-10 UTC: [generated deployment URLs](https://vercel.com/docs/deployments/generated-urls) are available without a purchased custom domain and may be public; [Functions limits](https://vercel.com/docs/functions/limitations) constrain request execution; [Sandbox](https://vercel.com/docs/sandbox) is a separate execution service. These documents are product capability references, not account entitlement or containment evidence.
+
+### 0.1 Release/self-host follow-up — 2026-09-10 UTC
+
+The new user-started release brief extends public publishing beyond the portfolio-only demonstration: **Forge itself must be publicly hosted on Vercel with a truthful recorded app-building flow, and generated applications must have a separate authenticated in-product Publish flow and public URLs.** Neither a portfolio nor the current availability page substitutes for the connected Forge product. This records required scope, not implementation or acceptance; the [release coordination board](../operations/forge-release-coordination.md) records the starting baseline and the absence of a final staged release.
+
+Self-hosting and hosted BYOK are both included. Credit sales, subscriptions, payment checkout and a Forge model-billing product are not required; bounded usage, abuse limits and retention of uncertain provider charges remain required. Provider credentials and hosting credentials are separate authorities. No new service purchase, billable test, custom domain or public multi-user generation is authorized by this direction.
+
+Public Publish must bind the owner's authorized, reviewed generated source and verified artifact to its actual deployment and public URL, with publishing/rollback evidence. It is distinct from private preview authorization and does not grant anonymous generation, key access or control authority. Exact supported publication profiles, app-database/durable hosting, hosting credential integration and lifecycle/rollback contracts remain unresolved implementation choices for review. Preserve the Next.js + strict TypeScript + PostgreSQL generated-stack requirement and existing containment, identity, storage and acceptance gates; do not execute generated code on a developer/control host to make a demonstration pass.
+
+The new release brief assigns shared Forge UI integration to a Task04 role; its actual session must be identified before assigning edits. Historical task numbers do not automatically reassign existing workers. Task01 remains the shared contracts/migrations/integration owner. New Task09 can complete independent docs/audits at its pinned baseline, but final release verification must use Task01's later exact staged commit containing the required production dependencies.
 
 ## 1. Outcome and current evidence
 
@@ -14,7 +37,7 @@ A signed-in, invited user can create a server project, submit a brief, review a 
 
 This RFC defines a limited, testable release. Passing it does not establish complete competitor parity, production hosting, or capacity for thousands or billions of simultaneous builders. Earlier percentage estimates were qualitative assessments; they are not a measured backlog or an acceptance criterion.
 
-Required repository evidence was read:
+Historical repository observations at RFC drafting (the canonical composition above supersedes obsolete frontend statements):
 
 | Source | Observed boundary and consequence |
 | --- | --- |
@@ -34,7 +57,7 @@ The acceptance application is a **task board**: create, list, edit, complete, an
 
 Included: platform login and project authorization; durable jobs; one versioned template; plan and patch review; real generation; immutable source artifacts; isolated build/test execution; private expiring preview; source promotion/restoration; clean source export; one additive database migration; usage reservation; operator diagnostics.
 
-Deferred: public deployment, custom domains, GitHub integration/import, arbitrary repository/archive uploads, arbitrary packages or shell commands, other stacks, external connectors, generated user authentication, real payments/email, production app databases, collaboration editing, mobile generation, and automatic image generation. Generated apps in this slice are private test apps protected by Forge's preview gateway. That gateway is not generated application authentication. They must not process production or sensitive customer data.
+Included by §0–0.1: BYOK, connected public Forge on Vercel, authenticated in-product generated-app Publish and the genuine portfolio demonstration. Publication profile and app-database hosting/lifecycle decisions remain unresolved; general production deployment beyond a reviewed profile, custom domains, GitHub integration/import, arbitrary repository/archive uploads, arbitrary packages or shell commands, other stacks, external connectors, generated user authentication, real payments/email, collaboration editing, mobile generation and automatic image generation remain deferred. Unpublished generated apps remain private test apps protected by Forge's preview gateway. Public publication requires its separate reviewed artifact/authority; the private gateway is not generated application authentication. This slice must not process production or sensitive customer data.
 
 Uploaded image understanding is also deferred. Existing Forge preset assets may be selected by an immutable asset ID with provenance. A later attachment service needs size/type validation, isolation for decoders, retention controls, and an explicit provider data-transfer policy. No model-side fetching of arbitrary screenshot URLs in this slice.
 
@@ -44,7 +67,7 @@ Use a modular TypeScript backend with separate process identities where trust or
 
 ```mermaid
 flowchart TD
-  UI[Existing Vite frontend] --> API[Authenticated control API]
+  UI[Canonical Next.js frontend] --> API[Authenticated control API]
   API --> CPDB[(Control PostgreSQL: identities, jobs, events)]
   API --> STORE[(Private source and evidence object store)]
   WORKER[Orchestrator worker] --> CPDB
@@ -363,7 +386,7 @@ Keep text deltas in bounded transient buffers; parse completed output against th
 
 Keep calls bounded: up to 12 model calls per job including retries/repairs, 120-second request timeout, and output cap appropriate to stage and reserved budget. Multi-file generation uses bounded FileBatchV1 batches with exact task/file ownership, sequential assembly and no duplicate writers. Context contains approved plan/preset, relevant source from the base, template guidance, and sanitized failing diagnostics; it excludes credentials and unrelated tenant data. Never execute provider output inside the adapter.
 
-Provider credentials live in a server secret manager, fetched through the worker's scoped identity. Fixed administrator-approved HTTPS destinations, redirects denied, egress restrictions and secret redaction preserve the prototype's boundaries. BYOK and user-supplied local URLs are deferred. Disable a model policy on capability drift; new model/prompt versions must pass the reference-app eval before activation.
+Provider credentials live in a server secret manager, fetched through the worker's scoped identity. Fixed administrator-approved HTTPS destinations, redirects denied, egress restrictions and secret redaction preserve the prototype's boundaries. BYOK is included under §0; uncontrolled user-supplied URLs remain unsupported. A tenant key requires destination binding, protected secret storage and explicit per-call budget reservations before live dispatch. Disable a model policy on capability drift; new model/prompt versions must pass the reference-app eval before activation.
 
 ## 10. Sandbox and command policy
 
@@ -401,7 +424,7 @@ States: `REQUESTED → STARTING → READY → STOPPING → STOPPED`; startup/hea
 
 Launch authorization: the Forge UI POSTs for a one-use 60-second ticket, then submits it by top-level form POST to a reserved gateway path on the exact preview hostname. Gateway atomically consumes the ticket through the control service, sets a short-lived host-only Secure/HttpOnly preview cookie, and redirects to `/`. Tickets never enter query strings or logs. Cookie and authorization headers are stripped before proxying to guest code. Client IP/proxy headers are normalized by the gateway. Application cookies cannot impersonate the reserved gateway session cookie; reject reserved Set-Cookie names, duplicates and Domain attributes.
 
-Preview domains use a separate registrable site from Forge. Unique hostnames are never reused for a different environment or tenant. Gateway validates exact host-to-preview mappings; random hostnames alone provide no authorization. Every request checks a preview session scoped to user + preview + generation, caching authorization for at most 30 seconds. Revocation, job cancellation or expiry removes the route and sessions first, then tears down resources. No public previews in this slice.
+Preview domains use a separate registrable site from Forge. Unique hostnames are never reused for a different environment or tenant. Gateway validates exact host-to-preview mappings; random hostnames alone provide no authorization. Every request checks a preview session scoped to user + preview + generation, caching authorization for at most 30 seconds. Revocation, job cancellation or expiry removes the route and sessions first, then tears down resources. Private previews remain private; the §0 public portfolio is a separately approved deployment artifact.
 
 Open preview in a separate tab for the first release; embedded preview is deferred to avoid relying on third-party-cookie behavior. Gateway enforces CSP limiting browser network requests to the preview origin and approved local assets, `frame-ancestors 'none'`, no-store, no-referrer, nosniff, restrictive Permissions-Policy and no cross-origin CORS. Reject cross-origin mutation requests. A later iframe design must separately test navigation, popups, downloads, service workers and messaging. CSP cannot stop all social engineering or manual data disclosure; previews remain untrusted apps with synthetic data.
 
@@ -495,8 +518,8 @@ The contract can be implemented against fakes before vendors are selected. Exter
 | D2 | Linux sandbox host and Firecracker operational feasibility; dedicated hosts, no Docker-only substitution | Infrastructure owner: host/KVM availability, patched image/jailer config, measured isolation suite; alternative requires RFC amendment | E3 and execution |
 | D3 | Provider/model policy and account capacity; keep NVIDIA prototype separate, choose one generation adapter only after eval | Maintainer: API entitlement, output/cancel/error contract tests, measured quality, price and RPM/TPM limits; secret stored server-side | E2 live generation and E5 |
 | D4 | Approved spend/quota envelope; proposal $5/job maximum reservation, workspace/day cap configured before enabling | Maintainer: actual price sheet, per-stage token bound, budget reconciliation and cap tests; no default unlimited use | Paid calls and alpha admission |
-| D5 | Cloud/region, control PostgreSQL, object store, KMS, backups and retention; one region and separate app-data boundary | Infrastructure/data owner: service access, retention approval, IAM/network diagram, restore drill | E1 durable deployment and E5 |
-| D6 | Separate preview registrable domain, DNS/TLS and gateway session implementation | Infrastructure owner: exact host routing, launch-ticket, revocation and cookie-boundary browser tests | E4 externally reachable preview |
+| D5 | Vercel website hosting selected; worker hosting, region, control PostgreSQL integration, object store, KMS, backups and retention unresolved; one region and separate app-data boundary | Infrastructure/data owner: service access, retention approval, IAM/network diagram, restore drill | E1 durable deployment and E5 |
+| D6 | No-purchase private-preview site/origin arrangement, TLS and gateway session implementation; preserve equivalent isolation | Infrastructure owner: exact host routing, launch-ticket, revocation and cookie-boundary browser tests | E4 externally reachable preview |
 | D7 | Exact template/runtime/dependency releases; supported pinned Next.js, Node, PostgreSQL and toolchain | Engineering owner: lockfile, immutable image digests, dependency/license review and clean export test | E0 template finalization/E3 |
 | D8 | Invite count and operational owner for alpha; start with reference-load caps in §14 | Maintainer: signed test report, monitoring destination and rollback/runbook owner | E5 release |
 

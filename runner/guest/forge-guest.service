@@ -1,0 +1,19 @@
+[Unit]
+Description=Forge pinned guest vsock agent
+After=local-fs.target
+Requires=local-fs.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+ExecStartPre=/opt/forge/guest-prepare
+ExecStart=/usr/bin/python3 /opt/forge/agent.py
+Restart=no
+UMask=0077
+LimitCORE=0
+StandardOutput=null
+StandardError=null
+
+[Install]
+WantedBy=multi-user.target

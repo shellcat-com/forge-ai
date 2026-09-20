@@ -1,0 +1,146 @@
+
+> forge-ai@0.2.0 verify
+> npm run lint && npm run typecheck && npm test && npm run build
+
+
+> forge-ai@0.2.0 lint
+> eslint .
+
+
+> forge-ai@0.2.0 typecheck
+> tsc --noEmit && tsc -p tsconfig.engine.json
+
+
+> forge-ai@0.2.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /private/tmp/forge-task07-preview
+
+ ❯ tests/engine/control.native.test.ts (45 tests | 45 skipped) 9322ms
+ ❯ tests/engine/e4-repair-integration.test.ts (4 tests | 4 skipped) 6285ms
+ ❯ tests/engine/e4-control-http.test.ts (2 tests | 2 skipped) 5454ms
+ ❯ tests/engine/preview-control.native.test.ts (22 tests | 22 skipped) 8869ms
+ ❯ tests/engine/e2-control-integration.test.ts (19 tests | 19 skipped) 10120ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/engine/control.native.test.ts [ tests/engine/control.native.test.ts ]
+Error: initdb: 2026-09-09 23:26:54.356 CDT [32202] FATAL:  could not extend file "base/1/3456": No space left on device
+2026-09-09 23:26:54.356 CDT [32202] HINT:  Check free disk space.
+2026-09-09 23:26:54.356 CDT [32202] STATEMENT:  SELECT pg_import_system_collations('pg_catalog');
+
+2026-09-09 23:26:54.368 CDT [32202] PANIC:  could not create file "pg_logical/replorigin_checkpoint.tmp": No space left on device
+sh: line 1: 32202 Abort trap: 6           "/opt/homebrew/Cellar/postgresql@14/14.18/bin/postgres" --single -F -O -j -c search_path=pg_catalog -c exit_on_error=true template1 > /dev/null
+child process exited with exit code 134
+initdb: removing data directory "/var/folders/y8/bczj85r901sgf3cl21ntxjym0000gn/T/forge-e1-pg-gHbunM/data"
+
+ ❯ run tests/engine/native-postgres.ts:12:42
+     10|   const run = (cmd: string, args: string[]) => {
+     11|     const r = spawnSync(cmd, args, { encoding: 'utf8', timeout: 60000 …
+     12|     if (r.error || r.status !== 0) throw new Error(`${cmd}: ${r.error?…
+       |                                          ^
+     13|     return r.stdout
+     14|   }
+ ❯ startNativePostgres tests/engine/native-postgres.ts:25:5
+ ❯ tests/engine/control.native.test.ts:29:14
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  tests/engine/e2-control-integration.test.ts [ tests/engine/e2-control-integration.test.ts ]
+Error: initdb: 2026-09-09 23:26:54.281 CDT [32191] FATAL:  could not create file "base/14224/3601_fsm": No space left on device
+2026-09-09 23:26:54.281 CDT [32191] STATEMENT:  CREATE DATABASE template0 IS_TEMPLATE = true ALLOW_CONNECTIONS = false;
+
+2026-09-09 23:26:54.378 CDT [32191] PANIC:  could not create file "pg_logical/replorigin_checkpoint.tmp": No space left on device
+sh: line 1: 32191 Abort trap: 6           "/opt/homebrew/Cellar/postgresql@14/14.18/bin/postgres" --single -F -O -j -c search_path=pg_catalog -c exit_on_error=true template1 > /dev/null
+child process exited with exit code 134
+initdb: removing data directory "/var/folders/y8/bczj85r901sgf3cl21ntxjym0000gn/T/forge-e1-pg-oraI92/data"
+
+ ❯ run tests/engine/native-postgres.ts:12:42
+     10|   const run = (cmd: string, args: string[]) => {
+     11|     const r = spawnSync(cmd, args, { encoding: 'utf8', timeout: 60000 …
+     12|     if (r.error || r.status !== 0) throw new Error(`${cmd}: ${r.error?…
+       |                                          ^
+     13|     return r.stdout
+     14|   }
+ ❯ startNativePostgres tests/engine/native-postgres.ts:25:5
+ ❯ createE2ControlHarness tests/harness/e2-control.ts:34:20
+ ❯ tests/engine/e2-control-integration.test.ts:29:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  tests/engine/e4-control-http.test.ts [ tests/engine/e4-control-http.test.ts ]
+Error: initdb: 2026-09-09 23:26:54.363 CDT [32204] FATAL:  could not extend file "base/1/3456": No space left on device
+2026-09-09 23:26:54.363 CDT [32204] HINT:  Check free disk space.
+2026-09-09 23:26:54.363 CDT [32204] STATEMENT:  SELECT pg_import_system_collations('pg_catalog');
+
+2026-09-09 23:26:54.374 CDT [32204] PANIC:  could not create file "pg_logical/replorigin_checkpoint.tmp": No space left on device
+sh: line 1: 32204 Abort trap: 6           "/opt/homebrew/Cellar/postgresql@14/14.18/bin/postgres" --single -F -O -j -c search_path=pg_catalog -c exit_on_error=true template1 > /dev/null
+child process exited with exit code 134
+initdb: removing data directory "/var/folders/y8/bczj85r901sgf3cl21ntxjym0000gn/T/forge-e1-pg-KeHPfO/data"
+
+ ❯ run tests/engine/native-postgres.ts:12:42
+     10|   const run = (cmd: string, args: string[]) => {
+     11|     const r = spawnSync(cmd, args, { encoding: 'utf8', timeout: 60000 …
+     12|     if (r.error || r.status !== 0) throw new Error(`${cmd}: ${r.error?…
+       |                                          ^
+     13|     return r.stdout
+     14|   }
+ ❯ startNativePostgres tests/engine/native-postgres.ts:25:5
+ ❯ createE2ControlHarness tests/harness/e2-control.ts:34:20
+ ❯ tests/engine/e4-control-http.test.ts:18:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  tests/engine/e4-repair-integration.test.ts [ tests/engine/e4-repair-integration.test.ts ]
+Error: initdb: 2026-09-09 23:26:54.356 CDT [32201] FATAL:  could not extend file "base/1/3456": No space left on device
+2026-09-09 23:26:54.356 CDT [32201] HINT:  Check free disk space.
+2026-09-09 23:26:54.356 CDT [32201] STATEMENT:  SELECT pg_import_system_collations('pg_catalog');
+
+2026-09-09 23:26:54.376 CDT [32201] PANIC:  could not create file "pg_logical/replorigin_checkpoint.tmp": No space left on device
+sh: line 1: 32201 Abort trap: 6           "/opt/homebrew/Cellar/postgresql@14/14.18/bin/postgres" --single -F -O -j -c search_path=pg_catalog -c exit_on_error=true template1 > /dev/null
+child process exited with exit code 134
+initdb: removing data directory "/var/folders/y8/bczj85r901sgf3cl21ntxjym0000gn/T/forge-e1-pg-mifAW9/data"
+
+ ❯ run tests/engine/native-postgres.ts:12:42
+     10|   const run = (cmd: string, args: string[]) => {
+     11|     const r = spawnSync(cmd, args, { encoding: 'utf8', timeout: 60000 …
+     12|     if (r.error || r.status !== 0) throw new Error(`${cmd}: ${r.error?…
+       |                                          ^
+     13|     return r.stdout
+     14|   }
+ ❯ startNativePostgres tests/engine/native-postgres.ts:25:5
+ ❯ createE2ControlHarness tests/harness/e2-control.ts:34:20
+ ❯ tests/engine/e4-repair-integration.test.ts:13:35
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  tests/engine/preview-control.native.test.ts [ tests/engine/preview-control.native.test.ts ]
+Error: initdb: 2026-09-09 23:26:54.363 CDT [32198] FATAL:  could not extend file "base/1/3394": No space left on device
+2026-09-09 23:26:54.363 CDT [32198] HINT:  Check free disk space.
+2026-09-09 23:26:54.363 CDT [32198] STATEMENT:  INSERT INTO pg_init_privs   (objoid, classoid, objsubid, initprivs, privtype)    SELECT        oid,        (SELECT oid FROM pg_class WHERE relname = 'pg_class'),        0,        relacl,        'i'    FROM        pg_class    WHERE        relacl IS NOT NULL        AND relkind IN ('r', 'v', 'm', 'S');
+
+2026-09-09 23:26:54.374 CDT [32198] PANIC:  could not create file "pg_logical/replorigin_checkpoint.tmp": No space left on device
+sh: line 1: 32198 Abort trap: 6           "/opt/homebrew/Cellar/postgresql@14/14.18/bin/postgres" --single -F -O -j -c search_path=pg_catalog -c exit_on_error=true template1 > /dev/null
+child process exited with exit code 134
+initdb: removing data directory "/var/folders/y8/bczj85r901sgf3cl21ntxjym0000gn/T/forge-e1-pg-V7KsgZ/data"
+
+ ❯ run tests/engine/native-postgres.ts:12:42
+     10|   const run = (cmd: string, args: string[]) => {
+     11|     const r = spawnSync(cmd, args, { encoding: 'utf8', timeout: 60000 …
+     12|     if (r.error || r.status !== 0) throw new Error(`${cmd}: ${r.error?…
+       |                                          ^
+     13|     return r.stdout
+     14|   }
+ ❯ startNativePostgres tests/engine/native-postgres.ts:25:5
+ ❯ createE2ControlHarness tests/harness/e2-control.ts:34:20
+ ❯ createPreviewHarness tests/harness/preview.ts:6:19
+ ❯ tests/engine/preview-control.native.test.ts:6:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  5 failed | 44 passed | 2 skipped (51)
+      Tests  528 passed | 96 skipped (624)
+   Start at  23:26:45
+   Duration  14.44s (transform 2.53s, setup 0ms, import 5.97s, tests 72.79s, environment 2.64s)

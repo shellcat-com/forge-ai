@@ -1,0 +1,9 @@
+
+ RUN  v4.1.11 /private/tmp/forge-task03-template
+
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  23:37:56
+   Duration  238ms (transform 80ms, setup 0ms, import 141ms, tests 20ms, environment 0ms)
+

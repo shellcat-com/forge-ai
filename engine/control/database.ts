@@ -103,7 +103,7 @@ export class ControlDatabase {
   async resource<T>(
     token: string,
     id: string,
-    kind: 'project' | 'job' | 'snapshot',
+    kind: 'project' | 'job' | 'snapshot' | 'artifact',
     required: Role,
     fn: (c: Tx, p: Principal, w: string) => Promise<T>
   ) {

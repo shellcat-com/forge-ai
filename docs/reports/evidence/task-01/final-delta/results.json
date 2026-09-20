@@ -1,0 +1,23 @@
+[
+  {
+    "name": "verify",
+    "command": [
+      "npm",
+      "run",
+      "verify"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 41.16
+  },
+  {
+    "name": "baseline-browser",
+    "command": [
+      "python3",
+      "scripts/check-baseline-browser.py"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 11.9
+  }
+]

@@ -1,0 +1,51 @@
+
+ RUN  v4.1.11 /private/tmp/forge-task06-persistence
+
+ ✓ tests/engine/persistence.native.test.ts (4 tests) 6883ms
+   ✓ stores encrypted bytes across actual process exits; rejects versions, tenants and excessive DB authority  1453ms
+   ✓ restores control jobs and every available encrypted version into a separate target with measured synthetic loss  1644ms
+ ✓ tests/engine/control.native.test.ts (45 tests) 44592ms
+   ✓ persists projects, completes only fixture stages and atomically promotes source  1148ms
+   ✓ denies cross-tenant reads/writes and viewer mutations, including pooled context reuse  468ms
+   ✓ fences an expired worker, then reclaims the durable step with a higher epoch  367ms
+   ✓ keeps cancellation pending and reservations held until fixture cleanup is confirmed  350ms
+   ✓ recovers saved provider output after worker restart without a second call or charge  319ms
+   ✓ keeps an ambiguous provider charge reserved after actual worker process death; resolves it once  733ms
+   ✓ serializes promotion and cancellation; no cancelled job changes the source head  1947ms
+   ✓ a repaired candidate cannot reuse the previous execution approval  1339ms
+   ✓ expires active work through cleanup and never revives it on worker restart  599ms
+   ✓ rechecks membership and policy revocation before approval and further dispatch  1968ms
+   ✓ requires reset acknowledgment and restores source into a new reviewed history record  4318ms
+   ✓ replays SSE after disconnect without cancelling the job and closes on membership revocation  516ms
+   ✓ rejects foreign/future SSE cursors and closes terminal replay after flushing facts  746ms
+   ✓ starts default-off without database access and rejects live or unsafe fixture settings  1515ms
+   ✓ expires server sessions absolutely and revokes SSE on idempotent logout  1535ms
+   ✓ replays identical explicit promotion requests after success without a second approval  2921ms
+   ✓ returns a structured 410 for an expired SSE cursor with the current state URL  546ms
+   ✓ serializes policy revocation with approval and fences dispatch after a durable shutdown  623ms
+   ✓ claims each step once across workers and extends only the current heartbeat  381ms
+   ✓ ignores a late duplicate cleanup confirmation after a replacement worker claims  620ms
+   ✓ tombstones a deleted project, fences its active job and retains source/audit history  522ms
+   ✓ bounds global queue, pending reviews and simulated preview capacity  771ms
+   ✓ times out an uncooperative fixture adapter and retains its uncertain liability  378ms
+   ✓ enforces additive origin, liability, review immutability and runtime privilege constraints  703ms
+   ✓ cancels QUEUED without promoting source or allowing further dispatch  567ms
+   ✓ cancels PLANNING without promoting source or allowing further dispatch  634ms
+   ✓ cancels GENERATING without promoting source or allowing further dispatch  550ms
+   ✓ cancels VALIDATING without promoting source or allowing further dispatch  1366ms
+   ✓ cancels PROVISIONING without promoting source or allowing further dispatch  385ms
+   ✓ cancels VERIFYING without promoting source or allowing further dispatch  665ms
+   ✓ cancels PREPARING_PREVIEW without promoting source or allowing further dispatch  455ms
+   ✓ cancels AWAITING_PROMOTION without promoting source or allowing further dispatch  495ms
+   ✓ logout revokes stored fixture preview credentials across the user’s workspaces  991ms
+   ✓ replays a restore admission after its promotion changed the current head  914ms
+   ✓ revokes a completed job’s fake preview before cleanup and retries a partitioned teardown  661ms
+ ✓ tests/engine/encrypted-objects.test.ts (2 tests) 14ms
+ ✓ tests/engine/persistence-config.test.ts (3 tests) 35ms
+
+ Test Files  4 passed (4)
+      Tests  54 passed (54)
+   Start at  23:28:15
+   Duration  54.21s (transform 837ms, setup 0ms, import 1.71s, tests 51.52s, environment 1ms)
+
+JSON report written to /private/tmp/forge-task06-persistence/docs/reports/evidence/task-06/native-tests.json

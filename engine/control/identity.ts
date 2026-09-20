@@ -13,7 +13,7 @@ import { ControlError, keySchema, loginSchema, tokenSchema } from './contracts.t
 
 export const opaqueToken = () => randomBytes(32).toString('base64url')
 export const secureEqual = (a: string, b: string) =>
-  a.length === b.length && timingSafeEqual(Buffer.from(a), Buffer.from(b))
+  Buffer.byteLength(a) === Buffer.byteLength(b) && timingSafeEqual(Buffer.from(a), Buffer.from(b))
 export interface IdentityTransaction {
   state: string
   nonce: string
@@ -23,10 +23,11 @@ export interface IdentityTransaction {
 export interface IdentityClaims {
   issuer: string
   subject: string
-  origin: 'fixture'
+  origin: 'fixture' | 'oidc'
 }
 export interface IdentityAdapter {
-  readonly origin: 'fixture'
+  readonly issuer: string
+  readonly origin: 'fixture' | 'oidc'
   authorizationUrl(transaction: IdentityTransaction): string
   exchange(
     code: string,
@@ -125,11 +126,18 @@ export class SessionService {
     private key: Uint8Array,
     public origin: string
   ) {
-    if (key.length !== 32 || adapter.origin !== 'fixture')
-      throw new Error('Fixture identity and 32-byte server key required')
+    if (key.length !== 32 || !['fixture', 'oidc'].includes(adapter.origin))
+      throw new Error('Explicit identity adapter and 32-byte server key required')
+    if (
+      adapter.origin === 'oidc' &&
+      (new URL(origin).protocol !== 'https:' || new URL(origin).origin !== origin)
+    )
+      throw new Error('OIDC sessions require an exact HTTPS origin')
   }
   bootstrap() {
-    const cookie = opaqueToken()
+    const bytes = randomBytes(32)
+    bytes.writeBigUInt64BE(BigInt(Date.now()))
+    const cookie = bytes.toString('base64url')
     return { cookie, nonce: this.csrf(cookie) }
   }
   csrf(token: string) {
@@ -154,6 +162,10 @@ export class SessionService {
     const body = loginSchema.parse(input)
     if (!secureEqual(this.csrf(bootstrap), body.bootstrapNonce))
       throw new ControlError(403, 'CSRF_INVALID')
+    const issuedAt = Buffer.from(bootstrap, 'base64url').readBigUInt64BE()
+    const now = BigInt(Date.now())
+    if (issuedAt > now || issuedAt <= now - 600000n)
+      throw new ControlError(401, 'INVALID_AUTH_TRANSACTION')
     return this.db.tx(async (c) => {
       const bootstrapHash = sha256(bootstrap),
         requestHash = canonicalHash(body)
@@ -195,7 +207,7 @@ export class SessionService {
           bootstrapHash,
         ]
       )
-      const response = { schemaVersion: 1, origin: 'fixture', authorizationUrl }
+      const response = { schemaVersion: 1, origin: this.adapter.origin, authorizationUrl }
       await c.query(
         `INSERT INTO auth_login_requests VALUES($1,$2,$3,$4,$5) ON CONFLICT(bootstrap_hash,key) DO UPDATE SET request_digest=EXCLUDED.request_digest,response_json=EXCLUDED.response_json,expires_at=EXCLUDED.expires_at`,
         [bootstrapHash, key, requestHash, response, expires]
@@ -206,7 +218,7 @@ export class SessionService {
   async callback(bootstrap: string, state: string, code: string) {
     tokenSchema.parse(bootstrap)
     tokenSchema.parse(state)
-    tokenSchema.parse(code)
+    validateAuthorizationCode(code)
     // Consume first, then exchange outside the transaction. Ambiguous exchange
     // requires a fresh login, never reuse the authorization code.
     const transaction = await this.db.tx(async (c) => {
@@ -228,6 +240,10 @@ export class SessionService {
     const token = opaqueToken(),
       csrfToken = this.csrf(token)
     await this.db.tx(async (c) => {
+      if (Date.parse(await clock(c)) >= new Date(transaction.expires_at).getTime())
+        throw new ControlError(401, 'INVALID_AUTH_TRANSACTION')
+      if (claims.origin !== this.adapter.origin || claims.issuer !== this.adapter.issuer)
+        throw new ControlError(401, 'INVALID_AUTH_TRANSACTION')
       const { id } = await one<{ id: string }>(c, 'SELECT invited_identity($1,$2) AS id', [
         claims.issuer,
         claims.subject,
@@ -242,7 +258,7 @@ export class SessionService {
   async info(token: string) {
     return this.db.session(token, null, 'viewer', async (c, p) => ({
       schemaVersion: 1,
-      origin: 'fixture',
+      origin: this.adapter.origin,
       userId: p.user_id,
       csrfToken: this.csrf(token),
       memberships: (await c.query('SELECT * FROM session_memberships($1)', [sha256(token)])).rows,
@@ -259,4 +275,8 @@ export class SessionService {
     if (!tokenSchema.safeParse(csrf).success || !secureEqual(expectedHash, sha256(csrf)))
       throw new ControlError(403, 'CSRF_INVALID')
   }
+}
+
+export function validateAuthorizationCode(code: string) {
+  if (!/^[\x21-\x7e]{1,4096}$/.test(code)) throw new ControlError(401, 'INVALID_AUTH_TRANSACTION')
 }

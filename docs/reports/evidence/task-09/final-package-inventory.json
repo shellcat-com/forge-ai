@@ -1,0 +1,4186 @@
+{
+  "schemaVersion": 1,
+  "auditedCommit": "88a5a39daeabe088a119f871166333975588c1b1",
+  "command": "npm pack --dry-run --ignore-scripts --json",
+  "entryCount": 778,
+  "compressedBytes": 28900077,
+  "unpackedBytes": 34012939,
+  "rootPrivate": true,
+  "rootLockIncluded": false,
+  "licenseIncluded": true,
+  "historicalOrResearchEntries": [
+    "docs/evidence/documentation/browser-checks.txt",
+    "docs/evidence/documentation/manifest.json",
+    "docs/evidence/documentation/overview-dark-390.png",
+    "docs/evidence/documentation/overview-dark-768.png",
+    "docs/evidence/documentation/overview-dark-1440.png",
+    "docs/evidence/documentation/overview-light-390.png",
+    "docs/evidence/documentation/overview-light-768.png",
+    "docs/evidence/documentation/overview-light-1440.png",
+    "docs/evidence/documentation/prompt-dark-390.png",
+    "docs/evidence/documentation/prompt-dark-768.png",
+    "docs/evidence/documentation/prompt-dark-1440.png",
+    "docs/evidence/documentation/prompt-light-390.png",
+    "docs/evidence/documentation/prompt-light-768.png",
+    "docs/evidence/documentation/prompt-light-1440.png",
+    "docs/evidence/documentation/verification.txt",
+    "docs/evidence/documentation/zoom-200.png",
+    "docs/evidence/forge-unified-checkpoint.zip",
+    "docs/evidence/foundation-375.png",
+    "docs/evidence/foundation-768.png",
+    "docs/evidence/foundation-1440.png",
+    "docs/evidence/groq-workflow-1440.png",
+    "docs/evidence/openrouter-375.png",
+    "docs/evidence/openrouter-768.png",
+    "docs/evidence/openrouter-1440.png",
+    "docs/evidence/openrouter-recovery.png",
+    "docs/evidence/providers-375.png",
+    "docs/evidence/providers-768.png",
+    "docs/evidence/providers-1440.png",
+    "docs/evidence/providers.png",
+    "docs/evidence/unified/auth-database-checks.txt",
+    "docs/evidence/unified/browser-tests.txt",
+    "docs/evidence/unified/home-dark-375.png",
+    "docs/evidence/unified/home-dark-390.png",
+    "docs/evidence/unified/home-dark-768.png",
+    "docs/evidence/unified/home-dark-1440.png",
+    "docs/evidence/unified/home-light-375.png",
+    "docs/evidence/unified/home-light-390.png",
+    "docs/evidence/unified/home-light-768.png",
+    "docs/evidence/unified/home-light-1440.png",
+    "docs/evidence/unified/manifest.json",
+    "docs/evidence/unified/pomodoro-acceptance.txt",
+    "docs/evidence/unified/pomodoro-break-state.png",
+    "docs/evidence/unified/pomodoro-controls.png",
+    "docs/evidence/unified/projects-dark-375.png",
+    "docs/evidence/unified/projects-dark-390.png",
+    "docs/evidence/unified/projects-dark-768.png",
+    "docs/evidence/unified/projects-dark-1440.png",
+    "docs/evidence/unified/projects-light-375.png",
+    "docs/evidence/unified/projects-light-390.png",
+    "docs/evidence/unified/projects-light-768.png",
+    "docs/evidence/unified/projects-light-1440.png",
+    "docs/evidence/unified/providers-375.png",
+    "docs/evidence/unified/providers-768.png",
+    "docs/evidence/unified/providers-1440.png",
+    "docs/evidence/unified/verification-node24.txt",
+    "docs/evidence/unified/workbench-dark-390.png",
+    "docs/evidence/unified/workbench-dark-768.png",
+    "docs/evidence/unified/workbench-dark-1440.png",
+    "docs/evidence/unified/workbench-light-390.png",
+    "docs/evidence/unified/workbench-light-768.png",
+    "docs/evidence/unified/workbench-light-1440.png",
+    "docs/evidence/workflow-editor-1440.png",
+    "docs/evidence/workflow-history-1440.png",
+    "docs/evidence/workflow-preview-375.png",
+    "docs/evidence/workflow-preview-768.png",
+    "docs/evidence/workflow-preview-1440.png",
+    "docs/evidence/workflow-verification.json",
+    "docs/reports/evidence/e0/engine-tests.json",
+    "docs/reports/evidence/e0/manifest.json",
+    "docs/reports/evidence/e1/integrity.json",
+    "docs/reports/evidence/e1/manifest.json",
+    "docs/reports/evidence/e1/native-tests.json",
+    "docs/reports/evidence/e2-e5/acceptance.json",
+    "docs/reports/evidence/e2-e5/candidate-390-light.png",
+    "docs/reports/evidence/e2-e5/candidate-768-light.png",
+    "docs/reports/evidence/e2-e5/candidate-1440-light.png",
+    "docs/reports/evidence/e2-e5/candidate-keyboard-focus.png",
+    "docs/reports/evidence/e2-e5/candidate-license-inventory.json",
+    "docs/reports/evidence/e2-e5/candidate-npm-audit.json",
+    "docs/reports/evidence/e2-e5/e1-preservation.json",
+    "docs/reports/evidence/e2-e5/engine-ui-browser.json",
+    "docs/reports/evidence/e2-e5/forge-browser-compatibility.json",
+    "docs/reports/evidence/e2-e5/integrated-tests.json",
+    "docs/reports/evidence/e2-e5/postgres18-candidate.json",
+    "docs/reports/evidence/e2-e5/postgres18-source.json",
+    "docs/reports/evidence/e2-e5/ui-repair-integrated.json",
+    "docs/reports/evidence/pr7/documentation-zoom-200.png",
+    "docs/reports/evidence/pr7/home-dark-390.png",
+    "docs/reports/evidence/pr7/home-dark-768.png",
+    "docs/reports/evidence/pr7/home-dark-1440.png",
+    "docs/reports/evidence/pr7/home-light-390.png",
+    "docs/reports/evidence/pr7/home-light-768.png",
+    "docs/reports/evidence/pr7/home-light-1440.png",
+    "docs/reports/evidence/publication/manifest.json",
+    "docs/reports/evidence/task-01/ci-source.json",
+    "docs/reports/evidence/task-01/combined/ancestry.json",
+    "docs/reports/evidence/task-01/combined/ci-source.json",
+    "docs/reports/evidence/task-01/combined/combined-contracts.json",
+    "docs/reports/evidence/task-01/combined/environment.json",
+    "docs/reports/evidence/task-01/combined/home-dark-390.png",
+    "docs/reports/evidence/task-01/combined/home-dark-768.png",
+    "docs/reports/evidence/task-01/combined/home-dark-1440.png",
+    "docs/reports/evidence/task-01/combined/home-light-390.png",
+    "docs/reports/evidence/task-01/combined/home-light-768.png",
+    "docs/reports/evidence/task-01/combined/home-light-1440.png",
+    "docs/reports/evidence/task-01/combined/hosting-local/browser.json",
+    "docs/reports/evidence/task-01/combined/hosting-public/browser.json",
+    "docs/reports/evidence/task-01/combined/preview-browser.json",
+    "docs/reports/evidence/task-01/combined/preview-identity-race.json",
+    "docs/reports/evidence/task-01/combined/results.json",
+    "docs/reports/evidence/task-01/combined/secret-review.json",
+    "docs/reports/evidence/task-01/contract-signatures.json",
+    "docs/reports/evidence/task-01/documentation-css-zoom-200.png",
+    "docs/reports/evidence/task-01/historical-ledger-validation.json",
+    "docs/reports/evidence/task-01/home-dark-390.png",
+    "docs/reports/evidence/task-01/home-dark-768.png",
+    "docs/reports/evidence/task-01/home-dark-1440.png",
+    "docs/reports/evidence/task-01/home-light-390.png",
+    "docs/reports/evidence/task-01/home-light-768.png",
+    "docs/reports/evidence/task-01/home-light-1440.png",
+    "docs/reports/evidence/task-01/manifest.json",
+    "docs/reports/evidence/task-01/preservation.json",
+    "docs/reports/evidence/task-01/secret-review.json",
+    "docs/reports/evidence/task-03/cache-archive.json",
+    "docs/reports/evidence/task-03/clean-export.json",
+    "docs/reports/evidence/task-03/dependencies.json",
+    "docs/reports/evidence/task-03/dependency-review.json",
+    "docs/reports/evidence/task-03/linux-target-materialization.json",
+    "docs/reports/evidence/task-03/manifest.json",
+    "docs/reports/evidence/task-03/native-postgres.json",
+    "docs/reports/evidence/task-03/npm-advisories.json",
+    "docs/reports/evidence/task-03/npm-signatures.json",
+    "docs/reports/evidence/task-03/offline-materialization-linux.json",
+    "docs/reports/evidence/task-03/offline-materialization-macos.json",
+    "docs/reports/evidence/task-03/registry-keys.json",
+    "docs/reports/evidence/task-03/secret-review.json",
+    "docs/reports/evidence/task-03/toolchain-archives.json",
+    "docs/reports/evidence/task-04/ci-source.json",
+    "docs/reports/evidence/task-04/manifest.json",
+    "docs/reports/evidence/task-04/native-tests.json",
+    "docs/reports/evidence/task-05/identity-tests.json",
+    "docs/reports/evidence/task-05/manifest.json",
+    "docs/reports/evidence/task-05/root-issuer-tests.json",
+    "docs/reports/evidence/task-06/ci.json",
+    "docs/reports/evidence/task-06/manifest.json",
+    "docs/reports/evidence/task-06/native-tests.json",
+    "docs/reports/evidence/task-06/recovery.json",
+    "docs/reports/evidence/task-06/targeted-tests.json",
+    "docs/reports/evidence/task-08/asset-review.json",
+    "docs/reports/evidence/task-08/canonical-next-browser.json",
+    "docs/reports/evidence/task-08/ci-code-commit.json",
+    "docs/reports/evidence/task-08/deployment-build-log.txt",
+    "docs/reports/evidence/task-08/deployment-cli.txt",
+    "docs/reports/evidence/task-08/deployment-inspect.txt",
+    "docs/reports/evidence/task-08/deployment.json",
+    "docs/reports/evidence/task-08/integration.json",
+    "docs/reports/evidence/task-08/local-browser.json",
+    "docs/reports/evidence/task-08/local-dark-1440.png",
+    "docs/reports/evidence/task-08/local-light-390.png",
+    "docs/reports/evidence/task-08/manifest.json",
+    "docs/reports/evidence/task-08/native-control.txt",
+    "docs/reports/evidence/task-08/production-browser.json",
+    "docs/reports/evidence/task-08/production-bytes.json",
+    "docs/reports/evidence/task-08/production-dark-1440.png",
+    "docs/reports/evidence/task-08/production-light-390.png",
+    "docs/reports/evidence/task-08/publication-receipt.json",
+    "docs/reports/evidence/task-08/secret-scan.json",
+    "docs/reports/evidence/task-08/verify-final.txt",
+    "docs/reports/evidence/task-08/verify-initial.txt",
+    "docs/reports/evidence/task-09/archive-review.json",
+    "docs/reports/evidence/task-09/browser-prerequisite-failure.txt",
+    "docs/reports/evidence/task-09/browser.txt",
+    "docs/reports/evidence/task-09/ci-source.json",
+    "docs/reports/evidence/task-09/control-build.txt",
+    "docs/reports/evidence/task-09/historical-ledger.json",
+    "docs/reports/evidence/task-09/home-dark-390.png",
+    "docs/reports/evidence/task-09/home-dark-768.png",
+    "docs/reports/evidence/task-09/home-dark-1440.png",
+    "docs/reports/evidence/task-09/home-light-390.png",
+    "docs/reports/evidence/task-09/home-light-768.png",
+    "docs/reports/evidence/task-09/home-light-1440.png",
+    "docs/reports/evidence/task-09/install.txt",
+    "docs/reports/evidence/task-09/loopback-load.json",
+    "docs/reports/evidence/task-09/manifest.json",
+    "docs/reports/evidence/task-09/native-control.txt",
+    "docs/reports/evidence/task-09/native-migrations.txt",
+    "docs/reports/evidence/task-09/package-proposal.json",
+    "docs/reports/evidence/task-09/pr-integration.json",
+    "docs/reports/evidence/task-09/public-audit.json",
+    "docs/reports/evidence/task-09/public-availability-followup.json",
+    "docs/reports/evidence/task-09/source-inventory.json",
+    "docs/reports/evidence/task-09/targeted-tests.json",
+    "docs/reports/evidence/task-09/task03-handoff-review.json",
+    "docs/reports/evidence/task-09/verify-initial.txt",
+    "docs/reports/evidence/task-09/verify.txt",
+    "research/evidence/bolt/01-dashboard.png",
+    "research/evidence/bolt/02-project-preview.png",
+    "research/evidence/bolt/03-timer-settings.png",
+    "research/evidence/bolt/04-code-editor.png",
+    "research/evidence/bolt/05-database.png",
+    "research/evidence/bolt/06-more-menu.png",
+    "research/evidence/bolt/07-version-history.png",
+    "research/evidence/contact-sheets/bolt-contact-sheet.jpg",
+    "research/evidence/contact-sheets/emergent-contact-sheet.jpg",
+    "research/evidence/contact-sheets/lovable-contact-sheet.jpg",
+    "research/evidence/emergent/01-dashboard.png",
+    "research/evidence/emergent/02-generation-workspace.png",
+    "research/evidence/emergent/03-project-preview.png",
+    "research/evidence/emergent/05-manage-connectors.png",
+    "research/evidence/emergent/06-live-app.png",
+    "research/evidence/emergent/07-timer-settings.png",
+    "research/evidence/lovable/01-dashboard.png",
+    "research/evidence/lovable/03-project-preview.png",
+    "research/evidence/lovable/04-code-browser.png",
+    "research/evidence/lovable/05-analytics.png",
+    "research/evidence/lovable/06-project-settings.png",
+    "research/evidence/manifest.json",
+    "research/evidence/README.md",
+    "research/evidence/visual-walkthrough.mp4",
+    "research/evidence/walkthrough-frames/01.png",
+    "research/evidence/walkthrough-frames/02.png",
+    "research/evidence/walkthrough-frames/03.png",
+    "research/evidence/walkthrough-frames/04.png",
+    "research/evidence/walkthrough-frames/05.png",
+    "research/evidence/walkthrough-frames/06.png",
+    "research/evidence/walkthrough-frames/07.png",
+    "research/evidence/walkthrough-frames/08.png",
+    "research/evidence/walkthrough-frames/09.png",
+    "research/evidence/walkthrough-frames/10.png",
+    "research/evidence/walkthrough-frames/11.png",
+    "research/evidence/walkthrough-frames/12.png",
+    "research/evidence/walkthrough-frames/13.png",
+    "research/evidence/walkthrough-frames/14.png",
+    "research/evidence/walkthrough-frames/15.png",
+    "research/evidence/walkthrough-frames/16.png",
+    "research/evidence/walkthrough-frames/17.png",
+    "research/evidence/walkthrough-frames/18.png",
+    "research/forge-builder-ux-evidence.zip",
+    "runner/evidence/candidate/browser.json",
+    "runner/evidence/candidate/dark-390.png",
+    "runner/evidence/candidate/dark-768.png",
+    "runner/evidence/candidate/dark-1440.png",
+    "runner/evidence/candidate/export.json",
+    "runner/evidence/candidate/light-390.png",
+    "runner/evidence/candidate/light-768.png",
+    "runner/evidence/candidate/light-1440.png",
+    "runner/evidence/candidate/node24.json",
+    "runner/evidence/candidate/recovery.json",
+    "runner/evidence/task-02/contracts.json",
+    "runner/evidence/task-02/diff-scan.json",
+    "runner/evidence/task-02/manifest.json",
+    "runner/evidence/task-02/native-app.txt",
+    "runner/evidence/task-02/native-control.txt",
+    "runner/evidence/task-02/python-simulations.txt",
+    "runner/evidence/task-02/verify-node24.txt",
+    "runner/evidence/task-02/verify-node25.txt",
+    "runner/evidence/transport-tests.json",
+    "runner/evidence/unit-tests.json"
+  ],
+  "nestedArchives": [
+    "docs/evidence/forge-unified-checkpoint.zip",
+    "research/forge-builder-ux-evidence.zip"
+  ],
+  "oldAllowlistStatus": "stale-not-applied; evaluate runtime additions explicitly before any manifest change",
+  "runtimeOrDeploymentPathsMissingFromOldAllowlist": [
+    "runner/firecracker-driver.ts",
+    "runner/guest/agent.py",
+    "runner/guest/check_database.py",
+    "runner/guest/forge-app.slice",
+    "runner/guest/forge-guest.service",
+    "runner/guest/guest.nft",
+    "runner/guest/prepare.sh",
+    "runner/guest/protocol.ts",
+    "runner/host/RUNTIME.md",
+    "runner/host/evidence-tests.json",
+    "runner/host/linux-executor.ts",
+    "runner/host/linux_helper.py",
+    "runner/image/assemble.py",
+    "runner/image/contract.ts"
+  ],
+  "files": [
+    {
+      "path": ".dockerignore",
+      "size": 164,
+      "mode": 420
+    },
+    {
+      "path": ".env.example",
+      "size": 1248,
+      "mode": 420
+    },
+    {
+      "path": ".github/dependabot.yml",
+      "size": 638,
+      "mode": 420
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/bug_report.yml",
+      "size": 1610,
+      "mode": 420
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/config.yml",
+      "size": 225,
+      "mode": 420
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/feature_request.yml",
+      "size": 1271,
+      "mode": 420
+    },
+    {
+      "path": ".github/PULL_REQUEST_TEMPLATE.md",
+      "size": 532,
+      "mode": 420
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "size": 1134,
+      "mode": 420
+    },
+    {
+      "path": ".node-version",
+      "size": 8,
+      "mode": 420
+    },
+    {
+      "path": ".nvmrc",
+      "size": 8,
+      "mode": 420
+    },
+    {
+      "path": ".prettierrc.json",
+      "size": 80,
+      "mode": 420
+    },
+    {
+      "path": "AGENTS.md",
+      "size": 3181,
+      "mode": 420
+    },
+    {
+      "path": "CHANGELOG.md",
+      "size": 1502,
+      "mode": 420
+    },
+    {
+      "path": "CODE_OF_CONDUCT.md",
+      "size": 1565,
+      "mode": 420
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "size": 2250,
+      "mode": 420
+    },
+    {
+      "path": "DESIGN.md",
+      "size": 5180,
+      "mode": 420
+    },
+    {
+      "path": "Dockerfile",
+      "size": 646,
+      "mode": 420
+    },
+    {
+      "path": "LICENSE",
+      "size": 1078,
+      "mode": 420
+    },
+    {
+      "path": "README.md",
+      "size": 4122,
+      "mode": 420
+    },
+    {
+      "path": "SECURITY.md",
+      "size": 1690,
+      "mode": 420
+    },
+    {
+      "path": "compose.yaml",
+      "size": 239,
+      "mode": 420
+    },
+    {
+      "path": "docs/architecture.md",
+      "size": 6441,
+      "mode": 420
+    },
+    {
+      "path": "docs/auth-neon.md",
+      "size": 10561,
+      "mode": 420
+    },
+    {
+      "path": "docs/cloud-setup-status.md",
+      "size": 3227,
+      "mode": 420
+    },
+    {
+      "path": "docs/design-system.md",
+      "size": 1218,
+      "mode": 420
+    },
+    {
+      "path": "docs/design/assets.json",
+      "size": 3128,
+      "mode": 420
+    },
+    {
+      "path": "docs/design/research.md",
+      "size": 7633,
+      "mode": 420
+    },
+    {
+      "path": "docs/design/screenshots/landing-390-dark.jpg",
+      "size": 37949,
+      "mode": 420
+    },
+    {
+      "path": "docs/design/screenshots/landing-390-light.jpg",
+      "size": 38097,
+      "mode": 420
+    },
+    {
+      "path": "docs/design/screenshots/landing-768-dark.jpg",
+      "size": 70486,
+      "mode": 420
+    },
+    {
+      "path": "docs/design/screenshots/landing-768-light.jpg",
+      "size": 70919,
+      "mode": 420
+    },
+    {
+      "path": "docs/design/screenshots/landing-1440-dark.jpg",
+      "size": 140212,
+      "mode": 420
+    },
+    {
+      "path": "docs/design/screenshots/landing-1440-light.jpg",
+      "size": 140984,
+      "mode": 420
+    },
+    {
+      "path": "docs/design/screenshots/login-1440-dark.jpg",
+      "size": 88396,
+      "mode": 420
+    },
+    {
+      "path": "docs/design/screenshots/login-1440-light.jpg",
+      "size": 87957,
+      "mode": 420
+    },
+    {
+      "path": "docs/design/screenshots/login-reflow-720.jpg",
+      "size": 19137,
+      "mode": 420
+    },
+    {
+      "path": "docs/design/screenshots/presets-390.jpg",
+      "size": 42450,
+      "mode": 420
+    },
+    {
+      "path": "docs/design/screenshots/presets-1440.jpg",
+      "size": 92721,
+      "mode": 420
+    },
+    {
+      "path": "docs/design/skill-installation.md",
+      "size": 139,
+      "mode": 420
+    },
+    {
+      "path": "docs/design/verification.md",
+      "size": 4632,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/documentation/browser-checks.txt",
+      "size": 1304,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/documentation/manifest.json",
+      "size": 2700,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/documentation/overview-dark-390.png",
+      "size": 57655,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/documentation/overview-dark-768.png",
+      "size": 82453,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/documentation/overview-dark-1440.png",
+      "size": 117818,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/documentation/overview-light-390.png",
+      "size": 57918,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/documentation/overview-light-768.png",
+      "size": 85611,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/documentation/overview-light-1440.png",
+      "size": 119575,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/documentation/prompt-dark-390.png",
+      "size": 69598,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/documentation/prompt-dark-768.png",
+      "size": 119121,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/documentation/prompt-dark-1440.png",
+      "size": 159820,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/documentation/prompt-light-390.png",
+      "size": 69355,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/documentation/prompt-light-768.png",
+      "size": 119628,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/documentation/prompt-light-1440.png",
+      "size": 160030,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/documentation/verification.txt",
+      "size": 2214,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/documentation/zoom-200.png",
+      "size": 56304,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/forge-unified-checkpoint.zip",
+      "size": 1500376,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/foundation-375.png",
+      "size": 110993,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/foundation-768.png",
+      "size": 147774,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/foundation-1440.png",
+      "size": 202937,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/groq-workflow-1440.png",
+      "size": 165777,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/openrouter-375.png",
+      "size": 112478,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/openrouter-768.png",
+      "size": 138821,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/openrouter-1440.png",
+      "size": 193436,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/openrouter-recovery.png",
+      "size": 186247,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/providers-375.png",
+      "size": 128837,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/providers-768.png",
+      "size": 139938,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/providers-1440.png",
+      "size": 198629,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/providers.png",
+      "size": 141009,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/unified/auth-database-checks.txt",
+      "size": 387,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/unified/browser-tests.txt",
+      "size": 2627,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/unified/home-dark-375.png",
+      "size": 88873,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/unified/home-dark-390.png",
+      "size": 56905,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/unified/home-dark-768.png",
+      "size": 94066,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/unified/home-dark-1440.png",
+      "size": 80937,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/unified/home-light-375.png",
+      "size": 56059,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/unified/home-light-390.png",
+      "size": 57951,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/unified/home-light-768.png",
+      "size": 68178,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/unified/home-light-1440.png",
+      "size": 82274,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/unified/manifest.json",
+      "size": 6663,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/unified/pomodoro-acceptance.txt",
+      "size": 3784,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/unified/pomodoro-break-state.png",
+      "size": 18745,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/unified/pomodoro-controls.png",
+      "size": 18239,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/unified/projects-dark-375.png",
+      "size": 33077,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/unified/projects-dark-390.png",
+      "size": 31741,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/unified/projects-dark-768.png",
+      "size": 33334,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/unified/projects-dark-1440.png",
+      "size": 58237,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/unified/projects-light-375.png",
+      "size": 34528,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/unified/projects-light-390.png",
+      "size": 33066,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/unified/projects-light-768.png",
+      "size": 34836,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/unified/projects-light-1440.png",
+      "size": 59748,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/unified/providers-375.png",
+      "size": 92960,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/unified/providers-768.png",
+      "size": 75521,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/unified/providers-1440.png",
+      "size": 98021,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/unified/verification-node24.txt",
+      "size": 2217,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/unified/workbench-dark-390.png",
+      "size": 46404,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/unified/workbench-dark-768.png",
+      "size": 48534,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/unified/workbench-dark-1440.png",
+      "size": 127384,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/unified/workbench-light-390.png",
+      "size": 46870,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/unified/workbench-light-768.png",
+      "size": 48850,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/unified/workbench-light-1440.png",
+      "size": 129779,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/workflow-editor-1440.png",
+      "size": 251810,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/workflow-history-1440.png",
+      "size": 214960,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/workflow-preview-375.png",
+      "size": 115543,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/workflow-preview-768.png",
+      "size": 160741,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/workflow-preview-1440.png",
+      "size": 183478,
+      "mode": 420
+    },
+    {
+      "path": "docs/evidence/workflow-verification.json",
+      "size": 405,
+      "mode": 420
+    },
+    {
+      "path": "docs/implementation-plan.md",
+      "size": 39288,
+      "mode": 420
+    },
+    {
+      "path": "docs/implementation-status.md",
+      "size": 6711,
+      "mode": 420
+    },
+    {
+      "path": "docs/nvidia-provider.md",
+      "size": 6095,
+      "mode": 420
+    },
+    {
+      "path": "docs/operations/demo-delivery-coordination.md",
+      "size": 34668,
+      "mode": 420
+    },
+    {
+      "path": "docs/operations/demo-readiness.md",
+      "size": 13191,
+      "mode": 420
+    },
+    {
+      "path": "docs/operations/engine-development.md",
+      "size": 7916,
+      "mode": 420
+    },
+    {
+      "path": "docs/operations/persistence-local.md",
+      "size": 10855,
+      "mode": 420
+    },
+    {
+      "path": "docs/operations/persistence-vercel.md",
+      "size": 9195,
+      "mode": 420
+    },
+    {
+      "path": "docs/operations/private-alpha.md",
+      "size": 7251,
+      "mode": 420
+    },
+    {
+      "path": "docs/operations/proposals/task-05-better-auth-LICENSE.txt",
+      "size": 1099,
+      "mode": 420
+    },
+    {
+      "path": "docs/operations/proposals/task-05-better-auth-schema.json",
+      "size": 11963,
+      "mode": 420
+    },
+    {
+      "path": "docs/operations/proposals/task-05-better-auth.md",
+      "size": 11022,
+      "mode": 420
+    },
+    {
+      "path": "docs/operations/task-08-demo-runbook.md",
+      "size": 6476,
+      "mode": 420
+    },
+    {
+      "path": "docs/plans/market-readiness-plan.md",
+      "size": 39469,
+      "mode": 420
+    },
+    {
+      "path": "docs/provider-integration.md",
+      "size": 3494,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/demo-delivery/evidence-task-07/browser.json",
+      "size": 2927,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/demo-delivery/evidence-task-07/identity-race.json",
+      "size": 457,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/demo-delivery/evidence-task-07/manifest.json",
+      "size": 2889,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/demo-delivery/evidence-task-07/native.json",
+      "size": 3308,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/demo-delivery/evidence-task-07/publication.json",
+      "size": 639,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/demo-delivery/evidence-task-07/verification.json",
+      "size": 1035,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/demo-delivery/task-01-baseline.md",
+      "size": 30021,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/demo-delivery/task-02-runtime.md",
+      "size": 13638,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/demo-delivery/task-03-template.md",
+      "size": 16109,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/demo-delivery/task-04-byok.md",
+      "size": 12293,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/demo-delivery/task-05-identity.md",
+      "size": 11997,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/demo-delivery/task-06-persistence.md",
+      "size": 12698,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/demo-delivery/task-07-preview-rfc-amendment.md",
+      "size": 7216,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/demo-delivery/task-07-preview.md",
+      "size": 12328,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/demo-delivery/task-08-live-demo.md",
+      "size": 10632,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/demo-delivery/task-09-acceptance.md",
+      "size": 23298,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/documentation-guide.md",
+      "size": 1742,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/e0-contracts.md",
+      "size": 18848,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/e1-control.md",
+      "size": 18100,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/e2-control-integration.md",
+      "size": 13874,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/e2-e5-board.md",
+      "size": 18227,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/e2-e5-checkpoint.md",
+      "size": 6763,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/e2-e5-validation.md",
+      "size": 20434,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/e2-generation.md",
+      "size": 16489,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/e3-runtime.md",
+      "size": 14566,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/e4-flow.md",
+      "size": 5435,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/e4-repair-evidence.md",
+      "size": 5282,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/e5-provider-evaluation.md",
+      "size": 11425,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/e5-readiness.md",
+      "size": 3511,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/e5-recovery.md",
+      "size": 6779,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/engine-decisions.md",
+      "size": 10522,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/e0/engine-tests.json",
+      "size": 24229,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/e0/manifest.json",
+      "size": 3319,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/e1/integrity.json",
+      "size": 295,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/e1/manifest.json",
+      "size": 5315,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/e1/native-tests.json",
+      "size": 13912,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/e2-e5/acceptance.json",
+      "size": 39026,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/e2-e5/candidate-390-light.png",
+      "size": 23027,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/e2-e5/candidate-768-light.png",
+      "size": 28344,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/e2-e5/candidate-1440-light.png",
+      "size": 32530,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/e2-e5/candidate-keyboard-focus.png",
+      "size": 33947,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/e2-e5/candidate-license-inventory.json",
+      "size": 498,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/e2-e5/candidate-npm-audit.json",
+      "size": 364,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/e2-e5/e1-preservation.json",
+      "size": 4760,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/e2-e5/engine-ui-browser.json",
+      "size": 1575,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/e2-e5/forge-browser-compatibility.json",
+      "size": 1868,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/e2-e5/integrated-tests.json",
+      "size": 73063,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/e2-e5/postgres18-candidate.json",
+      "size": 1130,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/e2-e5/postgres18-source.json",
+      "size": 494,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/e2-e5/ui-repair-integrated.json",
+      "size": 37087,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/pr7/documentation-zoom-200.png",
+      "size": 56304,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/pr7/home-dark-390.png",
+      "size": 55894,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/pr7/home-dark-768.png",
+      "size": 58261,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/pr7/home-dark-1440.png",
+      "size": 81558,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/pr7/home-light-390.png",
+      "size": 56968,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/pr7/home-light-768.png",
+      "size": 59523,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/pr7/home-light-1440.png",
+      "size": 82977,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/publication/manifest.json",
+      "size": 860,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-01/ci-source.json",
+      "size": 198,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/ancestry.json",
+      "size": 523,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/ci-source.json",
+      "size": 2633,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/combined-contracts.json",
+      "size": 6378,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/environment.json",
+      "size": 826,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/home-dark-390.png",
+      "size": 57000,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/home-dark-768.png",
+      "size": 58980,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/home-dark-1440.png",
+      "size": 82324,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/home-light-390.png",
+      "size": 58079,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/home-light-768.png",
+      "size": 60219,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/home-light-1440.png",
+      "size": 83714,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/hosting-local/browser.json",
+      "size": 3146,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/hosting-public/browser.json",
+      "size": 3168,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/preview-browser.json",
+      "size": 2927,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/preview-identity-race.json",
+      "size": 457,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/results.json",
+      "size": 2998,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-01/combined/secret-review.json",
+      "size": 3729,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-01/contract-signatures.json",
+      "size": 899,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-01/documentation-css-zoom-200.png",
+      "size": 56304,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-01/historical-ledger-validation.json",
+      "size": 616,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-01/home-dark-390.png",
+      "size": 57000,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-01/home-dark-768.png",
+      "size": 58973,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-01/home-dark-1440.png",
+      "size": 82324,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-01/home-light-390.png",
+      "size": 58079,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-01/home-light-768.png",
+      "size": 60226,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-01/home-light-1440.png",
+      "size": 83714,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-01/manifest.json",
+      "size": 2251,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-01/preservation.json",
+      "size": 409,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-01/secret-review.json",
+      "size": 803,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-03/cache-archive.json",
+      "size": 459,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-03/clean-export.json",
+      "size": 8264,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-03/dependencies.json",
+      "size": 545734,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-03/dependency-review.json",
+      "size": 12744,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-03/linux-target-materialization.json",
+      "size": 1677,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-03/manifest.json",
+      "size": 5684,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-03/native-postgres.json",
+      "size": 900,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-03/npm-advisories.json",
+      "size": 364,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-03/npm-signatures.json",
+      "size": 37,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-03/offline-materialization-linux.json",
+      "size": 500,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-03/offline-materialization-macos.json",
+      "size": 503,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-03/registry-keys.json",
+      "size": 580,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-03/secret-review.json",
+      "size": 483,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-03/toolchain-archives.json",
+      "size": 1049,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-04/ci-source.json",
+      "size": 568,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-04/manifest.json",
+      "size": 4772,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-04/native-tests.json",
+      "size": 2301,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-05/identity-tests.json",
+      "size": 24701,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-05/manifest.json",
+      "size": 2873,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-05/root-issuer-tests.json",
+      "size": 7791,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-06/ci.json",
+      "size": 3998,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-06/manifest.json",
+      "size": 3645,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-06/native-tests.json",
+      "size": 17900,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-06/recovery.json",
+      "size": 914,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-06/targeted-tests.json",
+      "size": 4513,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-08/asset-review.json",
+      "size": 2826,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-08/canonical-next-browser.json",
+      "size": 744,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-08/ci-code-commit.json",
+      "size": 2658,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-08/deployment-build-log.txt",
+      "size": 95,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-08/deployment-cli.txt",
+      "size": 757,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-08/deployment-inspect.txt",
+      "size": 570,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-08/deployment.json",
+      "size": 1228,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-08/integration.json",
+      "size": 25802,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-08/local-browser.json",
+      "size": 3146,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-08/local-dark-1440.png",
+      "size": 161335,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-08/local-light-390.png",
+      "size": 174086,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-08/manifest.json",
+      "size": 3579,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-08/native-control.txt",
+      "size": 208,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-08/production-browser.json",
+      "size": 3168,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-08/production-bytes.json",
+      "size": 14011,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-08/production-dark-1440.png",
+      "size": 161335,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-08/production-light-390.png",
+      "size": 174086,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-08/publication-receipt.json",
+      "size": 4603,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-08/secret-scan.json",
+      "size": 182,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-08/verify-final.txt",
+      "size": 2040,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-08/verify-initial.txt",
+      "size": 2038,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-09/archive-review.json",
+      "size": 1213,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-09/browser-prerequisite-failure.txt",
+      "size": 37,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-09/browser.txt",
+      "size": 1718,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-09/ci-source.json",
+      "size": 190,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-09/control-build.txt",
+      "size": 63,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-09/historical-ledger.json",
+      "size": 616,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-09/home-dark-390.png",
+      "size": 57000,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-09/home-dark-768.png",
+      "size": 58980,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-09/home-dark-1440.png",
+      "size": 82324,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-09/home-light-390.png",
+      "size": 58079,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-09/home-light-768.png",
+      "size": 60219,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-09/home-light-1440.png",
+      "size": 83714,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-09/install.txt",
+      "size": 6664,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-09/loopback-load.json",
+      "size": 2712,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-09/manifest.json",
+      "size": 5363,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-09/native-control.txt",
+      "size": 208,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-09/native-migrations.txt",
+      "size": 218,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-09/package-proposal.json",
+      "size": 12110,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-09/pr-integration.json",
+      "size": 528,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-09/public-audit.json",
+      "size": 4705,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-09/public-availability-followup.json",
+      "size": 2770,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-09/source-inventory.json",
+      "size": 43726,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-09/targeted-tests.json",
+      "size": 1709,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-09/task03-handoff-review.json",
+      "size": 2834,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-09/verify-initial.txt",
+      "size": 2020,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/evidence/task-09/verify.txt",
+      "size": 2023,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/milestone-1-foundation.md",
+      "size": 2465,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/milestone-2-documentation.md",
+      "size": 2549,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/milestone-3-github-polish.md",
+      "size": 2494,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/milestone-3-nextjs-foundation.md",
+      "size": 2333,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/milestone-4-providers.md",
+      "size": 4323,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/milestone-5-isolated-runtime.md",
+      "size": 2830,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/milestone-6-complete-workflow.md",
+      "size": 6900,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/milestone-7-openrouter.md",
+      "size": 3937,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/milestone-8-groq.md",
+      "size": 3444,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/pr7-reconciliation.md",
+      "size": 6049,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/publication-checkpoint.md",
+      "size": 3217,
+      "mode": 420
+    },
+    {
+      "path": "docs/reports/unified-checkpoint.md",
+      "size": 1580,
+      "mode": 420
+    },
+    {
+      "path": "docs/rfcs/0001-app-generation-vertical-slice.md",
+      "size": 87573,
+      "mode": 420
+    },
+    {
+      "path": "docs/runtime.md",
+      "size": 2790,
+      "mode": 420
+    },
+    {
+      "path": "docs/security-model.md",
+      "size": 3711,
+      "mode": 420
+    },
+    {
+      "path": "docs/self-hosting.md",
+      "size": 1464,
+      "mode": 420
+    },
+    {
+      "path": "drizzle.config.mjs",
+      "size": 243,
+      "mode": 420
+    },
+    {
+      "path": "drizzle/0001_initial.sql",
+      "size": 1417,
+      "mode": 420
+    },
+    {
+      "path": "drizzle/0002_runtime_version.sql",
+      "size": 62,
+      "mode": 420
+    },
+    {
+      "path": "drizzle/0003_unified.sql",
+      "size": 3724,
+      "mode": 420
+    },
+    {
+      "path": "engine/artifacts/encrypted-backend.ts",
+      "size": 5516,
+      "mode": 420
+    },
+    {
+      "path": "engine/artifacts/local-backend.ts",
+      "size": 4314,
+      "mode": 420
+    },
+    {
+      "path": "engine/artifacts/postgres-backend.ts",
+      "size": 8102,
+      "mode": 420
+    },
+    {
+      "path": "engine/artifacts/postgres-schema.proposal.sql",
+      "size": 10600,
+      "mode": 420
+    },
+    {
+      "path": "engine/artifacts/store.ts",
+      "size": 4225,
+      "mode": 420
+    },
+    {
+      "path": "engine/contracts/canonical.ts",
+      "size": 2194,
+      "mode": 420
+    },
+    {
+      "path": "engine/contracts/events.ts",
+      "size": 2879,
+      "mode": 420
+    },
+    {
+      "path": "engine/contracts/index.ts",
+      "size": 241,
+      "mode": 420
+    },
+    {
+      "path": "engine/contracts/paths.ts",
+      "size": 1824,
+      "mode": 420
+    },
+    {
+      "path": "engine/contracts/primitives.ts",
+      "size": 2513,
+      "mode": 420
+    },
+    {
+      "path": "engine/contracts/provider.ts",
+      "size": 4296,
+      "mode": 420
+    },
+    {
+      "path": "engine/contracts/review.ts",
+      "size": 8836,
+      "mode": 420
+    },
+    {
+      "path": "engine/contracts/source.ts",
+      "size": 7882,
+      "mode": 420
+    },
+    {
+      "path": "engine/control/catalog.ts",
+      "size": 2747,
+      "mode": 420
+    },
+    {
+      "path": "engine/control/config.ts",
+      "size": 1996,
+      "mode": 420
+    },
+    {
+      "path": "engine/control/contracts.ts",
+      "size": 3764,
+      "mode": 420
+    },
+    {
+      "path": "engine/control/credential-authorization.ts",
+      "size": 2669,
+      "mode": 420
+    },
+    {
+      "path": "engine/control/database.ts",
+      "size": 5371,
+      "mode": 420
+    },
+    {
+      "path": "engine/control/fixture-stage.ts",
+      "size": 5074,
+      "mode": 420
+    },
+    {
+      "path": "engine/control/http.ts",
+      "size": 17798,
+      "mode": 420
+    },
+    {
+      "path": "engine/control/identity-operator.ts",
+      "size": 6569,
+      "mode": 420
+    },
+    {
+      "path": "engine/control/identity.ts",
+      "size": 10782,
+      "mode": 420
+    },
+    {
+      "path": "engine/control/index.ts",
+      "size": 3470,
+      "mode": 420
+    },
+    {
+      "path": "engine/control/oidc-identity.ts",
+      "size": 6902,
+      "mode": 420
+    },
+    {
+      "path": "engine/control/README.md",
+      "size": 6728,
+      "mode": 420
+    },
+    {
+      "path": "engine/control/reconciler.ts",
+      "size": 11633,
+      "mode": 420
+    },
+    {
+      "path": "engine/control/service.ts",
+      "size": 41222,
+      "mode": 420
+    },
+    {
+      "path": "engine/control/stage-adapter.ts",
+      "size": 2982,
+      "mode": 420
+    },
+    {
+      "path": "engine/control/state.ts",
+      "size": 10184,
+      "mode": 420
+    },
+    {
+      "path": "engine/control/worker.ts",
+      "size": 32733,
+      "mode": 420
+    },
+    {
+      "path": "engine/generation/accounted-source.ts",
+      "size": 2879,
+      "mode": 420
+    },
+    {
+      "path": "engine/generation/catalog.ts",
+      "size": 5816,
+      "mode": 420
+    },
+    {
+      "path": "engine/generation/context.ts",
+      "size": 4950,
+      "mode": 420
+    },
+    {
+      "path": "engine/generation/pipeline.ts",
+      "size": 8227,
+      "mode": 420
+    },
+    {
+      "path": "engine/generation/source.ts",
+      "size": 13187,
+      "mode": 420
+    },
+    {
+      "path": "engine/hosting/persistence-config.ts",
+      "size": 4663,
+      "mode": 420
+    },
+    {
+      "path": "engine/integration/candidate-stage.ts",
+      "size": 9416,
+      "mode": 420
+    },
+    {
+      "path": "engine/integration/contracts.ts",
+      "size": 596,
+      "mode": 420
+    },
+    {
+      "path": "engine/integration/source-repository.ts",
+      "size": 13303,
+      "mode": 420
+    },
+    {
+      "path": "engine/migrations/0001_control.sql",
+      "size": 25649,
+      "mode": 420
+    },
+    {
+      "path": "engine/migrations/0002_durable_control.sql",
+      "size": 21793,
+      "mode": 420
+    },
+    {
+      "path": "engine/migrations/0003_immutable_source_bridge.sql",
+      "size": 3557,
+      "mode": 420
+    },
+    {
+      "path": "engine/operations/provider-evaluation.ts",
+      "size": 20050,
+      "mode": 420
+    },
+    {
+      "path": "engine/operations/readiness.ts",
+      "size": 6312,
+      "mode": 420
+    },
+    {
+      "path": "engine/operations/telemetry.ts",
+      "size": 2038,
+      "mode": 420
+    },
+    {
+      "path": "engine/preview/control-http.ts",
+      "size": 2623,
+      "mode": 420
+    },
+    {
+      "path": "engine/preview/control.ts",
+      "size": 3981,
+      "mode": 420
+    },
+    {
+      "path": "engine/preview/gateway.ts",
+      "size": 8471,
+      "mode": 420
+    },
+    {
+      "path": "engine/preview/host-runtime.ts",
+      "size": 3332,
+      "mode": 420
+    },
+    {
+      "path": "engine/preview/hostnames.ts",
+      "size": 712,
+      "mode": 420
+    },
+    {
+      "path": "engine/preview/policy.ts",
+      "size": 8012,
+      "mode": 420
+    },
+    {
+      "path": "engine/preview/proposals/0007_preview.sql",
+      "size": 14384,
+      "mode": 420
+    },
+    {
+      "path": "engine/preview/README.md",
+      "size": 4490,
+      "mode": 420
+    },
+    {
+      "path": "engine/providers/accounting-postgres.ts",
+      "size": 9269,
+      "mode": 420
+    },
+    {
+      "path": "engine/providers/accounting.ts",
+      "size": 7591,
+      "mode": 420
+    },
+    {
+      "path": "engine/providers/chat-completions.ts",
+      "size": 12372,
+      "mode": 420
+    },
+    {
+      "path": "engine/providers/credentials-postgres.ts",
+      "size": 4113,
+      "mode": 420
+    },
+    {
+      "path": "engine/providers/credentials.ts",
+      "size": 10810,
+      "mode": 420
+    },
+    {
+      "path": "engine/providers/destination.ts",
+      "size": 5425,
+      "mode": 420
+    },
+    {
+      "path": "engine/providers/proposals/0005-byok.sql",
+      "size": 3857,
+      "mode": 420
+    },
+    {
+      "path": "engine/providers/README.md",
+      "size": 10125,
+      "mode": 420
+    },
+    {
+      "path": "engine/providers/registry.ts",
+      "size": 4471,
+      "mode": 420
+    },
+    {
+      "path": "engine/publishing/portfolio.ts",
+      "size": 8080,
+      "mode": 420
+    },
+    {
+      "path": "engine/publishing/prebuilt.ts",
+      "size": 4004,
+      "mode": 420
+    },
+    {
+      "path": "engine/publishing/README.md",
+      "size": 4178,
+      "mode": 420
+    },
+    {
+      "path": "engine/runner-client/index.ts",
+      "size": 3704,
+      "mode": 420
+    },
+    {
+      "path": "engine/testing/fakes.ts",
+      "size": 2541,
+      "mode": 420
+    },
+    {
+      "path": "engine/validation/acceptance-ledger.ts",
+      "size": 15047,
+      "mode": 420
+    },
+    {
+      "path": "engine/validation/acceptance.ts",
+      "size": 9785,
+      "mode": 420
+    },
+    {
+      "path": "engine/validation/adversarial.ts",
+      "size": 3041,
+      "mode": 420
+    },
+    {
+      "path": "engine/validation/delivery-evidence.ts",
+      "size": 4518,
+      "mode": 420
+    },
+    {
+      "path": "engine/validation/dependencies.ts",
+      "size": 3910,
+      "mode": 420
+    },
+    {
+      "path": "engine/validation/migrations.ts",
+      "size": 10092,
+      "mode": 420
+    },
+    {
+      "path": "engine/validation/secrets.ts",
+      "size": 6273,
+      "mode": 420
+    },
+    {
+      "path": "engine/workflows/jobs.ts",
+      "size": 6688,
+      "mode": 420
+    },
+    {
+      "path": "eslint.config.js",
+      "size": 1527,
+      "mode": 420
+    },
+    {
+      "path": "next-env.d.ts",
+      "size": 288,
+      "mode": 420
+    },
+    {
+      "path": "next.config.ts",
+      "size": 773,
+      "mode": 420
+    },
+    {
+      "path": "package.json",
+      "size": 3022,
+      "mode": 420
+    },
+    {
+      "path": "playwright.config.ts",
+      "size": 543,
+      "mode": 420
+    },
+    {
+      "path": "postcss.config.mjs",
+      "size": 60,
+      "mode": 420
+    },
+    {
+      "path": "public/art/atmosphere-640.webp",
+      "size": 12560,
+      "mode": 420
+    },
+    {
+      "path": "public/art/atmosphere-1280.webp",
+      "size": 53134,
+      "mode": 420
+    },
+    {
+      "path": "public/art/atmosphere-2048.webp",
+      "size": 205472,
+      "mode": 420
+    },
+    {
+      "path": "public/art/illustration-640.webp",
+      "size": 75636,
+      "mode": 420
+    },
+    {
+      "path": "public/art/illustration-1280.webp",
+      "size": 253454,
+      "mode": 420
+    },
+    {
+      "path": "public/art/illustration-2048.webp",
+      "size": 540508,
+      "mode": 420
+    },
+    {
+      "path": "public/art/landscape-640.webp",
+      "size": 38690,
+      "mode": 420
+    },
+    {
+      "path": "public/art/landscape-1280.webp",
+      "size": 143104,
+      "mode": 420
+    },
+    {
+      "path": "public/art/landscape-2048.webp",
+      "size": 310748,
+      "mode": 420
+    },
+    {
+      "path": "public/art/login-640.webp",
+      "size": 19346,
+      "mode": 420
+    },
+    {
+      "path": "public/art/login-1280.webp",
+      "size": 79230,
+      "mode": 420
+    },
+    {
+      "path": "public/art/login-2048.webp",
+      "size": 215842,
+      "mode": 420
+    },
+    {
+      "path": "public/art/particles-640.webp",
+      "size": 26476,
+      "mode": 420
+    },
+    {
+      "path": "public/art/particles-1280.webp",
+      "size": 97946,
+      "mode": 420
+    },
+    {
+      "path": "public/art/particles-2048.webp",
+      "size": 213228,
+      "mode": 420
+    },
+    {
+      "path": "public/art/provenance.json",
+      "size": 3128,
+      "mode": 420
+    },
+    {
+      "path": "public/brand/banner.svg",
+      "size": 1540,
+      "mode": 420
+    },
+    {
+      "path": "public/brand/mark.svg",
+      "size": 314,
+      "mode": 420
+    },
+    {
+      "path": "public/critical.css",
+      "size": 94,
+      "mode": 420
+    },
+    {
+      "path": "public/fonts/licenses/ibm-plex-mono.txt",
+      "size": 5299,
+      "mode": 420
+    },
+    {
+      "path": "public/fonts/licenses/instrument-serif.txt",
+      "size": 4532,
+      "mode": 420
+    },
+    {
+      "path": "public/fonts/licenses/inter.txt",
+      "size": 4477,
+      "mode": 420
+    },
+    {
+      "path": "public/fonts/licenses/press-start-2p.txt",
+      "size": 4412,
+      "mode": 420
+    },
+    {
+      "path": "public/theme-init.js",
+      "size": 402,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/bolt/01-dashboard.png",
+      "size": 181058,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/bolt/02-project-preview.png",
+      "size": 167951,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/bolt/03-timer-settings.png",
+      "size": 168201,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/bolt/04-code-editor.png",
+      "size": 169434,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/bolt/05-database.png",
+      "size": 192002,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/bolt/06-more-menu.png",
+      "size": 203755,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/bolt/07-version-history.png",
+      "size": 115071,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/contact-sheets/bolt-contact-sheet.jpg",
+      "size": 182528,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/contact-sheets/emergent-contact-sheet.jpg",
+      "size": 150050,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/contact-sheets/lovable-contact-sheet.jpg",
+      "size": 153106,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/emergent/01-dashboard.png",
+      "size": 73892,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/emergent/02-generation-workspace.png",
+      "size": 153975,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/emergent/03-project-preview.png",
+      "size": 168281,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/emergent/05-manage-connectors.png",
+      "size": 207812,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/emergent/06-live-app.png",
+      "size": 69446,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/emergent/07-timer-settings.png",
+      "size": 78456,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/lovable/01-dashboard.png",
+      "size": 144835,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/lovable/03-project-preview.png",
+      "size": 226088,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/lovable/04-code-browser.png",
+      "size": 203539,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/lovable/05-analytics.png",
+      "size": 215797,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/lovable/06-project-settings.png",
+      "size": 253338,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/manifest.json",
+      "size": 5365,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/README.md",
+      "size": 4881,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/visual-walkthrough.mp4",
+      "size": 876406,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/walkthrough-frames/01.png",
+      "size": 566985,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/walkthrough-frames/02.png",
+      "size": 227827,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/walkthrough-frames/03.png",
+      "size": 216710,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/walkthrough-frames/04.png",
+      "size": 190958,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/walkthrough-frames/05.png",
+      "size": 229790,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/walkthrough-frames/06.png",
+      "size": 250120,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/walkthrough-frames/07.png",
+      "size": 126552,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/walkthrough-frames/08.png",
+      "size": 484543,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/walkthrough-frames/09.png",
+      "size": 289769,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/walkthrough-frames/10.png",
+      "size": 243959,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/walkthrough-frames/11.png",
+      "size": 255060,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/walkthrough-frames/12.png",
+      "size": 306964,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/walkthrough-frames/13.png",
+      "size": 118578,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/walkthrough-frames/14.png",
+      "size": 258289,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/walkthrough-frames/15.png",
+      "size": 240050,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/walkthrough-frames/16.png",
+      "size": 279985,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/walkthrough-frames/17.png",
+      "size": 95692,
+      "mode": 420
+    },
+    {
+      "path": "research/evidence/walkthrough-frames/18.png",
+      "size": 116227,
+      "mode": 420
+    },
+    {
+      "path": "research/forge-builder-ux-evidence.zip",
+      "size": 7660082,
+      "mode": 420
+    },
+    {
+      "path": "runner/app-database.ts",
+      "size": 2517,
+      "mode": 420
+    },
+    {
+      "path": "runner/auth.ts",
+      "size": 3454,
+      "mode": 420
+    },
+    {
+      "path": "runner/broker.ts",
+      "size": 15006,
+      "mode": 420
+    },
+    {
+      "path": "runner/candidate-browser-check.mjs",
+      "size": 2779,
+      "mode": 420
+    },
+    {
+      "path": "runner/collector.ts",
+      "size": 4187,
+      "mode": 420
+    },
+    {
+      "path": "runner/evidence/candidate/browser.json",
+      "size": 1624,
+      "mode": 420
+    },
+    {
+      "path": "runner/evidence/candidate/dark-390.png",
+      "size": 29860,
+      "mode": 420
+    },
+    {
+      "path": "runner/evidence/candidate/dark-768.png",
+      "size": 31182,
+      "mode": 420
+    },
+    {
+      "path": "runner/evidence/candidate/dark-1440.png",
+      "size": 34910,
+      "mode": 420
+    },
+    {
+      "path": "runner/evidence/candidate/export.json",
+      "size": 7707,
+      "mode": 420
+    },
+    {
+      "path": "runner/evidence/candidate/light-390.png",
+      "size": 33001,
+      "mode": 420
+    },
+    {
+      "path": "runner/evidence/candidate/light-768.png",
+      "size": 34125,
+      "mode": 420
+    },
+    {
+      "path": "runner/evidence/candidate/light-1440.png",
+      "size": 37324,
+      "mode": 420
+    },
+    {
+      "path": "runner/evidence/candidate/node24.json",
+      "size": 877,
+      "mode": 420
+    },
+    {
+      "path": "runner/evidence/candidate/recovery.json",
+      "size": 3763,
+      "mode": 420
+    },
+    {
+      "path": "runner/evidence/task-02/contracts.json",
+      "size": 26860,
+      "mode": 420
+    },
+    {
+      "path": "runner/evidence/task-02/diff-scan.json",
+      "size": 3,
+      "mode": 420
+    },
+    {
+      "path": "runner/evidence/task-02/manifest.json",
+      "size": 4495,
+      "mode": 420
+    },
+    {
+      "path": "runner/evidence/task-02/native-app.txt",
+      "size": 341,
+      "mode": 420
+    },
+    {
+      "path": "runner/evidence/task-02/native-control.txt",
+      "size": 208,
+      "mode": 420
+    },
+    {
+      "path": "runner/evidence/task-02/python-simulations.txt",
+      "size": 3358,
+      "mode": 420
+    },
+    {
+      "path": "runner/evidence/task-02/verify-node24.txt",
+      "size": 2031,
+      "mode": 420
+    },
+    {
+      "path": "runner/evidence/task-02/verify-node25.txt",
+      "size": 2467,
+      "mode": 420
+    },
+    {
+      "path": "runner/evidence/transport-tests.json",
+      "size": 5535,
+      "mode": 420
+    },
+    {
+      "path": "runner/evidence/unit-tests.json",
+      "size": 17509,
+      "mode": 420
+    },
+    {
+      "path": "runner/firecracker-driver.ts",
+      "size": 11741,
+      "mode": 420
+    },
+    {
+      "path": "runner/guest/agent.py",
+      "size": 21273,
+      "mode": 420
+    },
+    {
+      "path": "runner/guest/check_database.py",
+      "size": 4419,
+      "mode": 420
+    },
+    {
+      "path": "runner/guest/forge-app.slice",
+      "size": 151,
+      "mode": 420
+    },
+    {
+      "path": "runner/guest/forge-guest.service",
+      "size": 337,
+      "mode": 420
+    },
+    {
+      "path": "runner/guest/guest.nft",
+      "size": 273,
+      "mode": 420
+    },
+    {
+      "path": "runner/guest/prepare.sh",
+      "size": 628,
+      "mode": 420
+    },
+    {
+      "path": "runner/guest/protocol.ts",
+      "size": 4694,
+      "mode": 420
+    },
+    {
+      "path": "runner/hardened.ts",
+      "size": 3314,
+      "mode": 420
+    },
+    {
+      "path": "runner/host/evidence-tests.json",
+      "size": 16260,
+      "mode": 420
+    },
+    {
+      "path": "runner/host/forge-host-supervisor.service",
+      "size": 1399,
+      "mode": 420
+    },
+    {
+      "path": "runner/host/guest-cgroup.json",
+      "size": 1311,
+      "mode": 420
+    },
+    {
+      "path": "runner/host/guest-network.nft",
+      "size": 470,
+      "mode": 420
+    },
+    {
+      "path": "runner/host/inventory.ts",
+      "size": 3860,
+      "mode": 420
+    },
+    {
+      "path": "runner/host/lifecycle.ts",
+      "size": 13373,
+      "mode": 420
+    },
+    {
+      "path": "runner/host/linux_helper.py",
+      "size": 22145,
+      "mode": 420
+    },
+    {
+      "path": "runner/host/linux-executor.ts",
+      "size": 4033,
+      "mode": 420
+    },
+    {
+      "path": "runner/host/preflight.ts",
+      "size": 4174,
+      "mode": 420
+    },
+    {
+      "path": "runner/host/README.md",
+      "size": 6004,
+      "mode": 420
+    },
+    {
+      "path": "runner/host/RUNTIME.md",
+      "size": 14356,
+      "mode": 420
+    },
+    {
+      "path": "runner/host/watchdog.ts",
+      "size": 1242,
+      "mode": 420
+    },
+    {
+      "path": "runner/http.ts",
+      "size": 2685,
+      "mode": 420
+    },
+    {
+      "path": "runner/image/assemble.py",
+      "size": 7461,
+      "mode": 420
+    },
+    {
+      "path": "runner/image/contract.ts",
+      "size": 855,
+      "mode": 420
+    },
+    {
+      "path": "runner/journal.ts",
+      "size": 3189,
+      "mode": 420
+    },
+    {
+      "path": "runtime/Dockerfile",
+      "size": 428,
+      "mode": 420
+    },
+    {
+      "path": "runtime/relay.mjs",
+      "size": 679,
+      "mode": 420
+    },
+    {
+      "path": "runtime/run.mjs",
+      "size": 1812,
+      "mode": 420
+    },
+    {
+      "path": "runtime/snapshot.mjs",
+      "size": 901,
+      "mode": 420
+    },
+    {
+      "path": "runtime/write.mjs",
+      "size": 1396,
+      "mode": 420
+    },
+    {
+      "path": "scripts/check-baseline-browser.py",
+      "size": 3493,
+      "mode": 420
+    },
+    {
+      "path": "scripts/check-cloud-readiness.mjs",
+      "size": 2695,
+      "mode": 420
+    },
+    {
+      "path": "scripts/check-control-db.mjs",
+      "size": 2099,
+      "mode": 420
+    },
+    {
+      "path": "scripts/copy-editor.mjs",
+      "size": 2107,
+      "mode": 420
+    },
+    {
+      "path": "scripts/editor-entry.mjs",
+      "size": 558,
+      "mode": 420
+    },
+    {
+      "path": "scripts/import-engine.mjs",
+      "size": 4032,
+      "mode": 420
+    },
+    {
+      "path": "scripts/migrate-cloud.mjs",
+      "size": 1526,
+      "mode": 420
+    },
+    {
+      "path": "scripts/migrate.ts",
+      "size": 1630,
+      "mode": 420
+    },
+    {
+      "path": "scripts/prepare-art.mjs",
+      "size": 1141,
+      "mode": 420
+    },
+    {
+      "path": "scripts/publishing/audit-prebuilt.ts",
+      "size": 3604,
+      "mode": 420
+    },
+    {
+      "path": "scripts/publishing/check-public.mjs",
+      "size": 6428,
+      "mode": 420
+    },
+    {
+      "path": "scripts/publishing/prepare-frontend.tsx",
+      "size": 3408,
+      "mode": 420
+    },
+    {
+      "path": "scripts/refine-timer.mjs",
+      "size": 1168,
+      "mode": 420
+    },
+    {
+      "path": "scripts/setup-local.mjs",
+      "size": 2386,
+      "mode": 420
+    },
+    {
+      "path": "scripts/start.mjs",
+      "size": 1028,
+      "mode": 420
+    },
+    {
+      "path": "scripts/sync-skills.mjs",
+      "size": 1430,
+      "mode": 420
+    },
+    {
+      "path": "scripts/test-auth.ts",
+      "size": 3091,
+      "mode": 420
+    },
+    {
+      "path": "scripts/test-generation.ts",
+      "size": 2812,
+      "mode": 420
+    },
+    {
+      "path": "scripts/test-provider.ts",
+      "size": 1048,
+      "mode": 420
+    },
+    {
+      "path": "scripts/test-recovery.ts",
+      "size": 2908,
+      "mode": 420
+    },
+    {
+      "path": "scripts/test-revisions.ts",
+      "size": 5050,
+      "mode": 420
+    },
+    {
+      "path": "scripts/test-runtime.ts",
+      "size": 2556,
+      "mode": 420
+    },
+    {
+      "path": "scripts/test-unified-db.ts",
+      "size": 2705,
+      "mode": 420
+    },
+    {
+      "path": "server/app.mjs",
+      "size": 3505,
+      "mode": 420
+    },
+    {
+      "path": "server/app.test.mjs",
+      "size": 4572,
+      "mode": 420
+    },
+    {
+      "path": "server/cloud/app.mjs",
+      "size": 6700,
+      "mode": 420
+    },
+    {
+      "path": "server/cloud/app.test.mjs",
+      "size": 4186,
+      "mode": 420
+    },
+    {
+      "path": "server/cloud/auth.mjs",
+      "size": 1962,
+      "mode": 420
+    },
+    {
+      "path": "server/cloud/auth.test.mjs",
+      "size": 2306,
+      "mode": 420
+    },
+    {
+      "path": "server/cloud/contracts.mjs",
+      "size": 1364,
+      "mode": 420
+    },
+    {
+      "path": "server/cloud/index.mjs",
+      "size": 1990,
+      "mode": 420
+    },
+    {
+      "path": "server/cloud/migrations/0001_workspace.sql",
+      "size": 3446,
+      "mode": 420
+    },
+    {
+      "path": "server/cloud/planning.mjs",
+      "size": 2209,
+      "mode": 420
+    },
+    {
+      "path": "server/cloud/planning.test.mjs",
+      "size": 1533,
+      "mode": 420
+    },
+    {
+      "path": "server/cloud/schema.mjs",
+      "size": 1526,
+      "mode": 420
+    },
+    {
+      "path": "server/cloud/store.mjs",
+      "size": 7942,
+      "mode": 420
+    },
+    {
+      "path": "server/cloud/store.test.mjs",
+      "size": 4997,
+      "mode": 420
+    },
+    {
+      "path": "server/index.mjs",
+      "size": 477,
+      "mode": 420
+    },
+    {
+      "path": "server/provider.mjs",
+      "size": 2495,
+      "mode": 420
+    },
+    {
+      "path": "server/provider.test.mjs",
+      "size": 2650,
+      "mode": 420
+    },
+    {
+      "path": "skills/forge-design/references/DESIGN.md",
+      "size": 5180,
+      "mode": 420
+    },
+    {
+      "path": "skills/forge-design/SKILL.md",
+      "size": 907,
+      "mode": 420
+    },
+    {
+      "path": "skills/forge-project-design/references/assets.json",
+      "size": 3128,
+      "mode": 420
+    },
+    {
+      "path": "skills/forge-project-design/references/DESIGN.md",
+      "size": 5180,
+      "mode": 420
+    },
+    {
+      "path": "skills/forge-project-design/references/presets.json",
+      "size": 8276,
+      "mode": 420
+    },
+    {
+      "path": "skills/forge-project-design/SKILL.md",
+      "size": 1123,
+      "mode": 420
+    },
+    {
+      "path": "src/app/api/account/route.ts",
+      "size": 519,
+      "mode": 420
+    },
+    {
+      "path": "src/app/api/auth/[...all]/route.ts",
+      "size": 345,
+      "mode": 420
+    },
+    {
+      "path": "src/app/api/jobs/[id]/cancel/route.ts",
+      "size": 1302,
+      "mode": 420
+    },
+    {
+      "path": "src/app/api/jobs/[id]/events/route.ts",
+      "size": 3075,
+      "mode": 420
+    },
+    {
+      "path": "src/app/api/projects/[id]/comments/route.ts",
+      "size": 2487,
+      "mode": 420
+    },
+    {
+      "path": "src/app/api/projects/[id]/export/route.ts",
+      "size": 1281,
+      "mode": 420
+    },
+    {
+      "path": "src/app/api/projects/[id]/jobs/route.ts",
+      "size": 1900,
+      "mode": 420
+    },
+    {
+      "path": "src/app/api/projects/[id]/remix/route.ts",
+      "size": 2047,
+      "mode": 420
+    },
+    {
+      "path": "src/app/api/projects/[id]/route.ts",
+      "size": 2506,
+      "mode": 420
+    },
+    {
+      "path": "src/app/api/projects/[id]/sharing/route.ts",
+      "size": 2776,
+      "mode": 420
+    },
+    {
+      "path": "src/app/api/projects/import/route.ts",
+      "size": 1811,
+      "mode": 420
+    },
+    {
+      "path": "src/app/api/projects/route.ts",
+      "size": 2495,
+      "mode": 420
+    },
+    {
+      "path": "src/app/api/providers/route.ts",
+      "size": 440,
+      "mode": 420
+    },
+    {
+      "path": "src/app/api/providers/test/route.ts",
+      "size": 2238,
+      "mode": 420
+    },
+    {
+      "path": "src/app/api/status/route.ts",
+      "size": 649,
+      "mode": 420
+    },
+    {
+      "path": "src/app/api/usage/route.ts",
+      "size": 1031,
+      "mode": 420
+    },
+    {
+      "path": "src/app/app/connections/page.tsx",
+      "size": 131,
+      "mode": 420
+    },
+    {
+      "path": "src/app/app/page.tsx",
+      "size": 121,
+      "mode": 420
+    },
+    {
+      "path": "src/app/app/projects/[id]/page.tsx",
+      "size": 182,
+      "mode": 420
+    },
+    {
+      "path": "src/app/app/projects/page.tsx",
+      "size": 128,
+      "mode": 420
+    },
+    {
+      "path": "src/app/app/settings/page.tsx",
+      "size": 128,
+      "mode": 420
+    },
+    {
+      "path": "src/app/components/page.tsx",
+      "size": 131,
+      "mode": 420
+    },
+    {
+      "path": "src/app/docs/documentation.css",
+      "size": 9571,
+      "mode": 420
+    },
+    {
+      "path": "src/app/docs/page.tsx",
+      "size": 446,
+      "mode": 420
+    },
+    {
+      "path": "src/app/engine.css",
+      "size": 23782,
+      "mode": 420
+    },
+    {
+      "path": "src/app/examples/[id]/page.tsx",
+      "size": 200,
+      "mode": 420
+    },
+    {
+      "path": "src/app/examples/page.tsx",
+      "size": 129,
+      "mode": 420
+    },
+    {
+      "path": "src/app/globals.css",
+      "size": 15051,
+      "mode": 420
+    },
+    {
+      "path": "src/app/hosting/hosting.css",
+      "size": 3125,
+      "mode": 420
+    },
+    {
+      "path": "src/app/hosting/page.tsx",
+      "size": 168,
+      "mode": 420
+    },
+    {
+      "path": "src/app/layout.tsx",
+      "size": 790,
+      "mode": 420
+    },
+    {
+      "path": "src/app/login/page.tsx",
+      "size": 97,
+      "mode": 420
+    },
+    {
+      "path": "src/app/page.tsx",
+      "size": 351,
+      "mode": 420
+    },
+    {
+      "path": "src/app/public.css",
+      "size": 58756,
+      "mode": 420
+    },
+    {
+      "path": "src/app/reset-password/page.tsx",
+      "size": 106,
+      "mode": 420
+    },
+    {
+      "path": "src/app/sample/page.tsx",
+      "size": 127,
+      "mode": 420
+    },
+    {
+      "path": "src/cloud/client.ts",
+      "size": 2614,
+      "mode": 420
+    },
+    {
+      "path": "src/cloud/legacy-shell.css",
+      "size": 49751,
+      "mode": 420
+    },
+    {
+      "path": "src/cloud/main.test.ts",
+      "size": 4981,
+      "mode": 420
+    },
+    {
+      "path": "src/cloud/main.ts",
+      "size": 26687,
+      "mode": 420
+    },
+    {
+      "path": "src/cloud/styles.css",
+      "size": 1372,
+      "mode": 420
+    },
+    {
+      "path": "src/components/code-editor.tsx",
+      "size": 1995,
+      "mode": 420
+    },
+    {
+      "path": "src/components/hosted-unavailable.tsx",
+      "size": 4093,
+      "mode": 420
+    },
+    {
+      "path": "src/components/login.tsx",
+      "size": 8557,
+      "mode": 420
+    },
+    {
+      "path": "src/components/project-workspace.tsx",
+      "size": 24403,
+      "mode": 420
+    },
+    {
+      "path": "src/components/provider-panel.tsx",
+      "size": 6243,
+      "mode": 420
+    },
+    {
+      "path": "src/components/public-page.tsx",
+      "size": 5195,
+      "mode": 420
+    },
+    {
+      "path": "src/components/review-panel.tsx",
+      "size": 3710,
+      "mode": 420
+    },
+    {
+      "path": "src/components/theme-control.tsx",
+      "size": 1014,
+      "mode": 420
+    },
+    {
+      "path": "src/components/ui.ts",
+      "size": 3823,
+      "mode": 420
+    },
+    {
+      "path": "src/components/workspace.tsx",
+      "size": 22341,
+      "mode": 420
+    },
+    {
+      "path": "src/demo.ts",
+      "size": 883,
+      "mode": 420
+    },
+    {
+      "path": "src/design.test.ts",
+      "size": 1976,
+      "mode": 420
+    },
+    {
+      "path": "src/design/presets.ts",
+      "size": 4672,
+      "mode": 420
+    },
+    {
+      "path": "src/design/tokens.css",
+      "size": 573,
+      "mode": 420
+    },
+    {
+      "path": "src/engine/client.test.ts",
+      "size": 9313,
+      "mode": 420
+    },
+    {
+      "path": "src/engine/client.ts",
+      "size": 14190,
+      "mode": 420
+    },
+    {
+      "path": "src/engine/flow.test.ts",
+      "size": 21330,
+      "mode": 420
+    },
+    {
+      "path": "src/engine/flow.ts",
+      "size": 28873,
+      "mode": 420
+    },
+    {
+      "path": "src/engine/source-client.test.ts",
+      "size": 12045,
+      "mode": 420
+    },
+    {
+      "path": "src/engine/source-client.ts",
+      "size": 16577,
+      "mode": 420
+    },
+    {
+      "path": "src/engine/view.ts",
+      "size": 7909,
+      "mode": 420
+    },
+    {
+      "path": "src/engine/workspace.css",
+      "size": 2012,
+      "mode": 420
+    },
+    {
+      "path": "src/engine/workspace.test.ts",
+      "size": 24465,
+      "mode": 420
+    },
+    {
+      "path": "src/engine/workspace.ts",
+      "size": 13200,
+      "mode": 420
+    },
+    {
+      "path": "src/export.test.ts",
+      "size": 1769,
+      "mode": 420
+    },
+    {
+      "path": "src/export.ts",
+      "size": 2750,
+      "mode": 420
+    },
+    {
+      "path": "src/project.test.ts",
+      "size": 595,
+      "mode": 420
+    },
+    {
+      "path": "src/project.ts",
+      "size": 644,
+      "mode": 420
+    },
+    {
+      "path": "src/public-renderers/designs.ts",
+      "size": 6111,
+      "mode": 420
+    },
+    {
+      "path": "src/public-renderers/documentation.ts",
+      "size": 25707,
+      "mode": 420
+    },
+    {
+      "path": "src/public-renderers/landing.ts",
+      "size": 7813,
+      "mode": 420
+    },
+    {
+      "path": "src/public-renderers/workspace.ts",
+      "size": 17356,
+      "mode": 420
+    },
+    {
+      "path": "src/server/auth/access.ts",
+      "size": 2167,
+      "mode": 420
+    },
+    {
+      "path": "src/server/auth/config.ts",
+      "size": 3534,
+      "mode": 420
+    },
+    {
+      "path": "src/server/auth/schema.ts",
+      "size": 2092,
+      "mode": 420
+    },
+    {
+      "path": "src/server/db/index.ts",
+      "size": 592,
+      "mode": 420
+    },
+    {
+      "path": "src/server/db/schema.ts",
+      "size": 4031,
+      "mode": 420
+    },
+    {
+      "path": "src/server/generation/files.ts",
+      "size": 2093,
+      "mode": 420
+    },
+    {
+      "path": "src/server/generation/generate.ts",
+      "size": 5754,
+      "mode": 420
+    },
+    {
+      "path": "src/server/generation/normalize.ts",
+      "size": 615,
+      "mode": 420
+    },
+    {
+      "path": "src/server/generation/template.ts",
+      "size": 960,
+      "mode": 420
+    },
+    {
+      "path": "src/server/http/local.ts",
+      "size": 1861,
+      "mode": 420
+    },
+    {
+      "path": "src/server/preview/server.ts",
+      "size": 3726,
+      "mode": 420
+    },
+    {
+      "path": "src/server/projects/service.ts",
+      "size": 8042,
+      "mode": 420
+    },
+    {
+      "path": "src/server/providers/errors.ts",
+      "size": 1410,
+      "mode": 420
+    },
+    {
+      "path": "src/server/providers/gemini.ts",
+      "size": 5082,
+      "mode": 420
+    },
+    {
+      "path": "src/server/providers/groq.ts",
+      "size": 6016,
+      "mode": 420
+    },
+    {
+      "path": "src/server/providers/ollama.ts",
+      "size": 3298,
+      "mode": 420
+    },
+    {
+      "path": "src/server/providers/openrouter.ts",
+      "size": 5669,
+      "mode": 420
+    },
+    {
+      "path": "src/server/providers/registry.ts",
+      "size": 3988,
+      "mode": 420
+    },
+    {
+      "path": "src/server/providers/transport.ts",
+      "size": 4940,
+      "mode": 420
+    },
+    {
+      "path": "src/server/workspaces/docker.ts",
+      "size": 8059,
+      "mode": 420
+    },
+    {
+      "path": "src/shared/auth-return.ts",
+      "size": 549,
+      "mode": 420
+    },
+    {
+      "path": "src/shared/creation.ts",
+      "size": 1002,
+      "mode": 420
+    },
+    {
+      "path": "src/shared/projects.ts",
+      "size": 1003,
+      "mode": 420
+    },
+    {
+      "path": "src/shared/providers.ts",
+      "size": 943,
+      "mode": 420
+    },
+    {
+      "path": "src/storage.test.ts",
+      "size": 2465,
+      "mode": 420
+    },
+    {
+      "path": "src/storage.ts",
+      "size": 2970,
+      "mode": 420
+    },
+    {
+      "path": "src/theme.ts",
+      "size": 903,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-app/app/api/items/route.ts",
+      "size": 1274,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-app/app/globals.css",
+      "size": 1189,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-app/app/layout.tsx",
+      "size": 183,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-app/app/page.tsx",
+      "size": 2044,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-app/lib/db.ts",
+      "size": 393,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-app/next.config.mjs",
+      "size": 118,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-app/package-lock.json",
+      "size": 34018,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-app/package.json",
+      "size": 409,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-app/tsconfig.json",
+      "size": 484,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/.env.example",
+      "size": 201,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/app-database.sql",
+      "size": 1458,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/app/api/health/route.ts",
+      "size": 287,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/app/globals.css",
+      "size": 1052,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/app/layout.tsx",
+      "size": 372,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/app/page.tsx",
+      "size": 442,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/components/EmptyState.tsx",
+      "size": 205,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/eslint.config.mjs",
+      "size": 308,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/lib/database.ts",
+      "size": 386,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/next-env.d.ts",
+      "size": 288,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/next.config.mjs",
+      "size": 362,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/package-lock.json",
+      "size": 259094,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/package.json",
+      "size": 817,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/pg_hba.conf",
+      "size": 188,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/platform/environment.test.ts",
+      "size": 1064,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/platform/environment.ts",
+      "size": 542,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/platform/reference-migrate.mjs",
+      "size": 2344,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/policy.ts",
+      "size": 2217,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/postgresql.conf",
+      "size": 529,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/README.md",
+      "size": 4218,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/reference/migrations/0001_tasks.sql",
+      "size": 336,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/reference/migrations/0002_priority.sql",
+      "size": 126,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/reference/portfolio.json",
+      "size": 1512,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/release.ts",
+      "size": 5298,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/toolchain/acquire.py",
+      "size": 7040,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/toolchain/image-inputs.json",
+      "size": 2695,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/toolchain/inputs.ts",
+      "size": 753,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/toolchain/license-policy.json",
+      "size": 1588,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/toolchain/materialize.mjs",
+      "size": 3734,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/toolchain/package-cache.py",
+      "size": 1584,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/toolchain/README.md",
+      "size": 5974,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/toolchain/test_acquire.py",
+      "size": 3101,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/toolchain/write-inputs.mts",
+      "size": 2048,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/tsconfig.json",
+      "size": 803,
+      "mode": 420
+    },
+    {
+      "path": "templates/next-postgres-v1/vitest.config.mjs",
+      "size": 250,
+      "mode": 420
+    },
+    {
+      "path": "tests/browser/demo-readiness.spec.ts",
+      "size": 1856,
+      "mode": 420
+    },
+    {
+      "path": "tests/browser/documentation.spec.ts",
+      "size": 5288,
+      "mode": 420
+    },
+    {
+      "path": "tests/browser/foundation.spec.ts",
+      "size": 2757,
+      "mode": 420
+    },
+    {
+      "path": "tests/browser/groq.spec.ts",
+      "size": 1492,
+      "mode": 420
+    },
+    {
+      "path": "tests/browser/pomodoro.acceptance.spec.ts",
+      "size": 2282,
+      "mode": 420
+    },
+    {
+      "path": "tests/browser/providers.spec.ts",
+      "size": 1842,
+      "mode": 420
+    },
+    {
+      "path": "tests/browser/unified-workbench.spec.ts",
+      "size": 2677,
+      "mode": 420
+    },
+    {
+      "path": "tests/browser/workflow.spec.ts",
+      "size": 4167,
+      "mode": 420
+    },
+    {
+      "path": "tests/creation.test.ts",
+      "size": 3359,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/acceptance-ledger.test.ts",
+      "size": 14192,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/byok-fixtures.ts",
+      "size": 1525,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/byok-transport.test.ts",
+      "size": 3595,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/byok.native.test.ts",
+      "size": 13421,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/byok.test.ts",
+      "size": 18306,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/contracts.test.ts",
+      "size": 12256,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/control-constraints.sql",
+      "size": 15389,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/control.native.test.ts",
+      "size": 44459,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/database.test.ts",
+      "size": 696,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/delivery-evidence.test.ts",
+      "size": 5523,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/e2-control-integration.test.ts",
+      "size": 18190,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/e2-generation.test.ts",
+      "size": 25811,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/e2-local-artifacts.test.ts",
+      "size": 2833,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/e3-candidate-export.test.ts",
+      "size": 2840,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/e3-collector.test.ts",
+      "size": 4336,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/e3-host.test.ts",
+      "size": 13091,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/e3-postgres-candidate.test.ts",
+      "size": 671,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/e3-release.test.ts",
+      "size": 3412,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/e3-runtime.test.ts",
+      "size": 11214,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/e3-transport.test.ts",
+      "size": 16194,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/e4-control-http.test.ts",
+      "size": 6675,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/e4-repair-integration.test.ts",
+      "size": 8402,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/e5-candidate-recovery.test.ts",
+      "size": 3168,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/encrypted-objects.test.ts",
+      "size": 3974,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/fixture-worker-child.mjs",
+      "size": 824,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/fixtures.ts",
+      "size": 4955,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/identity.native.test.ts",
+      "size": 24729,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/jobs.test.ts",
+      "size": 5903,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/native-postgres.ts",
+      "size": 2880,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/oidc-identity.test.ts",
+      "size": 6017,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/operations.test.ts",
+      "size": 5366,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/persistence-config.test.ts",
+      "size": 3349,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/persistence.native.test.ts",
+      "size": 21714,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/preview-control.native.test.ts",
+      "size": 13224,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/preview-host.test.ts",
+      "size": 4507,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/preview-hostnames.test.ts",
+      "size": 974,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/preview-policy.test.ts",
+      "size": 4692,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/provider-evaluation.test.ts",
+      "size": 13673,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/publishing.test.ts",
+      "size": 9578,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/task02-runtime.test.ts",
+      "size": 13413,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/template-toolchain.test.ts",
+      "size": 5249,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/validation-acceptance.test.ts",
+      "size": 5347,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/validation-dependencies.test.ts",
+      "size": 2551,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/validation-harness.test.ts",
+      "size": 3485,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/validation-integration.test.ts",
+      "size": 14288,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/validation-migrations.test.ts",
+      "size": 3648,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/validation-native.test.ts",
+      "size": 486,
+      "mode": 420
+    },
+    {
+      "path": "tests/engine/validation-secrets.test.ts",
+      "size": 3886,
+      "mode": 420
+    },
+    {
+      "path": "tests/generation.test.ts",
+      "size": 3094,
+      "mode": 420
+    },
+    {
+      "path": "tests/harness/candidate-export.ts",
+      "size": 12556,
+      "mode": 420
+    },
+    {
+      "path": "tests/harness/candidate-postgres.ts",
+      "size": 6260,
+      "mode": 420
+    },
+    {
+      "path": "tests/harness/candidate-recovery.ts",
+      "size": 15233,
+      "mode": 420
+    },
+    {
+      "path": "tests/harness/e2-control.ts",
+      "size": 9196,
+      "mode": 420
+    },
+    {
+      "path": "tests/harness/engine-view.html",
+      "size": 614,
+      "mode": 420
+    },
+    {
+      "path": "tests/harness/engine-view.ts",
+      "size": 6205,
+      "mode": 420
+    },
+    {
+      "path": "tests/harness/evidence/validation-integrated-tests.json",
+      "size": 32582,
+      "mode": 420
+    },
+    {
+      "path": "tests/harness/evidence/validation-tests.json",
+      "size": 29727,
+      "mode": 420
+    },
+    {
+      "path": "tests/harness/native-migrations.ts",
+      "size": 4281,
+      "mode": 420
+    },
+    {
+      "path": "tests/harness/persistence-child.ts",
+      "size": 1338,
+      "mode": 420
+    },
+    {
+      "path": "tests/harness/preview.ts",
+      "size": 1674,
+      "mode": 420
+    },
+    {
+      "path": "tests/harness/reference-apps.ts",
+      "size": 8662,
+      "mode": 420
+    },
+    {
+      "path": "tests/harness/synthetic-migrations.ts",
+      "size": 596,
+      "mode": 420
+    },
+    {
+      "path": "tests/normalization.test.ts",
+      "size": 718,
+      "mode": 420
+    },
+    {
+      "path": "tests/preview.test.ts",
+      "size": 3456,
+      "mode": 420
+    },
+    {
+      "path": "tests/preview/browser.ts",
+      "size": 16169,
+      "mode": 420
+    },
+    {
+      "path": "tests/preview/identity-race.ts",
+      "size": 4321,
+      "mode": 420
+    },
+    {
+      "path": "tests/preview/tsconfig.json",
+      "size": 71,
+      "mode": 420
+    },
+    {
+      "path": "tests/providers/providers.test.ts",
+      "size": 18101,
+      "mode": 420
+    },
+    {
+      "path": "tests/runner/test_runtime_contract.py",
+      "size": 16229,
+      "mode": 420
+    },
+    {
+      "path": "tests/workspace.test.ts",
+      "size": 1969,
+      "mode": 420
+    },
+    {
+      "path": "tsconfig.control.json",
+      "size": 261,
+      "mode": 420
+    },
+    {
+      "path": "tsconfig.engine.json",
+      "size": 685,
+      "mode": 420
+    },
+    {
+      "path": "tsconfig.json",
+      "size": 865,
+      "mode": 420
+    },
+    {
+      "path": "vitest.config.ts",
+      "size": 235,
+      "mode": 420
+    },
+    {
+      "path": "worker/index.ts",
+      "size": 16793,
+      "mode": 420
+    }
+  ],
+  "published": false,
+  "distributionReady": false
+}

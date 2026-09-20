@@ -1,27 +1,34 @@
 # Provider integration
 
-Gemini and Ollama implement the same ProviderAdapter contract: listModels and streaming generate with normalized delta/done events. Groq and OpenRouter are contract-only deferred provider IDs; no account setup is required for the first workflow.
+The Next.js application's `src/server/providers/registry.ts` registers **Gemini, Groq, OpenRouter and Ollama**. Each has implemented model discovery and generation code; Groq and OpenRouter are not deferred contract-only IDs. This inventory describes source code, not current account entitlement, universal model compatibility or live release qualification.
 
-## Local Ollama
-Forge discovers installed models at http://127.0.0.1:11434. The smallest installed model is selected initially. No model IDs are hard-coded and no models are pulled. Requests are capped at 8192 output tokens, 180 seconds, and an 8192-token local context. Models unload after the request to preserve memory. Provider settings include a real streaming check. No cloud fallback occurs automatically.
+## Application adapters
 
-## Gemini
-Create a key only after explicit user confirmation in the official dashboard. The user enters it directly into ignored .env.local. Never paste it into chat or browser-facing variables. Forge reads GEMINI_API_KEY on the server; authentication uses a header rather than a URL query. Models are discovered from Google's API. After verifying the account has no billing and the chosen model is free for it, configure GEMINI_MODEL and GEMINI_FREE_TIER_CONFIRMED=true. Without this confirmation, generation is blocked. Model discovery does not establish pricing or account eligibility. Restart Forge after editing its environment.
+| Adapter | Server configuration | Implemented boundary |
+| --- | --- | --- |
+| Gemini | `GEMINI_API_KEY`, `GEMINI_MODEL`, `GEMINI_FREE_TIER_CONFIRMED` | Discovers models, restricts generation to the configured model and confirmation flag, normalizes text events. The flag is a software gate, not evidence of current pricing or free-tier eligibility. |
+| Groq | `GROQ_API_KEY`, `GROQ_MODEL` | Discovers and selects the exact configured active model; implements streamed text and schema-constrained output only for its explicitly recognized strict-model set. |
+| OpenRouter | `OPENROUTER_API_KEY`, `OPENROUTER_MODEL`, `OPENROUTER_PAID_MODEL_CONFIRMED` | Restricts requests to the configured model, requires the paid-use confirmation flag, checks advertised structured-output support and streams normalized events. |
+| Ollama | `OLLAMA_BASE_URL` | Requires a literal loopback HTTP origin; discovers installed models and selects an installed model without automatically downloading one or choosing a cloud fallback. |
 
-Gemini is capped at 120 seconds and the requested/model output token limits. Only text parts that are not marked thought are emitted. No paid route is selected by fallback. Google's free-tier content/data-use terms apply. No Gemini live request has been verified without credentials.
+The registry reports unconfigured providers as unavailable. Model discovery does not prove generation, pricing, cancellation, resource capacity or the complete app-building flow. Protocol support depends on each adapter and exact model; similar endpoints do not imply arbitrary model/stack compatibility. The required first generated stack remains Next.js + strict TypeScript + PostgreSQL.
 
-Official references: https://ai.google.dev/api/models, https://ai.google.dev/api/generate-content, https://ai.google.dev/gemini-api/docs/pricing, https://docs.ollama.com/api/generate, https://docs.ollama.com/api/tags.
+Application transport has bounded request/stream parsing, cancellation/timeouts, controlled error messages and redirects disabled. Bounded retries before streaming must not be confused with the RFC accounting adapter's dispatch rules. Provider responses and unknown errors are not suitable raw diagnostics. Inspect `src/server/providers/transport.ts` and individual adapters for exact limits; do not extend them by configuring an arbitrary external URL.
 
-## Failure and security behavior
-HTTP authentication errors, quota/rate limits, configuration errors, cancellation, timeout, malformed streams, and output limits have controlled messages. Provider response bodies and unknown error messages are never returned to the client. Transient pre-stream HTTP failures retry with bounded backoff; Retry-After over five seconds surfaces a quota error. No stream is silently restarted after partial output. Streams are capped at 2 MB. Cross-origin control requests and untrusted Host headers are rejected; redirects are disabled. Ollama endpoints must be literal loopback HTTP origins.
+## Credential and spending requirements
 
-## Validation
-Contract tests use synthetic fixtures. The live Ollama script prints only completion metadata, never raw model output or credentials. Browser tests include explicit opt-in LIVE_PROVIDER_TEST=1 for a real local inference request. This does not imply the full application-generation workflow is implemented.
+Keep application provider keys in ignored server configuration or an approved secret reference. Never paste keys into chat, browser-facing variables, client storage, generated source, preview content, exports, logs or public reports. Restart the local server after configuration changes. Hosted tenant BYOK needs authenticated TLS submission and scoped encrypted handling; environment-based local configuration is not that complete hosted flow.
 
+Provider account/model entitlement and current prices must be verified before live use. A free/paid confirmation flag, a BYOK key or a successful catalog request is not a numeric spending authorization. Live tests require an applicable explicit budget and bounded usage. No credit sales, subscription checkout or Forge billing product is required by BYOK; abuse controls, liability retention and usage limits remain necessary. Provider credentials are separate from deployment credentials.
 
-## Unified application integration
-The approved neutral interface in DESIGN.md is authoritative. Five design examples are optional. Hosted authentication, cloud execution, and publishing must be verified before being described as available. See docs/implementation-status.md.
+## Separate RFC source-generation composition
 
-## RFC checkpoint contracts
+`engine/contracts/provider.ts`, `engine/providers/` and `engine/generation/` contain versioned source-generation contracts, an administrator-restricted registry, bounded chat-completions transport, encrypted versioned credentials and per-call accounting modules. The candidate `openai` policy restricts its source-code endpoint/model; that restriction is not a current model-availability or price claim. See the [RFC provider README](../engine/providers/README.md) and [combined provider matrix](operations/demo-readiness.md#provider-matrix-at-the-combined-source-audit).
 
-`engine/contracts/provider.ts` and `engine/providers/` retain independent versioned contracts and bounded adapter experiments. Their tests use explicit fixtures. They are not adapters registered with the application's `src/server/providers` or production worker; importing the checkpoint does not enable another provider or authorize live requests. The separate loopback NVIDIA planner retains its existing boundary.
+These modules are not automatically registered with the application's provider registry or production worker. The actual production dispatch gate, current authority, shared migrations, credential routes, global/uncertain-liability cleanup and validated live source stage remain unconnected. The RFC entrypoint is explicitly fixture-only when enabled. Supplying a key cannot bypass that composition or authorize a real runner job. The optional loopback NVIDIA service remains text planning only.
+
+## Validation and release status
+
+Contract and native tests use clearly labeled synthetic providers, identities and accounting gates. Opt-in live tests remain separate, require approved configuration/budget, and must record exact source/model/policy and outcomes. A local inference request does not establish the full hosted generation, persistence, preview and publishing flow.
+
+The [baseline report](reports/demo-delivery/task-01-baseline.md) records clean combined verification and its limitations. The [release board](operations/forge-release-coordination.md) owns the new staged-target and integration dependencies. Preserve existing implementation/evidence while keeping unsupported capabilities unavailable; do not promote fixtures or the Vercel availability page to live-provider acceptance.

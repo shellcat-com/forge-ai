@@ -42,9 +42,9 @@ Original attachments: `7bf29cf8-6452-4d91-ac9f-3a0c1c5b79e1/pasted-text.txt` (Ve
 
 Original URLs, unassigned to production presets:
 
-1. [Video 1](https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_171521_25968ba2-b594-4b32-aab7-f6b69398a6fa.mp4)
-2. [Video 2](https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260429_115139_0fc6bd3d-3631-4d26-ab9b-28293887dcc9.mp4)
-3. [Video 3](https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260424_064411_9e9d7f84-9277-41f4-ab10-59172d89e6be.mp4)
+1. Video 1 (provider account URL omitted from public metadata; original reference was not redistributed)
+2. Video 2 (provider account URL omitted from public metadata; original reference was not redistributed)
+3. Video 3 (provider account URL omitted from public metadata; original reference was not redistributed)
 
 Playback has not been verified in this milestone. Before assigning one, inspect its composition, loop transition, text-safe area, mobile crop and bandwidth; establish reuse permission and a poster. Include pause controls and reduced-motion fallback. The implemented experience uses original still artwork, so it has no autoplay or video-control dependency.
 
@@ -55,3 +55,7 @@ Five GPT Image 2.5 generations were completed: pale login landscape, muted build
 ## Product-flow rationale
 
 A local onboarding screen explains storage before a project is created. Project creation asks for name, brief, stack intent and one visual direction; preview theme is independent of Forge theme. Returning users can reopen, search, rename, duplicate and undo deletion. Custom projects remain saved drafts. The sample has explicit, user-paced planning/building/review fixtures. An independently implemented optional loopback NVIDIA connection can return real **text plans**; it does not produce files, run checks or authenticate users. Settings offers backup and explicit local-data reset. Invalid storage is preserved for recovery rather than silently overwritten.
+
+## Public provenance boundary
+
+Generated artwork metadata retains provider origins, prompts, models and transformations. Provider account paths and job identifiers are omitted. Neither the generated prompts nor provider URLs establish a right to redistribute the artwork; `redistributionRights: not-verified` records the missing rights evidence. This update changes metadata only, preserves asset bytes, and does not rewrite historical commits.

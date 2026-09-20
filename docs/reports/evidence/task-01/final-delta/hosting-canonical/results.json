@@ -1,0 +1,72 @@
+{
+  "source": "88a5a39",
+  "origin": "local-production-Next-route",
+  "cases": [
+    {
+      "theme": "light",
+      "width": 390,
+      "keyboard": true,
+      "reflow": true,
+      "cssZoomSimulation": true,
+      "reducedMotionMediaEmulation": true,
+      "nativeBrowserZoom": false,
+      "nativeOsMotion": false,
+      "pageErrors": []
+    },
+    {
+      "theme": "light",
+      "width": 768,
+      "keyboard": true,
+      "reflow": true,
+      "cssZoomSimulation": true,
+      "reducedMotionMediaEmulation": true,
+      "nativeBrowserZoom": false,
+      "nativeOsMotion": false,
+      "pageErrors": []
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "keyboard": true,
+      "reflow": true,
+      "cssZoomSimulation": true,
+      "reducedMotionMediaEmulation": true,
+      "nativeBrowserZoom": false,
+      "nativeOsMotion": false,
+      "pageErrors": []
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "keyboard": true,
+      "reflow": true,
+      "cssZoomSimulation": true,
+      "reducedMotionMediaEmulation": true,
+      "nativeBrowserZoom": false,
+      "nativeOsMotion": false,
+      "pageErrors": []
+    },
+    {
+      "theme": "dark",
+      "width": 768,
+      "keyboard": true,
+      "reflow": true,
+      "cssZoomSimulation": true,
+      "reducedMotionMediaEmulation": true,
+      "nativeBrowserZoom": false,
+      "nativeOsMotion": false,
+      "pageErrors": []
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "keyboard": true,
+      "reflow": true,
+      "cssZoomSimulation": true,
+      "reducedMotionMediaEmulation": true,
+      "nativeBrowserZoom": false,
+      "nativeOsMotion": false,
+      "pageErrors": []
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "evidence": "native PostgreSQL14 canonical SQL; fixture identity/source/worker/runtime",
+  "outcome": "PASS",
+  "tests": [
+    {
+      "name": "consumes one ticket atomically under 16 concurrent requests; stores only hashes",
+      "result": "passed"
+    },
+    {
+      "name": "rolls consumption back when session insertion fails, then permits exactly one retry",
+      "result": "passed"
+    },
+    {
+      "name": "rejects foreign tenant, wrong CSRF, wrong hostname, expired and replayed tickets",
+      "result": "passed"
+    },
+    {
+      "name": "binds sessions to exact tenant/generation/host and rotates once on concurrent renewal",
+      "result": "passed"
+    },
+    {
+      "name": "denies continued access after membership and revokes credentials during cleanup",
+      "result": "passed"
+    },
+    {
+      "name": "denies continued access after logout and revokes credentials during cleanup",
+      "result": "passed"
+    },
+    {
+      "name": "denies continued access after disabled-user and revokes credentials during cleanup",
+      "result": "passed"
+    },
+    {
+      "name": "denies continued access after disabled-workspace and revokes credentials during cleanup",
+      "result": "passed"
+    },
+    {
+      "name": "denies continued access after deletion and revokes credentials during cleanup",
+      "result": "passed"
+    },
+    {
+      "name": "denies continued access after unhealthy and revokes credentials during cleanup",
+      "result": "passed"
+    },
+    {
+      "name": "denies continued access after idle and revokes credentials during cleanup",
+      "result": "passed"
+    },
+    {
+      "name": "denies continued access after environment-expiry and revokes credentials during cleanup",
+      "result": "passed"
+    },
+    {
+      "name": "denies continued access after session-expiry and revokes credentials during cleanup",
+      "result": "passed"
+    },
+    {
+      "name": "denies continued access after revoked-route and revokes credentials during cleanup",
+      "result": "passed"
+    },
+    {
+      "name": "denies continued access after shutdown and revokes credentials during cleanup",
+      "result": "passed"
+    },
+    {
+      "name": "prevents API/worker cross-authority grants and permanent hostname reuse",
+      "result": "passed"
+    },
+    {
+      "name": "serializes logout against consume and renew without deadlocks or usable orphan sessions",
+      "result": "passed"
+    },
+    {
+      "name": "serializes revoke against consume and renew without deadlocks or usable orphan sessions",
+      "result": "passed"
+    },
+    {
+      "name": "serializes cancel against consume and renew without deadlocks or usable orphan sessions",
+      "result": "passed"
+    },
+    {
+      "name": "renews different viewer sessions concurrently and returns the updated idle expiry",
+      "result": "passed"
+    },
+    {
+      "name": "rejects legacy unbound tickets, generation mismatch, foreign worker registration and PUBLIC privileges",
+      "result": "passed"
+    },
+    {
+      "name": "revocation schedules canonical resource teardown and cleanup preserves hostname tombstone",
+      "result": "passed"
+    },
+    {
+      "name": "late worker registration racing revocation never resurrects a revoked preview",
+      "result": "passed"
+    }
+  ]
+}

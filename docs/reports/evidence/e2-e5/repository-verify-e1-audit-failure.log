@@ -1,0 +1,48 @@
+
+> forge-ai@0.1.0 verify
+> npm run lint && npm run typecheck && npm test && npm run build
+
+
+> forge-ai@0.1.0 lint
+> eslint .
+
+
+> forge-ai@0.1.0 typecheck
+> tsc -b --pretty false
+
+
+> forge-ai@0.1.0 test
+> vitest run
+
+▲ [WARNING] Cannot find base config file "expo/tsconfig.base" [tsconfig.json]
+
+    ../../../tsconfig.json:3:13:
+      3 │   "extends": "expo/tsconfig.base"
+        ╵              ~~~~~~~~~~~~~~~~~~~~
+
+
+ RUN  v4.1.11 /Users/biswaskhatiwada/Documents/ChatGPT/Forge AI _ Full-Stack App Generator
+
+(node:48078) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ tests/engine/control.native.test.ts (19 tests | 1 failed) 8287ms
+   × keeps an ambiguous provider charge reserved after actual worker process death; resolves it once 224ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/engine/control.native.test.ts > keeps an ambiguous provider charge reserved after actual worker process death; resolves it once
+error: null value in column "actor_id" of relation "audit_events" violates not-null constraint
+ ❯ node_modules/pg/lib/client.js:694:17
+ ❯ engine/control/reconciler.ts:100:7
+
+ ❯ ControlDatabase.tx engine/control/database.ts:36:22
+ ❯ tests/engine/control.native.test.ts:148:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 29 passed | 1 skipped (31)
+      Tests  1 failed | 331 passed | 1 skipped (333)
+   Start at  20:15:48
+   Duration  9.04s (transform 1.44s, setup 0ms, import 3.61s, tests 29.80s, environment 2.71s)
+

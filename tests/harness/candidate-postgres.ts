@@ -2,6 +2,7 @@ import { spawnSync } from 'node:child_process'
 import { mkdtempSync, readFileSync, rmSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { sha256 } from '../../engine/contracts/canonical.ts'
 import { validateMigrationSql } from '../../engine/validation/migrations.ts'
 import { taskMigration, priorityMigration } from './synthetic-migrations.ts'
@@ -52,11 +53,25 @@ export function checkCandidatePostgres() {
     }
     stop(); start()
     if (sql("SELECT title||':'||priority FROM app.tasks") !== 'Reviewed prior fixture:medium') throw new Error('Candidate database restart lost data')
+    sql('SET ROLE forge_migrator; DROP TABLE app.tasks;')
+    sql('ALTER ROLE forge_migrator LOGIN;')
+    const migrationUrl = new URL('postgresql://forge_migrator@localhost/forge_app')
+    migrationUrl.searchParams.set('host', root); migrationUrl.searchParams.set('port', '55439')
+    const exportedMigration = (mode: string) => spawnSync(process.execPath,
+      [fileURLToPath(new URL('../../templates/next-postgres-v1/platform/reference-migrate.mjs', import.meta.url)), mode],
+      { encoding: 'utf8', timeout: 60_000, env: { PATH: process.env.PATH, APP_MIGRATION_DATABASE_URL: migrationUrl.toString() } })
+    if (exportedMigration('initial').status !== 0) throw new Error('Export initial migration failed')
+    sql("SET ROLE forge_app; INSERT INTO app.tasks(id,title) VALUES ('00000000-0000-4000-8000-000000000003','Export prior fixture');")
+    if (exportedMigration('all').status !== 0 || exportedMigration('all').status !== 0
+      || sql("SELECT title||':'||priority FROM app.tasks") !== 'Export prior fixture:medium') throw new Error('Export additive/replay failed')
+    if (sql("SELECT has_table_privilege('forge_app','app._forge_reference_migrations','UPDATE')") !== 'f') throw new Error('Runtime can alter migration history')
+    sql("UPDATE app._forge_reference_migrations SET sha256='tampered' WHERE name='0001_tasks.sql'")
+    if (exportedMigration('all').status !== 1) throw new Error('Export accepted changed applied migration')
     stop()
     return { schemaVersion: 1, origin: 'platform-authored-candidate-host', version, bootstrapSha256: sha256(bootstrap),
       initialMigrationSha256: sha256(taskMigration), additiveMigrationSha256: sha256(priorityMigration),
       fresh: true, priorSeeded: true, defaultPrivileges: true, restrictedRoles: true, databaseRestart: true,
-      cleanup: true, guestExecution: false, providerGeneration: false, isolationAcceptance: false }
+      exportMigrationReplay: true, exportAppliedHashRejection: true, cleanup: true, guestExecution: false, providerGeneration: false, isolationAcceptance: false }
   } finally {
     if (started) stop()
     // Preserve the cluster if shutdown throws; never hide unconfirmed cleanup.

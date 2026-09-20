@@ -8,6 +8,7 @@ import { templateCatalogDigest, TemplateCatalog } from '../../engine/generation/
 import type { CatalogFile } from '../../engine/generation/catalog.ts'
 import type { TemplateManifestV1 } from '../../engine/contracts/source.ts'
 import { buildGenerationRequest, sanitizeDiagnostic } from '../../engine/generation/context.ts'
+import { generateAccountedSource } from '../../engine/generation/accounted-source.ts'
 import { collectProduct, generateFileBatches, generatePlan } from '../../engine/generation/pipeline.ts'
 import { buildCandidate, createTemplateSource, prepareDiff, prepareExecutionReview, prepareSourceExport, readSourceFile, restoreSource } from '../../engine/generation/source.ts'
 import { FixtureProvider } from '../../engine/testing/fakes.ts'
@@ -316,5 +317,31 @@ describe('E2 durable-hook sequencing using explicit provider fake', () => {
       signal: new AbortController().signal, hooks: h, request: () => ({ ...request, stage: 'files', outputSchemaId: 'FileBatchV1' }) })
     expect(result.batches).toHaveLength(1)
     expect(result.origin).toBe('fixture')
+  })
+})
+
+// Task04 source-stage integration uses the existing explicitly synthetic catalog.
+describe('accounted source stage and bounded repairs', () => {
+  it('persists immutable source/diff hashes and returns every repair for fenced review adoption', async () => {
+    for (const repairNumber of [0, 1, 2]) {
+      const setupResult = await setup()
+      const { catalog, store, base, plan, batch } = setupResult
+      const adopt = vi.fn(async () => undefined)
+      const result = await generateAccountedSource({ adapter: adapter(async () => response(batch)), store, scope, catalog, base, plan,
+        baseSnapshotId: null, signal: new AbortController().signal, hooks: hooks(), repairNumber, adopt,
+        request: () => ({ ...request, stage: repairNumber ? 'repair' : 'files', outputSchemaId: 'FileBatchV1' }) })
+      expect(result.origin).toBe('fixture')
+      expect(result.candidate.manifestArtifact.sha256).toBe(canonicalHash(result.candidate.manifest))
+      expect(result.diff.artifact.sha256).toBe(sha256(result.diff.diff.unified))
+      expect(adopt).toHaveBeenCalledTimes(1)
+    }
+  })
+  it('blocks a third repair before provider dispatch or adoption', async () => {
+    const { catalog, store, base, plan } = await setup(), fetcher = vi.fn<typeof fetch>(async () => response())
+    const adopt = vi.fn(async () => undefined)
+    await expect(generateAccountedSource({ adapter: adapter(fetcher), store, scope, catalog, base, plan,
+      baseSnapshotId: null, signal: new AbortController().signal, hooks: hooks(), repairNumber: 3, adopt,
+      request: () => ({ ...request, stage: 'repair', outputSchemaId: 'FileBatchV1' }) })).rejects.toThrow('REPAIR_CAP')
+    expect(fetcher).not.toHaveBeenCalled(); expect(adopt).not.toHaveBeenCalled()
   })
 })

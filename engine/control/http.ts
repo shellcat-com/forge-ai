@@ -59,6 +59,12 @@ function json(res: ServerResponse, status: number, value: unknown) {
   res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8' })
   res.end(JSON.stringify(value))
 }
+function attachment(res: ServerResponse, status: number, bytes: Uint8Array, filename: string,
+  contentType: 'application/zip' | 'application/octet-stream' | 'text/plain; charset=utf-8', extra: Record<string, string>) {
+  res.writeHead(status, { 'Content-Type': contentType, 'Content-Length': bytes.byteLength,
+    'Content-Disposition': `attachment; filename="${filename}"`, ...extra })
+  res.end(Buffer.from(bytes))
+}
 export interface HttpOptions {
   enabled: boolean
   origin: string
@@ -66,7 +72,7 @@ export interface HttpOptions {
   keepaliveMs?: number
   maxStreamsPerSession?: number
 }
-/** HTTP control transport only. No shell/runner/object-store bridge exists. */
+/** Single control transport. Source reads use the injected immutable artifact bridge. */
 export function createControlServer(service: ControlService, options: HttpOptions) {
   const streams = new Map<string, number>()
   const server = createServer(async (req, res) => {
@@ -77,9 +83,14 @@ export function createControlServer(service: ControlService, options: HttpOption
     res.setHeader('Content-Security-Policy', "default-src 'none'; frame-ancestors 'none'")
     try {
       if (!options.enabled) throw new ControlError(503, 'CONTROL_DISABLED')
+      const callbackNavigation =
+        req.method === 'GET' &&
+        new URL(req.url ?? '/', options.origin).pathname === '/api/v1/auth/callback' &&
+        req.headers['sec-fetch-mode'] === 'navigate' &&
+        req.headers['sec-fetch-dest'] === 'document'
       if (
         req.headers.host !== new URL(options.origin).host ||
-        req.headers['sec-fetch-site'] === 'cross-site' ||
+        (req.headers['sec-fetch-site'] === 'cross-site' && !callbackNavigation) ||
         (req.headers.origin && req.headers.origin !== options.origin)
       )
         throw new ControlError(403, 'ORIGIN_REJECTED')
@@ -109,7 +120,11 @@ export function createControlServer(service: ControlService, options: HttpOption
       if (method === 'GET' && path === '/api/v1/auth/bootstrap') {
         const b = service.sessions.bootstrap()
         res.setHeader('Set-Cookie', cookie(bootstrapCookie, b.cookie, 600))
-        json(res, 200, { schemaVersion: 1, origin: 'fixture', bootstrapNonce: b.nonce })
+        json(res, 200, {
+          schemaVersion: 1,
+          origin: service.sessions.adapter.origin,
+          bootstrapNonce: b.nonce,
+        })
         return
       }
       if (method === 'POST' && path === '/api/v1/auth/login') {
@@ -121,6 +136,17 @@ export function createControlServer(service: ControlService, options: HttpOption
         return
       }
       if (method === 'GET' && path === '/api/v1/auth/callback') {
+        if (
+          ['state', 'code', 'iss', 'error'].some(
+            (name) => url.searchParams.getAll(name).length > 1
+          ) ||
+          url.searchParams.has('error') ||
+          [...url.searchParams.keys()].some((name) => !['state', 'code', 'iss'].includes(name))
+        )
+          throw new ControlError(401, 'INVALID_AUTH_TRANSACTION')
+        const issuer = url.searchParams.get('iss')
+        if (issuer !== null && issuer !== service.sessions.adapter.issuer)
+          throw new ControlError(401, 'INVALID_AUTH_TRANSACTION')
         const result = await service.sessions.callback(
           jar.get(bootstrapCookie) ?? '',
           url.searchParams.get('state') ?? '',
@@ -237,6 +263,41 @@ export function createControlServer(service: ControlService, options: HttpOption
           return
         }
       }
+      match = path.match(/^\/api\/v1\/artifacts\/([^/]+)$/)
+      if (match && method === 'GET') {
+        const artifact = await service.artifactAttachmentById(token, uuid.parse(match[1]))
+        attachment(res, 200, artifact.bytes, `artifact-${artifact.artifactId}.bin`, 'application/octet-stream', {
+          'X-Artifact-Sha256': artifact.sha256,
+          ...(artifact.manifestDigest ? { 'X-Manifest-Digest': artifact.manifestDigest } : {}),
+        })
+        return
+      }
+      match = path.match(/^\/api\/v1\/snapshots\/([^/]+)\/(files|file|exports)$/)
+      if (match) {
+        const snapshotId = uuid.parse(match[1])
+        if (match[2] === 'files' && method === 'GET') {
+          json(res, 200, await service.files(token, snapshotId))
+          return
+        }
+        if (match[2] === 'file' && method === 'GET') {
+          if (url.searchParams.size !== 1 || !url.searchParams.has('path'))
+            throw new ControlError(422, 'VALIDATION_ERROR')
+          const file = await service.file(token, snapshotId, url.searchParams.get('path')!)
+          attachment(res, 200, file.bytes, 'source.txt', 'text/plain; charset=utf-8', {
+            'X-Source-Sha256': file.sha256, 'X-Manifest-Digest': file.manifestDigest,
+          })
+          return
+        }
+        if (match[2] === 'exports' && method === 'POST') {
+          cancelInputSchema.parse(await body(req))
+          keySchema.parse(key)
+          const archive = await service.sourceExport(token, snapshotId, csrf, key)
+          attachment(res, 201, archive.bytes, `fixture-source-${snapshotId}.zip`, 'application/zip', {
+            'X-Artifact-Sha256': archive.sha256, 'X-Manifest-Digest': archive.manifestDigest,
+          })
+          return
+        }
+      }
       match = path.match(/^\/api\/v1\/snapshots\/([^/]+)\/restore$/)
       if (match && method === 'POST') {
         const r = await service.restore(
@@ -250,12 +311,20 @@ export function createControlServer(service: ControlService, options: HttpOption
         return
       }
       match = path.match(
-        /^\/api\/v1\/jobs\/([^/]+)(?:\/(approvals|promote|cancel|events|artifacts)(?:\/([^/]+))?)?$/
+        /^\/api\/v1\/jobs\/([^/]+)(?:\/(approvals|promote|cancel|events|artifacts|plan|changes)(?:\/([^/]+))?)?$/
       )
       if (match) {
         const id = uuid.parse(match[1])
         if (!match[2] && method === 'GET') {
           json(res, 200, await service.getJob(token, id))
+          return
+        }
+        if (match[2] === 'plan' && !match[3] && method === 'GET') {
+          json(res, 200, await service.plan(token, id))
+          return
+        }
+        if (match[2] === 'changes' && !match[3] && method === 'GET') {
+          json(res, 200, await service.changes(token, id))
           return
         }
         if (match[2] === 'promote' && method === 'POST') {

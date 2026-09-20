@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "purpose": "implementation-checkpoint-not-release-attestation",
+  "recordedAt": "2026-09-10T02:20:23.692567+00:00",
+  "releaseReady": false,
+  "release": {
+    "passed": 1,
+    "failed": 0,
+    "blocked": 21,
+    "not-run": 0
+  },
+  "support": {
+    "passed": 15,
+    "failed": 1,
+    "blocked": 0,
+    "not-run": 0
+  },
+  "openDecisions": [
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8"
+  ],
+  "milestones": {
+    "E1": "fixture-verified",
+    "E2": "blocked",
+    "E3": "blocked",
+    "E4": "blocked",
+    "E5": "blocked"
+  },
+  "verifiedArtifacts": 16
+}

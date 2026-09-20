@@ -1,0 +1,11 @@
+
+ RUN  v4.1.11 /private/tmp/forge-task01-final-reproduction
+
+ ✓ tests/engine/identity.native.test.ts (11 tests) 3729ms
+   ✓ browser: Secure bootstrap survives external top-level OIDC return, then logout removes control access  1721ms
+   ✓ exhausted operator retries return safe busy with no partial membership, session or audit changes  827ms
+
+ Test Files  1 passed (1)
+      Tests  11 passed (11)
+   Start at  23:59:04
+   Duration  3.94s (transform 87ms, setup 0ms, import 153ms, tests 3.73s, environment 0ms)

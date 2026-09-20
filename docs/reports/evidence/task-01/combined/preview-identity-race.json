@@ -1,0 +1,10 @@
+{
+  "outcome": "PASS",
+  "evidence": "native PostgreSQL; fixture identities and runtime; Task05 operator real implementation",
+  "database": "postgres (PostgreSQL) 14.18 (Homebrew)",
+  "tests": [
+    "operator revocation versus held preview authorization, consume and renewal",
+    "exhausted NOWAIT retries roll back without membership/session mutation"
+  ],
+  "identityOperatorSha256": "6e6c06121e763d8609339f88bb01b216d7495c84104074f14c949dc63365631c"
+}

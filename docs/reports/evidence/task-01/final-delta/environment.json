@@ -1,0 +1,16 @@
+{
+  "sourceCommit": "88a5a39daeabe088a119f871166333975588c1b1",
+  "initialCleanSource": "4dacd0255e4a04648424eb0b0044c6658b46a014",
+  "clone": "same fresh GitHub reproduction clone, fetched published88a5a39 and detached checkout; own .next removed before rebuilding",
+  "dependencies": "original independent npm ci; root package and lock byte-identical; no reinstall or shared-symlink replacement",
+  "node": "24.20.0",
+  "npm": "11.11.0",
+  "sourceDelta": [
+    "src/app/hosting/hosting.css"
+  ],
+  "cssSha256": "95c661ad2292644fd216a14ee6f183a695ecaaad10f3f8bde810fe6485491fc6",
+  "checks": "npm run verify; python3 scripts/check-baseline-browser.py; node /tmp/forge-task01-hosting-final.mjs (exact harness retained as text)",
+  "visualReview": "Task01 inspected all6 canonical captures light/dark390/768/1440",
+  "origin": "local platform UI; synthetic auth/database; CSS zoom simulation/media emulation; no live generated portfolio",
+  "sourceCheckoutCleanAfterOwnEvidenceRestore": true
+}
